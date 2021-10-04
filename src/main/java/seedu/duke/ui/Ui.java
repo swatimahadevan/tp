@@ -2,7 +2,10 @@ package seedu.duke.ui;
 
 import java.util.Scanner;
 
-import static seedu.duke.constants.Messages.*;
+import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
+import static seedu.duke.constants.Messages.LOGO;
+import static seedu.duke.constants.Messages.MESSAGE_GOODBYE;
+import static seedu.duke.constants.Messages.MESSAGE_GREETING;
 
 public class Ui {
 
