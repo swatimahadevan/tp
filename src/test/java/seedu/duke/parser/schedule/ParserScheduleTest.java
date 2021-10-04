@@ -6,9 +6,7 @@ import seedu.duke.exceptions.IllegalDateTimeException;
 import java.time.YearMonth;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * @author swatim
- */
+//@author swatim
 class ParserScheduleTest {
 
     static ParserSchedule parser = new ParserSchedule();
