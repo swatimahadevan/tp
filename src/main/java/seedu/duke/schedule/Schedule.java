@@ -13,7 +13,10 @@ import java.util.stream.IntStream;
 public class Schedule {
     public static void displayCalendar(YearMonth inputYearMonth) {
         ArrayList<String> calendar = new ArrayList<>();
-        String[] daysInMonth = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
+        String[] daysInMonth = {"01", "02", "03", "04", "05",
+            "06", "07", "08", "09", "10", "11", "12", "13",
+            "14", "15", "16", "17", "18", "19", "20", "21",
+            "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
         // Add all days to calendar ArrayList first
         calendar.addAll(Arrays.asList(daysInMonth).subList(0, inputYearMonth.lengthOfMonth()));
 
@@ -35,8 +38,9 @@ public class Schedule {
         UiSchedule.printCalenderTitle(inputYearMonth);
         AtomicInteger j = new AtomicInteger();
         while (currentWeek < totalWeeks) {
-            // Print out the day number from calendar (maybe a number string like "01" or " ") followed by spacing
-            IntStream.range(0, 7).mapToObj(dayOfMonth -> "|  " + calendar.get(j.getAndIncrement()) + "  |").forEachOrdered(System.out::print);
+            // Print day number from calendar (maybe a number string like "01" or " ") and space
+            IntStream.range(0, 7).mapToObj(dayOfMonth -> "|  "
+                    + calendar.get(j.getAndIncrement()) + "  |").forEachOrdered(System.out::print);
             System.out.println();
             currentWeek++;
         }
