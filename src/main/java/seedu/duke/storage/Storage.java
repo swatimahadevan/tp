@@ -1,4 +1,4 @@
 package seedu.duke.storage;
 
-public class storage {
+public class Storage {
 }
