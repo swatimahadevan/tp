@@ -27,7 +27,7 @@ public class Parser {
     }
 
     /**
-     * Converts date and time in LocalDateTime format to a string
+     * Converts date and time in LocalDateTime format to a string.
      *
      * @param dateTime A LocalDateTime object that represents the given date and time.
      * @return The string representation of the given LocalDateTime object.
