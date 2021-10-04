@@ -2,9 +2,7 @@ package seedu.duke.parser.schedule;
 
 import java.time.YearMonth;
 
-/**
- * @author swatim
- */
+//@author swatim
 public class ParserSchedule {
 
     public static YearMonth parseCalendarCommand(String input) {

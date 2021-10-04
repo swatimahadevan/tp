@@ -2,6 +2,7 @@ package seedu.duke.ui.schedule;
 
 import java.time.YearMonth;
 
+//@author swatim
 public class UiSchedule {
 
     private static String HORIZONTAL_LINE = "________________________________________________________";
