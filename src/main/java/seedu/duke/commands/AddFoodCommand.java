@@ -5,6 +5,7 @@ import seedu.duke.ui.Ui;
 
 /**
  * Command to add a food item to the existing  list
+ * prefix would be food add [FOOD_NAME] [CALORIE_COUNT(kcal)]
  *
  * @author ngnigel99
  */
