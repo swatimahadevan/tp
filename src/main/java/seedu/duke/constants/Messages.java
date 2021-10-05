@@ -30,4 +30,11 @@ public class Messages {
     public static final String ADD_RECORD_FINAL = " calories!";
     public static final String PRINT_DONE_CLEAR_LIST = "Cleared food record list for today!";
     //end of Food
+
+    //@author swatim
+    public static String CALENDAR_HEADER_LINE = "________________________________________________________";
+    public static final String INVALID_CALENDAR_INPUT = " Invalid Input! Please "
+            + "type command in format:   | calendar MM-YYYY |";
+    public static final String INVALID_YEARMONTH = " Invalid Input! Please give "
+            + "a month between 1-12 and year between 2021-2025";
 }

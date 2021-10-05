@@ -2,16 +2,17 @@ package seedu.duke.parser;
 
 import seedu.duke.commands.AddNoteCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.DisplayCalendarCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 
 import java.time.LocalDateTime;
-import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 
 //@@author nvbinh15
 
@@ -93,6 +94,8 @@ public class Parser {
         switch (commandType) {
         case COMMAND_EXIT:
             return new ExitCommand();
+        case COMMAND_CALENDAR:
+            return new DisplayCalendarCommand(userInput);
         case "add":
             return new AddNoteCommand(userInput);
         default:
@@ -105,6 +108,16 @@ public class Parser {
         String noteNameDetails = input.trim().split("add")[1];
         String noteName = noteNameDetails.split("n/")[1].trim();
         return noteName;
+    }
+
+    //@author swatim
+    public static String[] parseCalendarCommand(String input) {
+        // takes substring excluding "calendar" from command
+        String extractMonthYear = input.substring(9);
+        String[] arguments = extractMonthYear.split("-");
+        int month = Integer.parseInt(arguments[0]);
+        int year = Integer.parseInt(arguments[1]);
+        return arguments;
     }
 }
 
