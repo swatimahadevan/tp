@@ -1,9 +1,17 @@
 package seedu.duke.parser;
 
+import seedu.duke.commands.Command;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import static seedu.duke.constants.Messages.EMPTY_STRING;
+import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
+
+//@@author nvbinh15
 
 public class Parser {
 
@@ -48,6 +56,43 @@ public class Parser {
             return dateTimeToString(stringToDateTime(rawDateTime));
         } catch (IllegalDateTimeException e) {
             throw new IllegalDateTimeException();
+        }
+    }
+
+    /**
+     * Splits raw user input into command word and command arguments.
+     *
+     * @param userInput Raw input from user.
+     * @return a String array of size 2 including the command type and the arguments.
+     */
+    public static String[] splitCommandAndArgs(String userInput) {
+        String[] tokens = userInput.trim().split("\\s+", 2);
+        String command = tokens[0];
+
+        if (tokens.length == 2) {
+            return tokens;
+        } else {
+            return new String[] {command, EMPTY_STRING};
+        }
+    }
+
+    /**
+     * Returns a to be executed command based on the raw input from user.
+     *
+     * @param userInput The raw input from user.
+     * @return The command to be executed.
+     * @throws ClickException If there is an exception of type DukeException occurs.
+     */
+    public Command parseCommand(String userInput) throws ClickException {
+        final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
+        final String commandType = commandTypeAndParams[0];
+        final String commandArgs = commandTypeAndParams[1];
+
+        switch (commandType) {
+        case COMMAND_EXIT:
+            return new ExitCommand();
+        default:
+            throw new ClickException();
         }
     }
 }
