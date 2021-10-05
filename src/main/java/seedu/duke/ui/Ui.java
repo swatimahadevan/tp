@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.calories.foodRecord;
+import seedu.duke.calories.FoodRecord;
 import seedu.duke.constants.Messages;
 
 import java.util.Scanner;
@@ -56,12 +56,12 @@ public class Ui {
     }
 
     /**
-     * Prints the name of the record, as well as the calorie count
-     * @param record
+     * Prints the name of the record, as well as the calorie count.
+     * @param record record to be added
      */
-    public static void printAddRecord(foodRecord record)  {
-        System.out.println(Messages.ADD_RECORD_GREET +
-                record.getFoodName()
+    public static void printAddRecord(FoodRecord record)  {
+        System.out.println(Messages.ADD_RECORD_GREET
+                + record.getFoodName()
                 + Messages.ADD_RECORD_TTL
                 + Messages.ADD_RECORD_CONNECTOR
                 + record.getCalorieCount()

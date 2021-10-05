@@ -7,11 +7,11 @@ import java.util.Date;
 /**
  * Represents a list of what the user has eaten.
  *  This would include the date of the record and
- *      the food items consumed
+ *      the food items consumed.
  *
  * @author ngnigel99
  */
-public class WhatIAteList extends ListOfRecords<foodRecord> {
+public class WhatIAteList extends ListOfRecords<FoodRecord> {
 
     private Date dayOfRecordList;
 
@@ -21,14 +21,14 @@ public class WhatIAteList extends ListOfRecords<foodRecord> {
 
     /**
      * Adds a food Record to a list, then notifies the user of what  item
-     *  they  have entered
+     *  they  have entered.
      *
      * @author  ngnigel99
      * @param recordToAdd record to add to list
      */
     @Override
-    public void addToList(foodRecord recordToAdd) {
-        List.add(recordToAdd);
+    public void addToList(FoodRecord recordToAdd) {
+        list.add(recordToAdd);
         Ui.printAddRecord(recordToAdd);
     }
 }

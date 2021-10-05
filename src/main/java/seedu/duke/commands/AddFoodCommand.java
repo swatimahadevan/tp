@@ -4,7 +4,7 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 /**
- * Command to add a food item to the existing  list
+ * Command to add a food item to the existing  list.
  *
  * @author ngnigel99
  */

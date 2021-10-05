@@ -9,11 +9,11 @@ import seedu.duke.ui.Ui;
  *
  * @author  ngnigel99
  */
-public class foodRecord {
+public class FoodRecord {
     private String foodName;
     private Integer calorieCount;
 
-    public foodRecord(String foodName, Integer calorieCount) {
+    public FoodRecord(String foodName, Integer calorieCount) {
         this.foodName = foodName;
         this.calorieCount = calorieCount;
     }
