@@ -67,4 +67,17 @@ public class Ui {
                 + record.getCalorieCount()
                 + Messages.ADD_RECORD_FINAL);
     }
+
+    //UI for journal
+    public static void printIntroMessage()
+    {
+        System.out.println("Hello, I am Journal Bud.");
+        System.out.println("How may I help you?");
+    }
+
+    public static void printAddedNoteMessage(String noteName)
+    {
+        System.out.println("Great you have added the note: " + noteName);
+    }
+    //end of UI for journal
 }
