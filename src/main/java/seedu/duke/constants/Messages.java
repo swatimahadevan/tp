@@ -28,5 +28,6 @@ public class Messages {
     public static final String RECORD_ATTRIBUTE_DIVIDER = "*";
     public static final String ADD_RECORD_CONNECTOR = " with ";
     public static final String ADD_RECORD_FINAL = " calories!";
+    public static final String PRINT_DONE_CLEAR_LIST = "Cleared food record list for today!";
     //end of Food
 }

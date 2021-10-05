@@ -59,6 +59,7 @@ public class Ui {
      * Prints the name of the record, as well as the calorie count.
      * @param record record to be added
      *
+     * @author ngnigel99
      */
     //TODO  remove messages, may be neater
     public static void printAddRecord(FoodRecord record)  {
@@ -68,5 +69,14 @@ public class Ui {
                 + Messages.ADD_RECORD_CONNECTOR
                 + record.getCalorieCount()
                 + Messages.ADD_RECORD_FINAL);
+    }
+
+    /**
+     * Prints success on clear message to user.
+     *
+     * @author ngnigel99
+     */
+    public static void printDoneClearList() {
+        System.out.println(Messages.PRINT_DONE_CLEAR_LIST);
     }
 }

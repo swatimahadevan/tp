@@ -71,4 +71,10 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
         }
         System.out.println("Wow, that's a lot of food! Finished reading today's list");
     }
+
+    @Override
+    public void clearList() {
+        super.clearList();
+        Ui.printDoneClearList();
+    }
 }
