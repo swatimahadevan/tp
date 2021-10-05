@@ -1,11 +1,13 @@
 package seedu.duke.parser;
 
+import seedu.duke.commands.AddNoteCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 import static seedu.duke.constants.Messages.EMPTY_STRING;
@@ -91,9 +93,18 @@ public class Parser {
         switch (commandType) {
         case COMMAND_EXIT:
             return new ExitCommand();
+        case "add":
+            return new AddNoteCommand(userInput);
         default:
             throw new ClickException();
         }
+    }
+
+    //@author SvethaMahadevan
+    public static String parseAddNoteCommand(String input) {
+        String noteNameDetails = input.trim().split("add")[1];
+        String noteName = noteNameDetails.split("n/")[1].trim();
+        return noteName;
     }
 }
 
