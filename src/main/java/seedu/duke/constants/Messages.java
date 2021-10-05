@@ -22,4 +22,11 @@ public class Messages {
     public static final String MESSAGE_GREETING = LINE_PREFIX + "Hello! I'm Duke" + NEW_LINE + "What can I do for you?";
     public static final String MESSAGE_GOODBYE = LINE_PREFIX + "Bye. Hope to see you again soon!";
 
+    // Food partition
+    public static final String ADD_RECORD_GREET = "Nice.  I've added ";
+    public static final String ADD_RECORD_TTL = "to the list,";
+    public static final String RECORD_ATTRIBUTE_DIVIDER = "*";
+    public static final String ADD_RECORD_CONNECTOR = " with ";
+    public static final String ADD_RECORD_FINAL = " calories!";
+    //end of Food
 }
