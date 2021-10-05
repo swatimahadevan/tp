@@ -69,5 +69,6 @@ public class WhatIAteList extends ListOfRecords<foodRecord> {
                                 + listRecord.getCalorieCount() + "!");
             index++;
         }
+        System.out.println("Wow, that's a lot of food! Finished reading today's list");
     }
 }
