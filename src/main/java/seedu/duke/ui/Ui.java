@@ -56,7 +56,7 @@ public class Ui {
     }
 
     /**
-     * Prints the name of the record, as well as the calorie count
+     * Prints the name of the record, as well as the calorie count.
      * @param record
      */
     public static void printAddRecord(foodRecord record)  {

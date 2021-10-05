@@ -1,11 +1,11 @@
 package seedu.duke.commands;
+
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.parser.Parser;
 
 import java.util.ArrayList;
-
-public class AddNoteCommand extends Command{
+public class AddNoteCommand extends Command {
 
     private ArrayList<String> noteList = new ArrayList<>();
     public String userInput;
