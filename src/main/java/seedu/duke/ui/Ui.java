@@ -58,7 +58,9 @@ public class Ui {
     /**
      * Prints the name of the record, as well as the calorie count.
      * @param record record to be added
+     *
      */
+    //TODO  remove messages, may be neater
     public static void printAddRecord(FoodRecord record)  {
         System.out.println(Messages.ADD_RECORD_GREET
                 + record.getFoodName()

@@ -25,7 +25,7 @@ public abstract class ListOfRecords<T> {
      * @author ngnigel99
      */
     protected void printList() {
-        for (Object listRecord : list) {
+        for (T listRecord : list) {
             System.out.println(listRecord);
         }
     }
