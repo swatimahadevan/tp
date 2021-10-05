@@ -8,6 +8,7 @@ import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 import static seedu.duke.constants.Messages.EMPTY_STRING;
@@ -115,9 +116,18 @@ public class Parser {
         // takes substring excluding "calendar" from command
         String extractMonthYear = input.substring(9);
         String[] arguments = extractMonthYear.split("-");
-        int month = Integer.parseInt(arguments[0]);
-        int year = Integer.parseInt(arguments[1]);
         return arguments;
     }
+
+    public static YearMonth parseCalendarCommandForJunit(String input) {
+        // takes substring excluding "calendar" from command
+        String extractMonthYear = input.substring(9);
+        var arguments = extractMonthYear.split("-");
+        int month = Integer.parseInt(arguments[0]);
+        int year = Integer.parseInt(arguments[1]);
+        YearMonth yearMonth = YearMonth.of(year, month);
+        return yearMonth;
+    }
+
 }
 
