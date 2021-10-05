@@ -5,6 +5,7 @@ import seedu.duke.ui.Ui;
 import seedu.duke.parser.Parser;
 
 import java.util.ArrayList;
+
 public class AddNoteCommand extends Command {
 
     private ArrayList<String> noteList = new ArrayList<>();
