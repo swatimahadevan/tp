@@ -1,5 +1,8 @@
 package seedu.duke.ui;
 
+import seedu.duke.calories.foodRecord;
+import seedu.duke.constants.Messages;
+
 import java.util.Scanner;
 
 import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
@@ -50,5 +53,18 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(message);
         System.out.println(HORIZONTAL_LINE);
+    }
+
+    /**
+     * Prints the name of the record, as well as the calorie count
+     * @param record
+     */
+    public static void printAddRecord(foodRecord record)  {
+        System.out.println(Messages.ADD_RECORD_GREET +
+                record.getFoodName()
+                + Messages.ADD_RECORD_TTL
+                + Messages.ADD_RECORD_CONNECTOR
+                + record.getCalorieCount()
+                + Messages.ADD_RECORD_FINAL);
     }
 }
