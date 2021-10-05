@@ -131,7 +131,7 @@ public class Ui {
     public static void printCurrentMonthCalendar() {
         YearMonth currentYearMonth = YearMonth.now();
         printCalenderTitle(currentYearMonth);
-        Schedule.displayCalendar(currentYearMonth) ;
+        Schedule.displayCalendar(currentYearMonth);
     }
     //End Schedule
 
