@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.calories.foodRecord;
+import seedu.duke.calories.FoodRecord;
 import seedu.duke.constants.Messages;
 
 import java.util.Scanner;
@@ -57,27 +57,37 @@ public class Ui {
 
     /**
      * Prints the name of the record, as well as the calorie count.
-     * @param record
+     * @author ngnigel99
+     * @param record record to be added
      */
-    public static void printAddRecord(foodRecord record)  {
-        System.out.println(Messages.ADD_RECORD_GREET +
-                record.getFoodName()
+    //TODO  remove messages, may be neater
+    public static void printAddRecord(FoodRecord record)  {
+        System.out.println(Messages.ADD_RECORD_GREET
+                + record.getFoodName()
                 + Messages.ADD_RECORD_TTL
                 + Messages.ADD_RECORD_CONNECTOR
                 + record.getCalorieCount()
                 + Messages.ADD_RECORD_FINAL);
     }
 
+    /**
+     * Prints success on clear message to user.
+     *
+     * @author ngnigel99
+     */
+    public static void printDoneClearList() {
+        System.out.println(Messages.PRINT_DONE_CLEAR_LIST);
+    }
+
     //UI for journal
-    public static void printIntroMessage()
-    {
+    public static void printIntroMessage() {
         System.out.println("Hello, I am Journal Bud.");
         System.out.println("How may I help you?");
     }
 
-    public static void printAddedNoteMessage(String noteName)
-    {
+    public static void printAddedNoteMessage(String noteName) {
         System.out.println("Great you have added the note: " + noteName);
     }
     //end of UI for journal
+
 }

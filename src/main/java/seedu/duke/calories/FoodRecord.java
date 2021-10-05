@@ -4,16 +4,16 @@ import seedu.duke.constants.Messages;
 import seedu.duke.ui.Ui;
 
 /**
- *  A food record simply records the name and colorie count of a food item
+ *  A food record simply records the name and calorie count of a food item.
  *  [FOOD_NAME] [CALORIES]
  *
  * @author  ngnigel99
  */
-public class foodRecord {
+public class FoodRecord {
     private String foodName;
     private Integer calorieCount;
 
-    public foodRecord(String foodName, Integer calorieCount) {
+    public FoodRecord(String foodName, Integer calorieCount) {
         this.foodName = foodName;
         this.calorieCount = calorieCount;
     }
