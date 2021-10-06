@@ -6,4 +6,5 @@ package seedu.duke.constants;
 public class CommandConstants {
     public static final String COMMAND_EXIT = "exit";
     public static final String COMMAND_CALENDAR = "calendar";
+    public static final String COMMAND_ADD_NOTE = "add";
 }
