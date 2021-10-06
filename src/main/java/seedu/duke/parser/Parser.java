@@ -1,11 +1,13 @@
 package seedu.duke.parser;
 
 import seedu.duke.calories.FoodRecord;
+import seedu.duke.commands.AddFoodCommand;
 import seedu.duke.commands.AddNoteCommand;
+import seedu.duke.commands.ClearFoodCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DisplayCalendarCommand;
 import seedu.duke.commands.ExitCommand;
-import seedu.duke.constants.Messages;
+import seedu.duke.commands.ListFoodCommand;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.IllegalFoodParameterException;
@@ -15,9 +17,12 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
-import static seedu.duke.constants.Messages.EMPTY_STRING;
-import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_ADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_CLEAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_LIST;
+import static seedu.duke.constants.Messages.EMPTY_STRING;
 
 //@@author nvbinh15
 
@@ -103,6 +108,12 @@ public class Parser {
             return new DisplayCalendarCommand(userInput);
         case "add":
             return new AddNoteCommand(userInput);
+        case COMMAND_FOOD_ADD:
+            return new AddFoodCommand();
+        case COMMAND_FOOD_CLEAR:
+            return new ClearFoodCommand();
+        case COMMAND_FOOD_LIST:
+            return new ListFoodCommand();
         default:
             throw new ClickException();
         }
