@@ -27,11 +27,7 @@ class ParserTest {
         assertThrows(IllegalDateTimeException.class, () -> parser.formatDateTime(illegalDateTime));
     }
 
-    //@author SvethaMahadevan
-    @Test
-    void sampleTest() {
-        assertEquals("testnotename", parser.parseAddNoteCommand("add n/ testnotename"));
-    }
+
 
     //@author swatim
     @Test
