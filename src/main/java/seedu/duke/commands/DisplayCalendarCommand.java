@@ -7,6 +7,11 @@ import seedu.duke.parser.Parser;
 import seedu.duke.schedule.Schedule;
 import java.time.YearMonth;
 
+import static seedu.duke.constants.Messages.YEAR_LOWER_LIMIT;
+import static seedu.duke.constants.Messages.YEAR_UPPER_LIMIT;
+import static seedu.duke.constants.Messages.MONTH_LOWER_LIMIT;
+import static seedu.duke.constants.Messages.MONTH_UPPER_LIMIT;
+
 public class DisplayCalendarCommand extends Command {
 
     private int year;
@@ -23,7 +28,8 @@ public class DisplayCalendarCommand extends Command {
             }
             this.year = Integer.parseInt(yearMonthArguments[1]);
             this.month = Integer.parseInt(yearMonthArguments[0]);
-            if (year < 2021 || year > 2025 || month < 1 || month > 12) {
+            if (year < YEAR_LOWER_LIMIT || year > YEAR_UPPER_LIMIT || month < MONTH_LOWER_LIMIT
+                || month > MONTH_UPPER_LIMIT) {
                 throw new InvalidArgumentsException();
             }
             this.inputYearMonth = YearMonth.of(year, month);

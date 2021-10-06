@@ -37,4 +37,8 @@ public class Messages {
             + "type command in format:   | calendar MM-YYYY |";
     public static final String INVALID_YEARMONTH = " Invalid Input! Please give "
             + "a month between 1-12 and year between 2021-2025";
+    public static final int YEAR_UPPER_LIMIT = 2025;
+    public static final int YEAR_LOWER_LIMIT = 2021;
+    public static final int MONTH_UPPER_LIMIT = 12;
+    public static final int MONTH_LOWER_LIMIT = 1;
 }
