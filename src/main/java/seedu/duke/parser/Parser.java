@@ -1,11 +1,15 @@
 package seedu.duke.parser;
 
+import seedu.duke.calories.FoodRecord;
 import seedu.duke.commands.AddNoteCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DisplayCalendarCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
+import seedu.duke.exceptions.IllegalFoodParameterException;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDateTime;
 import java.time.YearMonth;
@@ -129,5 +133,27 @@ public class Parser {
         return yearMonth;
     }
 
+    /**
+     * Parses a string into a food item.
+     *
+     * @author ngnigel99
+     */
+    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException {
+        try {
+            String[] splitInput = input.trim().split(" ");
+            if (splitInput.length != 2) {
+                throw new IllegalFoodParameterException();
+            }
+            int calories = Integer.parseInt(splitInput[1]);
+            String name  = splitInput[0];
+            FoodRecord recordToAdd = new FoodRecord(name, calories);
+            return recordToAdd;
+        } catch (NumberFormatException e) {
+            Ui.printAddFoodSyntax();
+        } catch (NullPointerException e) {
+            Ui.printNonNullInput();
+        }
+        return null;
+    }
 }
 
