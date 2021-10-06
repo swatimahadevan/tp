@@ -23,7 +23,7 @@ import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_CLEAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_LIST;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
-
+import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 //@@author nvbinh15
 
 public class Parser {
@@ -106,7 +106,7 @@ public class Parser {
             return new ExitCommand();
         case COMMAND_CALENDAR:
             return new DisplayCalendarCommand(userInput);
-        case "add":
+        case COMMAND_ADD_NOTE:
             return new AddNoteCommand(userInput);
         case COMMAND_FOOD_ADD:
             return new AddFoodCommand();
@@ -117,13 +117,6 @@ public class Parser {
         default:
             throw new ClickException();
         }
-    }
-
-    //@author SvethaMahadevan
-    public static String parseAddNoteCommand(String input) {
-        String noteNameDetails = input.trim().split("add")[1];
-        String noteName = noteNameDetails.split("n/")[1].trim();
-        return noteName;
     }
 
     //@author swatim
