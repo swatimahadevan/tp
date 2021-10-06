@@ -41,4 +41,10 @@ public class Messages {
     public static final int YEAR_LOWER_LIMIT = 2021;
     public static final int MONTH_UPPER_LIMIT = 12;
     public static final int MONTH_LOWER_LIMIT = 1;
+    public static final int NUMBER_OF_DAYS_IN_WEEK = 7;
+    public static final String LEAVE_EMPTY_IN_DISPLAY = "  ";
+    public static final String[] DAYS_IN_MONTH = {"01", "02", "03", "04", "05",
+        "06", "07", "08", "09", "10", "11", "12", "13",
+        "14", "15", "16", "17", "18", "19", "20", "21",
+        "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 }
