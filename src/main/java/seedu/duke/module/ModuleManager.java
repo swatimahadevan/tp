@@ -2,6 +2,8 @@ package seedu.duke.module;
 
 import java.util.ArrayList;
 
+//@@ author nvbinh15
+
 public class ModuleManager {
     private ArrayList<Module> modules;
 
