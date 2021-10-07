@@ -7,7 +7,7 @@ import seedu.duke.ui.Ui;
 import seedu.duke.task.TaskList;
 
 //@author swatim
-public class AddTodoCommand extends Command{
+public class AddTodoCommand extends Command {
 
     public AddTodoCommand(ArrayList<String> arguments) {
         super();
