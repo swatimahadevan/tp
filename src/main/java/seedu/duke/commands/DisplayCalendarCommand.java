@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.storage.Storage;
+import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 import seedu.duke.parser.Parser;
 import seedu.duke.schedule.Schedule;
@@ -39,7 +40,7 @@ public class DisplayCalendarCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         Ui.printCalenderTitle(inputYearMonth);
         Schedule.displayCalendar(inputYearMonth);
     }

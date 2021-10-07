@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 import seedu.duke.storage.Storage;
 
@@ -18,5 +19,5 @@ public abstract class Command {
      * @throws ClickException If there is an exception of type ClickException occurs.
      * @throws Exception If there is an exception of type other than DukeException occurs.
      */
-    public abstract void execute(Ui ui, Storage storage) throws ClickException, Exception;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws ClickException, Exception;
 }

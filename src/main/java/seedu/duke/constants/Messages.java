@@ -42,8 +42,13 @@ public class Messages {
     public static final int MONTH_LOWER_LIMIT = 1;
     public static final int NUMBER_OF_DAYS_IN_WEEK = 7;
     public static final String LEAVE_EMPTY_IN_DISPLAY = "  ";
+    public static final String CALENDAR_COMMAND_SPLIT_DELIMITER = "-";
+    public static final int CALENDAR_COMMAND_SPLIT_INDEX = 9;
     public static final String[] DAYS_IN_MONTH = {"01", "02", "03", "04", "05",
         "06", "07", "08", "09", "10", "11", "12", "13",
         "14", "15", "16", "17", "18", "19", "20", "21",
         "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
+
+    //Storage
+    public static final String STORAGE_FILEPATH = "data/tasks.txt";
 }

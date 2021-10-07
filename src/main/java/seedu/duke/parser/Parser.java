@@ -14,10 +14,11 @@ import seedu.duke.exceptions.IllegalFoodParameterException;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDateTime;
-import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
+import static seedu.duke.constants.Messages.CALENDAR_COMMAND_SPLIT_INDEX;
+import static seedu.duke.constants.Messages.CALENDAR_COMMAND_SPLIT_DELIMITER;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_CLEAR;
@@ -120,12 +121,14 @@ public class Parser {
     }
 
     //@author swatim
+    //Schedule start
     public static String[] parseCalendarCommand(String input) {
         // takes substring excluding "calendar" from command
-        String extractMonthYear = input.substring(9);
-        String[] arguments = extractMonthYear.split("-");
+        String extractMonthYear = input.substring(CALENDAR_COMMAND_SPLIT_INDEX);
+        String[] arguments = extractMonthYear.split(CALENDAR_COMMAND_SPLIT_DELIMITER);
         return arguments;
     }
+    //Schedule end
 
     /**
      * Parses a string into a food item.
