@@ -25,7 +25,7 @@ class ModuleTest {
     void getExpectedGrade_newModuleSpecifyingCodeNameAndGrade_specifiedGrade() {
         String moduleCode = "CS2113T";
         String moduleName = "Software Engineering & Object-Oriented Programming";
-        double expectedGrade = 4.5;
+        String expectedGrade = "A-";
         Module module = new Module(moduleCode, moduleName, expectedGrade);
         assertEquals(expectedGrade, module.getExpectedGrade());
     }
@@ -53,9 +53,9 @@ class ModuleTest {
     void setExpectedGrade_newModuleChangeToNewGrade_newGrade() {
         String moduleCode = "CS2113T";
         String moduleName = "Software Engineering & Object-Oriented Programming";
-        double expectedGrade = 4.5;
+        String expectedGrade = "A-";
         Module module = new Module(moduleCode, moduleName, expectedGrade);
-        double newExpectedGrade = 5.0;
+        String newExpectedGrade = "A";
         module.setExpectedGrade(newExpectedGrade);
         assertEquals(newExpectedGrade, module.getExpectedGrade());
     }
@@ -64,7 +64,7 @@ class ModuleTest {
     void testToString() {
         String moduleCode = "CS2113T";
         String moduleName = "Software Engineering & Object-Oriented Programming";
-        double expectedGrade = 4.5;
+        String expectedGrade = "A";
         String moduleStringRepresentation = moduleCode + " | " + moduleName + " | Expected grade: " + expectedGrade;
         Module module = new Module(moduleCode, moduleName, expectedGrade);
         assertEquals(moduleStringRepresentation, module.toString());

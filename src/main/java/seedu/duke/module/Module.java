@@ -8,10 +8,10 @@ package seedu.duke.module;
 public class Module {
     private String code;
     private String name;
-    private double expectedGrade;
+    private String expectedGrade; // to be replaced with enumeration
 
     private static final String DEFAULT_MODULE_NAME = "NONE";
-    private static final double DEFAULT_EXPECTED_GRADE = -1;
+    private static final String DEFAULT_EXPECTED_GRADE = "N/A";
 
     /**
      * Class constructor specifying the module code.
@@ -43,7 +43,7 @@ public class Module {
      * @param name The module name.
      * @param expectedGrade The expected grade of the module.
      */
-    public Module(String code, String name, double expectedGrade) {
+    public Module(String code, String name, String expectedGrade) {
         this.code = code;
         this.name = name;
         this.expectedGrade = expectedGrade;
@@ -72,7 +72,7 @@ public class Module {
      *
      * @return the module expected grade.
      */
-    public double getExpectedGrade() {
+    public String getExpectedGrade() {
         return expectedGrade;
     }
 
@@ -99,7 +99,7 @@ public class Module {
      *
      * @param expectedGrade The grade to be set.
      */
-    public void setExpectedGrade(double expectedGrade) {
+    public void setExpectedGrade(String expectedGrade) {
         this.expectedGrade = expectedGrade;
     }
 
