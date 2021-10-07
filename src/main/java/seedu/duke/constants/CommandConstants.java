@@ -10,4 +10,5 @@ public class CommandConstants {
     public static final String COMMAND_FOOD_CLEAR = "food clear";
     public static final String COMMAND_FOOD_LIST = "food list";
     public static final String COMMAND_ADD_NOTE = "add";
+    public static final String COMMAND_ADD_MODULE = "module add";
 }
