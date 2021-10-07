@@ -16,7 +16,7 @@ public class Module {
      *
      * @param code The module code.
      */
-    public void Module(String code) {
+    public Module(String code) {
         this.code = code;
         this.name = DEFAULT_MODULE_NAME;
         this.expectedGrade = DEFAULT_EXPECTED_GRADE;
@@ -28,7 +28,7 @@ public class Module {
      * @param code The module code.
      * @param name The module name.
      */
-    public void Module(String code, String name) {
+    public Module(String code, String name) {
         this.code = code;
         this.name = name;
         this.expectedGrade = DEFAULT_EXPECTED_GRADE;
@@ -41,7 +41,7 @@ public class Module {
      * @param name The module name.
      * @param expectedGrade The expected grade of the module.
      */
-    public void Module(String code, String name, double expectedGrade) {
+    public Module(String code, String name, double expectedGrade) {
         this.code = code;
         this.name = name;
         this.expectedGrade = expectedGrade;
@@ -57,7 +57,7 @@ public class Module {
     }
 
     /**
-     * Returns the module name
+     * Returns the module name.
      *
      * @return the module name.
      */
