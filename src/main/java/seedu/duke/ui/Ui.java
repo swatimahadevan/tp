@@ -3,8 +3,10 @@ package seedu.duke.ui;
 import seedu.duke.calories.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.schedule.Schedule;
+import seedu.duke.task.Task;
 
 import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
@@ -12,6 +14,8 @@ import static seedu.duke.constants.Messages.LOGO;
 import static seedu.duke.constants.Messages.MESSAGE_GOODBYE;
 import static seedu.duke.constants.Messages.MESSAGE_GREETING;
 import static seedu.duke.constants.Messages.CALENDAR_HEADER_LINE;
+import static seedu.duke.constants.Messages.ADDED_TASK;
+import static seedu.duke.constants.Messages.LIST_TASKS_HEADER;
 import static seedu.duke.constants.Messages.INVALID_YEARMONTH;
 import static seedu.duke.constants.Messages.INVALID_CALENDAR_INPUT;
 
@@ -143,6 +147,29 @@ public class Ui {
         Schedule.displayCalendar(currentYearMonth);
     }
 
+    /**
+     * Prints confirmatory message after task is added successfully.
+     */
+    public static void printTaskAddedMessage() {
+        System.out.println(ADDED_TASK);
+    }
+
+    /**
+     * Prints out tasks list.
+     *
+     * @param tasks List of tasks to be displayed.
+     */
+    public static void printTaskList(ArrayList<Task> tasks) {
+        System.out.println(LIST_TASKS_HEADER);
+        if (!tasks.isEmpty()) {
+            int i = 1;
+            for (Task item : tasks) {
+                System.out.println((i++) + ". " + item);
+            }
+        } else {
+            System.out.println("NO TASKS!");
+        }
+    }
     //End Schedule
 
 }
