@@ -4,6 +4,7 @@ import seedu.duke.calories.FoodRecord;
 import seedu.duke.exceptions.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
+import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 /**
@@ -15,7 +16,7 @@ import seedu.duke.ui.Ui;
 public class AddFoodCommand extends Command {
 
     @Override
-    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws IllegalFoodParameterException {
         //TODO read in user input, check correct data entry
         String userInput = "McBurger 600";
         FoodRecord foodRecord  = Parser.parseFoodRecord(userInput);

@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.storage.Storage;
+import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 //@@author nvbinh15
@@ -17,7 +18,7 @@ public class ExitCommand extends Command {
      * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
      */
     @Override
-    public void execute(Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         ui.printGoodBye();
         System.exit(0);
     }
