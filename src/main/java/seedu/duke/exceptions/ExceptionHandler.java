@@ -18,6 +18,7 @@ public class ExceptionHandler {
         System.out.println("hey, I can't " + userInput + " yet, try help for more commands");
     }
 
+    
     /**
      * Handles other exceptions.
      *
