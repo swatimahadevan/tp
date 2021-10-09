@@ -17,7 +17,7 @@ public class AddNoteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(Ui ui, Storage storage) {
         String noteName = ParserJournal.parseAddNoteCommand(userInput);
         noteList.add(noteName);
         ui.printAddedNoteMessage(noteName);

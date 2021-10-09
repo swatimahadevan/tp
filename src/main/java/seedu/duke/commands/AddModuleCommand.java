@@ -14,7 +14,7 @@ public class AddModuleCommand extends Command {
      * @param ui The component of Duke that deals with the interaction with the user.
      * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(Ui ui, Storage storage) {
 
     }
 }

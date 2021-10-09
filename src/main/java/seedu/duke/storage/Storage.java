@@ -69,7 +69,7 @@ public class Storage {
         ArrayList<String> data = loadDataFromSaveFile(STORAGE_FILEPATH_SCHEDULE);
         ArrayList<Task> tasks = StorageTasks.dataToTask(data);
         TaskList tasksList = new TaskList();
-        for (int i = 0; i < tasks.size(); i ++) {
+        for (int i = 0; i < tasks.size(); i++) {
             tasksList.addTask(tasks.get(i));
         }
         return tasksList;
