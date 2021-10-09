@@ -10,9 +10,8 @@ import seedu.duke.ui.Ui;
  * @author ngnigel99
  */
 public class ListFoodCommand extends Command  {
-
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        // storage.whatIAteTodayList.printList();
+        storage.whatIAteTodayList.printList();
     }
 }

@@ -11,7 +11,6 @@ import seedu.duke.ui.Ui;
 public class ClearFoodCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        //TODO integrate into storage
-        //storage.whatIAteTodayList.clearList();
+        storage.whatIAteTodayList.clearList();
     }
 }

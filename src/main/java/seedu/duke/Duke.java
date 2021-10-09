@@ -1,8 +1,12 @@
 package seedu.duke;
 
 import java.util.Scanner;
+
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.task.TaskList;
+import seedu.duke.exceptions.ExceptionHandler;
+import seedu.duke.schedule.Schedule;
+
 import seedu.duke.ui.Ui;
 import seedu.duke.commands.Command;
 import seedu.duke.storage.Storage;
