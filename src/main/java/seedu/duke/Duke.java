@@ -3,15 +3,12 @@ package seedu.duke;
 import java.util.Scanner;
 
 import seedu.duke.exceptions.ClickException;
-import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.task.TaskList;
 import seedu.duke.exceptions.ExceptionHandler;
-import seedu.duke.schedule.Schedule;
 
 import seedu.duke.ui.Ui;
 import seedu.duke.commands.Command;
 import seedu.duke.storage.Storage;
-import seedu.duke.exceptions.ExceptionHandler;
 import seedu.duke.parser.Parser;
 
 public class Duke {
@@ -32,7 +29,7 @@ public class Duke {
             String userInput = ui.getUserInput(in);
             try {
                 Command c = parser.parseCommand(userInput);
-                c.execute(tasklist, ui, storage);
+                c.execute(tasklist, ui, storage, in);
                 ui.printLine();
             } catch (ClickException e) {
                 exceptionHandler.handleDukeExceptions(e, userInput);

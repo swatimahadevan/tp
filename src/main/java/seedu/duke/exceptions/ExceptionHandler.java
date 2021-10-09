@@ -24,6 +24,5 @@ public class ExceptionHandler {
      * @param e Exception of types other than DukeException thrown by Duke.
      */
     public static void handleOtherExceptions(Exception e) {
-        System.out.println(e.getMessage());
     }
 }

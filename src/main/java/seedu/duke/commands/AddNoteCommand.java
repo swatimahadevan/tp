@@ -6,6 +6,7 @@ import seedu.duke.ui.Ui;
 import seedu.duke.parser.journal.ParserJournal;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class AddNoteCommand extends Command {
 
@@ -17,7 +18,7 @@ public class AddNoteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage, Scanner in) {
         String noteName = ParserJournal.parseAddNoteCommand(userInput);
         noteList.add(noteName);
         ui.printAddedNoteMessage(noteName);

@@ -5,6 +5,8 @@ import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 import seedu.duke.storage.Storage;
 
+import java.util.Scanner;
+
 //@@author nvbinh15
 
 /**
@@ -16,8 +18,9 @@ public abstract class Command {
      *
      * @param ui The component of Duke that deals with the interaction with the user.
      * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @param in
      * @throws ClickException If there is an exception of type ClickException occurs.
      * @throws Exception If there is an exception of type other than DukeException occurs.
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws ClickException, Exception;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage, Scanner in) throws ClickException, Exception;
 }
