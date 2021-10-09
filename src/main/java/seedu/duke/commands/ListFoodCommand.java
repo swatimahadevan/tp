@@ -11,7 +11,7 @@ import seedu.duke.ui.Ui;
  */
 public class ListFoodCommand extends Command  {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(Ui ui, Storage storage) {
         storage.whatIAteTodayList.printList();
     }
 }

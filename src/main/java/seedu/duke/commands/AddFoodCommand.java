@@ -16,7 +16,7 @@ import seedu.duke.ui.Ui;
 public class AddFoodCommand extends Command {
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IllegalFoodParameterException {
+    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException {
         //TODO read in user input, check correct data entry
         String userInput = "McBurger 600";
         FoodRecord foodRecord  = Parser.parseFoodRecord(userInput);

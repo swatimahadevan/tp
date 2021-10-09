@@ -40,7 +40,7 @@ public class DisplayCalendarCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(Ui ui, Storage storage) {
         Ui.printCalenderTitle(inputYearMonth);
         Schedule.displayCalendar(inputYearMonth);
     }
