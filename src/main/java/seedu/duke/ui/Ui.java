@@ -61,6 +61,7 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE);
     }
 
+    //start of FOOD
     /**
      * Prints the name of the record, as well as the calorie count.
      * @author ngnigel99
@@ -68,12 +69,11 @@ public class Ui {
      */
     //TODO  remove messages, may be neater
     public static void printAddRecord(FoodRecord record)  {
-        System.out.println(Messages.ADD_RECORD_GREET
+        System.out.println("Nice.  I've added "
                 + record.getFoodName()
-                + Messages.ADD_RECORD_TTL
-                + Messages.ADD_RECORD_CONNECTOR
+                + "to the list, with "
                 + record.getCalorieCount()
-                + Messages.ADD_RECORD_FINAL);
+                + " calories!");
     }
 
     /**
@@ -84,6 +84,15 @@ public class Ui {
     public static void printDoneClearList() {
         System.out.println(Messages.PRINT_DONE_CLEAR_LIST);
     }
+
+    public static void printAddFoodSyntax() {
+        System.out.println(Messages.PRINT_ADD_FOOD_SYNTAX);
+    }
+
+    public static void printNonNullInput() {
+        System.out.println(Messages.NON_NULL_INPUT);
+    }
+    //end of FOOD
 
     //UI for journal
     public static void printIntroMessage() {
@@ -133,6 +142,7 @@ public class Ui {
         printCalenderTitle(currentYearMonth);
         Schedule.displayCalendar(currentYearMonth);
     }
+
     //End Schedule
 
 }

@@ -1,20 +1,29 @@
 package seedu.duke.parser;
 
+import seedu.duke.calories.FoodRecord;
+import seedu.duke.commands.AddFoodCommand;
 import seedu.duke.commands.AddNoteCommand;
+import seedu.duke.commands.ClearFoodCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DisplayCalendarCommand;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.ListFoodCommand;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
+import seedu.duke.exceptions.IllegalFoodParameterException;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
-import static seedu.duke.constants.Messages.EMPTY_STRING;
-import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
-
+import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_ADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_CLEAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_LIST;
+import static seedu.duke.constants.Messages.EMPTY_STRING;
+import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 //@@author nvbinh15
 
 public class Parser {
@@ -97,18 +106,17 @@ public class Parser {
             return new ExitCommand();
         case COMMAND_CALENDAR:
             return new DisplayCalendarCommand(userInput);
-        case "add":
+        case COMMAND_ADD_NOTE:
             return new AddNoteCommand(userInput);
+        case COMMAND_FOOD_ADD:
+            return new AddFoodCommand();
+        case COMMAND_FOOD_CLEAR:
+            return new ClearFoodCommand();
+        case COMMAND_FOOD_LIST:
+            return new ListFoodCommand();
         default:
             throw new ClickException();
         }
-    }
-
-    //@author SvethaMahadevan
-    public static String parseAddNoteCommand(String input) {
-        String noteNameDetails = input.trim().split("add")[1];
-        String noteName = noteNameDetails.split("n/")[1].trim();
-        return noteName;
     }
 
     //@author swatim
@@ -119,15 +127,27 @@ public class Parser {
         return arguments;
     }
 
-    public static YearMonth parseCalendarCommandForJunit(String input) {
-        // takes substring excluding "calendar" from command
-        String extractMonthYear = input.substring(9);
-        var arguments = extractMonthYear.split("-");
-        int month = Integer.parseInt(arguments[0]);
-        int year = Integer.parseInt(arguments[1]);
-        YearMonth yearMonth = YearMonth.of(year, month);
-        return yearMonth;
+    /**
+     * Parses a string into a food item.
+     *
+     * @author ngnigel99
+     */
+    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException {
+        try {
+            String[] splitInput = input.trim().split(" ");
+            if (splitInput.length != 2) {
+                throw new IllegalFoodParameterException();
+            }
+            int calories = Integer.parseInt(splitInput[1]);
+            String name  = splitInput[0];
+            FoodRecord recordToAdd = new FoodRecord(name, calories);
+            return recordToAdd;
+        } catch (NumberFormatException e) {
+            Ui.printAddFoodSyntax();
+        } catch (NullPointerException e) {
+            Ui.printNonNullInput();
+        }
+        return null;
     }
-
 }
 

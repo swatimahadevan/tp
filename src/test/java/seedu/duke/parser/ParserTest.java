@@ -27,15 +27,4 @@ class ParserTest {
         assertThrows(IllegalDateTimeException.class, () -> parser.formatDateTime(illegalDateTime));
     }
 
-    //@author SvethaMahadevan
-    @Test
-    void sampleTest() {
-        assertEquals("testnotename", parser.parseAddNoteCommand("add n/ testnotename"));
-    }
-
-    //@author swatim
-    @Test
-    void formatYearMonth() {
-        assertEquals(YearMonth.of(2021, 10), parser.parseCalendarCommandForJunit("calendar 10-2021"));
-    }
 }
