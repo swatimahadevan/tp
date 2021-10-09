@@ -26,7 +26,7 @@ public class Duke {
         ui.printGreeting();
         Scanner in = new Scanner(System.in);
         while (true) {
-            String userInput = in.nextLine();
+            String userInput = in.hasNextLine()? in.nextLine()  : "";
             try {
                 Command c = parser.parseCommand(userInput);
                 c.execute(tasklist, ui, storage, in);
