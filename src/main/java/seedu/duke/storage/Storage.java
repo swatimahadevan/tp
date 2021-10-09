@@ -25,7 +25,7 @@ public class Storage {
     //TODO sync todaysDate from  file as well
 
     private Date todaysDate;
-    public WhatIAteList whatIAteTodayList =  new WhatIAteList(todaysDate);
+    public WhatIAteList whatIAteTodayList =  StorageFood.load();
 
     //@author swatim
     //Loads data in the form of ArrayList<String> data from the save file

@@ -34,7 +34,7 @@ public class FoodRecord {
     }
 
     public String toSaveListFormat() {
-        return foodName + "|" + calorieCount;
+        return foodName + "|" + calorieCount + "\n";
     }
 
     public void printRecordOnAdd()  {

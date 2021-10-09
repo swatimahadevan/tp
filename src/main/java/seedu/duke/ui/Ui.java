@@ -75,7 +75,7 @@ public class Ui {
     public static void printAddRecord(FoodRecord record)  {
         System.out.println("Nice.  I've added "
                 + record.getFoodName()
-                + "to the list, with "
+                + " to the list, with "
                 + record.getCalorieCount()
                 + " calories!");
     }

@@ -6,10 +6,13 @@ import seedu.duke.food.WhatIAteList;
 import seedu.duke.parser.Parser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * This class deals with passing food records to and fro a save file.
@@ -17,10 +20,9 @@ import java.nio.file.Paths;
  * @author ngnigel99
  */
 public class StorageFood {
-    private static final String STORAGE_DIVISOR = "\\|";
-    private static final String folderName = "data/";
+    private static final String folderName = "fooddata/";
     private static final String fileName = "food.txt";
-    private static String filePath;
+    private static String filePath =  folderName +  fileName;
 
     public StorageFood(String filePathToInput) {
         filePath = filePathToInput;
@@ -59,15 +61,38 @@ public class StorageFood {
         fw.close();
     }
 
-    /**
-     * Parses text to a <code>Food Record</code>.
-     *
-     * @param readLine       line of text to read
-     * @param taskListToSave task list to add food record
-     */
-    private static void addTaskToArray(String readLine, WhatIAteList taskListToSave) {
-        FoodRecord foodRecord = Parser.parseFoodSavedListToRecord(readLine);
-        taskListToSave.addToList(foodRecord);
-    }
 
+    /**
+     * Returns a food list.
+     * format of task per line of save file:
+     * [NAME] |  [CALORIES]
+     *
+     * @return listToReturn food list generated from save file
+     *          if save file not found, create new list and return
+     */
+    public static WhatIAteList load() {
+       WhatIAteList listToReturn = new WhatIAteList();
+        try {
+            checkAndAddDirectory();
+            File f = new File(filePath);
+            Scanner scanList = new Scanner(f);
+            while (scanList.hasNext()) {
+                String readLine = scanList.nextLine();
+                if (readLine.equals("")) {
+                    break;
+                }
+                listToReturn.addToList(Parser.parseFoodSavedListToRecord(readLine));
+            }
+            return listToReturn;
+        } catch (FileNotFoundException e) {
+            File f = new File(filePath);
+            System.out.println("Hey, I didn't find list.txt in " + folderName + "!");
+            System.out.println("creating new file...");
+        } catch (NullPointerException e) {
+            System.out.println("Null Pointer Exception, try again!");
+        } catch (IOException e) {
+            System.out.println("Hey, Input/ Output exception, returning empty list...");
+        }
+        return listToReturn;
+    }
 }
