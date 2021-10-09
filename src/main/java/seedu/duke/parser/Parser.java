@@ -10,6 +10,7 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.ClearFoodCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.IllegalFoodParameterException;
@@ -21,13 +22,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
-import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_ADD;
-import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_CLEAR;
-import static seedu.duke.constants.CommandConstants.COMMAND_FOOD_LIST;
+import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_LIST_TASKS;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.TODO;
@@ -135,14 +137,19 @@ public class Parser {
             } else {
                 return new DisplayCalendarCommand(userInput);
             }
+        case COMMAND_FOOD:
+            switch (commandArgs) {
+            case COMMAND_SUFFIX_ADD:
+                return new AddFoodCommand();
+            case COMMAND_SUFFIX_CLEAR:
+                return new ClearFoodCommand();
+            case COMMAND_SUFFIX_LIST:
+                return new ListFoodCommand();
+            default:
+                throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
+            }
         case COMMAND_ADD_NOTE:
             return new AddNoteCommand(userInput);
-        case COMMAND_FOOD_ADD:
-            return new AddFoodCommand();
-        case COMMAND_FOOD_CLEAR:
-            return new ClearFoodCommand();
-        case COMMAND_FOOD_LIST:
-            return new ListFoodCommand();
         default:
             throw new ClickException();
         }

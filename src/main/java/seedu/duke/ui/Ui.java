@@ -27,7 +27,7 @@ public class Ui {
      * @param in The Scanner to read user input.
      * @return line Full line entered by the user.
      */
-    public static String getUserInput(Scanner in) {
+    public String getUserInput(Scanner in) {
         String line = in.nextLine();
         return line;
     }
@@ -96,6 +96,7 @@ public class Ui {
     public static void printNonNullInput() {
         System.out.println(Messages.NON_NULL_INPUT);
     }
+
     //end of FOOD
 
     //UI for journal

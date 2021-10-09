@@ -3,6 +3,7 @@ package seedu.duke;
 import java.util.Scanner;
 
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.task.TaskList;
 import seedu.duke.exceptions.ExceptionHandler;
 import seedu.duke.schedule.Schedule;
@@ -34,8 +35,8 @@ public class Duke {
                 c.execute(tasklist, ui, storage);
                 ui.printLine();
             } catch (ClickException e) {
-                exceptionHandler.handleDukeExceptions(e);
-            } catch (Exception e) {
+                exceptionHandler.handleDukeExceptions(e, userInput);
+            } catch (Exception  e) {
                 exceptionHandler.handleOtherExceptions(e);
             }
         }
