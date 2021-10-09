@@ -26,6 +26,10 @@ public class Storage {
 
     private Date todaysDate;
     public WhatIAteList whatIAteTodayList =  StorageFood.load();
+    public TaskList tasksList = readTaskList();
+
+    public Storage() throws IOException {
+    }
 
     //@author swatim
     //Loads data in the form of ArrayList<String> data from the save file
@@ -62,9 +66,14 @@ public class Storage {
 
     //save file--->ArrayList<String> data--->ArrayList<Task> tasks
     //Can do the same for other save files by replacing the filepath constant
-    public ArrayList<Task> readTaskList() throws NullPointerException, IOException {
+    public TaskList readTaskList() throws NullPointerException, IOException {
         ArrayList<String> data = loadDataFromSaveFile(STORAGE_FILEPATH_SCHEDULE);
-        return StorageTasks.dataToTask(data);
+        ArrayList<Task> tasks = StorageTasks.dataToTask(data);
+        TaskList tasksList = new TaskList();
+        for (int i = 0; i < tasks.size(); i++) {
+            tasksList.addTask(tasks.get(i));
+        }
+        return tasksList;
     }
     //SCHEDULE END
 }

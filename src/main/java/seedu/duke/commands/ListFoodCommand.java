@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class ListFoodCommand extends Command  {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, Scanner in) {
+    public void execute(Ui ui, Storage storage, Scanner in) {
         storage.whatIAteTodayList.printList();
     }
 }

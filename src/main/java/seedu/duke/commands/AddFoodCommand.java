@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class AddFoodCommand extends Command {
 
     @Override
-    public void execute(TaskList taskList, Ui ui,
+    public void execute(Ui ui,
                         Storage storage, Scanner in) throws IllegalFoodParameterException, IOException {
         String userInput = in.nextLine();
         FoodRecord foodRecord  = Parser.parseFoodRecord(userInput);
