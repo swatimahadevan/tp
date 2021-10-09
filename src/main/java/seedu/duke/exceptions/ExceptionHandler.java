@@ -17,7 +17,6 @@ public class ExceptionHandler {
     public static void handleDukeExceptions(ClickException e, String userInput) {
         System.out.println("hey, I can't " + userInput + " yet, try help for more commands");
     }
-
     
     /**
      * Handles other exceptions.
