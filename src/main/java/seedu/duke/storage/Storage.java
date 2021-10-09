@@ -1,19 +1,11 @@
 package seedu.duke.storage;
 
 import seedu.duke.calories.WhatIAteList;
-import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.FileReader;
-import java.io.InputStreamReader;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
-import java.io.FileWriter;
 import java.util.Date;
 
 import static seedu.duke.constants.Messages.STORAGE_FILEPATH_SCHEDULE;
@@ -33,15 +25,9 @@ public class Storage {
 
     //@author swatim
     //Loads data in the form of ArrayList<String> data from the save file
-    public ArrayList<String> loadDataFromSaveFile(String filePath) throws NullPointerException, IOException {
-        BufferedReader bufferedReader;
-        try {
-            FileReader fileReader = new FileReader(filePath);
-            bufferedReader = new BufferedReader(fileReader);
-        } catch (FileNotFoundException e) {
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        }
+    public ArrayList<String> loadDataFromSaveFile(String filePath) throws IOException {
+        FileReader fileReader = new FileReader(filePath);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
         ArrayList<String> data = new ArrayList<>();
         String line;
         while ((line = bufferedReader.readLine()) != null) {
