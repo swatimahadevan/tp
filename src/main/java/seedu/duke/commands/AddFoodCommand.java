@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.calories.FoodRecord;
+import seedu.duke.exceptions.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -14,11 +15,10 @@ import seedu.duke.ui.Ui;
 public class AddFoodCommand extends Command {
 
     @Override
-    public void execute(Ui ui, Storage storage) {
+    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException {
         //TODO read in user input, check correct data entry
-
-        //TODO parse in foodRecord here
-        //FoodRecord = Parser.parseFoodRecord(userInput);
-        // storage.whatIAteTodayList.add(someFoodRecord);
+        String userInput = "McBurger 600";
+        FoodRecord foodRecord  = Parser.parseFoodRecord(userInput);
+        storage.whatIAteTodayList.addToList(foodRecord);
     }
 }
