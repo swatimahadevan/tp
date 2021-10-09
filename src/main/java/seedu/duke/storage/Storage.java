@@ -4,7 +4,11 @@ import seedu.duke.calories.WhatIAteList;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
-import java.io.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
