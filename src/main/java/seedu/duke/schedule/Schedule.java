@@ -1,6 +1,5 @@
 package seedu.duke.schedule;
 
-import seedu.duke.ui.schedule.UiSchedule;
 import java.time.DayOfWeek;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -8,15 +7,15 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
+import static seedu.duke.constants.Messages.NUMBER_OF_DAYS_IN_WEEK;
+import static seedu.duke.constants.Messages.LEAVE_EMPTY_IN_DISPLAY;
+import static seedu.duke.constants.Messages.DAYS_IN_MONTH;
 
 //@author swatim
 public class Schedule {
     public static void displayCalendar(YearMonth inputYearMonth) {
         ArrayList<String> calendar = new ArrayList<>();
-        String[] daysInMonth = {"01", "02", "03", "04", "05",
-            "06", "07", "08", "09", "10", "11", "12", "13",
-            "14", "15", "16", "17", "18", "19", "20", "21",
-            "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
+        String[] daysInMonth = DAYS_IN_MONTH;
         // Add all days to calendar ArrayList first
         calendar.addAll(Arrays.asList(daysInMonth).subList(0, inputYearMonth.lengthOfMonth()));
 
@@ -24,22 +23,21 @@ public class Schedule {
         DayOfWeek dayOneOfMonth = inputYearMonth.atDay(1).getDayOfWeek();
         if (dayOneOfMonth != DayOfWeek.SUNDAY) {
             for (int i = 0; i < dayOneOfMonth.getValue(); i++) {
-                calendar.add(0, "  ");
+                calendar.add(0, LEAVE_EMPTY_IN_DISPLAY);
             }
         }
         // Add spaces after for display after last day to end of week
-        while (calendar.size() % 7 != 0) {
-            calendar.add("  ");
+        while (calendar.size() % NUMBER_OF_DAYS_IN_WEEK != 0) {
+            calendar.add(LEAVE_EMPTY_IN_DISPLAY);
         }
 
         // Print out the entire display in week rows
-        int totalWeeks = (int) Math.ceil(calendar.size() / 7);
+        int totalWeeks = (int) Math.ceil((double)calendar.size() / NUMBER_OF_DAYS_IN_WEEK);
         int currentWeek = 0;
-        UiSchedule.printCalenderTitle(inputYearMonth);
         AtomicInteger j = new AtomicInteger();
         while (currentWeek < totalWeeks) {
             // Print day number from calendar (maybe a number string like "01" or " ") and space
-            IntStream.range(0, 7).mapToObj(dayOfMonth -> "|  "
+            IntStream.range(0, NUMBER_OF_DAYS_IN_WEEK).mapToObj(dayOfMonth -> "|  "
                     + calendar.get(j.getAndIncrement()) + "  |").forEachOrdered(System.out::print);
             System.out.println();
             currentWeek++;

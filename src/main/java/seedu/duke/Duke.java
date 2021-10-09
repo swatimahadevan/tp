@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import java.time.YearMonth;
 import java.util.Scanner;
 
 import seedu.duke.exceptions.ClickException;
@@ -19,7 +18,7 @@ public class Duke {
     private static ExceptionHandler exceptionHandler = new ExceptionHandler();
     private static Storage storage = new Storage();
     private static Parser parser = new Parser();
-  
+
     /**
      * Reads and executes command from user inputs.
      */

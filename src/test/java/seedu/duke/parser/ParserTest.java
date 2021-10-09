@@ -3,6 +3,8 @@ package seedu.duke.parser;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.IllegalDateTimeException;
 
+import java.time.YearMonth;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -25,4 +27,15 @@ class ParserTest {
         assertThrows(IllegalDateTimeException.class, () -> parser.formatDateTime(illegalDateTime));
     }
 
+    //@author SvethaMahadevan
+    @Test
+    void sampleTest() {
+        assertEquals("testnotename", parser.parseAddNoteCommand("add n/ testnotename"));
+    }
+
+    //@author swatim
+    @Test
+    void formatYearMonth() {
+        assertEquals(YearMonth.of(2021, 10), parser.parseCalendarCommandForJunit("calendar 10-2021"));
+    }
 }
