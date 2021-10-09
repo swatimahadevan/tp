@@ -11,7 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -71,7 +70,7 @@ public class StorageFood {
      *          if save file not found, create new list and return
      */
     public static WhatIAteList load() {
-       WhatIAteList listToReturn = new WhatIAteList();
+        WhatIAteList listToReturn = new WhatIAteList();
         try {
             checkAndAddDirectory();
             File f = new File(filePath);

@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 /**
  * List all current records (assumed today for simplicity).
- *  //TODO integrate storage component into list
  * @author ngnigel99
  */
 public class ListFoodCommand extends Command  {

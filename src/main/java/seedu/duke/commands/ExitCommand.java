@@ -17,7 +17,7 @@ public class ExitCommand extends Command {
      * Executes the exit command.
      *  @param ui The component of Duke that deals with the interaction with the user.
      * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
-     * @param in
+     * @param in Scanner  to read input
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, Scanner in) {
