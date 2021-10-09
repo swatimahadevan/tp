@@ -67,8 +67,12 @@ public class Storage {
     //Can do the same for other save files by replacing the filepath constant
     public TaskList readTaskList() throws NullPointerException, IOException {
         ArrayList<String> data = loadDataFromSaveFile(STORAGE_FILEPATH_SCHEDULE);
-        tasksList = StorageTasks.dataToTask(data);
-        return taskList;
+        ArrayList<Task> tasks = StorageTasks.dataToTask(data);
+        TaskList tasksList = new TaskList();
+        for (int i = 0; i < tasks.size(); i ++) {
+            tasksList.addTask(tasks.get(i));
+        }
+        return tasksList;
     }
     //SCHEDULE END
 }
