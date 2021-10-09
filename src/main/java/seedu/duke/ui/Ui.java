@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.calories.FoodRecord;
+import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.schedule.Schedule;
 import seedu.duke.task.Task;

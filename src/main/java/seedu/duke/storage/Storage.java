@@ -1,6 +1,6 @@
 package seedu.duke.storage;
 
-import seedu.duke.calories.WhatIAteList;
+import seedu.duke.food.WhatIAteList;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 

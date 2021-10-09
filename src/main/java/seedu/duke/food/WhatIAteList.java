@@ -1,4 +1,4 @@
-package seedu.duke.calories;
+package seedu.duke.food;
 
 import seedu.duke.ui.Ui;
 

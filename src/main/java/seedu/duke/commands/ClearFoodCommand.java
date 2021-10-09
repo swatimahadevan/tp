@@ -1,8 +1,11 @@
 package seedu.duke.commands;
 
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageFood;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
+
+import java.io.IOException;
 
 /**
  * Clears the current list  of food, and clear entries in storage.
@@ -10,7 +13,8 @@ import seedu.duke.ui.Ui;
  */
 public class ClearFoodCommand extends Command {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         storage.whatIAteTodayList.clearList();
+        StorageFood.saveList(storage.whatIAteTodayList);
     }
 }

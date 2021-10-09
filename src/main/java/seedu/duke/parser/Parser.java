@@ -1,6 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.calories.FoodRecord;
+import seedu.duke.food.FoodRecord;
 import seedu.duke.commands.AddFoodCommand;
 import seedu.duke.commands.AddTodoCommand;
 import seedu.duke.commands.AddNoteCommand;

@@ -1,11 +1,14 @@
 package seedu.duke.commands;
 
-import seedu.duke.calories.FoodRecord;
+import seedu.duke.food.FoodRecord;
 import seedu.duke.exceptions.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageFood;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
+
+import java.io.IOException;
 
 /**
  * Command to add a food item to the existing  list.
@@ -16,10 +19,11 @@ import seedu.duke.ui.Ui;
 public class AddFoodCommand extends Command {
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IllegalFoodParameterException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws IllegalFoodParameterException, IOException {
         //TODO read in user input, check correct data entry
         String userInput = "McBurger 600";
         FoodRecord foodRecord  = Parser.parseFoodRecord(userInput);
         storage.whatIAteTodayList.addToList(foodRecord);
+        StorageFood.saveList(storage.whatIAteTodayList);
     }
 }

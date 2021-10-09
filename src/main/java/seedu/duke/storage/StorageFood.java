@@ -1,8 +1,8 @@
 package seedu.duke.storage;
 
 
-import seedu.duke.calories.FoodRecord;
-import seedu.duke.calories.WhatIAteList;
+import seedu.duke.food.FoodRecord;
+import seedu.duke.food.WhatIAteList;
 import seedu.duke.parser.Parser;
 
 import java.io.File;
