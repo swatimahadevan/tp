@@ -12,6 +12,6 @@ public class ListFoodCommand extends Command  {
 
     @Override
     public void execute(Ui ui, Storage storage) {
-        // storage.whatIAteTodayList.printList();
+        storage.whatIAteTodayList.printList();
     }
 }

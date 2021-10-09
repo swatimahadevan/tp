@@ -129,7 +129,7 @@ public class Parser {
 
     /**
      * Parses a string into a food item.
-     *
+     * current implementation: [NAME] [CALORIES].
      * @author ngnigel99
      */
     public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException {
