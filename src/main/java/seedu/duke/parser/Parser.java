@@ -113,6 +113,18 @@ public class Parser {
     }
 
     /**
+     * Parses a line of text to a food record.
+     * Assumes that both name, calories field not null.
+     * Note format: [NAME] | [CALORIES]
+     * @param readLine line of text to read
+     * @return FoodRecord food record object
+     */
+    public static FoodRecord parseFoodSavedListToRecord(String readLine) {
+        String[] nameCalories = readLine.split("\\|");
+        return new FoodRecord(nameCalories[0], Integer.parseInt(nameCalories[1]));
+    }
+
+    /**
      * Returns a command to be executed based on the raw input from user.
      *
      * @param userInput The raw input from user.

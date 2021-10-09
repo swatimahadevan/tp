@@ -29,7 +29,7 @@ public class Storage {
 
     //@author swatim
     //Loads data in the form of ArrayList<String> data from the save file
-    public ArrayList<String> loadDataFromSaveFile(String filePath) throws IOException {
+    public static ArrayList<String> loadDataFromSaveFile(String filePath) throws IOException {
         FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         ArrayList<String> data = new ArrayList<>();
@@ -41,9 +41,10 @@ public class Storage {
     }
 
     //Write data from ArrayList<String> data onto save file
-    public void writeDataOntoSaveFile(String filePath, ArrayList<String> data) throws IOException {
+    public static void writeDataOntoSaveFile(String filePath, ArrayList<String> data) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath));
-        for (String dataLine : data) {
+        for (String dataObject : data) {
+            String dataLine = dataObject.toString();
             bufferedWriter.write(dataLine + '\n');
         }
         bufferedWriter.close();

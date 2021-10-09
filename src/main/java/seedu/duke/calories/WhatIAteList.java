@@ -2,6 +2,7 @@ package seedu.duke.calories;
 
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -17,6 +18,14 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
 
     public WhatIAteList(Date dayOfRecordList) {
         this.dayOfRecordList = dayOfRecordList;
+    }
+
+    //if date not given
+    public WhatIAteList() {
+    }
+
+    public ArrayList<FoodRecord> getList() {
+        return list;
     }
 
     /**

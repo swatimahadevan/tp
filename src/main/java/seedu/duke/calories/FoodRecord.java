@@ -33,6 +33,10 @@ public class FoodRecord {
                 + calorieCount;
     }
 
+    public String toSaveListFormat() {
+        return foodName + "|" + calorieCount;
+    }
+
     public void printRecordOnAdd()  {
         Ui.printAddRecord(this);
     }
