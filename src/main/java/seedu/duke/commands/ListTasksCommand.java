@@ -8,6 +8,7 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ListTasksCommand extends Command {
 
@@ -17,8 +18,7 @@ public class ListTasksCommand extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws IOException, InvalidArgumentsException {
-        ArrayList<Task> tasks = storage.tasksList.getTaskList();
-        Ui.printTaskList(tasks);
+        TaskList tasks = storage.readTaskList();
+        Ui.printTaskList(tasks.getTaskList());
     }
-
 }
