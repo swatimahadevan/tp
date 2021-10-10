@@ -29,10 +29,11 @@ public class StorageFood {
 
     /**
      * Creates directory if directory folderName is not found.
-     *
+     * access modifier left empty for working in Storage.
+     * @param folderName folder name to check
      * @throws IOException case where directory not found
      */
-    private static void checkAndAddDirectory() throws IOException {
+    static void checkAndAddDirectory(String folderName) throws IOException {
         String home = new File("").getAbsolutePath() + '/';
         File dirCheck = new File(home + folderName);
         if (dirCheck.isDirectory()) {
@@ -51,7 +52,7 @@ public class StorageFood {
      *                     - handled by creating new directory/ file if necessary
      */
     public static void saveList(WhatIAteList whatIAteList) throws IOException {
-        checkAndAddDirectory();
+        checkAndAddDirectory(folderName);
         File newList = new File(folderName + fileName);
         FileWriter fw = new FileWriter(folderName + fileName);
         for (FoodRecord f : whatIAteList.getList()) {
@@ -72,7 +73,7 @@ public class StorageFood {
     public static WhatIAteList load() {
         WhatIAteList listToReturn = new WhatIAteList();
         try {
-            checkAndAddDirectory();
+            checkAndAddDirectory(folderName);
             File f = new File(filePath);
             Scanner scanList = new Scanner(f);
             while (scanList.hasNext()) {

@@ -19,6 +19,6 @@ public class ListTasksCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws IOException, InvalidArgumentsException {
         TaskList tasks = storage.readTaskList();
-        //Ui.printTaskList(tasks);
+        Ui.printTaskList(tasks.getTaskList());
     }
 }

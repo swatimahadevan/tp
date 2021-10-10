@@ -90,7 +90,6 @@ public class Parser {
     public static String[] splitCommandAndArgs(String userInput) {
         String[] tokens = userInput.trim().split("\\s+", 2);
         String command = tokens[0];
-
         if (tokens.length == 2) {
             return tokens;
         } else {
@@ -153,14 +152,14 @@ public class Parser {
             String[] foodArgs = commandArgs.split(" ");
             switch (foodArgs[0]) {
             case COMMAND_SUFFIX_ADD:
-                return new AddFoodCommand(foodArgs[1], foodArgs[2]);
+                String nameCalorieInput = userInput.split("food add")[1];
+                return new AddFoodCommand(nameCalorieInput);
             case COMMAND_SUFFIX_CLEAR:
                 return new ClearFoodCommand();
             case COMMAND_SUFFIX_LIST:
                 return new ListFoodCommand();
             default:
                 throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
-
             }
         case COMMAND_ADD_NOTE:
             return new AddNoteCommand(userInput);

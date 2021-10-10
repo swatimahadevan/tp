@@ -12,6 +12,10 @@ import static seedu.duke.constants.Messages.FIRST_INDEX;
 
 //@author swatim
 public class StorageTasks {
+    //author ngnigel99 - create in folder
+    public static final String folderName = "tasksdata/";
+    public static final String fileName   = "scheduleTasks.txt";
+    public static final String filePath = folderName + fileName;
 
     static ArrayList<Task> dataToTask(ArrayList<String> data) {
         ArrayList<Task> tasks = new ArrayList<>();

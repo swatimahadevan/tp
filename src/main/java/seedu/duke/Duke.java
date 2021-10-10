@@ -1,6 +1,8 @@
 package seedu.duke;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.Scanner;
 
 import seedu.duke.exceptions.ClickException;
