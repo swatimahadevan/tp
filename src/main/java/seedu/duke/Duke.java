@@ -32,7 +32,7 @@ public class Duke {
         ui.printGreeting();
         Scanner in = new Scanner(System.in);
         while (true) {
-            String userInput = in.hasNextLine() ? in.nextLine()  : "";
+            String userInput = in.hasNextLine() ? in.nextLine()  : null;
             try {
                 Command c = parser.parseCommand(userInput);
                 c.execute(ui, storage);
