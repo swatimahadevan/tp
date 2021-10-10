@@ -16,13 +16,18 @@ import java.io.IOException;
  * @author ngnigel99
  */
 public class AddFoodCommand extends Command {
+    private String nameString;
+    private String calorieString;
+
+    public AddFoodCommand(String nameString, String calorieString) {
+        super();
+        this.nameString = nameString;
+        this.calorieString = calorieString;
+    }
 
     @Override
-    public void execute(Ui ui,
-                        Storage storage) throws IllegalFoodParameterException, IOException {
-        //TODO add read
-        String userInput = "Mcburger 600";
-        FoodRecord foodRecord  = Parser.parseFoodRecord(userInput);
+    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException, IOException {
+        FoodRecord foodRecord  = Parser.parseFoodRecord(nameString + " " + calorieString);
         storage.whatIAteTodayList.addToList(foodRecord);
         StorageFood.saveList(storage.whatIAteTodayList);
     }

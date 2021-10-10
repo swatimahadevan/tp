@@ -24,5 +24,6 @@ public class ExceptionHandler {
      * @param e Exception of types other than DukeException thrown by Duke.
      */
     public static void handleOtherExceptions(Exception e) {
+        System.out.println("OOPs, invalid command, try help for more commands.");
     }
 }

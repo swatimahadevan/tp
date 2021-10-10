@@ -150,15 +150,17 @@ public class Parser {
                 return new DisplayCalendarCommand(userInput);
             }
         case COMMAND_FOOD:
-            switch (commandArgs) {
+            String[] foodArgs = commandArgs.split(" ");
+            switch (foodArgs[0]) {
             case COMMAND_SUFFIX_ADD:
-                return new AddFoodCommand();
+                return new AddFoodCommand(foodArgs[1], foodArgs[2]);
             case COMMAND_SUFFIX_CLEAR:
                 return new ClearFoodCommand();
             case COMMAND_SUFFIX_LIST:
                 return new ListFoodCommand();
             default:
                 throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
+
             }
         case COMMAND_ADD_NOTE:
             return new AddNoteCommand(userInput);
