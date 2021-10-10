@@ -18,7 +18,6 @@ public abstract class Command {
      *
      * @param ui The component of Duke that deals with the interaction with the user.
      * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
-     * @param in Scanner to read input
      * @throws ClickException If there is an exception of type ClickException occurs.
      * @throws Exception If there is an exception of type other than DukeException occurs.
      */

@@ -1,12 +1,10 @@
 package seedu.duke.commands;
 
 import seedu.duke.storage.Storage;
-import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 import seedu.duke.parser.journal.ParserJournal;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class AddNoteCommand extends Command {
 
