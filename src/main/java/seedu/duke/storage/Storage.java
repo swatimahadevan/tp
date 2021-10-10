@@ -26,7 +26,7 @@ public class Storage {
 
     private Date todaysDate;
 
-    public WhatIAteList whatIAteTodayList = StorageFood.load();
+    public WhatIAteList whatIAteTodayList =  StorageFood.load();
     public TaskList tasksList = readTaskList();
 
     public Storage() throws IOException {

@@ -18,10 +18,10 @@ import java.io.IOException;
 public class AddFoodCommand extends Command {
 
     @Override
-
-    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException, IOException {
-        //TODO read in user input, check correct data entry
-        String userInput = "McBurger 600";
+    public void execute(Ui ui,
+                        Storage storage) throws IllegalFoodParameterException, IOException {
+        //TODO add read
+        String userInput = "Mcburger 600";
         FoodRecord foodRecord  = Parser.parseFoodRecord(userInput);
         storage.whatIAteTodayList.addToList(foodRecord);
         StorageFood.saveList(storage.whatIAteTodayList);

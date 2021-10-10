@@ -28,9 +28,6 @@ public class Duke {
 
     private static Parser parser = new Parser();
 
-    /**
-     * Reads and executes command from user inputs.
-     */
     private static void run() {
         ui.printGreeting();
         Scanner in = new Scanner(System.in);
