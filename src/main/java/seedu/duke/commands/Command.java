@@ -22,6 +22,5 @@ public abstract class Command {
      * @throws ClickException If there is an exception of type ClickException occurs.
      * @throws Exception If there is an exception of type other than DukeException occurs.
      */
-    public abstract void execute(TaskList taskList, Ui ui,
-                                 Storage storage, Scanner in) throws ClickException, Exception;
+    public abstract void execute(Ui ui, Storage storage) throws ClickException, Exception;
 }

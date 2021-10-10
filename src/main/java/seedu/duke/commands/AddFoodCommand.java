@@ -20,9 +20,10 @@ import java.util.Scanner;
 public class AddFoodCommand extends Command {
 
     @Override
-    public void execute(TaskList taskList, Ui ui,
-                        Storage storage, Scanner in) throws IllegalFoodParameterException, IOException {
-        String userInput = in.nextLine();
+
+    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException {
+        //TODO read in user input, check correct data entry
+        String userInput = "McBurger 600";
         FoodRecord foodRecord  = Parser.parseFoodRecord(userInput);
         storage.whatIAteTodayList.addToList(foodRecord);
         StorageFood.saveList(storage.whatIAteTodayList);

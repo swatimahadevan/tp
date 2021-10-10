@@ -10,7 +10,6 @@ import java.util.Scanner;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
 
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
@@ -34,13 +33,13 @@ public class AddTodoCommand extends Command {
 
     //Adds Task task into TaskList
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, Scanner in) throws IOException, ParseException {
+    public void execute(Ui ui, Storage storage) throws IOException, ParseException {
         String description = arguments.get(INDEX_TODO_DESCRIPTION);
         String date = parseDate(arguments.get(INDEX_TODO_DATE));
         Task task = new Todo(description, date);
-        taskList.addTask(task);
+        storage.tasksList.addTask(task);
         Ui.printTaskAddedMessage();
-        storage.writeTaskList(taskList);
+        storage.writeTaskList(storage.tasksList);
     }
 
 }

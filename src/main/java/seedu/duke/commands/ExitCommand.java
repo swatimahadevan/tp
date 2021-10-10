@@ -20,7 +20,7 @@ public class ExitCommand extends Command {
      * @param in Scanner  to read input
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, Scanner in) {
+    public void execute(Ui ui, Storage storage) {
         ui.printGoodBye();
         System.exit(0);
     }

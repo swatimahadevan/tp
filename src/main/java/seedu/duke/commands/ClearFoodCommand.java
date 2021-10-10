@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class ClearFoodCommand extends Command {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage, Scanner in) throws IOException {
+    public void execute(Ui ui, Storage storage) {
         storage.whatIAteTodayList.clearList();
         StorageFood.saveList(storage.whatIAteTodayList);
     }

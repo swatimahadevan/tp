@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import seedu.duke.exceptions.ClickException;
@@ -15,9 +16,17 @@ public class Duke {
 
     private static Ui ui = new Ui();
     private static ExceptionHandler exceptionHandler = new ExceptionHandler();
-    private static Storage storage = new Storage();
+    private static Storage storage;
+
+    static {
+        try {
+            storage = new Storage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static Parser parser = new Parser();
-    private static TaskList tasklist = new TaskList();
 
     /**
      * Reads and executes command from user inputs.
@@ -29,7 +38,7 @@ public class Duke {
             String userInput = in.hasNextLine() ? in.nextLine()  : "";
             try {
                 Command c = parser.parseCommand(userInput);
-                c.execute(tasklist, ui, storage, in);
+                c.execute(ui, storage);
                 ui.printLine();
             } catch (ClickException e) {
                 exceptionHandler.handleDukeExceptions(e, userInput);
