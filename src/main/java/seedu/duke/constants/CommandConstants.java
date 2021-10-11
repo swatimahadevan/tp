@@ -14,4 +14,12 @@ public class CommandConstants {
     public static final String COMMAND_ADD_MODULE = "module add";
     public static final String COMMAND_TODO = "todo";
     public static final String COMMAND_LIST_TASKS = "list";
+
+    //HELP COMMANDS BEGIN
+    public static final String COMMAND_HElP = "help";
+    public static final String COMMAND_HELP_SUFFIX_MODULE = "module";
+    public static final String COMMAND_HELP_SUFFIX_CALENDAR = "calendar";
+    public static final String COMMAND_HELP_SUFFIX_FOOD = "food";
+    public static final String COMMAND_HELP_SUFFIX_EXIT = "exit";
+    //HELP COMMANDS END
 }
