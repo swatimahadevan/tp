@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageTasks;
 import seedu.duke.ui.Ui;
 import seedu.duke.task.Task;
 import seedu.duke.task.Todo;
@@ -39,7 +40,7 @@ public class AddTodoCommand extends Command {
         Task task = new Todo(description, date);
         storage.tasksList.addTask(task);
         Ui.printTaskAddedMessage();
-        storage.writeTaskList(storage.tasksList);
+        StorageTasks.writeTaskList(storage.tasksList);
     }
 
 }
