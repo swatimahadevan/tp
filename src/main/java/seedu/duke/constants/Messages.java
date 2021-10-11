@@ -61,7 +61,8 @@ public class Messages {
     //SCHEDULE END
 
     //HELP BEGIN
-    public static final String HELP_MESSAGE = "List of valid commands:\n1. module\n2. calendar\n3. food\n4. exit\nType help <COMMAND_NAME> to get a detailed description";
+    public static final String HELP_MESSAGE = "List of valid commands:\n1. module\n2. calendar\n3. food\n" +
+            "4. exit\nType help <COMMAND_NAME> to get a detailed description";
     public static final String HELP_MESSAGE_MODULE = "";
     public static final String HELP_MESSAGE_CALENDAR = "";
     public static final String HELP_MESSAGE_FOOD = "";
