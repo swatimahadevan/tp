@@ -13,9 +13,8 @@ public class CollectionOfNotes {
         notes.add(new Note(nameOfNote));
     }
 
-    public static void print()
-    {
-        for(int i = 0; i < notes.size(); i++) {
+    public static void print() {
+        for (int i = 0; i < notes.size(); i++) {
             System.out.println(notes.get(i).getNoteName());
         }
     }

@@ -23,7 +23,7 @@ public class StorageNotes {
         while (i < dataSize) {
             String dataLine = data.get(i);
             String[] todoArguments = dataLine.split("\\|");
-                notes.add(addNote(todoArguments));
+            notes.add(addNote(todoArguments));
             i++;
         }
         return notes;
@@ -34,7 +34,7 @@ public class StorageNotes {
         return new Note(name);
     }
 
-    static ArrayList<String> NotesToData(ArrayList<Note> notes) {
+    static ArrayList<String> notesToData(ArrayList<Note> notes) {
         ArrayList<String> data = new ArrayList<>();
         for (Note note : notes) {
             data.add(note.toSaveFileFormat());
@@ -44,7 +44,7 @@ public class StorageNotes {
 
     public static void writeCollectionOfNotes(CollectionOfNotes collectionOfNotes) throws IOException {
         ArrayList<Note> notes = collectionOfNotes.getNotesArrayList();
-        ArrayList<String> data = NotesToData(notes);
+        ArrayList<String> data = notesToData(notes);
         Storage.writeDataOntoSaveFile(filePath, data);
     }
 

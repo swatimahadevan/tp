@@ -22,9 +22,8 @@ public class Note {
         return "note" + "|" + noteName;
     }
 
-    public static void print()
-    {
-        for(int i = 0; i < entriesList.size(); i++) {
+    public static void print() {
+        for (int i = 0; i < entriesList.size(); i++) {
             System.out.println(entriesList.get(i).getOfJournalEntry());
         }
     }

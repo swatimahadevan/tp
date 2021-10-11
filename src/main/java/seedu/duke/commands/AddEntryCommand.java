@@ -21,8 +21,7 @@ public class AddEntryCommand extends Command {
         CollectionOfNotes collectionOfNotes = new CollectionOfNotes();
         ArrayList<Note> notes = collectionOfNotes.getNotesArrayList();
         int indexOfNote = 0;
-        for (int i = 0; i < notes.size(); i++)
-        {
+        for (int i = 0; i < notes.size(); i++) {
             if (argumentsNoteEntry[0].equals(notes.get(i).getNoteName())) {
                 notes.get(i).addEntry(argumentsNoteEntry[1]);
                 indexOfNote = i;
