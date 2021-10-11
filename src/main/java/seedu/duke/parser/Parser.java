@@ -12,7 +12,11 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.ListFoodCommand;
 import seedu.duke.commands.ListTasksCommand;
 import seedu.duke.commands.HelpCommand;
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.ArgumentsNotFoundException;
+import seedu.duke.exceptions.ClickException;
+import seedu.duke.exceptions.IllegalDateTimeException;
+import seedu.duke.exceptions.IllegalFoodParameterException;
+import seedu.duke.exceptions.WrongDividerOrderException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.ui.Ui;
@@ -211,9 +215,12 @@ public class Parser {
      *
      * @author ngnigel99
      */
-    public static String[] getData(String input, String dividerBefore, String dividerAfter) throws WrongDividerOrderException, ArgumentsNotFoundException {
+    public static String[] getData(String input,
+                                   String dividerBefore,
+                                   String dividerAfter)
+            throws WrongDividerOrderException, ArgumentsNotFoundException {
         if (!(input.contains(dividerAfter) && input.contains(dividerAfter))) {
-           throw new ArgumentsNotFoundException();
+            throw new ArgumentsNotFoundException();
         }
         if (input.indexOf(dividerBefore) >= input.indexOf(dividerAfter)) {
             throw new WrongDividerOrderException();
@@ -228,12 +235,14 @@ public class Parser {
         return  new String[] {dataFirst, dataSecond};
 
     }
+
     /**
      * Parses a string into a food item.
      * current implementation: {food add} n/ [NAME] c/ [CALORIES].
      * @author ngnigel99
      */
-    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException, ArgumentsNotFoundException{
+    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
+            ArgumentsNotFoundException {
         try {
             if (getWordCount(input) <= FOOD_MINIMUM_PARAMETER) {
                 throw new IllegalFoodParameterException();
