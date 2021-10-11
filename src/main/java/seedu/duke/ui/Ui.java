@@ -70,7 +70,7 @@ public class Ui {
      */
     public static void printGreeting() {
         printMessage(LOGO + MESSAGE_GREETING);
-//        printCurrentMonthCalendar();
+        //printCurrentMonthCalendar();
     }
 
     /**
