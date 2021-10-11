@@ -219,13 +219,12 @@ public class Parser {
                                    String dividerBefore,
                                    String dividerAfter)
             throws WrongDividerOrderException, ArgumentsNotFoundException {
-        if (!(input.contains(dividerAfter) && input.contains(dividerAfter))) {
+        if (!(input.contains(dividerBefore) && input.contains(dividerAfter))) {
             throw new ArgumentsNotFoundException();
         }
         if (input.indexOf(dividerBefore) >= input.indexOf(dividerAfter)) {
             throw new WrongDividerOrderException();
         }
-        assert input.contains(dividerBefore) && input.contains(dividerAfter) : "";
         assert input.indexOf(dividerBefore) < input.indexOf(dividerAfter) : "";
         String afterFirstDivider  = input.split(dividerBefore)[1];
         String dataFirst          = afterFirstDivider.split(dividerAfter)[0].trim();
@@ -244,7 +243,7 @@ public class Parser {
     public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
             ArgumentsNotFoundException {
         try {
-            if (getWordCount(input) <= FOOD_MINIMUM_PARAMETER) {
+            if (getWordCount(input) < FOOD_MINIMUM_PARAMETER) {
                 throw new IllegalFoodParameterException();
             }
             String[] data = getData(input, FOOD_NAME_DIVIDER, FOOD_CALORIE_DIVIDER);
