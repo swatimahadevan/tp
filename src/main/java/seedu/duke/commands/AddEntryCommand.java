@@ -25,9 +25,8 @@ public class AddEntryCommand extends Command {
             if (argumentsNoteEntry[0].equals(notes.get(i).getNoteName())) {
                 notes.get(i).addEntry(argumentsNoteEntry[1]);
                 indexOfNote = i;
+                assert indexOfNote < notes.size();
                 break;
-            } else {
-                System.out.println("note not found!");
             }
         }
 
