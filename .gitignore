@@ -18,3 +18,5 @@ text-ui-test/EXPECTED-UNIX.TXT
 data/food.txt
 fooddata/food.txt
 text-ui-test/fooddata/food.txt
+tasksdata/*
+logs/*
