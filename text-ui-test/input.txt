@@ -1,4 +1,0 @@
-food list
-food add McSandwich 3000
-food add McBurger 6000
-exit
