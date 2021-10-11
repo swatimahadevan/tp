@@ -1,5 +1,0 @@
-note|abc
-note|pqr
-note|abc
-note|add
-note|abc
