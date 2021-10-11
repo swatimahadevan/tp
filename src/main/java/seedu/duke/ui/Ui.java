@@ -9,8 +9,24 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.constants.CommandConstants.*;
-import static seedu.duke.constants.Messages.*;
+import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_CALENDAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_EXIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_FOOD;
+import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_MODULE;
+import static seedu.duke.constants.Messages.ADDED_TASK;
+import static seedu.duke.constants.Messages.CALENDAR_HEADER_LINE;
+import static seedu.duke.constants.Messages.HELP_MESSAGE;
+import static seedu.duke.constants.Messages.HELP_MESSAGE_CALENDAR;
+import static seedu.duke.constants.Messages.HELP_MESSAGE_EXIT;
+import static seedu.duke.constants.Messages.HELP_MESSAGE_FOOD;
+import static seedu.duke.constants.Messages.HELP_MESSAGE_MODULE;
+import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
+import static seedu.duke.constants.Messages.INVALID_CALENDAR_INPUT;
+import static seedu.duke.constants.Messages.INVALID_YEARMONTH;
+import static seedu.duke.constants.Messages.LIST_TASKS_HEADER;
+import static seedu.duke.constants.Messages.LOGO;
+import static seedu.duke.constants.Messages.MESSAGE_GOODBYE;
+import static seedu.duke.constants.Messages.MESSAGE_GREETING;
 
 public class Ui {
 
