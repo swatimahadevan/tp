@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageTasks;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
@@ -18,7 +19,7 @@ public class ListTasksCommand extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws IOException, InvalidArgumentsException {
-        TaskList tasks = storage.readTaskList();
+        TaskList tasks = StorageTasks.readTaskList();
         Ui.printTaskList(tasks.getTaskList());
     }
 }
