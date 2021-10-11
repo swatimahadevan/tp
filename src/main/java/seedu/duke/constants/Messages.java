@@ -55,7 +55,9 @@ public class Messages {
     public static final int TOTAL_SIZE = 32;
     public static final String ADDED_TASK = "Task has been added successfully!";
     public static final String LIST_TASKS_HEADER = "Here's your task list: ";
-    public static final String DISPLAY_LINE = "----------------------------------------------------------------------------------------------------------";
+    public static final String DISPLAY_LINE = "-------------------------"
+            + "----------------------------"
+            + "-----------------------------------------------------";
     public static final String DAY_DEMARCATION = "|";
     public static final String NO_TASK_IN_DAY = "              |";
     //SCHEDULE END

@@ -198,6 +198,7 @@ public class Ui {
             System.out.println("NO TASKS!");
         }
     }
+
     public static void printCalendarLine() {
         System.out.println(DISPLAY_LINE);
     }

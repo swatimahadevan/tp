@@ -55,7 +55,7 @@ public class DisplayCalendarCommand extends Command {
         for (Task task : taskList.getTaskList()) {
             String description = task.getDescription();
             String time = "";
-            String dateSplit[] = task.getDate().split("-");
+            String[] dateSplit = task.getDate().split("-");
             if (this.month == Integer.parseInt(dateSplit[1]) && this.year == Integer.parseInt(dateSplit[2])) {
                 int day = Integer.parseInt(dateSplit[0]);
                 addTaskToCalendarList(time, description, day);

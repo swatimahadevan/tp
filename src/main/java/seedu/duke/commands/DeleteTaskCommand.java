@@ -8,7 +8,7 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
-public class DeleteTaskCommand extends Command{
+public class DeleteTaskCommand extends Command {
     private int index;
 
     public DeleteTaskCommand(int index) {

@@ -49,7 +49,8 @@ public class Schedule {
     private static void addNoDatesInBeginning(YearMonth inputYearMonth, ArrayList<String> calendar) {
         DayOfWeek dayOneOfMonth = inputYearMonth.atDay(1).getDayOfWeek();
         if (dayOneOfMonth != DayOfWeek.SUNDAY) {
-            IntStream.range(FIRST_INDEX, dayOneOfMonth.getValue()).forEachOrdered(i -> calendar.add(0, LEAVE_EMPTY_IN_DISPLAY));
+            IntStream.range(FIRST_INDEX, dayOneOfMonth.getValue()).forEachOrdered(i ->
+                    calendar.add(0, LEAVE_EMPTY_IN_DISPLAY));
         }
     }
 
@@ -68,7 +69,8 @@ public class Schedule {
         }
     }
 
-    private static void printTaskForWeek(ArrayList<ArrayList<String>> calendarTasks, ArrayList<String> calendar, int dayIndex) {
+    private static void printTaskForWeek(ArrayList<ArrayList<String>> calendarTasks,
+                                         ArrayList<String> calendar, int dayIndex) {
         int row = 0;
         while (row < 3) {
             System.out.print("|");
@@ -80,7 +82,8 @@ public class Schedule {
         }
     }
 
-    private static void printDetails(ArrayList<ArrayList<String>> calendarTasks, ArrayList<String> calendarDates, int dayIndex, int row, int day) {
+    private static void printDetails(ArrayList<ArrayList<String>> calendarTasks,
+                                     ArrayList<String> calendarDates, int dayIndex, int row, int day) {
         String dayString = calendarDates.get(dayIndex + day).trim();
         if (!dayString.equals("") && calendarTasks.get(Integer.parseInt(dayString)).size() > row) {
             int currentDay = Integer.parseInt(dayString);
