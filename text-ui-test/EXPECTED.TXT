@@ -8,10 +8,8 @@ Hey, I didn't find list.txt in fooddata/!
 creating new file...
 Hey, I didn't find directory journalData/
 adding journalData/ into repository...
-FNFE, creating file
-Hey, I didn't find list.txt in fooddata/!
+Hey, I didn't find journalNotes.txt in journalData/!
 creating new file...
-FNFE, creating file
 	__________________________________________________
 	 ____        _
 	|  _ \ _   _| | _____
