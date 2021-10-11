@@ -12,7 +12,6 @@ FNFE, creating file
 Hey, I didn't find list.txt in fooddata/!
 creating new file...
 FNFE, creating file
-
 	__________________________________________________
 	 ____        _
 	|  _ \ _   _| | _____
@@ -22,4 +21,7 @@ FNFE, creating file
 
 	Hello! I'm Duke
 	What can I do for you?
+	__________________________________________________
+	__________________________________________________
+	Bye. Hope to see you again soon!
 	__________________________________________________
