@@ -59,4 +59,13 @@ public class Messages {
     public static final String DECOR_BEFORE = "|  ";
     public static final String DECOR_AFTER = "  |";
     //SCHEDULE END
+
+    //HELP BEGIN
+    public static final String HELP_MESSAGE = "List of valid commands:\n1. module\n2. calendar\n3. food\n"
+            + "4. exit\nType help <COMMAND_NAME> to get a detailed description";
+    public static final String HELP_MESSAGE_MODULE = "";
+    public static final String HELP_MESSAGE_CALENDAR = "";
+    public static final String HELP_MESSAGE_FOOD = "";
+    public static final String HELP_MESSAGE_EXIT = "Saves your current progress and exits the application";
+    //HELP END
 }
