@@ -62,14 +62,10 @@ public class Parser {
 
     static final String INPUT_DATE_TIME_FORMAT = "dd-MM-yyyy HHmm";
     static final String OUTPUT_DATE_TIME_FORMAT = "MMM dd yyyy HH:mm";
-
-<<<<<<< HEAD
-=======
     static final int FOOD_MINIMUM_PARAMETER = 4; // tags {/n /c} + 2 inputs {name, calorie}
     static final String FOOD_NAME_DIVIDER = "n/";
     static final String FOOD_CALORIE_DIVIDER = "c/";
 
->>>>>>> df9fea8f43d49850ee83d053f6fd97ef1015ee64
     /**
      * Converts date and time in string format to a LocalDateTime object.
      *
