@@ -1,15 +1,16 @@
 package seedu.duke.parser;
 
-import seedu.duke.food.FoodRecord;
 import seedu.duke.commands.AddFoodCommand;
-import seedu.duke.commands.AddTodoCommand;
 import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.ListTasksCommand;
-import seedu.duke.commands.ListFoodCommand;
-import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.AddTodoCommand;
 import seedu.duke.commands.ClearFoodCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.ListFoodCommand;
+import seedu.duke.commands.ListTasksCommand;
+import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
@@ -26,6 +27,7 @@ import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
+import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
 import static seedu.duke.constants.CommandConstants.COMMAND_LIST_TASKS;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
@@ -163,6 +165,8 @@ public class Parser {
             }
         case COMMAND_ADD_NOTE:
             return new AddNoteCommand(userInput);
+        case COMMAND_HElP:
+            return new HelpCommand(commandArgs);
         default:
             throw new ClickException();
         }
