@@ -2,6 +2,12 @@
 
 ## Table of Contents
 
+1. [Introduction](#1-introduction)
+1. [Quick Start](#2-quick-start)
+1. [Features](#3-features)
+1. [Command Summary](#4-command-summary)
+1. [Frequently Asked Questions](#5-frequently-asked-questions)
+
 ## 1. Introduction
 
 Click (which stands for "command line interface for cramming & knowledge") is a desktop app for managing modules, lifestyle, schedule, and CAP planning, optimized for use via a Command Line Interface (CLI).
@@ -39,19 +45,18 @@ Example of usage:
 
 {Give a 'cheat sheet' of commands here}
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
 
-## 5. FAQ
+## 5. Frequently Asked Questions
 
 Below are the answers to some of frequently askes questions about Click.
 
-Q: Can I use Click on different operating systems such as Windows and macOS?
-A: Yes. Click is compatible with Windows, macOS, and Linus as long as you have Java 11 or above installed in your machine.
+**Q:** Can I use Click on different operating systems such as Windows and macOS?
+**A:** Yes. Click is compatible with Windows, macOS, and Linus as long as you have Java 11 or above installed in your machine.
 
-Q: What will happen to my data if Click crashed?
+**Q:** What will happen to my data if Click crashed?
 A: Data is saved automatically to `STORAGEFILE` whenever you change your tasks. Therefore, your data will be safely saved even though Click is crashed.
 
-Q: Can I exit Click without using the bye command?
-A: Yes, you can. As mentioned above, your data will be saved automatically if a change of the tasks occurs, so you can exit Click worry-free.
+**Q:** Can I exit Click without using the bye command?
+**A:** Yes, you can. As mentioned above, your data will be saved automatically if a change of the tasks occurs, so you can exit Click worry-free.
 
 
