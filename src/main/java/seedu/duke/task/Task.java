@@ -12,6 +12,14 @@ public abstract class Task {
 
     public abstract String toSaveFileFormat();
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     public String toString() {
         return description;
     }

@@ -1,17 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.AddEntryCommand;
-import seedu.duke.commands.AddFoodCommand;
-import seedu.duke.commands.AddModuleCommand;
-import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.AddTodoCommand;
-import seedu.duke.commands.ClearFoodCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.DisplayCalendarCommand;
-import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.ListFoodCommand;
-import seedu.duke.commands.ListTasksCommand;
-import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.*;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ClickException;
@@ -147,12 +136,16 @@ public class Parser {
             return new ExitCommand();
         case COMMAND_CALENDAR:
             String[] todoArguments = commandArgs.split(" ");
-            if (COMMAND_LIST_TASKS.equals(todoArguments[0])) {
+            switch (todoArguments[0]) {
+            case COMMAND_LIST_TASKS:
                 return new ListTasksCommand();
-            } else if (COMMAND_TODO.equals(todoArguments[0])) {
+            case COMMAND_TODO:
                 ArrayList<String> arguments = parseTodoCommand(userInput);
                 return new AddTodoCommand(arguments);
-            } else {
+            case "delete":
+                int indexOfTaskToBeDeleted = Integer.parseInt(todoArguments[1]);
+                return new DeleteTaskCommand(indexOfTaskToBeDeleted);
+            default:
                 return new DisplayCalendarCommand(userInput);
             }
         case COMMAND_FOOD:
