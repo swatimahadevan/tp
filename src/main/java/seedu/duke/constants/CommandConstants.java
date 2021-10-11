@@ -11,6 +11,8 @@ public class CommandConstants {
     public static final String COMMAND_SUFFIX_CLEAR = "clear";
     public static final String COMMAND_SUFFIX_LIST = "list";
     public static final String COMMAND_ADD_NOTE = "add";
+    public static final String COMMAND_ADD_ENTRY = "entryadd";
+    public static final String COMMAND_NOTE = "note";
     public static final String COMMAND_ADD_MODULE = "module add";
     public static final String COMMAND_TODO = "todo";
     public static final String COMMAND_LIST_TASKS = "list";
