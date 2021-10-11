@@ -139,6 +139,7 @@ public class Parser {
      */
     public Command parseCommand(String userInput) throws ClickException {
         final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
+        assert commandTypeAndParams.length == 2;
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
 
