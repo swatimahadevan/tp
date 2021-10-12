@@ -1,4 +1,0 @@
-cs2113    |    software engineering    |    A
-cs1231   |   discrete structure   |   A-
-cs1231  |  NONE  |  N/A
-geq1000 | asking questions | N/A

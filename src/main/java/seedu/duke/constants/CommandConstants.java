@@ -17,6 +17,7 @@ public class CommandConstants {
     public static final String COMMAND_LIST_TASKS = "list";
 
     public static final String COMMAND_MODULE = "module";
+    public static final String COMMAND_SUFFIX_DELETE = "delete";
 
     //HELP COMMANDS BEGIN
     public static final String COMMAND_HElP = "help";

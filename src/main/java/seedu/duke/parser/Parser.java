@@ -7,6 +7,7 @@ import seedu.duke.commands.AddNoteCommand;
 import seedu.duke.commands.AddTodoCommand;
 import seedu.duke.commands.ClearFoodCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.DeleteModuleCommand;
 import seedu.duke.commands.DisplayCalendarCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
@@ -39,6 +40,7 @@ import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
 import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
@@ -183,13 +185,14 @@ public class Parser {
                 throw new ClickException();
             }
         case COMMAND_MODULE:
-            String moduleCommand = commandArgs.substring(0, 4).trim();
-            String moduleArgument = commandArgs.substring(4).trim();
-            switch (moduleCommand) {
+            String[] moduleCommandAndArgs = splitCommandAndArgs(commandArgs);
+            switch (moduleCommandAndArgs[0]) {
             case COMMAND_SUFFIX_ADD:
-                return new AddModuleCommand(moduleArgument);
+                return new AddModuleCommand(moduleCommandAndArgs[1]);
             case COMMAND_SUFFIX_LIST:
                 return new ListModuleCommand();
+            case COMMAND_SUFFIX_DELETE:
+                return new DeleteModuleCommand(moduleCommandAndArgs[1]);
             default:
                 throw new ClickException();
             }
