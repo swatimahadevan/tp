@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.logger.ClickLogger;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import static seedu.duke.constants.Messages.TODO;
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
@@ -20,6 +22,7 @@ public class StorageTasks {
     public static final String folderName = "tasksdata/";
     public static final String fileName   = "scheduleTasks.txt";
     public static final String filePath = folderName + fileName;
+    private static Logger logger;
 
     static ArrayList<Task> dataToTask(ArrayList<String> data) {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -71,6 +74,8 @@ public class StorageTasks {
             File f = new File(StorageTasks.filePath);
             System.out.println("Hey, I didn't find " + StorageTasks.fileName + " in " + StorageTasks.folderName + "!");
             System.out.println("creating new file...");
+            logger = ClickLogger.getNewLogger();
+            logger.info("creating new file for tasks storage [calendar]");
         }
         return tasksList;
     }
