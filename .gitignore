@@ -21,3 +21,6 @@ text-ui-test/fooddata/food.txt
 tasksdata/*
 logs/*
 module/*
+logs/ClickLogs.log
+journalData/journalNotes.txt
+tasksdata/scheduleTasks.txt
