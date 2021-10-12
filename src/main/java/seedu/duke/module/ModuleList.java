@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 //@@ author nvbinh15
 
-public class ModuleManager {
+public class ModuleList {
     private ArrayList<Module> modules;
 
     /**
      * Class constructor.
      * Creates an empty ArrayList of Module.
      */
-    public ModuleManager() {
+    public ModuleList() {
         this.modules = new ArrayList<>();
+    }
+
+    public ModuleList(ArrayList<Module> modules) {
+        this.modules = modules;
     }
 
     /**
