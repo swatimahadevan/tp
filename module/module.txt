@@ -1,0 +1,2 @@
+cs2113  |  software engineering  |  A
+cs1231 | discrete structure | A-
