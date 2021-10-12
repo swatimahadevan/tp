@@ -28,19 +28,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
+import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
 import static seedu.duke.constants.CommandConstants.COMMAND_LIST_TASKS;
+import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
+import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
-import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
-
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.TODO;
 
@@ -182,13 +182,13 @@ public class Parser {
             default:
                 throw new ClickException();
             }
-        case "module":
+        case COMMAND_MODULE:
             String moduleCommand = commandArgs.substring(0, 4).trim();
             String moduleArgument = commandArgs.substring(4).trim();
             switch (moduleCommand) {
-            case "add":
+            case COMMAND_SUFFIX_ADD:
                 return new AddModuleCommand(moduleArgument);
-            case "list":
+            case COMMAND_SUFFIX_LIST:
                 return new ListModuleCommand();
             default:
                 throw new ClickException();

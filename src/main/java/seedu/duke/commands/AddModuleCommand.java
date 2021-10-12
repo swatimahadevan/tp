@@ -28,10 +28,24 @@ public class AddModuleCommand extends Command {
         int indexOfCode = commandArgs.indexOf("c/");
         int indexOfName = commandArgs.indexOf("n/");
         int indexOfExpectedGrade = commandArgs.indexOf("e/");
-        String code = commandArgs.substring(indexOfCode + 2, indexOfName).trim();
-        String name = commandArgs.substring(indexOfName + 2, indexOfExpectedGrade).trim();
-        String expectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).trim();
-        Module module = new Module(code, name, expectedGrade);
+        String code;
+        String name;
+        String expectedGrade;
+        Module module;
+        if (indexOfName != -1 && indexOfExpectedGrade != -1) {
+            code = commandArgs.substring(indexOfCode + 2, indexOfName).trim();
+            name = commandArgs.substring(indexOfName + 2, indexOfExpectedGrade).trim();
+            expectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).trim();
+            module = new Module(code, name, expectedGrade);
+        } else if (indexOfName != -1) {
+            code = commandArgs.substring(indexOfCode + 2, indexOfName).trim();
+            name = commandArgs.substring(indexOfName + 2).trim();
+            module = new Module(code, name);
+        } else { // indexOfName == -1
+            code = commandArgs.substring(indexOfCode + 2).trim();
+            module = new Module(code);
+        }
+
         ModuleList moduleList = storage.storageModule.readDataFromFile();
         moduleList.addModule(module);
         System.out.println("Added " + module);

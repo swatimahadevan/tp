@@ -20,3 +20,4 @@ fooddata/food.txt
 text-ui-test/fooddata/food.txt
 tasksdata/*
 logs/*
+module/*
