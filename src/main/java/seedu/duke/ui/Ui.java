@@ -126,14 +126,22 @@ public class Ui {
 
     //end of FOOD
 
-    //UI for journal
-    public static void printIntroMessage() {
-        System.out.println("Hello, I am Journal Bud.");
-        System.out.println("How may I help you?");
-    }
-
+    /**
+     * Prints message to indicate note has been added.
+     *
+     * @author SvethaMahadevan
+     */
     public static void printAddedNoteMessage(String noteName) {
         System.out.println("Great you have added the note: " + noteName);
+    }
+
+    /**
+     * Prints message to indicate entry has been added.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printAddedEntryMessage(String entryName) {
+        System.out.println("Great you have added the entry: " + entryName);
     }
     //end of UI for journal
 

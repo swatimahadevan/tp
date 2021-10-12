@@ -1,12 +1,14 @@
 package seedu.duke.parser;
 
+import seedu.duke.commands.Command;
 import seedu.duke.commands.AddEntryCommand;
+import seedu.duke.commands.ListJournalCommand;
 import seedu.duke.commands.AddFoodCommand;
 import seedu.duke.commands.AddModuleCommand;
 import seedu.duke.commands.AddNoteCommand;
 import seedu.duke.commands.AddTodoCommand;
 import seedu.duke.commands.ClearFoodCommand;
-import seedu.duke.commands.Command;
+import seedu.duke.commands.DeleteTaskCommand;
 import seedu.duke.commands.DeleteModuleCommand;
 import seedu.duke.commands.DisplayCalendarCommand;
 import seedu.duke.commands.ExitCommand;
@@ -14,7 +16,6 @@ import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.ListFoodCommand;
 import seedu.duke.commands.ListModuleCommand;
 import seedu.duke.commands.ListTasksCommand;
-import seedu.duke.exceptions.InvalidDateMonthException;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
@@ -22,11 +23,12 @@ import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.WrongDividerOrderException;
 import seedu.duke.exceptions.StorageException;
 import seedu.duke.exceptions.IllegalFoodParameterException;
+import seedu.duke.exceptions.EmptyJournalArgumentException;
+import seedu.duke.exceptions.IncorrectJournalArgumentException;
 
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.module.Module;
-import seedu.duke.commands.DeleteTaskCommand;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.ui.Ui;
 
@@ -36,6 +38,7 @@ import java.util.ArrayList;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
@@ -138,7 +141,8 @@ public class Parser {
      * @throws ClickException If there is an exception to type DukeException occurs.
      */
     public Command parseCommand(String userInput)
-            throws ClickException, IncorrectNumberOfArgumentsException {
+            throws ClickException, IncorrectNumberOfArgumentsException, IncorrectJournalArgumentException,
+            EmptyJournalArgumentException {
         final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
         assert commandTypeAndParams.length == 2;
         final String commandType = commandTypeAndParams[0];
@@ -186,8 +190,12 @@ public class Parser {
                 return new AddNoteCommand(userInput);
             case COMMAND_ADD_ENTRY:
                 return new AddEntryCommand(userInput);
+            case COMMAND_JOURNAL_LIST:
+                return new ListJournalCommand();
+            case "":
+                throw new EmptyJournalArgumentException();
             default:
-                throw new ClickException();
+                throw new IncorrectJournalArgumentException();
             }
         case COMMAND_MODULE:
             String[] moduleCommandAndArgs = splitCommandAndArgs(commandArgs);
