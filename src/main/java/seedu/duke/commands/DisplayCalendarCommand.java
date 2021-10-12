@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.InvalidDateMonthException;
+import seedu.duke.logger.ClickLogger;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.storage.Storage;
 import seedu.duke.task.Task;
@@ -10,10 +11,12 @@ import seedu.duke.ui.Ui;
 import seedu.duke.schedule.Schedule;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static seedu.duke.constants.Messages.MONTH_LOWER_LIMIT;
 import static seedu.duke.constants.Messages.MONTH_UPPER_LIMIT;
 import static seedu.duke.constants.Messages.TOTAL_SIZE;
+import static seedu.duke.constants.Messages.DELIMETER_DATE;
 
 public class DisplayCalendarCommand extends Command {
 
@@ -37,6 +40,7 @@ public class DisplayCalendarCommand extends Command {
             this.inputYearMonth = YearMonth.of(year, month);
         } catch (IndexOutOfBoundsException | NumberFormatException
                 | InvalidDateMonthException | IncorrectNumberOfArgumentsException c) {
+            ClickLogger.getNewLogger().log(Level.WARNING, "Calendar display failed...");
             Ui.printInvalidCalendarInput();
         }
     }
@@ -44,8 +48,9 @@ public class DisplayCalendarCommand extends Command {
     private void parseTaskList(TaskList taskList) {
         for (Task task : taskList.getTaskList()) {
             String description = task.getDescription();
-            String[] dateSplit = task.getDate().split("-");
-            if (this.month == Integer.parseInt(dateSplit[1]) && this.year == Integer.parseInt(dateSplit[2])) {
+            String[] dateSplit = task.getDate().split(DELIMETER_DATE);
+            if (this.month == Integer.parseInt(dateSplit[1])
+                    && this.year == Integer.parseInt(dateSplit[2])) {
                 int day = Integer.parseInt(dateSplit[0]);
                 this.calendarTasks.get(day).add(description);
             }
