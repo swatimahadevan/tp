@@ -1,6 +1,18 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.*;
+import seedu.duke.commands.AddEntryCommand;
+import seedu.duke.commands.AddFoodCommand;
+import seedu.duke.commands.AddModuleCommand;
+import seedu.duke.commands.AddNoteCommand;
+import seedu.duke.commands.AddTodoCommand;
+import seedu.duke.commands.ClearFoodCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.ListFoodCommand;
+import seedu.duke.commands.ListModuleCommand;
+import seedu.duke.commands.ListTasksCommand;
 import seedu.duke.exceptions.StorageException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
@@ -178,6 +190,8 @@ public class Parser {
                 return new AddModuleCommand(moduleArgument);
             case "list":
                 return new ListModuleCommand();
+            default:
+                throw new ClickException();
             }
         case COMMAND_HElP:
             return new HelpCommand(commandArgs);
