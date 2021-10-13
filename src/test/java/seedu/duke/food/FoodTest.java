@@ -1,23 +1,41 @@
 package seedu.duke.food;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.duke.commands.AddFoodCommand;
 import seedu.duke.constants.Messages;
+import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class FoodTest {
     private Parser parser = new Parser();
 
     /**
-     * Checks food parsed correctly.
+     * Checks food toString correctly.
      * @author ngnigel99
      */
     @Test
-    void testFoodAdd() {
+    void testFoodToString() {
         assertEquals("Samurai Burger : 433", new FoodRecord("Samurai Burger", 433).toString());
+    }
+
+    /**
+     * Checks correct food syntax parsed in correctly.
+     * @author ngnigel99
+     */
+    @Test
+    void testAddFoodCommand() throws IllegalFoodParameterException, ArgumentsNotFoundException {
+        String correctUserInput = "food add n/ Samurai Burger c/ 433";
+        FoodRecord testFoodRecord =  parser.parseFoodRecord(correctUserInput);
+        FoodRecord actualFoodRecord = new FoodRecord("Samurai Burger", 433);
+        //test fields are correctly constructed
+        assertEquals(testFoodRecord.getFoodName(), actualFoodRecord.getFoodName());
+        assertEquals(testFoodRecord.getCalorieCount(), actualFoodRecord.getCalorieCount());
     }
 
     /**

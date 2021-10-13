@@ -13,6 +13,12 @@ import java.util.Scanner;
  * @author  ngnigel99
  */
 public class ClearFoodCommand extends Command {
+    /**
+     * Executes clear food command.
+     * @param ui      The component of Duke that deals with the interaction with the user.
+     * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @throws IOException If there is an error reading/ writing to save file.
+     */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
         storage.whatIAteTodayList.clearList();

@@ -172,23 +172,7 @@ public class Parser {
                 return new DisplayCalendarCommand(userInput);
             }
         case COMMAND_FOOD:
-            String[] foodArgs = commandArgs.split(" ");
-            switch (foodArgs[0]) {
-            case COMMAND_SUFFIX_ADD:
-                return new AddFoodCommand(
-                        stringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
-                );
-            case COMMAND_SUFFIX_DELETE:
-                return new DeleteFoodCommand(
-                        stringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
-                );
-            case COMMAND_SUFFIX_CLEAR:
-                return new ClearFoodCommand();
-            case COMMAND_SUFFIX_LIST:
-                return new ListFoodCommand();
-            default:
-                throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
-            }
+            return getFoodCommand(userInput, commandArgs);
         case COMMAND_NOTE:
             String[] noteArguments = commandArgs.split(" ");
             switch (noteArguments[0]) {
@@ -209,6 +193,36 @@ public class Parser {
             return new HelpCommand(commandArgs);
         default:
             throw new ClickException();
+        }
+    }
+
+    /**
+     * Returns appropriate command related to Food based  on user's input.
+     *
+     * @param userInput Full string entered by user.
+     * @param commandArgs second word onwards from userInput.
+     * @return A command that's related to Food based on userInput.
+     * @throws IllegalArgumentException if command entered does not exists, but starts with food.
+     *
+     * @author ngnigel99
+     */
+    private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException {
+        String[] foodArgs = commandArgs.split(" ");
+        switch (foodArgs[0]) {  //consider 2nd word
+        case COMMAND_SUFFIX_ADD:
+            return new AddFoodCommand(
+                    filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
+            );
+        case COMMAND_SUFFIX_DELETE:
+            return new DeleteFoodCommand(
+                    filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
+            );
+        case COMMAND_SUFFIX_CLEAR:
+            return new ClearFoodCommand();
+        case COMMAND_SUFFIX_LIST:
+            return new ListFoodCommand();
+        default:
+            throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
         }
     }
 
@@ -235,7 +249,6 @@ public class Parser {
         }
     }
 
-    //@author ngnigel99
     public static int getWordCount(String input) {
         return input.trim().split(" ").length;
     }
@@ -274,6 +287,12 @@ public class Parser {
     /**
      * Parses a string into a food item.
      * current implementation: {food add} n/ [NAME] c/ [CALORIES].
+     *
+     * @param input string consisting of food name and calories.
+     * @return recordToAdd if valid syntax given.
+     * @throws IllegalFoodParameterException Invalid types given.
+     * @throws ArgumentsNotFoundException Invalid syntax given.
+     *
      * @author ngnigel99
      */
     public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
@@ -302,14 +321,14 @@ public class Parser {
      * Parses a string list to an integer list.
      * Current implementation supports single integer, but
      * future implementations would involve reading a list.
+     *
      * @param strings any amount of string input to be converted
      * @return integerList integers that are successfully parsed
      *
      * @author ngnigel99
      */
-    public static ArrayList<Integer> stringToIntegerList(String... strings) {
+    public static ArrayList<Integer> parseStringToIntegerList(String... strings) {
         ArrayList<Integer> integerList = new ArrayList<>();
-        int stringCount = 1;
         for (String string : strings) {
             try {
                 integerList.add(Integer.parseInt(string));
@@ -326,9 +345,10 @@ public class Parser {
      * @param userInput full line of user input
      * @param  command command syntax e.g. food delete
      * @return string after command from userInput
+     *
      * @author ngnigel99
      */
-    public static String stringAfterCommand(String userInput, String command) {
+    public static String filterStringAfterCommand(String userInput, String command) {
         assert userInput.contains(command) : "Please check correct command syntax";
         return userInput.split(command)[1].trim();
     }
