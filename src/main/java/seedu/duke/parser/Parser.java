@@ -204,19 +204,32 @@ public class Parser {
                 throw new IncorrectJournalArgumentException();
             }
         case COMMAND_MODULE:
-            String[] moduleCommandAndArgs = splitCommandAndArgs(commandArgs);
-            switch (moduleCommandAndArgs[0]) {
-            case COMMAND_SUFFIX_ADD:
-                return new AddModuleCommand(moduleCommandAndArgs[1]);
-            case COMMAND_SUFFIX_LIST:
-                return new ListModuleCommand();
-            case COMMAND_SUFFIX_DELETE:
-                return new DeleteModuleCommand(moduleCommandAndArgs[1]);
-            default:
-                throw new ClickException();
-            }
+            return getModuleCommand(commandArgs);
         case COMMAND_HElP:
             return new HelpCommand(commandArgs);
+        default:
+            throw new ClickException();
+        }
+    }
+
+    //@author nvbinh15
+    /**
+     * Returns a command related to Module based on user's input.
+     *
+     * @param commandArgs The command arguments.
+     * @return A command that related to Module based on user's input.
+     * @throws ClickException If there is an exception of type ClickException occurs.
+     */
+    private Command getModuleCommand(String commandArgs) throws ClickException {
+        String[] moduleCommandAndArgs = splitCommandAndArgs(commandArgs);
+        assert moduleCommandAndArgs.length == 2;
+        switch (moduleCommandAndArgs[0]) {
+        case COMMAND_SUFFIX_ADD:
+            return new AddModuleCommand(moduleCommandAndArgs[1]);
+        case COMMAND_SUFFIX_LIST:
+            return new ListModuleCommand();
+        case COMMAND_SUFFIX_DELETE:
+            return new DeleteModuleCommand(moduleCommandAndArgs[1]);
         default:
             throw new ClickException();
         }
