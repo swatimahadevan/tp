@@ -13,7 +13,10 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_CALENDAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_EXIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_FOOD;
+import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_MODULE;
 import static seedu.duke.constants.Messages.ADDED_TASK;
 import static seedu.duke.constants.Messages.DISPLAY_LINE;
 import static seedu.duke.constants.Messages.DAY_DEMARCATION;
@@ -198,12 +201,12 @@ public class Ui {
         }
     }
 
+<<<<<<< HEAD
     public static void printHelpMessage(String helpMessage, String syntax) {
         System.out.println(helpMessage);
-        //System.out.println("Syntax: ");
+        System.out.println("Syntax: ");
         System.out.println(syntax);
-    }
-
+=======
     /**
      * Prints calendar lines for display.
      */
@@ -226,10 +229,25 @@ public class Ui {
     }
     //End Schedule
 
-    public static void displayZoomLink(String moduleName, String zoomLink) {
-        System.out.println("Module: " + moduleName);
-        System.out.println("Zoom: " + zoomLink + "\n");
-    }
+    public static void printHelpMessage(String helpMessage) {
+        switch (helpMessage) {
+        case COMMAND_HELP_SUFFIX_MODULE:
+            System.out.println(HELP_MESSAGE_MODULE);
+            break;
+        case COMMAND_HELP_SUFFIX_CALENDAR:
+            System.out.println(HELP_MESSAGE_CALENDAR);
+            break;
+        case COMMAND_HELP_SUFFIX_FOOD:
+            System.out.println(HELP_MESSAGE_FOOD);
+            break;
+        case COMMAND_HELP_SUFFIX_EXIT:
+            System.out.println(HELP_MESSAGE_EXIT);
+            break;
+        default:
+            System.out.println(HELP_MESSAGE);
+        }
 
+>>>>>>> be1f31e7a898f169056ebd5f580fd10cece1340d
+    }
 
 }

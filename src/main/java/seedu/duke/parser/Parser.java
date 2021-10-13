@@ -1,21 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.Command;
-import seedu.duke.commands.AddEntryCommand;
-import seedu.duke.commands.ListJournalCommand;
-import seedu.duke.commands.AddFoodCommand;
-import seedu.duke.commands.AddModuleCommand;
-import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.AddTodoCommand;
-import seedu.duke.commands.ClearFoodCommand;
-import seedu.duke.commands.DeleteTaskCommand;
-import seedu.duke.commands.DeleteModuleCommand;
-import seedu.duke.commands.DisplayCalendarCommand;
-import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.ListFoodCommand;
-import seedu.duke.commands.ListModuleCommand;
-import seedu.duke.commands.ListTasksCommand;
+import seedu.duke.commands.*;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
@@ -36,21 +21,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
-import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
-import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
-import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
-import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
-import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
-import static seedu.duke.constants.CommandConstants.COMMAND_LIST_TASKS;
-import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
-import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
-import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
+import static seedu.duke.constants.CommandConstants.*;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
 import static seedu.duke.constants.Messages.CALENDAR_DELETE_INVALID_ARGS;
@@ -199,6 +170,16 @@ public class Parser {
             }
         case COMMAND_MODULE:
             return getModuleCommand(commandArgs);
+        case COMMAND_ZOOM:
+            String[] zoomArgs = commandArgs.split(" ");
+            switch(zoomArgs[0]) {
+                case COMMAND_ZOOM_SUFFIX_ADD:
+                    return new AddZoomCommand(zoomArgs[1], zoomArgs[2]);
+                case COMMAND_ZOOM_SUFFIX_SHOW:
+                    return new ShowZoomLinks();
+                default:
+                    break;
+            }
         case COMMAND_HElP:
             return new HelpCommand(commandArgs);
         default:

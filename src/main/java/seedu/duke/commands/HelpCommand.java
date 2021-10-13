@@ -9,10 +9,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HelpCommand extends Command {
+    /*
+        Update the validCommands list for new commands
+     */
+
     private ArrayList<String> validCommands = new ArrayList<>(Arrays.asList("help"));
 
     public HelpCommand(String helpMessage) {
-        this.helpMessage = createHelpMessage();
+        this.helpMessage = createHelpMessage(); //Overwrite the helpMessage variable in your class constructors
         this.syntax = "";
     }
 
