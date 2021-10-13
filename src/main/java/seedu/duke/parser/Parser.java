@@ -220,7 +220,7 @@ public class Parser {
         }
     }
 
-    //@author nvbinh15
+    //@@author nvbinh15
     /**
      * Returns a command related to Module based on user's input.
      *

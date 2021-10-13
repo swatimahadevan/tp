@@ -1,16 +1,18 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.exceptions.IllegalModuleIndexException;
 import seedu.duke.module.ModuleList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
-//@author nvbinh15
+//@@author nvbinh15
 
 /**
  * A representation of the command for deleting a Module.
  */
 public class DeleteModuleCommand extends Command {
+    public static final String MESSAGE_DELETE_MODULE = "I have deleted this module:";
     String commandArgs;
 
     /**
@@ -34,7 +36,11 @@ public class DeleteModuleCommand extends Command {
     public void execute(Ui ui, Storage storage) throws ClickException, Exception {
         ModuleList moduleList = storage.storageModule.readDataFromFile();
         int moduleIndex = Integer.parseInt(commandArgs.strip()) - 1;
-        System.out.println("I have deleted this module:");
+        boolean isValidIndex = moduleIndex > 0 && moduleIndex < moduleList.getNumberOfModules();
+        if (!isValidIndex) {
+            throw new IllegalModuleIndexException();
+        }
+        System.out.println(MESSAGE_DELETE_MODULE);
         System.out.println(moduleList.getModuleByIndex(moduleIndex));
         moduleList.removeModuleByIndex(moduleIndex);
         storage.storageModule.saveDataToFile(moduleList);
