@@ -15,7 +15,7 @@ public class HelpCommand extends Command {
 
     private ArrayList<String> validCommands = new ArrayList<>(Arrays.asList("help"));
 
-    public HelpCommand(String helpMessage) {
+    public HelpCommand() {
         this.helpMessage = createHelpMessage(); //Overwrite the helpMessage variable in your class constructors
         this.syntax = "";
     }

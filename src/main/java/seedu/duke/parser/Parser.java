@@ -181,7 +181,21 @@ public class Parser {
                     break;
             }
         case COMMAND_HElP:
-            return new HelpCommand(commandArgs);
+           String[] helpArgs = commandArgs.split(" ");
+            switch(helpArgs[0]) {
+                case COMMAND_FOOD:
+                    return foodCommandInstance(helpArgs[1]);
+                case COMMAND_CALENDAR:
+                    return calendarCommandInstance(helpArgs[1]);
+                case COMMAND_NOTE:
+                    return noteCommandInstance(helpArgs[1]);
+                case COMMAND_MODULE:
+                    return moduleCommandInstance(helpArgs[1]);
+                case COMMAND_ZOOM:
+                    return zoomCommandInstance(helpArgs[1]);
+                default:
+                    return new HelpCommand();
+            }
         default:
             throw new ClickException();
         }
@@ -292,6 +306,26 @@ public class Parser {
         } catch (Exception e) {
             throw new StorageException();
         }
+    }
+
+    public static Command foodCommandInstance(String suffix) {
+
+    }
+
+    public static Command calendarCommandInstance(String suffix) {
+
+    }
+
+    public static Command noteCommandInstance(String suffix) {
+
+    }
+
+    public static Command moduleCommandInstance(String suffix) {
+
+    }
+
+    public static Command zoomCommandInstance(String suffix) {
+
     }
 
 }
