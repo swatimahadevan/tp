@@ -19,14 +19,48 @@ creating new file...
 Hey, I didn't find journalEntries.txt in journalData/!
 creating new file...
 	__________________________________________________
-	 ____        _
-	|  _ \ _   _| | _____
-	| | | | | | | |/ / _ \
-	| |_| | |_| |   <  __/
-	|____/ \__,_|_|\_\___|
+	 _____ _  _     _
+	/  __ \ |(_)   | |
+	| /  \/ |_  ___| | __
+	| \__/\ | | (__|   <
+	\_____/_|_|\___|_|\_\
 
 	Hello! I'm Duke
 	What can I do for you?
+	__________________________________________________
+Nice.  I've added Samurai Burger to the list, with 433 calories!
+	__________________________________________________
+Nice.  I've added McFlurry to the list, with 165 calories!
+	__________________________________________________
+1st,You consumed  Samurai Burger , which has a calorie count of : 433!
+2nd,You consumed  McFlurry , which has a calorie count of : 165!
+Wow, that's a lot of food! Finished reading today's list
+You consumed 598 calories in total today!
+	__________________________________________________
+Added cs2113t | softwareengineering | Expected grade: A
+	__________________________________________________
+Added cs1231 | discrete structure
+	__________________________________________________
+Here are the modules in your list:
+1. cs2113t   |   softwareengineering   | Expected grade:   A
+2. cs1231  |  discrete structure  | Expected grade:  N/A
+	__________________________________________________
+I have deleted this module:
+cs1231  |  discrete structure  | Expected grade:  N/A
+	__________________________________________________
+Great you have added the note: Today's stuff
+	__________________________________________________
+Great you have added the entry: Random Observation
+	__________________________________________________
+The notebook Today's stuff contains:
+Random Observation
+	__________________________________________________
+Task has been added successfully!
+	__________________________________________________
+Here's your task list:
+1. sometask (on: 10-10-2021)
+	__________________________________________________
+Task has been deleted!
 	__________________________________________________
 	__________________________________________________
 	Bye. Hope to see you again soon!
