@@ -34,11 +34,14 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
      *
      * @author  ngnigel99
      * @param recordToAdd record to add to list
+     * @param isSilent checks whether to print Ui message
      */
-    @Override
-    public void addToList(FoodRecord recordToAdd) {
+    public void addToList(FoodRecord recordToAdd, boolean isSilent) {
         super.addToList(recordToAdd);
-        Ui.printAddRecord(recordToAdd);
+        if (!isSilent) {
+            Ui.printAddRecord(recordToAdd);
+
+        }
     }
 
     /**
