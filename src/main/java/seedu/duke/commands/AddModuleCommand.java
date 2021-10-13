@@ -25,6 +25,8 @@ public class AddModuleCommand extends Command {
      */
     public AddModuleCommand(String commandArgs) {
         this.commandArgs = commandArgs;
+        this.helpMessage = "Add a module";
+        this.syntax = "module add c/ [MODULE_CODE] n/ [MODULE_NAME] e/ [EXPECTED_GRADE]";
     }
 
     /**

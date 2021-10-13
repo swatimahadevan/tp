@@ -22,6 +22,8 @@ public class DeleteModuleCommand extends Command {
      */
     public DeleteModuleCommand(String commandArgs) {
         this.commandArgs = commandArgs;
+        this.helpMessage = "Delete a listed module";
+        this.syntax = "module delete [MODULE_INDEX]";
     }
 
     /**
