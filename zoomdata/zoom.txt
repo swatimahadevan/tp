@@ -1,8 +1,0 @@
-<<<<<<< HEAD
-CS2113T-https://nus-sg.zoom.us/j/89852550441?pwd=NlBpVUM5aWdQZEVBdDdJelhJdWtXdz09#success
-=======
-CS2131-link
-CS2113T-link
-CS2343-CS2213
-sth-link
->>>>>>> e769062651f62c3c5998809dcafcbcf2b2033deb
