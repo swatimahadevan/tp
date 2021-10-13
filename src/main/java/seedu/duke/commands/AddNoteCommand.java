@@ -40,6 +40,7 @@ public class AddNoteCommand extends Command {
         if (noteName == null) {
             throw new NotebookArgumentNotFoundException("Note argument not found!");
         }
+        assert(noteName != null);
         ui.printAddedNoteMessage(noteName);
         storage.collectionOfNotes.addNote(noteName);
         StorageNotes.writeCollectionOfNotes(storage.collectionOfNotes);
