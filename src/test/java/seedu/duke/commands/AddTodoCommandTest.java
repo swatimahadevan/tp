@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.duke.exceptions.InvalidDateException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddTodoCommandTest {
 
