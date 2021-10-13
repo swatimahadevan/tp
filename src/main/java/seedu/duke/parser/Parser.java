@@ -1,22 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.AddEntryCommand;
-import seedu.duke.commands.AddFoodCommand;
-import seedu.duke.commands.AddModuleCommand;
-import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.AddTodoCommand;
-import seedu.duke.commands.ClearFoodCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.DeleteFoodCommand;
-import seedu.duke.commands.DeleteModuleCommand;
-import seedu.duke.commands.DeleteTaskCommand;
-import seedu.duke.commands.DisplayCalendarCommand;
-import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.ListFoodCommand;
-import seedu.duke.commands.ListJournalCommand;
-import seedu.duke.commands.ListModuleCommand;
-import seedu.duke.commands.ListTasksCommand;
+import seedu.duke.commands.*;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
@@ -384,24 +368,76 @@ public class Parser {
         }
     }
 
-    public static Command foodCommandInstance(String suffix) {
-
-    }
 
     public static Command calendarCommandInstance(String suffix) {
-
+        String dummyValue = "";
+        ArrayList<String> dummyList = new ArrayList<>();
+        switch (suffix) {
+            case COMMAND_LIST_TASKS:
+                return new ListTasksCommand();
+            case COMMAND_TODO:
+                return new AddTodoCommand(dummyList);
+            case COMMAND_SUFFIX_DELETE:
+                return new DeleteTaskCommand(0, dummyValue);
+            default:
+                return new HelpCommand();
+        }
     }
 
     public static Command noteCommandInstance(String suffix) {
-
-    }
-
-    public static Command moduleCommandInstance(String suffix) {
-
+        String dummyValue = "";
+        switch (suffix) {
+            case COMMAND_ADD_NOTE:
+                return new AddNoteCommand(dummyValue);
+            case COMMAND_ADD_ENTRY:
+                return new AddEntryCommand(dummyValue);
+            case COMMAND_JOURNAL_LIST:
+                return new ListJournalCommand();
+            default:
+                return new HelpCommand();
+        }
     }
 
     public static Command zoomCommandInstance(String suffix) {
+        String dummyValue = "";
+        switch(suffix) {
+            case COMMAND_ZOOM_SUFFIX_ADD:
+                return new AddZoomCommand(dummyValue, dummyValue);
+            case COMMAND_ZOOM_SUFFIX_SHOW:
+                return new ShowZoomLinks();
+            default:
+                return new HelpCommand();
+        }
+    }
 
+    public static Command moduleCommandInstance(String suffix) {
+        String dummyValue = "";
+        switch (suffix) {
+            case COMMAND_SUFFIX_ADD:
+                return new AddModuleCommand(dummyValue);
+            case COMMAND_SUFFIX_LIST:
+                return new ListModuleCommand();
+            case COMMAND_SUFFIX_DELETE:
+                return new DeleteModuleCommand(dummyValue);
+            default:
+                return new HelpCommand();
+        }
+    }
+
+    public static Command foodCommandInstance(String suffix) {
+        String dummyValue = "";
+        switch (suffix) {  //consider 2nd word
+            case COMMAND_SUFFIX_ADD:
+                return new AddFoodCommand(dummyValue);
+            case COMMAND_SUFFIX_DELETE:
+                return new DeleteFoodCommand(dummyValue);
+            case COMMAND_SUFFIX_CLEAR:
+                return new ClearFoodCommand();
+            case COMMAND_SUFFIX_LIST:
+                return new ListFoodCommand();
+            default:
+                return new HelpCommand();
+        }
     }
 
 }

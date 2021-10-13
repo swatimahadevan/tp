@@ -216,9 +216,9 @@ public class Ui {
     }
 
     public static void printHelpMessage(String helpMessage, String syntax) {
-        System.out.println(helpMessage);
+        System.out.println("Description: " + helpMessage);
         //System.out.println("Syntax: ");
-        System.out.println(syntax);
+        System.out.println("Syntax: " + syntax);
     }
 
     /**

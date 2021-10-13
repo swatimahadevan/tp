@@ -11,6 +11,12 @@ import java.util.Scanner;
  * @author ngnigel99
  */
 public class ListFoodCommand extends Command  {
+
+    public ListFoodCommand() {
+        this.helpMessage = "Lists all food items recorded";
+        this.syntax = "food list";
+    }
+
     @Override
     public void execute(Ui ui, Storage storage) {
         storage.whatIAteTodayList.printList();
