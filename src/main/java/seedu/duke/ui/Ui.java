@@ -121,6 +121,24 @@ public class Ui {
         System.out.println(Messages.NON_NULL_INPUT);
     }
 
+    public static void printOnlyIntegers() {
+        System.out.println(Messages.PRINT_NOT_AN_INT);
+    }
+
+    /**
+     * Prints a general error message.
+     * Ideally should be more specific, try not to use this
+     * for exceptions - implement in further testing versions.
+     */
+    public static void printErrorMessageGeneral() {
+        System.out.println(Messages.PRINT_ERROR_MESSAGE_GENERAL);
+    }
+
+    public static void printDoneDeleteFood(FoodRecord foodRecord, int index) {
+        System.out.println(Messages.PRINT_DONE_DELETE_INDEX + " "
+                +  foodRecord.getFoodName()
+                + " at index: " + index);
+    }
     //end of FOOD
 
     /**

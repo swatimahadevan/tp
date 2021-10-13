@@ -1,6 +1,22 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.*;
+import seedu.duke.commands.AddEntryCommand;
+import seedu.duke.commands.AddFoodCommand;
+import seedu.duke.commands.AddModuleCommand;
+import seedu.duke.commands.AddNoteCommand;
+import seedu.duke.commands.AddTodoCommand;
+import seedu.duke.commands.ClearFoodCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.DeleteFoodCommand;
+import seedu.duke.commands.DeleteModuleCommand;
+import seedu.duke.commands.DeleteTaskCommand;
+import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.ListFoodCommand;
+import seedu.duke.commands.ListJournalCommand;
+import seedu.duke.commands.ListModuleCommand;
+import seedu.duke.commands.ListTasksCommand;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
@@ -145,8 +161,13 @@ public class Parser {
             String[] foodArgs = commandArgs.split(" ");
             switch (foodArgs[0]) {
             case COMMAND_SUFFIX_ADD:
-                String nameCalorieInput = userInput.split("food add")[1];
-                return new AddFoodCommand(nameCalorieInput);
+                return new AddFoodCommand(
+                        stringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
+                );
+            case COMMAND_SUFFIX_DELETE:
+                return new DeleteFoodCommand(
+                        stringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
+                );
             case COMMAND_SUFFIX_CLEAR:
                 return new ClearFoodCommand();
             case COMMAND_SUFFIX_LIST:
@@ -250,12 +271,12 @@ public class Parser {
         if (input.indexOf(dividerBefore) >= input.indexOf(dividerAfter)) {
             throw new WrongDividerOrderException();
         }
-        assert input.indexOf(dividerBefore) < input.indexOf(dividerAfter) : "";
+        assert !input.equals("") : "exception not accounted for empty string!";
+        assert input.indexOf(dividerBefore) < input.indexOf(dividerAfter) : "divider order is wrong!";
         String afterFirstDivider  = input.split(dividerBefore)[1];
         String dataFirst          = afterFirstDivider.split(dividerAfter)[0].trim();
         String afterSecondDivider = afterFirstDivider.split(dividerAfter)[1];
         String dataSecond         = afterSecondDivider.trim();
-
         return  new String[] {dataFirst, dataSecond};
 
     }
@@ -285,6 +306,41 @@ public class Parser {
             System.out.println("Oops, internal error");
         }
         return null;
+    }
+
+    /**
+     * Parses a string list to an integer list.
+     * Current implementation supports single integer, but
+     * future implementations would involve reading a list.
+     * @param strings any amount of string input to be converted
+     * @return integerList integers that are successfully parsed
+     *
+     * @author ngnigel99
+     */
+    public static ArrayList<Integer> stringToIntegerList(String... strings) {
+        ArrayList<Integer> integerList = new ArrayList<>();
+        int stringCount = 1;
+        for (String string : strings) {
+            try {
+                integerList.add(Integer.parseInt(string));
+            } catch (NumberFormatException e) {
+                Ui.printOnlyIntegers();
+            }
+        }
+        return integerList;
+    }
+
+    /**
+     * Returns string after "food add" for the purpose of
+     * parsing those characters into integers.
+     * @param userInput full line of user input
+     * @param  command command syntax e.g. food delete
+     * @return string after command from userInput
+     * @author ngnigel99
+     */
+    public static String stringAfterCommand(String userInput, String command) {
+        assert userInput.contains(command) : "Please check correct command syntax";
+        return userInput.split(command)[1].trim();
     }
 
     public static String formatModuleToStore(Module module) {
