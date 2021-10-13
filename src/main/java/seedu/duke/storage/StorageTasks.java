@@ -1,9 +1,15 @@
 package seedu.duke.storage;
 
+import seedu.duke.logger.ClickLogger;
 import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
 import seedu.duke.task.Todo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import static seedu.duke.constants.Messages.TODO;
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
@@ -38,11 +44,36 @@ public class StorageTasks {
         return new Todo(description, date);
     }
 
-    static ArrayList<String> tasksToData(ArrayList<Task> tasks) {
+    public static ArrayList<String> tasksToData(ArrayList<Task> tasks) {
         ArrayList<String> data = new ArrayList<>();
         for (Task task : tasks) {
             data.add(task.toSaveFileFormat());
         }
         return data;
+    }
+
+    public static void writeTaskList(TaskList taskList) throws IOException {
+        ArrayList<Task> tasks = taskList.getTaskList();
+        ArrayList<String> data = StorageTasks.tasksToData(tasks);
+        Storage.writeDataOntoSaveFile(StorageTasks.filePath, data);
+    }
+
+    public static TaskList readTaskList() throws NullPointerException, IOException {
+        TaskList tasksList = new TaskList();
+        ArrayList<Task> tasks;
+        try {
+            Storage.checkAndAddDirectory(StorageTasks.folderName);
+            ArrayList<String> data = Storage.loadDataFromSaveFile(StorageTasks.filePath);
+            tasks = StorageTasks.dataToTask(data);
+            for (int i = 0; i < tasks.size(); i++) {
+                tasksList.addTask(tasks.get(i));
+            }
+            return tasksList;
+        } catch (FileNotFoundException e) {
+            File f = new File(StorageTasks.filePath);
+            System.out.println("Hey, I didn't find " + StorageTasks.fileName + " in " + StorageTasks.folderName + "!");
+            System.out.println("creating new file...");
+        }
+        return tasksList;
     }
 }
