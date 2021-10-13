@@ -15,12 +15,11 @@ import java.util.ArrayList;
 
 public class ParserJournal {
 
-
-
     /**
      * Returns the name of the notebook.
      * @param input contains notebook information
      * @return noteName a string which contains the name of the notebook
+     * @throws DuplicateNoteException if notebook with same name has been added before
      */
     public static String parseAddNoteCommand(String input, Storage storage) throws DuplicateNoteException,
             EmptyNoteArgumentsException, EmptyNoteNameException {
@@ -48,6 +47,11 @@ public class ParserJournal {
      * Returns the name of the notebook and entry to allow for adding of entry.
      * @param input contains information about entry and the desired notebook from user
      * @return a String array which stores notebook name and entry name
+     * @throws EmptyEntryArgumentsException if no arguments found after entry
+     * @throws EmptyNoteNameException if no note name found after n/
+     * @throws EmptyEntryNameException if no entry name found after e/
+     * @throws NotebookArgumentNotFoundException note or entry argument not found when adding entry.
+     * @throws NotebookNotFoundForEntryAddition if notebook to add entry doesn't exist
      */
     public static String[] parseAddEntryCommand(String input, Storage storage) throws EmptyEntryArgumentsException,
             EmptyNoteNameException, EmptyEntryNameException, NotebookArgumentNotFoundException,
