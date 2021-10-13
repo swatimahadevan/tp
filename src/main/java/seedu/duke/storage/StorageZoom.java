@@ -3,8 +3,11 @@ package seedu.duke.storage;
 
 import seedu.duke.ui.Ui;
 
-import java.io.*;
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class StorageZoom {
@@ -28,7 +31,9 @@ public class StorageZoom {
                 String zoomLink = line.split("-")[1];
                 Ui.displayZoomLink(moduleName, zoomLink);
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            System.out.println("File cannot be found!");
+        }
 
     }
 

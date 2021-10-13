@@ -8,7 +8,7 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
-public class AddZoomCommand extends Command{
+public class AddZoomCommand extends Command {
     private String moduleName;
     private String zoomLink;
 
@@ -20,9 +20,9 @@ public class AddZoomCommand extends Command{
 
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
-        try{
+        try {
             StorageZoom.saveLink(moduleName, zoomLink);
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Unsuccessful");
         }
     }

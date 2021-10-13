@@ -11,9 +11,10 @@ public class ShowZoomLinks extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws Exception {
-        try{
+        try {
             StorageZoom.displayLinks();
-        } catch(Exception e){
+        } catch (Exception e) {
+            System.out.println("Unable to open the file");
         }
     }
 }

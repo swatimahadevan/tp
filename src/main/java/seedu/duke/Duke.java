@@ -45,7 +45,7 @@ public class Duke {
             String userInput = in.hasNextLine() ? in.nextLine()  : null;
             try {
                 Command c = parser.parseCommand(userInput);
-                if(userInput.contains("help")) {
+                if (userInput.contains("help")) {
                     c.help();
                 } else {
                     c.execute(ui, storage);

@@ -22,13 +22,15 @@ public class HelpCommand extends Command {
 
     public String createHelpMessage() {
         String helpMessage = "List of valid commands:\n";
-        for(int i = 0; i < validCommands.size(); i++) {
-            helpMessage = helpMessage + String.valueOf(i+1) + ". " + validCommands.get(i) + "\n";
+        for (int i = 0; i < validCommands.size(); i++) {
+            helpMessage = helpMessage + String.valueOf(i + 1) + ". " + validCommands.get(i) + "\n";
         }
         return helpMessage;
     }
 
     @Override
-    public void execute(Ui ui, Storage storage)  {}
+    public void execute(Ui ui, Storage storage) {
+
+    }
 
 }
