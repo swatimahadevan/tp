@@ -216,6 +216,7 @@ public class Parser {
      */
     private Command getModuleCommand(String commandArgs) throws ClickException {
         String[] moduleCommandAndArgs = splitCommandAndArgs(commandArgs);
+        assert moduleCommandAndArgs.length == 2;
         switch (moduleCommandAndArgs[0]) {
         case COMMAND_SUFFIX_ADD:
             return new AddModuleCommand(moduleCommandAndArgs[1]);

@@ -54,6 +54,7 @@ public class StorageModule {
         if (Files.notExists(PATH_TO_STORAGE_FILE)) {
             createFile();
         }
+        assert Files.exists(PATH_TO_STORAGE_FILE);
         ArrayList<Module> storedModules = new ArrayList<>();
         File file = new File(String.valueOf(PATH_TO_STORAGE_FILE));
         try {
