@@ -15,6 +15,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//@author nvbinh15
+
+/**
+ * A class that deals with loading modules from the file and saving modules into the file.
+ */
 public class StorageModule {
 
     private static Parser parser = new Parser();
@@ -24,6 +29,11 @@ public class StorageModule {
     public static final String FILE_NAME = "module.txt";
     public static final Path PATH_TO_STORAGE_FILE = Paths.get(PROJECT_ROOT, STORAGE_FOLDER, FILE_NAME);
 
+    /**
+     * Creates a new file to store data related to Modules.
+     *
+     * @throws IOException If there are failed or interrupted I/O operations.
+     */
     public static void createFile() throws IOException {
         File file = new File(String.valueOf(PATH_TO_STORAGE_FILE));
         if (file.exists()) {
@@ -33,10 +43,18 @@ public class StorageModule {
         file.createNewFile();
     }
 
+    /**
+     * Reads data that stored in the Module storage file.
+     *
+     * @return The data stored in the Module storage file or a new ModuleList if there is
+     *      something wrong with the data file.
+     * @throws IOException If there are failed or interrupted I/O operations.
+     */
     public static ModuleList readDataFromFile() throws IOException {
         if (Files.notExists(PATH_TO_STORAGE_FILE)) {
             createFile();
         }
+        assert Files.exists(PATH_TO_STORAGE_FILE);
         ArrayList<Module> storedModules = new ArrayList<>();
         File file = new File(String.valueOf(PATH_TO_STORAGE_FILE));
         try {
@@ -57,6 +75,12 @@ public class StorageModule {
         return new ModuleList(storedModules);
     }
 
+    /**
+     * Saves data to the Module storage file.
+     *
+     * @param moduleList The ModuleList to be stored
+     * @throws IOException If there are failed or interrupted I/O operations.
+     */
     public static void saveDataToFile(ModuleList moduleList) throws IOException {
         FileWriter fileWriter = new FileWriter(String.valueOf(PATH_TO_STORAGE_FILE));
         for (Module m : moduleList.getModules()) {

@@ -22,6 +22,7 @@ public class Duke {
     private static ExceptionHandler exceptionHandler = new ExceptionHandler();
     private static Storage storage;
     private static Logger logger;
+    private static Parser parser = new Parser();
 
     static {
         try {
@@ -31,8 +32,9 @@ public class Duke {
         }
     }
 
-    private static Parser parser = new Parser();
-
+    /**
+     * Reads and executes commands from user inputs.
+     */
     private static void run() {
         logger = ClickLogger.getNewLogger();
         logger.info("running click");
