@@ -18,7 +18,7 @@ public class Entry {
     /**
      * Returns the name of the entry.
      *
-     * @return entryName which is a string variable which stores name of entry
+     * @return entryName which is a string variable which stores the name of entry
      */
     public String getNameOfJournalEntry() {
         return entryName;
