@@ -7,6 +7,8 @@ module list
 module delete 2
 journal notebook n/ Today's stuff
 journal entry n/ Today's stuff e/ Random Observation
+journal list
 calendar todo n/ sometask d/ 10-10-2021
+calendar list
 calendar delete 1
 exit
