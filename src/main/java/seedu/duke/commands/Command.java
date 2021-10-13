@@ -21,5 +21,14 @@ public abstract class Command {
      * @throws ClickException If there is an exception of type ClickException occurs.
      * @throws Exception      If there is an exception of type other than DukeException occurs.
      */
+
+    protected String helpMessage = "Sorry no help doc exists for this command!";
+    protected String syntax = "Sorry there is no defined syntaxt for this command";
+
     public abstract void execute(Ui ui, Storage storage) throws ClickException, Exception;
+
+    public void help() {
+        Ui.printHelpMessage(helpMessage, syntax);
+    }
+
 }

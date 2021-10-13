@@ -181,24 +181,10 @@ public class Ui {
         }
     }
 
-    public static void printHelpMessage(String helpMessage) {
-        switch (helpMessage) {
-        case COMMAND_HELP_SUFFIX_MODULE:
-            System.out.println(HELP_MESSAGE_MODULE);
-            break;
-        case COMMAND_HELP_SUFFIX_CALENDAR:
-            System.out.println(HELP_MESSAGE_CALENDAR);
-            break;
-        case COMMAND_HELP_SUFFIX_FOOD:
-            System.out.println(HELP_MESSAGE_FOOD);
-            break;
-        case COMMAND_HELP_SUFFIX_EXIT:
-            System.out.println(HELP_MESSAGE_EXIT);
-            break;
-        default:
-            System.out.println(HELP_MESSAGE);
-        }
-
+    public static void printHelpMessage(String helpMessage, String syntax) {
+        System.out.println(helpMessage);
+        System.out.println("Syntax: ");
+        System.out.println(syntax);
     }
     //End Schedule
 

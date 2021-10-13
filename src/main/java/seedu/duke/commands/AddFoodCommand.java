@@ -29,4 +29,6 @@ public class AddFoodCommand extends Command {
         storage.whatIAteTodayList.addToList(foodRecord);
         StorageFood.saveList(storage.whatIAteTodayList);
     }
+
+
 }

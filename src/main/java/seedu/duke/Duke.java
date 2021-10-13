@@ -37,8 +37,11 @@ public class Duke {
             String userInput = in.hasNextLine() ? in.nextLine()  : null;
             try {
                 Command c = parser.parseCommand(userInput);
-                c.execute(ui, storage);
-                ui.printLine();
+                if(userInput.contains("help")) {
+                    c.help();
+                } else {
+                    c.execute(ui, storage);
+                }
             } catch (ClickException e) {
                 exceptionHandler.handleDukeExceptions(e, userInput);
             } catch (Exception  e) {
