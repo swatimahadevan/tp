@@ -23,21 +23,7 @@ public class FoodTest {
     void testFoodToString() {
         assertEquals("Samurai Burger : 433", new FoodRecord("Samurai Burger", 433).toString());
     }
-
-    /**
-     * Checks correct food syntax parsed in correctly.
-     * @author ngnigel99
-     */
-    @Test
-    void testAddFoodCommand() throws IllegalFoodParameterException, ArgumentsNotFoundException {
-        String correctUserInput = "food add n/ Samurai Burger c/ 433";
-        FoodRecord testFoodRecord =  parser.parseFoodRecord(correctUserInput);
-        FoodRecord actualFoodRecord = new FoodRecord("Samurai Burger", 433);
-        //test fields are correctly constructed
-        assertEquals(testFoodRecord.getFoodName(), actualFoodRecord.getFoodName());
-        assertEquals(testFoodRecord.getCalorieCount(), actualFoodRecord.getCalorieCount());
-    }
-
+    
     /**
      * Checks for NumberFormatException on adding a food item.
      * @author ngnigel99
