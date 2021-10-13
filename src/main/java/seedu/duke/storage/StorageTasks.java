@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import static seedu.duke.constants.Messages.TODO;
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
 import static seedu.duke.constants.Messages.INDEX_TODO_DATE;
-import static seedu.duke.constants.Messages.FIRST_INDEX;
+import static seedu.duke.constants.Messages.INDEX_ZERO;
 
 //@author swatim
 public class StorageTasks {
@@ -23,6 +23,12 @@ public class StorageTasks {
     public static final String fileName   = "scheduleTasks.txt";
     public static final String filePath = folderName + fileName;
 
+    /**
+     * Gets tasks from storage.
+     *
+     * @param data data from file.
+     * @return tasks
+     */
     static ArrayList<Task> dataToTask(ArrayList<String> data) {
         ArrayList<Task> tasks = new ArrayList<>();
         int i = 0;
@@ -30,7 +36,7 @@ public class StorageTasks {
         while (i < dataSize) {
             String dataLine = data.get(i);
             String[] todoArguments = dataLine.split("\\|");
-            if (TODO.equals(todoArguments[FIRST_INDEX])) {
+            if (TODO.equals(todoArguments[INDEX_ZERO])) {
                 tasks.add(addToDo(todoArguments));
             }
             i++;
@@ -38,12 +44,24 @@ public class StorageTasks {
         return tasks;
     }
 
+    /**
+     * Adds the todo task.
+     *
+     * @param todoArguments arguments for creation of Todo object.
+     * @return object of Todo Class with the task description and date.
+     */
     private static Todo addToDo(String[] todoArguments) {
         String description = todoArguments[INDEX_TODO_DESCRIPTION].trim();
         String date = todoArguments[INDEX_TODO_DATE].trim();
         return new Todo(description, date);
     }
 
+    /**
+     * Coverts task to data for storage.
+     *
+     * @param tasks list of tasks to be converted to data for storage
+     * @return data Contains data for storage
+     */
     public static ArrayList<String> tasksToData(ArrayList<Task> tasks) {
         ArrayList<String> data = new ArrayList<>();
         for (Task task : tasks) {
@@ -52,12 +70,25 @@ public class StorageTasks {
         return data;
     }
 
+    /**
+     * Writes task list to storage in string format.
+     *
+     * @param taskList list of tasks.
+     * @throws IOException if command entered is wrong.
+     */
     public static void writeTaskList(TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getTaskList();
         ArrayList<String> data = StorageTasks.tasksToData(tasks);
         Storage.writeDataOntoSaveFile(StorageTasks.filePath, data);
     }
 
+    /**
+     * Reads data in string format from storage and returns task list.
+     *
+     * @return task list
+     * @throws NullPointerException in case if empty.
+     * @throws IOException if command entered is wrong.
+     */
     public static TaskList readTaskList() throws NullPointerException, IOException {
         TaskList tasksList = new TaskList();
         ArrayList<Task> tasks;

@@ -23,6 +23,7 @@ public class AddEntryCommand extends Command {
 
     /**
      * Allows for the adding of entry.
+     *
      * @param ui allows for printing of a message to indicate that the entry has been added
      * @param storage to allow for storing of entries
      * @throws EmptyNoteNameException No note name entered after 'n/'
