@@ -36,6 +36,7 @@ public class StorageFood {
      * @throws IOException case where directory not found
      */
     static void checkAndAddDirectory(String folderName) throws IOException {
+        assert folderName.contains("/") : "Please follow format [DIR_NAME]/";   //checks syntax of constant
         String home = new File("").getAbsolutePath() + '/';
         File dirCheck = new File(home + folderName);
         ClickLogger.getNewLogger().log(Level.INFO,  "checking if directory exists!");
@@ -58,6 +59,7 @@ public class StorageFood {
      *                     - handled by creating new directory/ file if necessary
      */
     public static void saveList(WhatIAteList whatIAteList) throws IOException {
+        assert !whatIAteList.equals(null) : "Please instantiate the list object correctly";
         checkAndAddDirectory(folderName);
         File newList = new File(folderName + fileName);
         FileWriter fw = new FileWriter(folderName + fileName);
@@ -89,7 +91,7 @@ public class StorageFood {
                 if (readLine.equals("")) {
                     break;
                 }
-                listToReturn.addToList(Parser.parseFoodSavedListToRecord(readLine));
+                listToReturn.addToList(Parser.parseFoodSavedListToRecord(readLine), true);
             }
             return listToReturn;
         } catch (FileNotFoundException e) {
