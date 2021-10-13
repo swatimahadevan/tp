@@ -17,16 +17,22 @@ import java.util.ArrayList;
 public class AddEntryCommand extends Command {
     public String userInput;
 
+    /**
+     * Constructor for the AddEntryCommand.
+     *
+     * @param userInput input from the user
+     */
     public AddEntryCommand(String userInput) {
         this.userInput = userInput;
     }
 
     /**
      * Allows for the adding of entry.
+     *
      * @param ui allows for printing of a message to indicate that the entry has been added
      * @param storage to allow for storing of entries
      * @throws EmptyNoteNameException No note name entered after 'n/'
-     * @throws EmptyEntryArgumentsException if no arguments found for entry
+     * @throws EmptyEntryArgumentsException if no arguments found for the entry
      */
     @Override
     public void execute(Ui ui, Storage storage) throws EmptyNoteNameException, EmptyEntryArgumentsException,

@@ -55,7 +55,6 @@ public class ParserSchedule {
         return null;
     }
 
-    //modified from @author svetha
     public static ArrayList<String> parseTodoArgumentsArray(String input) throws IncorrectNumberOfArgumentsException {
         ArrayList<String> argumentsTodoCommand = new ArrayList<>();
         String todoDetails = input.trim().split("todo")[1];
