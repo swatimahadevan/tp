@@ -25,7 +25,7 @@ public class ListJournalCommand extends Command {
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         ArrayList<Entry> entries = storage.collectionOfEntries.getEntriesArrayList();
         for (Note note : notes) {
-            System.out.println("The notebook " + note.getNoteName() + " contains: ");
+            System.out.println("The notebook " + note.getNoteName() + " contains:");
             for (Entry entry : entries) {
                 if (entry.getEntryNoteName().equals(note.getNoteName())) {
                     System.out.println(entry.getNameOfJournalEntry());

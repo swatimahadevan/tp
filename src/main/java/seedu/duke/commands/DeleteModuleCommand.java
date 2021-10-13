@@ -38,7 +38,7 @@ public class DeleteModuleCommand extends Command {
     public void execute(Ui ui, Storage storage) throws ClickException, Exception {
         ModuleList moduleList = storage.storageModule.readDataFromFile();
         int moduleIndex = Integer.parseInt(commandArgs.strip()) - 1;
-        boolean isValidIndex = moduleIndex > 0 && moduleIndex < moduleList.getNumberOfModules();
+        boolean isValidIndex = (moduleIndex >= 0) && (moduleIndex < moduleList.getNumberOfModules());
         if (!isValidIndex) {
             throw new IllegalModuleIndexException();
         }

@@ -2,11 +2,11 @@ package seedu.duke.constants;
 
 public class Messages {
 
-    public static final String LOGO = "\t" + " ____        _\n"
-            + "\t" + "|  _ \\ _   _| | _____\n"
-            + "\t" + "| | | | | | | |/ / _ \\\n"
-            + "\t" + "| |_| | |_| |   <  __/\n"
-            + "\t" + "|____/ \\__,_|_|\\_\\___|\n\n";
+    public static final String LOGO = "\t" + " _____ _  _     _\n"
+            + "\t" + "/  __ \\ |(_)   | |\n"
+            + "\t" + "| /  \\/ |_  ___| | __\n"
+            + "\t" + "| \\__/\\ | | (__|   <\n"
+            + "\t" + "\\_____/_|_|\\___|_|\\_\\\n\n";
 
     public static final String EMPTY_STRING = "";
     public static final String LINE_PREFIX = "\t";
@@ -51,7 +51,7 @@ public class Messages {
     public static final int INDEX_TODO_DATE = 2;
     public static final int TOTAL_SIZE = 32;
     public static final String ADDED_TASK = "Task has been added successfully!";
-    public static final String LIST_TASKS_HEADER = "Here's your task list: ";
+    public static final String LIST_TASKS_HEADER = "Here's your task list:";
     public static final String DISPLAY_LINE = "-------------------------"
             + "----------------------------------------"
             + "-----------------------------------------";

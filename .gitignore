@@ -24,3 +24,11 @@ module/*
 logs/ClickLogs.log
 journalData/journalNotes.txt
 tasksdata/scheduleTasks.txt
+zoomdata/*
+
+text-ui-test/fooddata/*
+text-ui-test/journalData/*
+text-ui-test/logs/*
+text-ui-test/module/*
+text-ui-test/tasksdata/*
+text-ui-test/zoomdata/*
