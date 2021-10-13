@@ -22,6 +22,7 @@ public class AddZoomCommand extends Command {
     public void execute(Ui ui, Storage storage) throws IOException {
         try {
             StorageZoom.saveLink(moduleName, zoomLink);
+            System.out.println("Successful");
         } catch (IOException e) {
             System.out.println("Unsuccessful");
         }

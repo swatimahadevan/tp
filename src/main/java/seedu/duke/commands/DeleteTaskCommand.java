@@ -23,6 +23,8 @@ public class DeleteTaskCommand extends Command {
     public DeleteTaskCommand(int index, String userInput) {
         this.index = index;
         this.userInput = userInput;
+        this.helpMessage = "Calendar delete";
+        this.syntax = "TASK_INDEX";
     }
 
     /**

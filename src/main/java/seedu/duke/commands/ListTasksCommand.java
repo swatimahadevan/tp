@@ -14,6 +14,8 @@ import java.util.Scanner;
 public class ListTasksCommand extends Command {
 
     public ListTasksCommand() {
+        this.helpMessage = "List all task";
+        this.syntax = "calendar list";
     }
 
     /**
