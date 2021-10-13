@@ -14,11 +14,26 @@ public class DeleteTaskCommand extends Command {
     private int index;
     private String userInput;
 
+    /**
+     * Constructor for DeleteTaskCommand class.
+     *
+     * @param index index of task to be deleted
+     * @param userInput input from user
+     */
     public DeleteTaskCommand(int index, String userInput) {
         this.index = index;
         this.userInput = userInput;
     }
 
+    /**
+     * Executed delete task command.
+     *
+     * @param ui      The component of CLICK that deals with the interaction with the user.
+     * @param storage The component of CLICK that deals with loading tasks from the file and saving tasks in the file.
+     * @throws IOException if command entered is wrong.
+     * @throws CalendarIndexNotFoundException if index is not found.
+     * @throws IncorrectNumberOfArgumentsException in case of wrong number of arguments.
+     */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException,
             CalendarIndexNotFoundException, IncorrectNumberOfArgumentsException {

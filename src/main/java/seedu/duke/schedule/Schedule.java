@@ -11,14 +11,13 @@ import seedu.duke.ui.Ui;
 
 import static seedu.duke.constants.Messages.NUMBER_OF_DAYS_IN_WEEK;
 import static seedu.duke.constants.Messages.DAYS_IN_MONTH;
-import static seedu.duke.constants.Messages.FIRST_INDEX;
 import static seedu.duke.constants.Messages.LEAVE_EMPTY_IN_DISPLAY;
 import static seedu.duke.constants.Messages.EMPTY_SPACE;
 import static seedu.duke.constants.Messages.CALENDER_DATE_FORMATTER;
 import static seedu.duke.constants.Messages.TASK_FORMATTER;
 import static seedu.duke.constants.Messages.SEPARATOR_DISPLAY;
-
-
+import static seedu.duke.constants.Messages.INDEX_ZERO;
+import static seedu.duke.constants.Messages.INDEX_ONE;
 
 /**
  * Represents the logic and UI behind calendar with tasks display.
@@ -48,7 +47,7 @@ public class Schedule {
                                             ArrayList<String> calendar, ArrayList<ArrayList<String>> calendarTasks) {
         AtomicInteger j = new AtomicInteger();
         while (currentWeek < totalWeeks) {
-            int indexOfDay = currentWeek * 7;
+            int indexOfDay = currentWeek * NUMBER_OF_DAYS_IN_WEEK;
             Ui.printDayDemarcation();
             printCalendarDates(calendar, indexOfDay);
             System.out.println();
@@ -61,28 +60,28 @@ public class Schedule {
     //Add all dates that are available in the month from 01-value of last day of month
     private static void addDatesForDaysInMonth(YearMonth inputYearMonth, ArrayList<String> calendar) {
         String[] daysInMonth = DAYS_IN_MONTH;
-        calendar.addAll(Arrays.asList(daysInMonth).subList(0, inputYearMonth.lengthOfMonth()));
+        calendar.addAll(Arrays.asList(daysInMonth).subList(INDEX_ZERO, inputYearMonth.lengthOfMonth()));
     }
 
     // Add in spaces at the beginning for display upto day 1
     private static void addNoDatesInBeginning(YearMonth inputYearMonth, ArrayList<String> calendar) {
-        DayOfWeek dayOneOfMonth = inputYearMonth.atDay(1).getDayOfWeek();
+        DayOfWeek dayOneOfMonth = inputYearMonth.atDay(INDEX_ONE).getDayOfWeek();
         if (dayOneOfMonth != DayOfWeek.SUNDAY) {
-            IntStream.range(FIRST_INDEX, dayOneOfMonth.getValue()).forEachOrdered(i ->
-                    calendar.add(0, LEAVE_EMPTY_IN_DISPLAY));
+            IntStream.range(INDEX_ZERO, dayOneOfMonth.getValue()).forEachOrdered(i ->
+                    calendar.add(INDEX_ZERO, LEAVE_EMPTY_IN_DISPLAY));
         }
     }
 
     //Add in spaces at the end after the last day to fill in the week
     private static void addNoDatesInEnd(ArrayList<String> calendar) {
-        while (calendar.size() % NUMBER_OF_DAYS_IN_WEEK != 0) {
+        while (calendar.size() % NUMBER_OF_DAYS_IN_WEEK != INDEX_ZERO) {
             calendar.add(LEAVE_EMPTY_IN_DISPLAY);
         }
     }
 
     //Print out the top rows with dates from 01-value of last day of month
     private static void printCalendarDates(ArrayList<String> calendar, int indexOfDay) {
-        for (int dayOfWeek = 0; dayOfWeek < NUMBER_OF_DAYS_IN_WEEK; dayOfWeek++) {
+        for (int dayOfWeek = INDEX_ZERO; dayOfWeek < NUMBER_OF_DAYS_IN_WEEK; dayOfWeek++) {
             String s = EMPTY_SPACE + calendar.get(indexOfDay + dayOfWeek) + CALENDER_DATE_FORMATTER;
             System.out.print(s);
         }
@@ -93,7 +92,7 @@ public class Schedule {
         int calendarRow = 0;
         while (calendarRow < 3) {
             System.out.print(SEPARATOR_DISPLAY);
-            for (int day = 0; day < 7; day++) {
+            for (int day = INDEX_ZERO; day < NUMBER_OF_DAYS_IN_WEEK; day++) {
                 printDetails(calendarTasks, calendar, indexOfDay, calendarRow, day);
             }
             System.out.println();
@@ -108,7 +107,7 @@ public class Schedule {
             int currentDay = Integer.parseInt(dayString);
             String taskName = calendarTasks.get(currentDay).get(calendarRow);
             if (taskName.length() > 10) {
-                taskName = taskName.substring(0, 10);
+                taskName = taskName.substring(INDEX_ZERO, 10);
             } else {
                 taskName = String.format("%-" + 10 + "s", taskName);
             }

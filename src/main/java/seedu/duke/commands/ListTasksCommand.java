@@ -16,6 +16,13 @@ public class ListTasksCommand extends Command {
     public ListTasksCommand() {
     }
 
+    /**
+     * Executes listing of tasks.
+     *
+     * @param ui The component of CLICK that deals with the interaction with the user.
+     * @param storage The component of CLICK that deals with loading tasks from the file and saving tasks in the file.
+     * @throws IOException If command entered is wrong.
+     */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
         TaskList tasks = StorageTasks.readTaskList();

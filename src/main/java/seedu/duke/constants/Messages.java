@@ -49,7 +49,6 @@ public class Messages {
     public static final String TODO = "todo";
     public static final int INDEX_TODO_DESCRIPTION = 1;
     public static final int INDEX_TODO_DATE = 2;
-    public static final int FIRST_INDEX = 0;
     public static final int TOTAL_SIZE = 32;
     public static final String ADDED_TASK = "Task has been added successfully!";
     public static final String LIST_TASKS_HEADER = "Here's your task list: ";
@@ -61,7 +60,10 @@ public class Messages {
     public static final String DELETED_TASK = "Task has been deleted!";
     public static final String CALENDAR_INVALID_ARGS = "'calendar' should be followed by a suffixed command!";
     public static final String CALENDAR_DELETE_INVALID_ARGS = "Task index not entered...need task index to delete!";
-    public static final String DELIMETER_DATE = "-";
+    public static final String DELIMITER_DATE = "-";
+    public static final int CALENDAR_COMMAND_SPLIT = 9;
+    public static final int INDEX_ZERO = 0;
+    public static final int INDEX_ONE = 1;
     //SCHEDULE END
 
     //HELP BEGIN
