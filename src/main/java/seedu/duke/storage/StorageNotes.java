@@ -57,7 +57,6 @@ public class StorageNotes {
             for (int i = 0; i < notes.size(); i++) {
                 collectionOfNotes.addNote(notes.get(i).getNoteName());
             }
-            return collectionOfNotes;
         } catch (FileNotFoundException e) {
             ClickLogger.getNewLogger().log(Level.WARNING, "file not found on load");
             File f = new File(StorageNotes.filePath);

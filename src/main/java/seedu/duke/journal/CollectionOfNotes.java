@@ -3,7 +3,11 @@ package seedu.duke.journal;
 import java.util.ArrayList;
 
 public class CollectionOfNotes {
-    private static final ArrayList<Note> notes = new ArrayList<>();
+    private static ArrayList<Note> notes = new ArrayList<>();
+
+    public CollectionOfNotes() {
+        this.notes = new ArrayList<>();
+    }
 
     /**
      * Returns list of notes.
