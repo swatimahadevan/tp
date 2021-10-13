@@ -32,7 +32,7 @@ public class AddFoodCommand extends Command {
         } catch (ArgumentsNotFoundException e) {
             e.printStackTrace();    //dividers are not aligned with syntax
         }
-        storage.whatIAteTodayList.addToList(foodRecord);
+        storage.whatIAteTodayList.addToList(foodRecord, false);
         StorageFood.saveList(storage.whatIAteTodayList);
     }
 

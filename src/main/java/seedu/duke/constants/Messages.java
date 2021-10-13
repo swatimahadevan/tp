@@ -24,6 +24,9 @@ public class Messages {
     public static final String NON_NULL_INPUT = "Please do not leave fields empty!";
     public static final String RECORD_ATTRIBUTE_DIVIDER = " : ";
     public static final String LIST_PROPER_FEATURE  =  "Please list a proper feature tagged with ";
+    public static final String PRINT_NOT_AN_INT = "Please only enter Integers";
+    public static final String PRINT_ERROR_MESSAGE_GENERAL = "Oops, error encountered.";
+    public static final String PRINT_DONE_DELETE_INDEX = "Deleted food record ";
     //end of Food
 
     //@author swatim
@@ -66,7 +69,7 @@ public class Messages {
             + "4. exit\nType help <COMMAND_NAME> to get a detailed description";
     public static final String HELP_MESSAGE_MODULE = "";
     public static final String HELP_MESSAGE_CALENDAR = "";
-    public static final String HELP_MESSAGE_FOOD = "";
+    public static final String HELP_MESSAGE_FOOD = "food add n/ [FOOD_NAME] c/ [CALORIE]\nfood list\nfood clear";
     public static final String HELP_MESSAGE_EXIT = "Saves your current progress and exits the application";
     //HELP END
 }
