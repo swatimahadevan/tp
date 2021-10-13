@@ -24,6 +24,15 @@ public class AddFoodCommand extends Command {
         this.inputString = inputString;
     }
 
+    /**
+     * Executes add food command.
+     * @param ui      The component of Duke that deals with the interaction with the user.
+     * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @throws IllegalFoodParameterException If syntax is not followed.
+     * @throws IOException If there is an error while reading/ saving data to file.
+     *
+     * @author ngnigel99
+     */
     @Override
     public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException, IOException {
         FoodRecord foodRecord  = null;
