@@ -15,9 +15,10 @@ import java.util.ArrayList;
  * Deletes a food item from a list given  a  valid index.
  * @author ngnigel99
  */
-public class DeleteFoodCommand extends Command{
+public class DeleteFoodCommand extends Command {
 
     private String inputString; //represents index to delete
+
     public DeleteFoodCommand(String inputString) {
         super();
         this.inputString = inputString;
@@ -35,7 +36,6 @@ public class DeleteFoodCommand extends Command{
         try {
             storage.whatIAteTodayList.getList().remove(toDelete);
         } catch (Exception e) {
-            //shouldn't reach this block as exceptions are thrown earlier
             Ui.printErrorMessageGeneral();
         } finally {
             Ui.printDoneDeleteFood(toDelete, indexToDelete);

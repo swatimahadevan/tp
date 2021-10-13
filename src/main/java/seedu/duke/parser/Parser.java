@@ -1,6 +1,22 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.*;
+import seedu.duke.commands.AddEntryCommand;
+import seedu.duke.commands.AddFoodCommand;
+import seedu.duke.commands.AddModuleCommand;
+import seedu.duke.commands.AddNoteCommand;
+import seedu.duke.commands.AddTodoCommand;
+import seedu.duke.commands.ClearFoodCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.DeleteFoodCommand;
+import seedu.duke.commands.DeleteModuleCommand;
+import seedu.duke.commands.DeleteTaskCommand;
+import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.ListFoodCommand;
+import seedu.duke.commands.ListJournalCommand;
+import seedu.duke.commands.ListModuleCommand;
+import seedu.duke.commands.ListTasksCommand;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
@@ -278,7 +294,7 @@ public class Parser {
      *
      * @author ngnigel99
      */
-    public static ArrayList<Integer> stringToIntegerList(String ... strings) {
+    public static ArrayList<Integer> stringToIntegerList(String... strings) {
         ArrayList<Integer> integerList = new ArrayList<>();
         int stringCount = 1;
         for (String string : strings) {
@@ -303,6 +319,7 @@ public class Parser {
         assert userInput.contains(command) : "Please check correct command syntax";
         return userInput.split(command)[1].trim();
     }
+
     public static String formatModuleToStore(Module module) {
         String code = module.getCode();
         String name = module.getName();

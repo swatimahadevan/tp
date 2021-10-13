@@ -34,7 +34,7 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
      *
      * @author  ngnigel99
      * @param recordToAdd record to add to list
-     * @param isSilent
+     * @param isSilent checks whether to print Ui message
      */
     public void addToList(FoodRecord recordToAdd, boolean isSilent) {
         super.addToList(recordToAdd);
