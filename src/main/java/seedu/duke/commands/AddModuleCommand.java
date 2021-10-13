@@ -3,26 +3,34 @@ package seedu.duke.commands;
 import seedu.duke.module.Module;
 import seedu.duke.module.ModuleList;
 import seedu.duke.storage.Storage;
-import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 //@@author nvbinh15
 
+/**
+ * A representation of the command for adding a Module.
+ */
 public class AddModuleCommand extends Command {
 
     String commandArgs;
 
+    /**
+     * Class constructor.
+     *
+     * @param commandArgs The command arguments.
+     */
     public AddModuleCommand(String commandArgs) {
         this.commandArgs = commandArgs;
     }
 
     /**
-     * Adds a new module.
-     *  @param ui The component of Duke that deals with the interaction with the user.
+     * Execute the AddModuleCommand.
+     *
+     * @param ui The component of Duke that deals with the interaction with the user.
      * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @throws IOException If there is an error while saving data to file.
      */
     public void execute(Ui ui, Storage storage) throws IOException {
         int indexOfCode = commandArgs.indexOf("c/");

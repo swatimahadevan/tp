@@ -7,6 +7,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+//@author nvbinh15
 /**
  * A class to handle logging file.
  */
@@ -17,6 +18,9 @@ public class ClickLogger {
     public static final String PROJECT_ROOT = System.getProperty("user.dir");
     public static final String PATH_TO_LOG_FILE = Paths.get(PROJECT_ROOT, "logs", "ClickLogs.log").toString();
 
+    /**
+     * Private constructor.
+     */
     private ClickLogger() {
         try {
             File file = new File(PATH_TO_LOG_FILE);
@@ -35,6 +39,11 @@ public class ClickLogger {
         }
     }
 
+    /**
+     * Returns a new ClickLogger.
+     *
+     * @return An instance of ClickLogger.
+     */
     public static Logger getNewLogger() {
         if (loggerInstance == null) {
             loggerInstance = new ClickLogger();
