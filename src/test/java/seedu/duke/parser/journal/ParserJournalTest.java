@@ -10,7 +10,7 @@ import seedu.duke.storage.Storage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserJournalTest {
 
