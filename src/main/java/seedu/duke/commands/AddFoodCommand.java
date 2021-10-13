@@ -22,6 +22,8 @@ public class AddFoodCommand extends Command {
     public AddFoodCommand(String inputString) {
         super();
         this.inputString = inputString;
+        this.helpMessage = "Adds a food item to a list";
+        this.syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
     }
 
     /**
@@ -44,4 +46,6 @@ public class AddFoodCommand extends Command {
         storage.whatIAteTodayList.addToList(foodRecord, false);
         StorageFood.saveList(storage.whatIAteTodayList);
     }
+
+
 }

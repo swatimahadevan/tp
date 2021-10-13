@@ -5,6 +5,7 @@ import seedu.duke.commands.AddFoodCommand;
 import seedu.duke.commands.AddModuleCommand;
 import seedu.duke.commands.AddNoteCommand;
 import seedu.duke.commands.AddTodoCommand;
+import seedu.duke.commands.AddZoomCommand;
 import seedu.duke.commands.ClearFoodCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DeleteFoodCommand;
@@ -17,6 +18,7 @@ import seedu.duke.commands.ListFoodCommand;
 import seedu.duke.commands.ListJournalCommand;
 import seedu.duke.commands.ListModuleCommand;
 import seedu.duke.commands.ListTasksCommand;
+import seedu.duke.commands.ShowZoomLinks;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
@@ -39,11 +41,11 @@ import java.util.ArrayList;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_LIST_TASKS;
 import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
 import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
@@ -52,6 +54,9 @@ import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_SHOW;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
 import static seedu.duke.constants.Messages.CALENDAR_DELETE_INVALID_ARGS;
@@ -189,8 +194,33 @@ public class Parser {
             }
         case COMMAND_MODULE:
             return getModuleCommand(commandArgs);
+        case COMMAND_ZOOM:
+            String[] zoomArgs = commandArgs.split(" ");
+            switch (zoomArgs[0]) {
+            case COMMAND_ZOOM_SUFFIX_ADD:
+                return new AddZoomCommand(zoomArgs[1], zoomArgs[2]);
+            case COMMAND_ZOOM_SUFFIX_SHOW:
+                return new ShowZoomLinks();
+            default:
+                return new HelpCommand();
+            }
+
         case COMMAND_HElP:
-            return new HelpCommand(commandArgs);
+            String[] helpArgs = commandArgs.split(" ");
+            switch (helpArgs[0]) {
+            case COMMAND_FOOD:
+                return foodCommandInstance(helpArgs[1]);
+            case COMMAND_CALENDAR:
+                return calendarCommandInstance(helpArgs[1]);
+            case COMMAND_NOTE:
+                return noteCommandInstance(helpArgs[1]);
+            case COMMAND_MODULE:
+                return moduleCommandInstance(helpArgs[1]);
+            case COMMAND_ZOOM:
+                return zoomCommandInstance(helpArgs[1]);
+            default:
+                return new HelpCommand();
+            }
         default:
             throw new ClickException();
         }
@@ -371,6 +401,78 @@ public class Parser {
             return new Module(code, name, expectedGrade);
         } catch (Exception e) {
             throw new StorageException();
+        }
+    }
+
+
+    public static Command calendarCommandInstance(String suffix) {
+        String dummyValue = "";
+        ArrayList<String> dummyList = new ArrayList<>();
+        switch (suffix) {
+        case COMMAND_LIST_TASKS:
+            return new ListTasksCommand();
+        case COMMAND_TODO:
+            return new AddTodoCommand(dummyList);
+        case COMMAND_SUFFIX_DELETE:
+            return new DeleteTaskCommand(0, dummyValue);
+        default:
+            return new HelpCommand();
+        }
+    }
+
+    public static Command noteCommandInstance(String suffix) {
+        String dummyValue = "";
+        switch (suffix) {
+        case COMMAND_ADD_NOTE:
+            return new AddNoteCommand(dummyValue);
+        case COMMAND_ADD_ENTRY:
+            return new AddEntryCommand(dummyValue);
+        case COMMAND_JOURNAL_LIST:
+            return new ListJournalCommand();
+        default:
+            return new HelpCommand();
+        }
+    }
+
+    public static Command zoomCommandInstance(String suffix) {
+        String dummyValue = "";
+        switch (suffix) {
+        case COMMAND_ZOOM_SUFFIX_ADD:
+            return new AddZoomCommand(dummyValue, dummyValue);
+        case COMMAND_ZOOM_SUFFIX_SHOW:
+            return new ShowZoomLinks();
+        default:
+            return new HelpCommand();
+        }
+    }
+
+    public static Command moduleCommandInstance(String suffix) {
+        String dummyValue = "";
+        switch (suffix) {
+        case COMMAND_SUFFIX_ADD:
+            return new AddModuleCommand(dummyValue);
+        case COMMAND_SUFFIX_LIST:
+            return new ListModuleCommand();
+        case COMMAND_SUFFIX_DELETE:
+            return new DeleteModuleCommand(dummyValue);
+        default:
+            return new HelpCommand();
+        }
+    }
+
+    public static Command foodCommandInstance(String suffix) {
+        String dummyValue = "";
+        switch (suffix) {  //consider 2nd word
+        case COMMAND_SUFFIX_ADD:
+            return new AddFoodCommand(dummyValue);
+        case COMMAND_SUFFIX_DELETE:
+            return new DeleteFoodCommand(dummyValue);
+        case COMMAND_SUFFIX_CLEAR:
+            return new ClearFoodCommand();
+        case COMMAND_SUFFIX_LIST:
+            return new ListFoodCommand();
+        default:
+            return new HelpCommand();
         }
     }
 
