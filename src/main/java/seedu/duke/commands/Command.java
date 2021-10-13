@@ -23,7 +23,7 @@ public abstract class Command {
      */
 
     protected String helpMessage = "Sorry no help doc exists for this command!";
-    protected String syntax = "Sorry there is no defined syntaxt for this command";
+    protected String syntax = "Sorry there is no defined syntax for this command";
 
     public abstract void execute(Ui ui, Storage storage) throws ClickException, Exception;
 
