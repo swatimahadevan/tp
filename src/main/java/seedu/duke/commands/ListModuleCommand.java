@@ -6,7 +6,7 @@ import seedu.duke.module.ModuleList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
-//@author nvbinh15
+//@@author nvbinh15
 
 /**
  * A representation of the command for listing Modules.

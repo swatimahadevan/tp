@@ -1,7 +1,6 @@
 package seedu.duke.commands;
 
-import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
-import seedu.duke.exceptions.InvalidDateMonthException;
+import seedu.duke.exceptions.InvalidMonthException;
 import seedu.duke.logger.ClickLogger;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.storage.Storage;
@@ -16,7 +15,7 @@ import java.util.logging.Level;
 import static seedu.duke.constants.Messages.MONTH_LOWER_LIMIT;
 import static seedu.duke.constants.Messages.MONTH_UPPER_LIMIT;
 import static seedu.duke.constants.Messages.TOTAL_SIZE;
-import static seedu.duke.constants.Messages.DELIMETER_DATE;
+import static seedu.duke.constants.Messages.DELIMITER_DATE;
 
 public class DisplayCalendarCommand extends Command {
 
@@ -35,20 +34,21 @@ public class DisplayCalendarCommand extends Command {
             this.year = Integer.parseInt(yearMonthArguments[1]);
             this.month = Integer.parseInt(yearMonthArguments[0]);
             if ((month < MONTH_LOWER_LIMIT || month > MONTH_UPPER_LIMIT)) {
-                throw new InvalidDateMonthException("The month has to be a value between 01-12 !");
+                throw new InvalidMonthException();
             }
             this.inputYearMonth = YearMonth.of(year, month);
-        } catch (IndexOutOfBoundsException | NumberFormatException
-                | InvalidDateMonthException | IncorrectNumberOfArgumentsException c) {
+        } catch (IndexOutOfBoundsException | NumberFormatException c) {
             ClickLogger.getNewLogger().log(Level.WARNING, "Calendar display failed...");
             Ui.printInvalidCalendarInput();
+        } catch (InvalidMonthException e) {
+            InvalidMonthException.printMessage();
         }
     }
 
     private void parseTaskList(TaskList taskList) {
         for (Task task : taskList.getTaskList()) {
             String description = task.getDescription();
-            String[] dateSplit = task.getDate().split(DELIMETER_DATE);
+            String[] dateSplit = task.getDate().split(DELIMITER_DATE);
             if (this.month == Integer.parseInt(dateSplit[1])
                     && this.year == Integer.parseInt(dateSplit[2])) {
                 int day = Integer.parseInt(dateSplit[0]);

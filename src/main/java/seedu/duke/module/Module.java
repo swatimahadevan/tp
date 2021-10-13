@@ -1,6 +1,6 @@
 package seedu.duke.module;
 
-//@@ author nvbinh15
+//@@author nvbinh15
 
 /**
  * A representation of a Module.

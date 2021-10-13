@@ -37,7 +37,4 @@ public class FoodRecord {
         return foodName + "|" + calorieCount + "\n";
     }
 
-    public void printRecordOnAdd()  {
-        Ui.printAddRecord(this);
-    }
 }
