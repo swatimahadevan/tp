@@ -17,22 +17,30 @@ public class ParserJournal {
 
     /**
      * Returns the name of the notebook.
+     *
      * @param input contains notebook information
      * @return noteName a string which contains the name of the notebook
      * @throws DuplicateNoteException if notebook with same name has been added before
      */
     public static String parseAddNoteCommand(String input, Storage storage) throws DuplicateNoteException,
-            EmptyNoteArgumentsException, EmptyNoteNameException {
-        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
-        ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
-        final String commandArgs = commandTypeAndParams[1];
-        String[] noteArguments = commandArgs.split(" ");
-        if (noteArguments.length == 1) {
-            throw new EmptyNoteArgumentsException();
-        } else if (noteArguments.length == 2 && noteArguments[1].equals("n/")) {
-            throw new EmptyNoteNameException();
+            EmptyNoteNameException, EmptyNoteArgumentsException {
+        if (isValidNotebookCommand(input)) {
+            ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
+            String noteName = checkDuplicateOrNot(input, notes);
+            return noteName;
         }
+        return null;
+    }
 
+    /**
+     * Checking if addition of notebook will result in duplicates.
+     *
+     * @param input getting userInput regarding notebook
+     * @param notes list of notes
+     * @return notebook name if it is not duplicate
+     * @throws DuplicateNoteException checks for duplicate note
+     */
+    public static String checkDuplicateOrNot(String input, ArrayList<Note> notes) throws DuplicateNoteException {
         String noteNameDetails = input.trim().split("notebook")[1];
         String noteName = noteNameDetails.split("n/")[1].trim();
         for (Note note : notes) {
@@ -44,7 +52,31 @@ public class ParserJournal {
     }
 
     /**
+     * To check if notebook command is valid, else false.
+     *
+     * @param input user input
+     * @return true if notebook command is valid, else false
+     * @throws EmptyNoteArgumentsException checks if note arguments are empty
+     * @throws EmptyNoteNameException checks if notebook name is not entered
+     */
+    public static boolean isValidNotebookCommand(String input) throws EmptyNoteArgumentsException,
+            EmptyNoteNameException {
+        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
+        final String commandArgs = commandTypeAndParams[1];
+        String[] noteArguments = commandArgs.split(" ");
+        if (noteArguments.length == 1) {
+            throw new EmptyNoteArgumentsException();
+        }
+        if (noteArguments.length == 2 && noteArguments[1].equals("n/")) {
+            throw new EmptyNoteNameException();
+        }
+        return true;
+    }
+
+
+    /**
      * Returns the name of the notebook and entry to allow for adding of entry.
+     *
      * @param input contains information about entry and the desired notebook from user
      * @return a String array which stores notebook name and entry name
      * @throws EmptyEntryArgumentsException if no arguments found after entry
@@ -62,37 +94,30 @@ public class ParserJournal {
         String[] noteArguments = commandArgs.split(" ");
         if (noteArguments.length == 1) {
             throw new EmptyEntryArgumentsException();
-        } else if (noteArguments.length == 2 && noteArguments[1].equals("n/")) {
+        }
+        if (noteArguments.length == 2 && noteArguments[1].equals("n/")) {
             throw new EmptyNoteNameException();
-        } else if (noteArguments.length == 4 && noteArguments[3].equals("e/")) {
+        }
+        if (noteArguments.length == 4 && noteArguments[3].equals("e/")) {
             throw new EmptyEntryNameException();
         }
         boolean isNoteArgumentPresent = false;
         boolean isEntryArgumentPresent = false;
-        for (int i = 0; i < noteArguments.length; i++) {
-            if (noteArguments[i].equals("n/")) {
+        for (String noteArgument : noteArguments) {
+            if (noteArgument.equals("n/")) {
                 isNoteArgumentPresent = true;
             }
-            if (noteArguments[i].equals("e/")) {
+            if (noteArgument.equals("e/")) {
                 isEntryArgumentPresent = true;
             }
         }
         if (isEntryArgumentPresent && isNoteArgumentPresent) {
-            String noteNameDetails = input.trim().split("entry")[1];
-            String noteAndEntryName = noteNameDetails.split("n/")[1].trim();
-            String entryName = noteAndEntryName.split("e/")[1].trim();
-            String noteName = noteAndEntryName.split("e/")[0].trim();
-            int flagNotebookPresent = 0;
-            for (Note note : notes) {
-                if (note.getNoteName().equals(noteName) == true) {
-                    flagNotebookPresent = 1;
-                    break;
-                }
-            }
-            if (flagNotebookPresent == 0) {
+            String[] noteEntryNames = parseNoteEntryName(input);
+            int flagNotebook = notes.stream().anyMatch(note -> note.getNoteName().equals(noteEntryNames[0])) ? 1 : 0;
+            if (flagNotebook == 0) {
                 throw new NotebookNotFoundForEntryAddition();
             } else {
-                return new String[]{noteName, entryName};
+                return new String[]{noteEntryNames[0], noteEntryNames[1]};
             }
         } else if (isEntryArgumentPresent && !isNoteArgumentPresent) {
             throw new NotebookArgumentNotFoundException("Note argument not found!");
@@ -100,5 +125,19 @@ public class ParserJournal {
             throw new NotebookArgumentNotFoundException("Entry argument not found!");
         }
         return null;
+    }
+
+    /**
+     * Parsing notebook and entry name.
+     *
+     * @param input from user
+     * @return notebook name and entry name in form of string array
+     */
+    public static String[] parseNoteEntryName(String input) {
+        String noteNameDetails = input.trim().split("entry")[1];
+        String noteAndEntryName = noteNameDetails.split("n/")[1].trim();
+        String entryName = noteAndEntryName.split("e/")[1].trim();
+        String noteName = noteAndEntryName.split("e/")[0].trim();
+        return new String[]{noteName, entryName};
     }
 }

@@ -8,11 +8,13 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 
 public class ListJournalCommand extends Command {
+
     public ListJournalCommand() {
     }
 
     /**
      * Allows for the listing of notebooks and entries.
+     *
      * @param ui allows for printing of a message to indicate that the note has been added
      * @param storage to print from storage
      */

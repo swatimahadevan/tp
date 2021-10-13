@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import seedu.duke.exceptions.DuplicateTaskException;
-import seedu.duke.exceptions.InvalidDateMonthException;
+import seedu.duke.exceptions.InvalidDateException;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageTasks;
 import seedu.duke.ui.Ui;
@@ -17,17 +17,32 @@ import seedu.duke.task.Todo;
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
 import static seedu.duke.constants.Messages.INDEX_TODO_DATE;
 
-//@author swatim
+/**
+ * Class to execute adding of todo task.
+ *
+ * @author swatimahadevan
+ */
 public class AddTodoCommand extends Command {
 
     private ArrayList<String> arguments;
 
+    /**
+     * Constructor for AddTodoCommand.
+     *
+     * @param arguments which has the todo task arguments.
+     */
     public AddTodoCommand(ArrayList<String> arguments) {
         super();
         this.arguments = arguments;
     }
 
-    public boolean isValid(String todoDateStringFormat) {
+    /**
+     * To check that date is in the format dd-MM-YYYY.
+     *
+     * @param todoDateStringFormat todo date
+     * @return
+     */
+    public static boolean isValid(String todoDateStringFormat) {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
         try {
@@ -38,9 +53,25 @@ public class AddTodoCommand extends Command {
         return true;
     }
 
+    public static void checkIfDateValid(String todoDateStringFormat) throws InvalidDateException {
+        if (!isValid(todoDateStringFormat)) {
+            throw new InvalidDateException();
+        }
+    }
+
+    /**
+     * To execute adding of todo.
+     *
+     * @param ui      The component of CLICK that deals with the interaction with the user.
+     * @param storage The component of CLICK that deals with loading tasks from the file and saving tasks in the file.
+     * @throws IOException in case of wrong command.
+     * @throws ParseException in case of error while parsing.
+     * @throws InvalidDateException in case date is incorrect.
+     * @throws DuplicateTaskException in case task already exists.
+     */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException,
-            ParseException, InvalidDateMonthException, DuplicateTaskException {
+            ParseException, DuplicateTaskException, InvalidDateException {
         String description = arguments.get(INDEX_TODO_DESCRIPTION).trim();
         String todoDateStringFormat = arguments.get(INDEX_TODO_DATE);
         Task task = new Todo(description, todoDateStringFormat);
@@ -49,9 +80,7 @@ public class AddTodoCommand extends Command {
                 throw new DuplicateTaskException();
             }
         }
-        if (!isValid(todoDateStringFormat)) {
-            throw new InvalidDateMonthException("Invalid date given, use format DD-MM-YYYY!");
-        }
+        checkIfDateValid(todoDateStringFormat);
         storage.tasksList.addTask(task);
         Ui.printTaskAddedMessage();
         StorageTasks.writeTaskList(storage.tasksList);
