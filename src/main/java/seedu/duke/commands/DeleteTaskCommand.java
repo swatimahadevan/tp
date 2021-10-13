@@ -35,8 +35,7 @@ public class DeleteTaskCommand extends Command {
      * @throws IncorrectNumberOfArgumentsException in case of wrong number of arguments.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException,
-            IndexNotFoundException, IncorrectNumberOfArgumentsException {
+    public void execute(Ui ui, Storage storage) throws IOException, IncorrectNumberOfArgumentsException, IndexNotFoundException {
         if (this.index > storage.tasksList.getTaskList().size()) {
             throw new IndexNotFoundException();
         }
