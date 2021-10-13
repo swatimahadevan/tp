@@ -22,7 +22,8 @@ public class ParserJournal {
      * @return noteName a string which contains the name of the notebook
      * @throws DuplicateNoteException if notebook with same name has been added before
      */
-    public static String parseAddNoteCommand(String input, Storage storage) throws DuplicateNoteException, EmptyNoteNameException, EmptyNoteArgumentsException {
+    public static String parseAddNoteCommand(String input, Storage storage) throws DuplicateNoteException,
+            EmptyNoteNameException, EmptyNoteArgumentsException {
         if (isValidNotebookCommand(input)) {
             ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
             String noteName = checkDuplicateOrNot(input, notes);
@@ -35,9 +36,9 @@ public class ParserJournal {
      * Checking if addition of notebook will result in duplicates.
      *
      * @param input getting userInput regarding notebook
-     * @param notes
-     * @return notename if it is not duplicate
-     * @throws DuplicateNoteException
+     * @param notes list of notes
+     * @return notebook name if it is not duplicate
+     * @throws DuplicateNoteException checks for duplicate note
      */
     public static String checkDuplicateOrNot(String input, ArrayList<Note> notes) throws DuplicateNoteException {
         String noteNameDetails = input.trim().split("notebook")[1];
@@ -53,12 +54,13 @@ public class ParserJournal {
     /**
      * To check if notebook command is valid, else false.
      *
-     * @param input
+     * @param input user input
      * @return true if notebook command is valid, else false
-     * @throws EmptyNoteArgumentsException
-     * @throws EmptyNoteNameException
+     * @throws EmptyNoteArgumentsException checks if note arguments are empty
+     * @throws EmptyNoteNameException checks if notebook name is not entered
      */
-    public static boolean isValidNotebookCommand(String input) throws EmptyNoteArgumentsException, EmptyNoteNameException {
+    public static boolean isValidNotebookCommand(String input) throws EmptyNoteArgumentsException,
+            EmptyNoteNameException {
         final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
         final String commandArgs = commandTypeAndParams[1];
         String[] noteArguments = commandArgs.split(" ");
@@ -111,8 +113,8 @@ public class ParserJournal {
         }
         if (isEntryArgumentPresent && isNoteArgumentPresent) {
             String[] noteEntryNames = parseNoteEntryName(input);
-            int flagNotebookPresent = notes.stream().anyMatch(note -> note.getNoteName().equals(noteEntryNames[0])) ? 1 : 0;
-            if (flagNotebookPresent == 0) {
+            int flagNotebook = notes.stream().anyMatch(note -> note.getNoteName().equals(noteEntryNames[0])) ? 1 : 0;
+            if (flagNotebook == 0) {
                 throw new NotebookNotFoundForEntryAddition();
             } else {
                 return new String[]{noteEntryNames[0], noteEntryNames[1]};

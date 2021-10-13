@@ -1,6 +1,9 @@
 package seedu.duke.parser.journal;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exceptions.DuplicateNoteException;
+import seedu.duke.exceptions.EmptyNoteArgumentsException;
+import seedu.duke.exceptions.EmptyNoteNameException;
 import seedu.duke.journal.Note;
 import seedu.duke.storage.Storage;
 
@@ -23,32 +26,21 @@ class ParserJournalTest {
     }
 
     @Test
-    void parserNotebookCommand_noNoteNameGiven() {
-        try {
-            Boolean isValidNoteName = ParserJournal.isValidNotebookCommand("journal notebook n/");
-        } catch (Exception e) {
-            assertEquals(false, false);
-        }
+    void parserNotebookCommand_noNoteNameGiven() throws EmptyNoteNameException, EmptyNoteArgumentsException {
+        Boolean isValidNoteName = ParserJournal.isValidNotebookCommand("journal notebook n/");
+        assertEquals(false, false);
     }
 
     @Test
-    void parserNotebookCommand_noNoteArgumentsFound() {
-        Boolean isValidNoteArguments = false;
-        try {
-            isValidNoteArguments = ParserJournal.isValidNotebookCommand("journal notebook");
-        } catch (Exception e) {
-            assertEquals(false, isValidNoteArguments);
-        }
+    void parserNotebookCommand_noNoteArgumentsFound() throws EmptyNoteNameException, EmptyNoteArgumentsException {
+        Boolean isValidNoteArguments = ParserJournal.isValidNotebookCommand("journal notebook");
+        assertEquals(false, isValidNoteArguments);
     }
 
     @Test
-    void parserNotebookCommand_duplicateNotebookName_throwDuplicateNoteException() {
+    void parserNotebookCommand_duplicateNotebookName_throwDuplicateNoteException() throws DuplicateNoteException {
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
-        String noteName = " ";
-        try {
-            noteName = parser.checkDuplicateOrNot("journal notebook n/ notInStorageName ", notes);
-        } catch (Exception e) {
-            assertEquals("notInStorageName", noteName);
-        }
+        String noteName = parser.checkDuplicateOrNot("journal notebook n/ notInStorageName ", notes);
+        assertEquals("notInStorageName", noteName);
     }
 }
