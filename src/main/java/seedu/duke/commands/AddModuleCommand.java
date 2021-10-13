@@ -62,7 +62,8 @@ public class AddModuleCommand extends Command {
         Module module;
         boolean isInvalidInput = (indexOfCode == -1) || (indexOfName != -1 && indexOfCode > indexOfName)
                 || (indexOfName == -1 && indexOfExpectedGrade != -1)
-                || (indexOfExpectedGrade != -1 && (indexOfName > indexOfExpectedGrade || indexOfCode > indexOfExpectedGrade));
+                || (indexOfExpectedGrade != -1
+                && (indexOfName > indexOfExpectedGrade || indexOfCode > indexOfExpectedGrade));
         if (isInvalidInput) {
             throw new IllegalModuleException();
         }
