@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.IndexNotFoundException;
+import seedu.duke.exceptions.CalendarIndexNotFoundException;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageTasks;
 import seedu.duke.ui.Ui;
@@ -36,9 +37,9 @@ public class DeleteTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException,
-            IndexNotFoundException, IncorrectNumberOfArgumentsException {
+            CalendarIndexNotFoundException, IncorrectNumberOfArgumentsException {
         if (this.index > storage.tasksList.getTaskList().size()) {
-            throw new IndexNotFoundException();
+            throw new CalendarIndexNotFoundException();
         }
         Storage.tasksList.deleteTask(this.index);
         System.out.println(DELETED_TASK);
