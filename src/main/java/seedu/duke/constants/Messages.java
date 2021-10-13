@@ -2,11 +2,11 @@ package seedu.duke.constants;
 
 public class Messages {
 
-    public static final String LOGO = "\t" + " ____        _\n"
-            + "\t" + "|  _ \\ _   _| | _____\n"
-            + "\t" + "| | | | | | | |/ / _ \\\n"
-            + "\t" + "| |_| | |_| |   <  __/\n"
-            + "\t" + "|____/ \\__,_|_|\\_\\___|\n\n";
+    public static final String LOGO = "\t" + " _____ _  _     _    \n"
+            + "\t" + "/  __ \\ |(_)   | |\n"
+            + "\t" + "| /  \\/ |_  ___| | __\n"
+            + "\t" + "| \\__/\\ | | (__|   <\n"
+            + "\t" + "\\_____/_|_|\\___|_|\\_\\\n\n";
 
     public static final String EMPTY_STRING = "";
     public static final String LINE_PREFIX = "\t";
