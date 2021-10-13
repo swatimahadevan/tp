@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class ListJournalCommand extends Command {
 
     public ListJournalCommand() {
+        this.helpMessage = "Listing notebooks with entries";
+        this.syntax = "journal list";
     }
 
     /**

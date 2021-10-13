@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class AddNoteCommand extends Command {
 
+
     public String userInput;
 
     /**
@@ -22,6 +23,8 @@ public class AddNoteCommand extends Command {
      */
     public AddNoteCommand(String userInput) {
         this.userInput = userInput;
+        this.helpMessage = "Add a notebook to list";
+        this.syntax = "journal notebook n/ NOTEBOOK_NAME";
     }
 
 
