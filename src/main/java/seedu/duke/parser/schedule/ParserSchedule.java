@@ -46,22 +46,21 @@ public class ParserSchedule {
         final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
         assert commandTypeAndParams.length == 2;
         final String commandArgs = commandTypeAndParams[1];
-        String[] todoArguments = commandArgs.split(" ");
-        if (todoArguments.length == INDEX_ONE) {
-            throw new IncorrectNumberOfArgumentsException("I need the task name and task date to add it!");
-        } else if (todoArguments.length == 2 && todoArguments[INDEX_ONE].equals("n/")) {
-            throw new IncorrectNumberOfArgumentsException("Task name not found after n/ !");
-        } else if (todoArguments.length == 4 && todoArguments[3].equals("d/")) {
-            throw new IncorrectNumberOfArgumentsException("Task date not found after d/ !");
-        }
         boolean isNameArgumentPresent = false;
         boolean isDateArgumentPresent = false;
-        for (String todoArgument : todoArguments) {
-            if (todoArgument.equals("n/")) {
+        String[] todoArguments = commandArgs.split(" ");
+        for (int i = 0; i < todoArguments.length; i++) {
+            if (todoArguments[i].equals("n/")) {
                 isNameArgumentPresent = true;
+                if (todoArguments.length == i + 1 || todoArguments[i + 1].equals("d/")) {
+                    throw new IncorrectNumberOfArgumentsException("Task name not found after n/ !");
+                }
             }
-            if (todoArgument.equals("d/")) {
+            if (todoArguments[i].equals("d/")) {
                 isDateArgumentPresent = true;
+                if (todoArguments.length == i + 1) {
+                    throw new IncorrectNumberOfArgumentsException("Task date not found after d/ !");
+                }
             }
         }
         if (isNameArgumentPresent && isDateArgumentPresent) {
