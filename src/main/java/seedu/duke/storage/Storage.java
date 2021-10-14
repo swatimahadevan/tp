@@ -73,8 +73,7 @@ public class Storage {
     public static void writeDataOntoSaveFile(String filePath, ArrayList<String> data) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath));
         for (String dataObject : data) {
-            String dataLine = dataObject.toString();
-            bufferedWriter.write(dataLine + '\n');
+            bufferedWriter.write(dataObject + '\n');
         }
         bufferedWriter.close();
     }

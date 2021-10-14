@@ -3,9 +3,11 @@ package seedu.duke.parser.schedule;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.parser.Parser;
 
+import java.text.SimpleDateFormat;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static seedu.duke.constants.Messages.TODO;
@@ -14,6 +16,7 @@ import static seedu.duke.constants.Messages.DELIMITER_DATE;
 import static seedu.duke.constants.Messages.MONTH_UPPER_LIMIT;
 import static seedu.duke.constants.Messages.INDEX_ZERO;
 import static seedu.duke.constants.Messages.INDEX_ONE;
+import static seedu.duke.constants.Messages.NAME_ABSENT;
 
 public class ParserSchedule {
 
@@ -32,6 +35,13 @@ public class ParserSchedule {
         int year = Integer.parseInt(arguments[1]);
         YearMonth yearMonth = YearMonth.of(year, month);
         return yearMonth;
+    }
+
+    public static String parseTodoWhenDateNotGiven(String input) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String date = sdf.format(new Date());
+        input = input + " " + date;
+        return input;
     }
 
     //modified from @author SvethaMahadevan
@@ -53,13 +63,16 @@ public class ParserSchedule {
             if (todoArguments[i].equals("n/")) {
                 isNameArgumentPresent = true;
                 if (todoArguments.length == i + 1 || todoArguments[i + 1].equals("d/")) {
-                    throw new IncorrectNumberOfArgumentsException("Task name not found after n/ !");
+                    throw new IncorrectNumberOfArgumentsException(NAME_ABSENT);
                 }
             }
             if (todoArguments[i].equals("d/")) {
                 isDateArgumentPresent = true;
                 if (todoArguments.length == i + 1) {
-                    throw new IncorrectNumberOfArgumentsException("Task date not found after d/ !");
+                    System.out.println("You have not provided a date so "
+                            + "I will add the task to today's date..."
+                            + "please specify one in DD-MM-YYYY next time!");
+                    input = parseTodoWhenDateNotGiven(input);
                 }
             }
         }

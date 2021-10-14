@@ -35,16 +35,15 @@ public class DisplayCalendarCommand extends Command {
             this.year = Integer.parseInt(yearMonthArguments[1]);
             this.month = Integer.parseInt(yearMonthArguments[0]);
             if ((month < MONTH_LOWER_LIMIT || month > MONTH_UPPER_LIMIT)) {
-                throw new InvalidMonthException();
+                System.out.println("Month is invalid and "
+                        + "I will therefore display the calendar for the current month!");
+                this.inputYearMonth = YearMonth.now();
+            } else {
+                this.inputYearMonth = YearMonth.of(year, month);
             }
-            this.inputYearMonth = YearMonth.of(year, month);
         } catch (IndexOutOfBoundsException | NumberFormatException c) {
             ClickLogger.getNewLogger().log(Level.WARNING, "Calendar display failed...");
             Ui.printInvalidCalendarInput();
-        } catch (InvalidMonthException e) {
-            ClickLogger.getNewLogger().log(Level.INFO,
-                    "Calendar display failed because of invalid month input by user");
-            InvalidMonthException.printMessage();
         }
     }
 
