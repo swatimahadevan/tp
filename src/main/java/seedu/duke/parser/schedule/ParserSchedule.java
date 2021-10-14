@@ -50,30 +50,21 @@ public class ParserSchedule {
         boolean isDateArgumentPresent = false;
         String[] todoArguments = commandArgs.split(" ");
         for (int i = 0; i < todoArguments.length; i++) {
-            if (todoArguments[i].equals("n/")) {
-                isNameArgumentPresent = true;
-                if (todoArguments.length == i + 1 || todoArguments[i + 1].equals("d/")) {
-                    throw new IncorrectNumberOfArgumentsException("Task name not found after n/ !");
-                }
-            }
-            if (todoArguments[i].equals("d/")) {
-                isDateArgumentPresent = true;
-                if (todoArguments.length == i + 1) {
-                    throw new IncorrectNumberOfArgumentsException("Task date not found after d/ !");
-                }
-            }
+            throwTaskNameNotFound(i, todoArguments, isNameArgumentPresent);
+            throwTaskDateNotFound(i, todoArguments, isDateArgumentPresent);
         }
         if (isNameArgumentPresent && isDateArgumentPresent) {
             return parseTodoArgumentsArray(input);
-        } else if (isNameArgumentPresent) {
+        }
+        if (isNameArgumentPresent) {
             throw new IncorrectNumberOfArgumentsException("Date argument not found!");
-        } else if (isDateArgumentPresent) {
+        }
+        if (isDateArgumentPresent) {
             throw new IncorrectNumberOfArgumentsException("Name argument not found!");
         }
-        return null;
+        throw new IncorrectNumberOfArgumentsException("Name and date arguments not found!");
     }
 
-    //modified from @author SvethaMahadevan
     /**
      * Parsing of todo arguments.
      *
@@ -81,19 +72,11 @@ public class ParserSchedule {
      * @return Returning arguments of todo command.
      * @throws IncorrectNumberOfArgumentsException to check if correct number of arguments.
      */
-    public static ArrayList<String> parseTodoArgumentsArray(String input) throws IncorrectNumberOfArgumentsException {
+    public static ArrayList<String> parseTodoArgumentsArray(String input) {
         ArrayList<String> argumentsTodoCommand = new ArrayList<>();
-        String todoDetails = input.trim().split("todo")[INDEX_ONE];
-        String descriptionAndDate;
-        try {
-            descriptionAndDate = todoDetails.split("n/")[INDEX_ONE].trim();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new IncorrectNumberOfArgumentsException("Task name not found!");
-        }
+        String todoDetails = input.trim().substring(CALENDAR_COMMAND_SPLIT);
+        String descriptionAndDate = todoDetails.split("n/")[INDEX_ONE].trim();
         String description = descriptionAndDate.split("d/")[INDEX_ZERO].trim();
-        if (description.equals("")) {
-            throw new IncorrectNumberOfArgumentsException("Task name not found!");
-        }
         String date = descriptionAndDate.split("d/")[INDEX_ONE].trim();
         List<String> todoInformation = Arrays.asList(TODO, description, date);
         argumentsTodoCommand.addAll(todoInformation);
@@ -111,5 +94,23 @@ public class ParserSchedule {
         String extractMonthYear = input.substring(CALENDAR_COMMAND_SPLIT);
         String[] arguments = extractMonthYear.split(DELIMITER_DATE);
         return arguments;
+    }
+
+    public static void throwTaskNameNotFound(int i, String[] todoArguments, boolean isNameArgumentPresent) throws IncorrectNumberOfArgumentsException {
+        if (todoArguments[i].equals("n/")) {
+            isNameArgumentPresent = true;
+            if (todoArguments.length == i + 1 || todoArguments[i + 1].equals("d/")) {
+                throw new IncorrectNumberOfArgumentsException("Task name not found after n/ !");
+            }
+        }
+    }
+
+    public static void throwTaskDateNotFound(int i, String[] todoArguments, boolean isDateArgumentPresent) throws IncorrectNumberOfArgumentsException {
+        if (todoArguments[i].equals("d/")) {
+            isDateArgumentPresent = true;
+            if (todoArguments.length == i + 1) {
+                throw new IncorrectNumberOfArgumentsException("Task date not found after d/ !");
+            }
+        }
     }
 }
