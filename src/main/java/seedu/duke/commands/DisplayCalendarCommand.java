@@ -42,7 +42,8 @@ public class DisplayCalendarCommand extends Command {
             ClickLogger.getNewLogger().log(Level.WARNING, "Calendar display failed...");
             Ui.printInvalidCalendarInput();
         } catch (InvalidMonthException e) {
-            ClickLogger.getNewLogger().log(Level.INFO, "Calendar display failed because of invalid month input by user");
+            ClickLogger.getNewLogger().log(Level.INFO,
+                    "Calendar display failed because of invalid month input by user");
             InvalidMonthException.printMessage();
         }
     }

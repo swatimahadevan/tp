@@ -11,15 +11,25 @@ import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
-import static seedu.duke.constants.Messages.*;
+import static seedu.duke.constants.Messages.DELIMITER_DATE;
 import static seedu.duke.constants.Messages.TOTAL_SIZE;
+import static seedu.duke.constants.Messages.DAYS_IN_MONTH;
+import static seedu.duke.constants.Messages.INDEX_ZERO;
+import static seedu.duke.constants.Messages.INDEX_ONE;
+import static seedu.duke.constants.Messages.NUMBER_OF_DAYS_IN_WEEK;
+import static seedu.duke.constants.Messages.LEAVE_EMPTY_IN_DISPLAY;
+import static seedu.duke.constants.Messages.EMPTY_SPACE;
+import static seedu.duke.constants.Messages.TASK_FORMATTER;
+import static seedu.duke.constants.Messages.SEPARATOR_DISPLAY;
+import static seedu.duke.constants.Messages.CALENDER_DATE_FORMATTER;
 
 /**
  * Represents the logic and UI behind calendar with tasks display.
  */
 public class Schedule {
 
-    public static void parseTaskList(TaskList taskList, ArrayList<ArrayList<String>> calendarTasks, int month, int year) {
+    public static void parseTaskList(TaskList taskList,
+                                     ArrayList<ArrayList<String>> calendarTasks, int month, int year) {
         for (Task task : taskList.getTaskList()) {
             String description = task.getDescription();
             String[] dateArguments = task.getDate().split(DELIMITER_DATE);
@@ -33,7 +43,9 @@ public class Schedule {
         }
     }
 
-    private static void addTaskToCalendarDay(String[] dateArguments, String description, int month, int year, ArrayList<ArrayList<String>> calendarTasks) {
+    private static void addTaskToCalendarDay(String[] dateArguments,
+                                             String description, int month,
+                                             int year, ArrayList<ArrayList<String>> calendarTasks) {
         if (month == Integer.parseInt(dateArguments[1])
                 && year == Integer.parseInt(dateArguments[2])) {
             int date = Integer.parseInt(dateArguments[0]);
