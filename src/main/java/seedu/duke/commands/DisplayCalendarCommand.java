@@ -29,9 +29,7 @@ public class DisplayCalendarCommand extends Command {
         this.helpMessage = "Display Calendar";
         this.syntax = "calendar MM-YYYY";
 
-        while (calendarTasks.size() != TOTAL_SIZE) {
-            calendarTasks.add(new ArrayList<>());
-        }
+        Schedule.intializeCalendarDayTasksList(calendarTasks);
         try {
             this.yearMonthArguments = ParserSchedule.parseCalendarCommand(input);
             this.year = Integer.parseInt(yearMonthArguments[1]);
@@ -44,26 +42,17 @@ public class DisplayCalendarCommand extends Command {
             ClickLogger.getNewLogger().log(Level.WARNING, "Calendar display failed...");
             Ui.printInvalidCalendarInput();
         } catch (InvalidMonthException e) {
+            ClickLogger.getNewLogger().log(Level.INFO,
+                    "Calendar display failed because of invalid month input by user");
             InvalidMonthException.printMessage();
         }
     }
 
-    private void parseTaskList(TaskList taskList) {
-        for (Task task : taskList.getTaskList()) {
-            String description = task.getDescription();
-            String[] dateSplit = task.getDate().split(DELIMITER_DATE);
-            if (this.month == Integer.parseInt(dateSplit[1])
-                    && this.year == Integer.parseInt(dateSplit[2])) {
-                int day = Integer.parseInt(dateSplit[0]);
-                this.calendarTasks.get(day).add(description);
-            }
-        }
-    }
 
     @Override
     public void execute(Ui ui, Storage storage) {
         Ui.printCalenderTitle(inputYearMonth);
-        parseTaskList(storage.tasksList);
+        Schedule.parseTaskList(storage.tasksList, calendarTasks, this.month, this.year);
         Schedule.displayCalendar(inputYearMonth, calendarTasks);
     }
 }

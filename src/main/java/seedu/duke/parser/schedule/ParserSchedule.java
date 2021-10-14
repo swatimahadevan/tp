@@ -65,15 +65,17 @@ public class ParserSchedule {
         }
         if (isNameArgumentPresent && isDateArgumentPresent) {
             return parseTodoArgumentsArray(input);
-        } else if (isNameArgumentPresent) {
-            throw new IncorrectNumberOfArgumentsException("Date argument not found!");
-        } else if (isDateArgumentPresent) {
-            throw new IncorrectNumberOfArgumentsException("Name argument not found!");
         }
-        return null;
+        if (isNameArgumentPresent) {
+            throw new IncorrectNumberOfArgumentsException("Date argument not found!");
+        }
+        if (isDateArgumentPresent) {
+            throw new IncorrectNumberOfArgumentsException("Name argument not found!");
+        } else {
+            throw new IncorrectNumberOfArgumentsException("Name and date arguments not found!");
+        }
     }
 
-    //modified from @author SvethaMahadevan
     /**
      * Parsing of todo arguments.
      *
@@ -81,19 +83,11 @@ public class ParserSchedule {
      * @return Returning arguments of todo command.
      * @throws IncorrectNumberOfArgumentsException to check if correct number of arguments.
      */
-    public static ArrayList<String> parseTodoArgumentsArray(String input) throws IncorrectNumberOfArgumentsException {
+    public static ArrayList<String> parseTodoArgumentsArray(String input) {
         ArrayList<String> argumentsTodoCommand = new ArrayList<>();
-        String todoDetails = input.trim().split("todo")[INDEX_ONE];
-        String descriptionAndDate;
-        try {
-            descriptionAndDate = todoDetails.split("n/")[INDEX_ONE].trim();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new IncorrectNumberOfArgumentsException("Task name not found!");
-        }
+        String todoDetails = input.trim().substring(CALENDAR_COMMAND_SPLIT);
+        String descriptionAndDate = todoDetails.split("n/")[INDEX_ONE].trim();
         String description = descriptionAndDate.split("d/")[INDEX_ZERO].trim();
-        if (description.equals("")) {
-            throw new IncorrectNumberOfArgumentsException("Task name not found!");
-        }
         String date = descriptionAndDate.split("d/")[INDEX_ONE].trim();
         List<String> todoInformation = Arrays.asList(TODO, description, date);
         argumentsTodoCommand.addAll(todoInformation);
