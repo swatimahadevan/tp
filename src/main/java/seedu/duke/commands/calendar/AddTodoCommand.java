@@ -1,4 +1,4 @@
-package seedu.duke.commands;
+package seedu.duke.commands.calendar;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import seedu.duke.commands.Command;
 import seedu.duke.exceptions.DuplicateTaskException;
 import seedu.duke.exceptions.InvalidDateException;
 import seedu.duke.storage.Storage;

@@ -1,5 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.commands.zoom;
 
+import seedu.duke.commands.Command;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.FileNotFoundException;
 import seedu.duke.storage.Storage;

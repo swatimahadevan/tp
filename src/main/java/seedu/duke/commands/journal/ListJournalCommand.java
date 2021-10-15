@@ -1,5 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.commands.journal;
 
+import seedu.duke.commands.Command;
 import seedu.duke.journal.Entry;
 import seedu.duke.journal.Note;
 import seedu.duke.storage.Storage;

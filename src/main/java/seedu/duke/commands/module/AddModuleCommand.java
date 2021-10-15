@@ -1,5 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.commands.module;
 
+import seedu.duke.commands.Command;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalModuleException;
 import seedu.duke.module.Module;

@@ -1,5 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.commands.food;
 
+import seedu.duke.commands.Command;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageFood;
 import seedu.duke.task.TaskList;

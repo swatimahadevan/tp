@@ -1,5 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.commands.zoom;
 
+import seedu.duke.commands.Command;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageZoom;
 import seedu.duke.ui.Ui;

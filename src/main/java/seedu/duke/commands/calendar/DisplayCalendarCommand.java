@@ -1,5 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.commands.calendar;
 
+import seedu.duke.commands.Command;
 import seedu.duke.exceptions.InvalidMonthException;
 import seedu.duke.logger.ClickLogger;
 import seedu.duke.parser.schedule.ParserSchedule;

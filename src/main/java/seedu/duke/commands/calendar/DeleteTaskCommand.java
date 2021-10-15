@@ -1,5 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.commands.calendar;
 
+import seedu.duke.commands.Command;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.CalendarIndexNotFoundException;
 import seedu.duke.storage.Storage;

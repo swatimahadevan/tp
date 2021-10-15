@@ -1,5 +1,6 @@
-package seedu.duke.commands;
+package seedu.duke.commands.journal;
 
+import seedu.duke.commands.Command;
 import seedu.duke.exceptions.EmptyEntryArgumentsException;
 import seedu.duke.exceptions.EmptyEntryNameException;
 import seedu.duke.exceptions.EmptyNoteNameException;
