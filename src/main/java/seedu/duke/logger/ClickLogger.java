@@ -7,7 +7,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-//@author nvbinh15
+//@@author nvbinh15
 /**
  * A class to handle logging file.
  */

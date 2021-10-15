@@ -1,7 +1,7 @@
 package seedu.duke.commands.food;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.FoodIndexNotFoundException;
+import seedu.duke.exceptions.food.FoodIndexNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;

@@ -1,4 +1,4 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.calendar;
 
 public class CalendarIndexNotFoundException extends Exception {
     public CalendarIndexNotFoundException() {

@@ -1,4 +1,6 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.food;
+
+import seedu.duke.exceptions.ClickException;
 
 public class FoodIndexNotFoundException extends ClickException {
     public FoodIndexNotFoundException() {

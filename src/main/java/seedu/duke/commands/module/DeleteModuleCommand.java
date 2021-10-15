@@ -2,7 +2,7 @@ package seedu.duke.commands.module;
 
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.ClickException;
-import seedu.duke.exceptions.IllegalModuleIndexException;
+import seedu.duke.exceptions.module.IllegalModuleIndexException;
 import seedu.duke.module.ModuleList;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;

@@ -1,6 +1,7 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.food;
 
 import seedu.duke.constants.Messages;
+import seedu.duke.exceptions.ClickException;
 
 /**
  * Exception thrown when parameters are left blank when adding a food item.

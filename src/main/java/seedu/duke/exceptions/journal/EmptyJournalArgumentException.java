@@ -1,4 +1,4 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.journal;
 
 public class EmptyJournalArgumentException extends Exception {
     public EmptyJournalArgumentException() {

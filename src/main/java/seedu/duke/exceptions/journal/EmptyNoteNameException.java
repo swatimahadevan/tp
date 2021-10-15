@@ -1,4 +1,4 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.journal;
 
 public class EmptyNoteNameException extends Exception {
     public EmptyNoteNameException() {

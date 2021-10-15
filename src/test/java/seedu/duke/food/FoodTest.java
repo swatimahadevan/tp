@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
-import seedu.duke.exceptions.IllegalFoodParameterException;
+import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

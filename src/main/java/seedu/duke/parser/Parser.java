@@ -25,9 +25,9 @@ import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.WrongDividerOrderException;
 import seedu.duke.exceptions.StorageException;
-import seedu.duke.exceptions.IllegalFoodParameterException;
-import seedu.duke.exceptions.EmptyJournalArgumentException;
-import seedu.duke.exceptions.IncorrectJournalArgumentException;
+import seedu.duke.exceptions.food.IllegalFoodParameterException;
+import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
+import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
