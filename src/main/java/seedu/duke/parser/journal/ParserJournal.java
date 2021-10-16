@@ -1,12 +1,12 @@
 package seedu.duke.parser.journal;
 
-import seedu.duke.exceptions.DuplicateNoteException;
+import seedu.duke.exceptions.journal.DuplicateNoteException;
 import seedu.duke.exceptions.EmptyEntryArgumentsException;
-import seedu.duke.exceptions.EmptyNoteArgumentsException;
-import seedu.duke.exceptions.EmptyNoteNameException;
+import seedu.duke.exceptions.journal.EmptyNoteArgumentsException;
+import seedu.duke.exceptions.journal.EmptyNoteNameException;
 import seedu.duke.exceptions.EmptyEntryNameException;
-import seedu.duke.exceptions.NotebookArgumentNotFoundException;
-import seedu.duke.exceptions.NotebookNotFoundForEntryAddition;
+import seedu.duke.exceptions.journal.NotebookArgumentNotFoundException;
+import seedu.duke.exceptions.journal.NotebookNotFoundForEntryAddition;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;

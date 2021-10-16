@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.calendar.DisplayCalendarCommand;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
@@ -18,11 +18,6 @@ import static seedu.duke.constants.Messages.DISPLAY_LINE;
 import static seedu.duke.constants.Messages.DAY_DEMARCATION;
 import static seedu.duke.constants.Messages.NO_TASK_IN_DAY;
 import static seedu.duke.constants.Messages.CALENDAR_HEADER_LINE;
-import static seedu.duke.constants.Messages.HELP_MESSAGE;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_CALENDAR;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_EXIT;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_FOOD;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_MODULE;
 import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
 import static seedu.duke.constants.Messages.INVALID_CALENDAR_INPUT;
 import static seedu.duke.constants.Messages.LIST_TASKS_HEADER;

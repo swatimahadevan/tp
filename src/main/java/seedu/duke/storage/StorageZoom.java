@@ -27,8 +27,8 @@ public class StorageZoom {
             BufferedReader br = new BufferedReader(new FileReader(folderName + fileName));
             String line;
             while ((line = br.readLine()) != null) {
-                String moduleName = line.split("-")[0];
-                String zoomLink = line.split("-")[1];
+                String moduleName = line.split("-", 2)[0];
+                String zoomLink = line.split("-", 2)[1];
                 Ui.displayZoomLink(moduleName, zoomLink);
             }
         } catch (Exception e) {
