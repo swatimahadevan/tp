@@ -32,4 +32,9 @@ public class TaskList {
         tasks.remove(index - 1);
     }
 
+    public void editTask(int index, String description, String date) {
+        Task task = new Todo(description, date);
+        tasks.set(index - 1, task);
+    }
+
 }

@@ -33,7 +33,7 @@ public class DeleteTaskCommand extends Command {
      *
      * @param ui      The component of CLICK that deals with the interaction with the user.
      * @param storage The component of CLICK that deals with loading tasks from the file and saving tasks in the file.
-     * @throws IOException if command entered is wrong.
+     * @throws IOException in case of writing to save file error.
      * @throws CalendarIndexNotFoundException if index is not found.
      * @throws IncorrectNumberOfArgumentsException in case of wrong number of arguments.
      */
