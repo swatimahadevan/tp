@@ -29,27 +29,6 @@ public class StorageFood {
         filePath = filePathToInput;
     }
 
-    /**
-     * Creates directory if directory folderName is not found.
-     * access modifier left empty for working in Storage.
-     * @param folderName folder name to check
-     * @throws IOException case where directory not found
-     */
-    static void checkAndAddDirectory(String folderName) throws IOException {
-        assert folderName.contains("/") : "Please follow format [DIR_NAME]/";   //checks syntax of constant
-        String home = new File("").getAbsolutePath() + '/';
-        File dirCheck = new File(home + folderName);
-        ClickLogger.getNewLogger().log(Level.INFO,  "checking if directory exists!");
-        if (dirCheck.isDirectory()) {
-            ClickLogger.getNewLogger().log(Level.INFO, "nice, directory found!");
-            return;
-        }
-        ClickLogger.getNewLogger().log(Level.CONFIG, "not nice, no directory found,"
-                                                    +     "creating  new directory");
-        System.out.println("Hey, I didn't find directory " + folderName);
-        System.out.println("adding " + folderName + " into repository...");
-        Files.createDirectories(Paths.get(home + folderName));
-    }
 
     /**
      * Saves list to save file.
@@ -60,7 +39,7 @@ public class StorageFood {
      */
     public static void saveList(WhatIAteList whatIAteList) throws IOException {
         assert !whatIAteList.equals(null) : "Please instantiate the list object correctly";
-        checkAndAddDirectory(folderName);
+        Storage.checkAndAddDirectory(folderName);
         File newList = new File(folderName + fileName);
         FileWriter fw = new FileWriter(folderName + fileName);
         ClickLogger.getNewLogger().log(Level.INFO, "Writing to " + folderName + fileName);
@@ -83,7 +62,7 @@ public class StorageFood {
     public static WhatIAteList load() {
         WhatIAteList listToReturn = new WhatIAteList();
         try {
-            checkAndAddDirectory(folderName);
+            Storage.checkAndAddDirectory(folderName);
             File f = new File(filePath);
             Scanner scanList = new Scanner(f);
             while (scanList.hasNext()) {

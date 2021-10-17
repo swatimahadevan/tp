@@ -187,7 +187,7 @@ public class Parser {
             case COMMAND_ZOOM_SUFFIX_SHOW:
                 return new ShowZoomLinks();
             default:
-                return new HelpCommand();
+                throw new ArgumentsNotFoundException();
             }
 
         case COMMAND_HElP:
