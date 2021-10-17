@@ -27,11 +27,12 @@ public class DisplayCalendarCommand extends Command {
     private ArrayList<ArrayList<String>> calendarTasks = new ArrayList<>(TOTAL_SIZE);
 
     public DisplayCalendarCommand() {
+        syntax = "calendar MM-YYYY";
     }
 
     public DisplayCalendarCommand(String input) {
-        this.helpMessage = "Display Calendar";
-        this.syntax = "calendar MM-YYYY";
+        helpMessage = "Display Calendar";
+        syntax = "calendar MM-YYYY";
 
         Schedule.intializeCalendarDayTasksList(calendarTasks);
         try {

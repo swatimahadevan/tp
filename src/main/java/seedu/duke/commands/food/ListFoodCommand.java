@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class ListFoodCommand extends Command {
 
     public ListFoodCommand() {
-        this.helpMessage = "Lists all food items recorded";
-        this.syntax = "food list";
+        helpMessage = "Lists all food items recorded";
+        syntax = "food list";
     }
 
     @Override

@@ -18,8 +18,8 @@ public class ListModuleCommand extends Command {
     public static final String MESSAGE_LISTING_MODULES = "Here are the modules in your list:";
 
     public ListModuleCommand() {
-        this.helpMessage = "List all added modules";
-        this.syntax = "module list";
+        helpMessage = "List all added modules";
+        syntax = "module list";
     }
 
     /**

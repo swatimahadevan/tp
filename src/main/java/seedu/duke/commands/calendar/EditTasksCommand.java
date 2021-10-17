@@ -28,6 +28,8 @@ public class EditTasksCommand extends Command {
     private int index;
 
     public EditTasksCommand() {
+        syntax = "calendar delete TASK_INDEX";
+
     }
 
     /**
@@ -36,9 +38,9 @@ public class EditTasksCommand extends Command {
      * @param index index of task to be deleted
      */
     public EditTasksCommand(int index) {
-        this.index = index;
-        this.helpMessage = "Delete task from calendar";
-        this.syntax = "calendar delete TASK_INDEX";
+        index = index;
+        helpMessage = "Delete task from calendar";
+        syntax = "calendar delete TASK_INDEX";
     }
 
     /**

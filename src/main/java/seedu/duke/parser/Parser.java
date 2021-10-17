@@ -19,7 +19,7 @@ import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.food.ListFoodCommand;
 import seedu.duke.commands.journal.ListJournalCommand;
 import seedu.duke.commands.module.ListModuleCommand;
-import seedu.duke.commands.zoom.ShowZoomLinks;
+import seedu.duke.commands.zoom.ListZoomLinks;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
@@ -57,7 +57,7 @@ import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
-import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_SHOW;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_LIST;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
@@ -184,8 +184,8 @@ public class Parser {
             switch (zoomArgs[0]) {
             case COMMAND_ZOOM_SUFFIX_ADD:
                 return new AddZoomCommand(zoomArgs[1], zoomArgs[2]);
-            case COMMAND_ZOOM_SUFFIX_SHOW:
-                return new ShowZoomLinks();
+            case COMMAND_SUFFIX_LIST:
+                return new ListZoomLinks();
             default:
                 throw new ArgumentsNotFoundException();
             }
@@ -203,8 +203,10 @@ public class Parser {
                 return moduleCommandInstance(helpArgs[1]);
             case COMMAND_ZOOM:
                 return zoomCommandInstance(helpArgs[1]);
-            default:
+            case "":
                 return new HelpCommand();
+            default:
+                throw new ClickException();
             }
         default:
             throw new ClickException();
@@ -470,8 +472,8 @@ public class Parser {
         switch (suffix) {
         case COMMAND_ZOOM_SUFFIX_ADD:
             return new AddZoomCommand(dummyValue, dummyValue);
-        case COMMAND_ZOOM_SUFFIX_SHOW:
-            return new ShowZoomLinks();
+        case COMMAND_ZOOM_SUFFIX_LIST:
+            return new ListZoomLinks();
         default:
             return new HelpCommand();
         }

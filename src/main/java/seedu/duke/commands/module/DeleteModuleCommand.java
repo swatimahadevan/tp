@@ -17,6 +17,7 @@ public class DeleteModuleCommand extends Command {
     String commandArgs;
 
     public DeleteModuleCommand() {
+        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
     }
 
     /**

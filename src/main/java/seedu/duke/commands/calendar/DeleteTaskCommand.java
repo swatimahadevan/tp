@@ -14,9 +14,9 @@ import java.io.IOException;
 public class DeleteTaskCommand extends Command {
     private int index;
     private String userInput;
-    private String syntax = "calendar delete TASK_INDEX";
 
     public DeleteTaskCommand() {
+        syntax = "calendar delete TASK_INDEX";
     }
 
     /**
@@ -26,10 +26,10 @@ public class DeleteTaskCommand extends Command {
      * @param userInput input from user
      */
     public DeleteTaskCommand(int index, String userInput) {
-        this.index = index;
-        this.userInput = userInput;
-        this.helpMessage = "Delete task from calendar";
-        this.syntax = "calendar delete TASK_INDEX";
+        index = index;
+        userInput = userInput;
+        helpMessage = "Delete task from calendar";
+        syntax = "calendar delete TASK_INDEX";
     }
 
     /**

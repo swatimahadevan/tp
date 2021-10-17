@@ -19,8 +19,8 @@ import java.io.IOException;
  */
 public class AddFoodCommand extends Command {
     private String inputString; //name + calorie
-
     public AddFoodCommand() {
+        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
     }
 
     public AddFoodCommand(String inputString) {

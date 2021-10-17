@@ -20,13 +20,15 @@ public class DeleteFoodCommand extends Command {
     private String inputString; //represents index to delete
 
     public DeleteFoodCommand() {
+        syntax = "food delete [INDEX]";
+
     }
 
     public DeleteFoodCommand(String inputString) {
         super();
-        this.inputString = inputString.trim();
-        this.helpMessage = "Deletes aa food item from a list given a valid index";
-        this.syntax = "food delete [INDEX]";
+        inputString = inputString.trim();
+        helpMessage = "Deletes aa food item from a list given a valid index";
+        syntax = "food delete [INDEX]";
     }
 
     /**
