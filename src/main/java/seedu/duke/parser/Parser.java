@@ -192,22 +192,7 @@ public class Parser {
 
         case COMMAND_HElP:
             String[] helpArgs = commandArgs.split(" ");
-            switch (helpArgs[0]) {
-            case COMMAND_FOOD:
-                return foodCommandInstance(helpArgs[1]);
-            case COMMAND_CALENDAR:
-                return calendarCommandInstance(helpArgs[1]);
-            case COMMAND_NOTE:
-                return noteCommandInstance(helpArgs[1]);
-            case COMMAND_MODULE:
-                return moduleCommandInstance(helpArgs[1]);
-            case COMMAND_ZOOM:
-                return zoomCommandInstance(helpArgs[1]);
-            case "":
-                return new HelpCommand();
-            default:
-                throw new ClickException();
-            }
+            return new HelpCommand();
         default:
             throw new ClickException();
         }
@@ -432,80 +417,6 @@ public class Parser {
             return new Module(code, name, expectedGrade);
         } catch (Exception e) {
             throw new StorageException();
-        }
-    }
-
-
-    public static Command calendarCommandInstance(String suffix) {
-        String dummyValue = "";
-        ArrayList<String> dummyList = new ArrayList<>();
-        switch (suffix) {
-        case COMMAND_SUFFIX_LIST:
-            return new ListTasksCommand();
-        case COMMAND_SUFFIX_EDIT:
-            return new EditTasksCommand(0);
-        case COMMAND_TODO:
-            return new AddTodoCommand(dummyList);
-        case COMMAND_SUFFIX_DELETE:
-            return new DeleteTaskCommand(0, dummyValue);
-        default:
-            return new HelpCommand();
-        }
-    }
-
-    public static Command noteCommandInstance(String suffix) {
-        String dummyValue = "";
-        switch (suffix) {
-        case COMMAND_ADD_NOTE:
-            return new AddNoteCommand(dummyValue);
-        case COMMAND_ADD_ENTRY:
-            return new AddEntryCommand(dummyValue);
-        case COMMAND_JOURNAL_LIST:
-            return new ListJournalCommand();
-        default:
-            return new HelpCommand();
-        }
-    }
-
-    public static Command zoomCommandInstance(String suffix) {
-        String dummyValue = "";
-        switch (suffix) {
-        case COMMAND_ZOOM_SUFFIX_ADD:
-            return new AddZoomCommand(dummyValue, dummyValue);
-        case COMMAND_ZOOM_SUFFIX_LIST:
-            return new ListZoomLinks();
-        default:
-            return new HelpCommand();
-        }
-    }
-
-    public static Command moduleCommandInstance(String suffix) {
-        String dummyValue = "";
-        switch (suffix) {
-        case COMMAND_SUFFIX_ADD:
-            return new AddModuleCommand(dummyValue);
-        case COMMAND_SUFFIX_LIST:
-            return new ListModuleCommand();
-        case COMMAND_SUFFIX_DELETE:
-            return new DeleteModuleCommand(dummyValue);
-        default:
-            return new HelpCommand();
-        }
-    }
-
-    public static Command foodCommandInstance(String suffix) {
-        String dummyValue = "";
-        switch (suffix) {  //consider 2nd word
-        case COMMAND_SUFFIX_ADD:
-            return new AddFoodCommand(dummyValue);
-        case COMMAND_SUFFIX_DELETE:
-            return new DeleteFoodCommand(dummyValue);
-        case COMMAND_SUFFIX_CLEAR:
-            return new ClearFoodCommand();
-        case COMMAND_SUFFIX_LIST:
-            return new ListFoodCommand();
-        default:
-            return new HelpCommand();
         }
     }
 
