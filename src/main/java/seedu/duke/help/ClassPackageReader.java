@@ -129,7 +129,7 @@ public class ClassPackageReader {
         for (Class s : filteredCommands) {
             try {
                 Method getSyntax = s.getMethod(METHOD_NAME); //void method
-                Object newInstance = s.newInstance();       //create instance in order to run method
+                Object newInstance = s.getDeclaredConstructor().newInstance();       //create instance in order to run method
                 getSyntax.invoke(newInstance);    //run void method
             } catch (NoSuchMethodException e) {
                 System.out.println("check spelling");
