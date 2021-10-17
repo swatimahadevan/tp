@@ -1,0 +1,54 @@
+Hey, I didn't find directory tasksdata/
+adding tasksdata/ into repository...
+Hey, I didn't find scheduleTasks.txt in tasksdata/!
+creating new file...
+Hey, I didn't find directory fooddata/
+adding fooddata/ into repository...
+Hey, I didn't find list.txt in fooddata/!
+creating new file...
+Hey, I didn't find directory journalData/
+adding journalData/ into repository...
+Hey, I didn't find journalNotes.txt in journalData/!
+creating new file...
+Hey, I didn't find journalEntries.txt in journalData/!
+creating new file...
+Hey, I didn't find list.txt in fooddata/!
+creating new file...
+Hey, I didn't find journalNotes.txt in journalData/!
+creating new file...
+Hey, I didn't find journalEntries.txt in journalData/!
+creating new file...
+	__________________________________________________
+	 _____ _  _     _
+	/  __ \ |(_)   | |
+	| /  \/ |_  ___| | __
+	| \__/\ | | (__|   <
+	\_____/_|_|\___|_|\_\
+
+	Hello! I'm Duke
+	What can I do for you?
+	__________________________________________________
+Nice.  I've added Samurai Burger to the list, with 433 calories!
+Nice.  I've added McFlurry to the list, with 165 calories!
+1st,You consumed  Samurai Burger , which has a calorie count of : 433!
+2nd,You consumed  McFlurry , which has a calorie count of : 165!
+Wow, that's a lot of food! Finished reading today's list
+You consumed 598 calories in total today!
+Added cs2113t | softwareengineering | Expected grade: A
+Added cs1231 | discrete structure
+Here are the modules in your list:
+1. cs2113t   |   softwareengineering   | Expected grade:   A
+2. cs1231  |  discrete structure  | Expected grade:  N/A
+I have deleted this module:
+cs1231  |  discrete structure  | Expected grade:  N/A
+Great you have added the note: Today's stuff
+Great you have added the entry: Random Observation
+The notebook Today's stuff contains:
+Random Observation
+Task has been added successfully!
+Here's your task list:
+1. sometask (on: 10-10-2021)
+Task has been deleted!
+	__________________________________________________
+	Bye. Hope to see you again soon!
+	__________________________________________________
