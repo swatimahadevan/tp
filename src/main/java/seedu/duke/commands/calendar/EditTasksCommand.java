@@ -38,7 +38,7 @@ public class EditTasksCommand extends Command {
      * @param index index of task to be deleted
      */
     public EditTasksCommand(int index) {
-        index = index;
+        this.index = index;
         helpMessage = "Delete task from calendar";
         syntax = "calendar delete TASK_INDEX";
     }

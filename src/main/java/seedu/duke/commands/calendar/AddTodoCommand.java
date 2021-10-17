@@ -38,9 +38,8 @@ public class AddTodoCommand extends Command {
      */
     public AddTodoCommand(ArrayList<String> arguments) {
         super();
-        arguments = arguments;
+        this.arguments = arguments;
         helpMessage = "Add a todo task to calendar";
-        syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
     }
 
     /**

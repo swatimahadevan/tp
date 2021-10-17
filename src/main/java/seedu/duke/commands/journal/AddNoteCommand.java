@@ -27,7 +27,7 @@ public class AddNoteCommand extends Command {
      * @param userInput input from the user.
      */
     public AddNoteCommand(String userInput) {
-        userInput = userInput;
+        this.userInput = userInput;
         helpMessage = "Add a notebook to list";
         syntax = "journal notebook n/ NOTEBOOK_NAME";
     }

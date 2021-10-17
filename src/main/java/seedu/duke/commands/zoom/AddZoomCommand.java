@@ -20,8 +20,8 @@ public class AddZoomCommand extends Command {
     public AddZoomCommand(String moduleName, String zoomLink) {
         helpMessage = "Adds zoom links";
         syntax = "zoom add [MODULE_CODE] [ZOOM_LINK]";
-        moduleName = moduleName;
-        zoomLink = zoomLink;
+        this.moduleName = moduleName;
+        this.zoomLink = zoomLink;
     }
 
     @Override

@@ -26,8 +26,8 @@ public class DeleteTaskCommand extends Command {
      * @param userInput input from user
      */
     public DeleteTaskCommand(int index, String userInput) {
-        index = index;
-        userInput = userInput;
+        this.index = index;
+        this.userInput = userInput;
         helpMessage = "Delete task from calendar";
         syntax = "calendar delete TASK_INDEX";
     }
