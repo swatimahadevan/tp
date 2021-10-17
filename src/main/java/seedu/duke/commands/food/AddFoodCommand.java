@@ -28,7 +28,6 @@ public class AddFoodCommand extends Command {
         super();
         this.inputString = inputString;
         this.helpMessage = "Adds a food item to a list";
-        this.syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
     }
 
     /**
