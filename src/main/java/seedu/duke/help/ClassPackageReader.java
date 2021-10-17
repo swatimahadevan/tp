@@ -128,9 +128,9 @@ public class ClassPackageReader {
                                                                                 InvocationTargetException {
         for (Class s : filteredCommands) {
             try {
-                Method getSyntax = s.getMethod(METHOD_NAME, null); //void method
+                Method getSyntax = s.getMethod(METHOD_NAME); //void method
                 Object newInstance = s.newInstance();       //create instance in order to run method
-                getSyntax.invoke(newInstance,  null);    //run void method
+                getSyntax.invoke(newInstance);    //run void method
             } catch (NoSuchMethodException e) {
                 System.out.println("check spelling");
             }
