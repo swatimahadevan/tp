@@ -14,6 +14,10 @@ import java.io.IOException;
 public class DeleteTaskCommand extends Command {
     private int index;
     private String userInput;
+    private String syntax = "calendar delete TASK_INDEX";
+
+    public DeleteTaskCommand() {
+    }
 
     /**
      * Constructor for DeleteTaskCommand class.
@@ -47,4 +51,5 @@ public class DeleteTaskCommand extends Command {
         System.out.println(DELETED_TASK);
         StorageTasks.writeTaskList(Storage.tasksList);
     }
+
 }

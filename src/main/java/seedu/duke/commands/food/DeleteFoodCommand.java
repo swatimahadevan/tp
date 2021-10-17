@@ -19,6 +19,9 @@ public class DeleteFoodCommand extends Command {
     private final int indexNotFoundConstant =  -1; 
     private String inputString; //represents index to delete
 
+    public DeleteFoodCommand() {
+    }
+
     public DeleteFoodCommand(String inputString) {
         super();
         this.inputString = inputString.trim();

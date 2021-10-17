@@ -19,6 +19,9 @@ public class AddModuleCommand extends Command {
 
     String commandArgs;
 
+    public AddModuleCommand() {
+    }
+
     /**
      * Class constructor.
      *

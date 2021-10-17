@@ -1,36 +1,31 @@
 package seedu.duke.commands;
 
-import seedu.duke.parser.Parser;
+
+import seedu.duke.help.ClassPackageReader;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.lang.reflect.InvocationTargetException;
 
 public class HelpCommand extends Command {
-    /*
-        Update the validCommands list for new commands
-     */
-
-    private ArrayList<String> validCommands = new ArrayList<>(Arrays.asList("help"));
 
     public HelpCommand() {
-        this.helpMessage = createHelpMessage(); //Overwrite the helpMessage variable in your class constructors
-        this.syntax = "";
     }
 
-    public String createHelpMessage() {
-        String helpMessage = "List of valid commands:\n";
-        for (int i = 0; i < validCommands.size(); i++) {
-            helpMessage = helpMessage + String.valueOf(i + 1) + ". " + validCommands.get(i) + "\n";
-        }
-        return helpMessage;
-    }
-
+    /**
+     * Finds all valid commands at runtime and prints syntax to user.
+     * @param ui      The component of Duke that deals with the interaction with the user.
+     * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @throws InvocationTargetException If printSyntax method fails to run.
+     * @throws InstantiationException If printSyntax method fails to run.
+     * @throws IllegalAccessException If printSyntax method fails to run.
+     *
+     * @author ngnigel99
+     */
     @Override
-    public void execute(Ui ui, Storage storage) {
-
+    public void execute(Ui ui, Storage storage) throws InvocationTargetException,
+            InstantiationException, IllegalAccessException {
+        ClassPackageReader.getCommandsAndPrintSyntax();
     }
 
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import seedu.duke.commands.calendar.DeleteTaskCommand;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.logger.ClickLogger;
 import seedu.duke.exceptions.ExceptionHandler;
@@ -42,11 +43,7 @@ public class Click {
             String userInput = in.hasNextLine() ? in.nextLine()  : null;
             try {
                 Command c = parser.parseCommand(userInput);
-                if (userInput.contains("help")) {
-                    c.help();
-                } else {
-                    c.execute(ui, storage);
-                }
+                c.execute(ui, storage);
             } catch (ClickException e) {
                 exceptionHandler.handleDukeExceptions(e, userInput);
             } catch (Exception  e) {

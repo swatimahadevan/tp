@@ -13,6 +13,9 @@ public class AddZoomCommand extends Command {
     private String moduleName;
     private String zoomLink;
 
+    public AddZoomCommand() {
+    }
+
     public AddZoomCommand(String moduleName, String zoomLink) {
         this.helpMessage = "Displays all important zoom links";
         this.moduleName = moduleName;

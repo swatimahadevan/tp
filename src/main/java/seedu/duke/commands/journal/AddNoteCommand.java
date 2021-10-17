@@ -17,6 +17,9 @@ public class AddNoteCommand extends Command {
 
     public String userInput;
 
+    public AddNoteCommand() {
+    }
+
     /**
      * Constructor for the AddNoteCommand.
      *

@@ -16,6 +16,9 @@ public class DeleteModuleCommand extends Command {
     public static final String MESSAGE_DELETE_MODULE = "I have deleted this module:";
     String commandArgs;
 
+    public DeleteModuleCommand() {
+    }
+
     /**
      * Class constructor.
      *

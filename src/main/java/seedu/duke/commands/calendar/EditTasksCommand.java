@@ -27,6 +27,9 @@ import static seedu.duke.constants.Messages.INDEX_TODO_DATE;
 public class EditTasksCommand extends Command {
     private int index;
 
+    public EditTasksCommand() {
+    }
+
     /**
      * Constructor for EditTasksCommand class.
      *

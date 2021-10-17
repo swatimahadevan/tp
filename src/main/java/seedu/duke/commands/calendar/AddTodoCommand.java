@@ -27,6 +27,9 @@ public class AddTodoCommand extends Command {
 
     private ArrayList<String> arguments;
 
+    public AddTodoCommand() {
+    }
+
     /**
      * Constructor for AddTodoCommand.
      *

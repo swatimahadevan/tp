@@ -17,6 +17,10 @@ import java.util.ArrayList;
 
 public class AddEntryCommand extends Command {
     public String userInput;
+    String syntax = "journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME";
+
+    public AddEntryCommand() {
+    }
 
     /**
      * Constructor for the AddEntryCommand.

@@ -20,6 +20,9 @@ import java.io.IOException;
 public class AddFoodCommand extends Command {
     private String inputString; //name + calorie
 
+    public AddFoodCommand() {
+    }
+
     public AddFoodCommand(String inputString) {
         super();
         this.inputString = inputString;
