@@ -12,7 +12,6 @@ import java.util.Scanner;
  * @author ngnigel99
  */
 public class ListFoodCommand extends Command {
-
     public ListFoodCommand() {
         helpMessage = "Lists all food items recorded";
         syntax = "food list";

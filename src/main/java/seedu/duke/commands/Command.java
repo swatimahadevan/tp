@@ -17,8 +17,8 @@ import java.util.Scanner;
 public abstract class Command implements Comparator<Command> {
 
 
-    public String helpMessage = "Sorry no help doc exists for this command!";
-    public String syntax = "Sorry there is no defined syntax for this command";
+    public String helpMessage = "default help message";
+    public String syntax = "default syntax message";
 
     /**
      * Executes command.
