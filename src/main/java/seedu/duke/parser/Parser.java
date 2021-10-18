@@ -31,6 +31,7 @@ import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
+import seedu.duke.module.Grade;
 import seedu.duke.module.Module;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.ui.Ui;
