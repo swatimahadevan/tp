@@ -1,0 +1,26 @@
+@startuml
+
+class Module {
+    - code : String
+    - name : String
+}
+
+class ModuleList {
+    getNumberOfModules() : int
+    getModuleByIndex(index : int) : Module
+    addModule(module : Module) : void
+    removeModuleByIndex(index : int) : void
+}
+
+ModuleList --> "*" Module
+Module --> "1" Grade
+
+
+enum Grade {
+A_PLUS, A, A_MINUS
+B_PLUS, B, B_MINUS
+C_PLUS, C, D_PLUS
+D, F, CS, CU, NA
+}
+
+@enduml
