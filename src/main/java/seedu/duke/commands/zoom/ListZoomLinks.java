@@ -5,9 +5,9 @@ import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageZoom;
 import seedu.duke.ui.Ui;
 
-public class ShowZoomLinks extends Command {
-    public ShowZoomLinks() {
-
+public class ListZoomLinks extends Command {
+    public ListZoomLinks() {
+        syntax = "zoom list";
     }
 
     @Override

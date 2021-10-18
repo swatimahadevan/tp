@@ -27,6 +27,11 @@ import static seedu.duke.constants.Messages.INDEX_TODO_DATE;
 public class EditTasksCommand extends Command {
     private int index;
 
+    public EditTasksCommand() {
+        syntax = "calendar delete TASK_INDEX";
+
+    }
+
     /**
      * Constructor for EditTasksCommand class.
      *
@@ -34,8 +39,8 @@ public class EditTasksCommand extends Command {
      */
     public EditTasksCommand(int index) {
         this.index = index;
-        this.helpMessage = "Delete task from calendar";
-        this.syntax = "calendar delete TASK_INDEX";
+        helpMessage = "Delete task from calendar";
+        syntax = "calendar delete TASK_INDEX";
     }
 
     /**

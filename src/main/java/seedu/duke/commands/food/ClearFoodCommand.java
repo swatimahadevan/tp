@@ -16,8 +16,8 @@ import java.util.Scanner;
 public class ClearFoodCommand extends Command {
 
     public ClearFoodCommand() {
-        this.helpMessage = "Clears the current list of food, and clear entries in storage";
-        this.syntax = "food clear";
+        helpMessage = "Clears the current list of food, and clear entries in storage";
+        syntax = "food clear";
     }
 
     /**
