@@ -1,0 +1,30 @@
+@startuml
+participant Actor
+Actor -> Parser : getFoodCommand
+activate Parser
+Parser -> Parser : filterStringAfterCommand
+activate Parser
+Parser --> Parser
+deactivate Parser
+Parser -> AddFoodCommand : new
+activate AddFoodCommand
+AddFoodCommand --> Parser
+deactivate AddFoodCommand
+Parser -> Parser : filterStringAfterCommand
+activate Parser
+Parser --> Parser
+deactivate Parser
+Parser -> DeleteFoodCommand : new
+activate DeleteFoodCommand
+DeleteFoodCommand --> Parser
+deactivate DeleteFoodCommand
+Parser -> ClearFoodCommand : new
+activate ClearFoodCommand
+ClearFoodCommand --> Parser
+deactivate ClearFoodCommand
+Parser -> ListFoodCommand : new
+activate ListFoodCommand
+ListFoodCommand --> Parser
+deactivate ListFoodCommand
+return
+@enduml
