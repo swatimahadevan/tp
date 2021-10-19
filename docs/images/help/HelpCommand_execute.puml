@@ -1,134 +1,15 @@
 @startuml
-participant Actor
-Actor -> HelpCommand : execute
-activate HelpCommand
-HelpCommand -> ClassPackageReader : getCommandsAndPrintSyntax
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClasses
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClass
-activate ClassPackageReader
-ClassPackageReader -> Ui : printMessage
-activate Ui
-Ui --> ClassPackageReader
-deactivate Ui
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClasses
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClass
-activate ClassPackageReader
-ClassPackageReader -> Ui : printMessage
-activate Ui
-Ui --> ClassPackageReader
-deactivate Ui
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClasses
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClass
-activate ClassPackageReader
-ClassPackageReader -> Ui : printMessage
-activate Ui
-Ui --> ClassPackageReader
-deactivate Ui
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClasses
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClass
-activate ClassPackageReader
-ClassPackageReader -> Ui : printMessage
-activate Ui
-Ui --> ClassPackageReader
-deactivate Ui
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClasses
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : λ→
-activate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : getClass
-activate ClassPackageReader
-ClassPackageReader -> Ui : printMessage
-activate Ui
-Ui --> ClassPackageReader
-deactivate Ui
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : mergeSet
-activate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : filterClassesByCommand
-activate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : sortCommandByName
-activate ClassPackageReader
-ClassPackageReader -> Anonymous : compare
-activate Anonymous
-Anonymous --> ClassPackageReader
-deactivate Anonymous
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader -> ClassPackageReader : runSyntaxCommands
-activate ClassPackageReader
-ClassPackageReader --> ClassPackageReader
-deactivate ClassPackageReader
-ClassPackageReader --> HelpCommand
-deactivate ClassPackageReader
-HelpCommand -> Ui : printMessage
-activate Ui
-Ui --> HelpCommand
-deactivate Ui
-return
+!include Style.puml
+Actor User
+participant ":Parser"
+User -> ":Parser" : "help"
+activate ":Parser"
+":Parser" -> ":HelpCommand" : HelpCommand()
+activate ":HelpCommand"
+":HelpCommand" -> "<<static>>\n:ClassPackageReader" : getCommandsAndPrintSyntax
+"<<static>>\n:ClassPackageReader" -> ":Command" : getSyntax()
+":Command" --> "<<static>>\n:ClassPackageReader" : syntax
+"<<static>>\n:ClassPackageReader" --> User : Prints help messages
+destroy ":HelpCommand"
+":Parser" --> User : Finish command
 @enduml
