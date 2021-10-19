@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//@author nvbinh15
+//@@author nvbinh15
 
 /**
  * A class that deals with loading modules from the file and saving modules into the file.

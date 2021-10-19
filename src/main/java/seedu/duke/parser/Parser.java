@@ -1,31 +1,34 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.AddEntryCommand;
-import seedu.duke.commands.AddFoodCommand;
-import seedu.duke.commands.AddModuleCommand;
-import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.AddTodoCommand;
-import seedu.duke.commands.ClearFoodCommand;
+import seedu.duke.commands.calendar.DeleteTaskCommand;
+import seedu.duke.commands.calendar.EditTasksCommand;
+import seedu.duke.commands.calendar.AddTodoCommand;
+import seedu.duke.commands.calendar.ListTasksCommand;
+import seedu.duke.commands.calendar.DisplayCalendarCommand;
+import seedu.duke.commands.journal.AddEntryCommand;
+import seedu.duke.commands.food.AddFoodCommand;
+import seedu.duke.commands.module.AddModuleCommand;
+import seedu.duke.commands.journal.AddNoteCommand;
+import seedu.duke.commands.zoom.AddZoomCommand;
+import seedu.duke.commands.food.ClearFoodCommand;
 import seedu.duke.commands.Command;
-import seedu.duke.commands.DeleteFoodCommand;
-import seedu.duke.commands.DeleteModuleCommand;
-import seedu.duke.commands.DeleteTaskCommand;
-import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.food.DeleteFoodCommand;
+import seedu.duke.commands.module.DeleteModuleCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.ListFoodCommand;
-import seedu.duke.commands.ListJournalCommand;
-import seedu.duke.commands.ListModuleCommand;
-import seedu.duke.commands.ListTasksCommand;
+import seedu.duke.commands.food.ListFoodCommand;
+import seedu.duke.commands.journal.ListJournalCommand;
+import seedu.duke.commands.module.ListModuleCommand;
+import seedu.duke.commands.zoom.ListZoomLinks;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.WrongDividerOrderException;
 import seedu.duke.exceptions.StorageException;
-import seedu.duke.exceptions.IllegalFoodParameterException;
-import seedu.duke.exceptions.EmptyJournalArgumentException;
-import seedu.duke.exceptions.IncorrectJournalArgumentException;
+import seedu.duke.exceptions.food.IllegalFoodParameterException;
+import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
+import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
@@ -39,12 +42,12 @@ import java.util.ArrayList;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
-import static seedu.duke.constants.CommandConstants.COMMAND_LIST_TASKS;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
 import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
@@ -52,9 +55,13 @@ import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_LIST;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
+import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
-import static seedu.duke.constants.Messages.CALENDAR_DELETE_INVALID_ARGS;
+import static seedu.duke.constants.Messages.CALENDAR_EDIT_DELETE_INVALID_ARGS;
 
 //@@author nvbinh15
 public class Parser {
@@ -153,42 +160,9 @@ public class Parser {
         case COMMAND_EXIT:
             return new ExitCommand();
         case COMMAND_CALENDAR:
-            String[] todoArguments = commandArgs.split(" ");
-            switch (todoArguments[0]) {
-            case COMMAND_LIST_TASKS:
-                return new ListTasksCommand();
-            case COMMAND_TODO:
-                ArrayList<String> arguments = ParserSchedule.parseTodoCommand(userInput);
-                return new AddTodoCommand(arguments);
-            case COMMAND_SUFFIX_DELETE:
-                if (todoArguments.length == 1) {
-                    throw new IncorrectNumberOfArgumentsException(CALENDAR_DELETE_INVALID_ARGS);
-                }
-                int indexOfTaskToBeDeleted = Integer.parseInt(todoArguments[1]);
-                return new DeleteTaskCommand(indexOfTaskToBeDeleted, userInput);
-            case EMPTY_STRING:
-                throw new IncorrectNumberOfArgumentsException(CALENDAR_INVALID_ARGS);
-            default:
-                return new DisplayCalendarCommand(userInput);
-            }
+            return getCalendarCommand(commandArgs, userInput);
         case COMMAND_FOOD:
-            String[] foodArgs = commandArgs.split(" ");
-            switch (foodArgs[0]) {
-            case COMMAND_SUFFIX_ADD:
-                return new AddFoodCommand(
-                        stringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
-                );
-            case COMMAND_SUFFIX_DELETE:
-                return new DeleteFoodCommand(
-                        stringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
-                );
-            case COMMAND_SUFFIX_CLEAR:
-                return new ClearFoodCommand();
-            case COMMAND_SUFFIX_LIST:
-                return new ListFoodCommand();
-            default:
-                throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
-            }
+            return getFoodCommand(userInput, commandArgs);
         case COMMAND_NOTE:
             String[] noteArguments = commandArgs.split(" ");
             switch (noteArguments[0]) {
@@ -205,14 +179,56 @@ public class Parser {
             }
         case COMMAND_MODULE:
             return getModuleCommand(commandArgs);
+        case COMMAND_ZOOM:
+            String[] zoomArgs = commandArgs.split(" ");
+            switch (zoomArgs[0]) {
+            case COMMAND_ZOOM_SUFFIX_ADD:
+                return new AddZoomCommand(zoomArgs[1], zoomArgs[2]);
+            case COMMAND_SUFFIX_LIST:
+                return new ListZoomLinks();
+            default:
+                throw new ArgumentsNotFoundException();
+            }
+
         case COMMAND_HElP:
-            return new HelpCommand(commandArgs);
+            String[] helpArgs = commandArgs.split(" ");
+            return new HelpCommand();
         default:
             throw new ClickException();
         }
     }
 
-    //@author nvbinh15
+    /**
+     * Returns appropriate command related to Food based  on user's input.
+     *
+     * @param userInput Full string entered by user.
+     * @param commandArgs second word onwards from userInput.
+     * @return A command that's related to Food based on userInput.
+     * @throws IllegalArgumentException if command entered does not exists, but starts with food.
+     *
+     * @author ngnigel99
+     */
+    private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException {
+        String[] foodArgs = commandArgs.split(" ");
+        switch (foodArgs[0]) {  //consider 2nd word
+        case COMMAND_SUFFIX_ADD:
+            return new AddFoodCommand(
+                    filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
+            );
+        case COMMAND_SUFFIX_DELETE:
+            return new DeleteFoodCommand(
+                    filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
+            );
+        case COMMAND_SUFFIX_CLEAR:
+            return new ClearFoodCommand();
+        case COMMAND_SUFFIX_LIST:
+            return new ListFoodCommand();
+        default:
+            throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
+        }
+    }
+
+    //@@author nvbinh15
     /**
      * Returns a command related to Module based on user's input.
      *
@@ -235,7 +251,50 @@ public class Parser {
         }
     }
 
-    //@author ngnigel99
+    /**
+     * Returns a Calendar command based on the user input.
+     *
+     * @param commandArgs The part of user given input from second word.
+     * @param userInput Input entered by user of type String.
+     * @return A calendar based command.
+     * @throws IncorrectNumberOfArgumentsException If command entered
+     *         by the user does not have the required number of arguments.
+     *
+     * @author swatimahadevan
+     */
+    private Command getCalendarCommand(String commandArgs, String userInput)
+        throws IncorrectNumberOfArgumentsException {
+        String[] calendarArguments = commandArgs.split(" ");
+        switch (calendarArguments[0]) {
+        case COMMAND_SUFFIX_LIST:
+            return new ListTasksCommand();
+        case COMMAND_SUFFIX_EDIT:
+            return new EditTasksCommand(getTaskIndex(calendarArguments));
+        case COMMAND_TODO:
+            ArrayList<String> arguments = ParserSchedule.parseTodoCommand(userInput);
+            return new AddTodoCommand(arguments);
+        case COMMAND_SUFFIX_DELETE:
+            return new DeleteTaskCommand(getTaskIndex(calendarArguments), userInput);
+        case EMPTY_STRING:
+            throw new IncorrectNumberOfArgumentsException(CALENDAR_INVALID_ARGS);
+        default:
+            return new DisplayCalendarCommand(userInput);
+        }
+    }
+
+    private int getTaskIndex(String[] calendarArguments) throws IncorrectNumberOfArgumentsException {
+        if (calendarArguments.length == 1) {
+            throw new IncorrectNumberOfArgumentsException(CALENDAR_EDIT_DELETE_INVALID_ARGS);
+        }
+        int indexOfTaskToBeEdited = 0;
+        try {
+            indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[1]);
+        } catch (NumberFormatException e) {
+            System.out.println(PRINT_NOT_AN_INT);
+        }
+        return indexOfTaskToBeEdited;
+    }
+
     public static int getWordCount(String input) {
         return input.trim().split(" ").length;
     }
@@ -274,6 +333,12 @@ public class Parser {
     /**
      * Parses a string into a food item.
      * current implementation: {food add} n/ [NAME] c/ [CALORIES].
+     *
+     * @param input string consisting of food name and calories.
+     * @return recordToAdd if valid syntax given.
+     * @throws IllegalFoodParameterException Invalid types given.
+     * @throws ArgumentsNotFoundException Invalid syntax given.
+     *
      * @author ngnigel99
      */
     public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
@@ -302,14 +367,14 @@ public class Parser {
      * Parses a string list to an integer list.
      * Current implementation supports single integer, but
      * future implementations would involve reading a list.
+     *
      * @param strings any amount of string input to be converted
      * @return integerList integers that are successfully parsed
      *
      * @author ngnigel99
      */
-    public static ArrayList<Integer> stringToIntegerList(String... strings) {
+    public static ArrayList<Integer> parseStringToIntegerList(String... strings) {
         ArrayList<Integer> integerList = new ArrayList<>();
-        int stringCount = 1;
         for (String string : strings) {
             try {
                 integerList.add(Integer.parseInt(string));
@@ -326,9 +391,10 @@ public class Parser {
      * @param userInput full line of user input
      * @param  command command syntax e.g. food delete
      * @return string after command from userInput
+     *
      * @author ngnigel99
      */
-    public static String stringAfterCommand(String userInput, String command) {
+    public static String filterStringAfterCommand(String userInput, String command) {
         assert userInput.contains(command) : "Please check correct command syntax";
         return userInput.split(command)[1].trim();
     }

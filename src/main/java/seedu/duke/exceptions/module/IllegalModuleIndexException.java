@@ -1,0 +1,6 @@
+package seedu.duke.exceptions.module;
+
+import seedu.duke.exceptions.ClickException;
+
+public class IllegalModuleIndexException extends ClickException {
+}

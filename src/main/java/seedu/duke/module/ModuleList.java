@@ -2,7 +2,7 @@ package seedu.duke.module;
 
 import java.util.ArrayList;
 
-//@@ author nvbinh15
+//@@author nvbinh15
 
 /**
  * A class that deals with operations related to Modules.

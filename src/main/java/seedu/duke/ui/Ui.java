@@ -1,8 +1,7 @@
 package seedu.duke.ui;
 
-import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.calendar.DisplayCalendarCommand;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
-import seedu.duke.exceptions.InvalidDateMonthException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.task.Task;
@@ -13,20 +12,12 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_CALENDAR;
-import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_EXIT;
-import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_FOOD;
-import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_MODULE;
+
 import static seedu.duke.constants.Messages.ADDED_TASK;
 import static seedu.duke.constants.Messages.DISPLAY_LINE;
 import static seedu.duke.constants.Messages.DAY_DEMARCATION;
 import static seedu.duke.constants.Messages.NO_TASK_IN_DAY;
 import static seedu.duke.constants.Messages.CALENDAR_HEADER_LINE;
-import static seedu.duke.constants.Messages.HELP_MESSAGE;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_CALENDAR;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_EXIT;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_FOOD;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_MODULE;
 import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
 import static seedu.duke.constants.Messages.INVALID_CALENDAR_INPUT;
 import static seedu.duke.constants.Messages.LIST_TASKS_HEADER;
@@ -188,7 +179,7 @@ public class Ui {
      * Prints calendar for current month (intro display).
      */
     public static void printCurrentMonthCalendar() throws
-            IncorrectNumberOfArgumentsException, InvalidDateMonthException {
+            IncorrectNumberOfArgumentsException {
         YearMonth currentYearMonth = YearMonth.now();
         String month = String.valueOf(currentYearMonth.getMonthValue());
         String year = String.valueOf(currentYearMonth.getYear());
@@ -219,6 +210,12 @@ public class Ui {
         }
     }
 
+    public static void printHelpMessage(String helpMessage, String syntax) {
+        System.out.println("Description: " + helpMessage);
+        //System.out.println("Syntax: ");
+        System.out.println("Syntax: " + syntax);
+    }
+
     /**
      * Prints calendar lines for display.
      */
@@ -241,24 +238,10 @@ public class Ui {
     }
     //End Schedule
 
-    public static void printHelpMessage(String helpMessage) {
-        switch (helpMessage) {
-        case COMMAND_HELP_SUFFIX_MODULE:
-            System.out.println(HELP_MESSAGE_MODULE);
-            break;
-        case COMMAND_HELP_SUFFIX_CALENDAR:
-            System.out.println(HELP_MESSAGE_CALENDAR);
-            break;
-        case COMMAND_HELP_SUFFIX_FOOD:
-            System.out.println(HELP_MESSAGE_FOOD);
-            break;
-        case COMMAND_HELP_SUFFIX_EXIT:
-            System.out.println(HELP_MESSAGE_EXIT);
-            break;
-        default:
-            System.out.println(HELP_MESSAGE);
-        }
-
+    public static void displayZoomLink(String moduleName, String zoomLink) {
+        System.out.println("Module: " + moduleName);
+        System.out.println("Zoom: " + zoomLink + "\n");
     }
+
 
 }

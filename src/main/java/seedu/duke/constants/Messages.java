@@ -2,11 +2,11 @@ package seedu.duke.constants;
 
 public class Messages {
 
-    public static final String LOGO = "\t" + " ____        _\n"
-            + "\t" + "|  _ \\ _   _| | _____\n"
-            + "\t" + "| | | | | | | |/ / _ \\\n"
-            + "\t" + "| |_| | |_| |   <  __/\n"
-            + "\t" + "|____/ \\__,_|_|\\_\\___|\n\n";
+    public static final String LOGO = "\t" + " _____ _  _     _\n"
+            + "\t" + "/  __ \\ |(_)   | |\n"
+            + "\t" + "| /  \\/ |_  ___| | __\n"
+            + "\t" + "| \\__/\\ | | (__|   <\n"
+            + "\t" + "\\_____/_|_|\\___|_|\\_\\\n\n";
 
     public static final String EMPTY_STRING = "";
     public static final String LINE_PREFIX = "\t";
@@ -32,8 +32,7 @@ public class Messages {
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
-    public static final String INVALID_CALENDAR_INPUT = " Invalid Input! "
-            + "PLease use 'calendar help' to check what commands are available under calendar!";
+    public static final String INVALID_CALENDAR_INPUT = " Invalid Input for Calendar Command! ";
     public static final int MONTH_UPPER_LIMIT = 12;
     public static final int MONTH_LOWER_LIMIT = 1;
     public static final String TASK_FORMATTER = "    |";
@@ -49,10 +48,9 @@ public class Messages {
     public static final String TODO = "todo";
     public static final int INDEX_TODO_DESCRIPTION = 1;
     public static final int INDEX_TODO_DATE = 2;
-    public static final int FIRST_INDEX = 0;
     public static final int TOTAL_SIZE = 32;
     public static final String ADDED_TASK = "Task has been added successfully!";
-    public static final String LIST_TASKS_HEADER = "Here's your task list: ";
+    public static final String LIST_TASKS_HEADER = "Here's your task list:";
     public static final String DISPLAY_LINE = "-------------------------"
             + "----------------------------------------"
             + "-----------------------------------------";
@@ -60,8 +58,12 @@ public class Messages {
     public static final String NO_TASK_IN_DAY = "              |";
     public static final String DELETED_TASK = "Task has been deleted!";
     public static final String CALENDAR_INVALID_ARGS = "'calendar' should be followed by a suffixed command!";
-    public static final String CALENDAR_DELETE_INVALID_ARGS = "Task index not entered...need task index to delete!";
-    public static final String DELIMETER_DATE = "-";
+    public static final String CALENDAR_EDIT_DELETE_INVALID_ARGS = "Task index not entered...";
+    public static final String NAME_ABSENT = " Task name not found after n/";
+    public static final String DELIMITER_DATE = "-";
+    public static final int CALENDAR_COMMAND_SPLIT = 9;
+    public static final int INDEX_ZERO = 0;
+    public static final int INDEX_ONE = 1;
     //SCHEDULE END
 
     //HELP BEGIN
