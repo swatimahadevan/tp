@@ -1,8 +1,8 @@
 package seedu.duke.storage;
 
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
-import seedu.duke.task.Todo;
+import seedu.duke.schedule.task.Task;
+import seedu.duke.schedule.task.TaskList;
+import seedu.duke.schedule.task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,10 +1,11 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.calendar.DeleteTaskCommand;
-import seedu.duke.commands.calendar.EditTasksCommand;
+import seedu.duke.commands.calendar.AddLectureCommand;
 import seedu.duke.commands.calendar.AddTodoCommand;
-import seedu.duke.commands.calendar.ListTasksCommand;
 import seedu.duke.commands.calendar.DisplayCalendarCommand;
+import seedu.duke.commands.calendar.ListTasksCommand;
+import seedu.duke.commands.calendar.EditTasksCommand;
+import seedu.duke.commands.calendar.DeleteTaskCommand;
 import seedu.duke.commands.journal.AddEntryCommand;
 import seedu.duke.commands.food.AddFoodCommand;
 import seedu.duke.commands.module.AddModuleCommand;
@@ -277,6 +278,9 @@ public class Parser {
             return new DeleteTaskCommand(getTaskIndex(calendarArguments), userInput);
         case EMPTY_STRING:
             throw new IncorrectNumberOfArgumentsException(CALENDAR_INVALID_ARGS);
+        case "lecture":
+            ArrayList<String> argumentsLecture = ParserSchedule.parseLectureCommand(userInput);
+            return new AddLectureCommand(argumentsLecture);
         default:
             return new DisplayCalendarCommand(userInput);
         }

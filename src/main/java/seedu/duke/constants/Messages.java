@@ -35,8 +35,8 @@ public class Messages {
     public static final String INVALID_CALENDAR_INPUT = " Invalid Input for Calendar Command! ";
     public static final int MONTH_UPPER_LIMIT = 12;
     public static final int MONTH_LOWER_LIMIT = 1;
-    public static final String TASK_FORMATTER = "    |";
-    public static final String CALENDER_DATE_FORMATTER = "            |";
+    public static final String TASK_FORMATTER = "  |";
+    public static final String CALENDER_DATE_FORMATTER = "               |";
     public static final String SEPARATOR_DISPLAY = "|";
     public static final String EMPTY_SPACE = "";
     public static final int NUMBER_OF_DAYS_IN_WEEK = 7;
@@ -53,9 +53,10 @@ public class Messages {
     public static final String LIST_TASKS_HEADER = "Here's your task list:";
     public static final String DISPLAY_LINE = "-------------------------"
             + "----------------------------------------"
-            + "-----------------------------------------";
+            + "---------------------------------------"
+            + "-----------------------";
     public static final String DAY_DEMARCATION = "|";
-    public static final String NO_TASK_IN_DAY = "              |";
+    public static final String NO_TASK_IN_DAY = "                 |";
     public static final String DELETED_TASK = "Task has been deleted!";
     public static final String CALENDAR_INVALID_ARGS = "'calendar' should be followed by a suffixed command!";
     public static final String CALENDAR_EDIT_DELETE_INVALID_ARGS = "Task index not entered...";

@@ -4,7 +4,9 @@ import seedu.duke.food.WhatIAteList;
 import seedu.duke.journal.CollectionOfEntries;
 import seedu.duke.journal.CollectionOfNotes;
 import seedu.duke.logger.ClickLogger;
-import seedu.duke.task.TaskList;
+import seedu.duke.schedule.lecture.Lecture;
+import seedu.duke.schedule.lecture.LectureList;
+import seedu.duke.schedule.task.TaskList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,6 +19,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 public class Storage {
 
@@ -42,6 +45,7 @@ public class Storage {
     public CollectionOfNotes collectionOfNotes = StorageNotes.readCollectionOfNotes();
     public CollectionOfEntries collectionOfEntries = StorageEntries.readEntries();
     public StorageModule storageModule = new StorageModule();
+    public LectureList lectureList = StorageLecture.readLectureList();
 
     public Storage() throws IOException {
     }
@@ -75,11 +79,8 @@ public class Storage {
     public static ArrayList<String> loadDataFromSaveFile(String filePath) throws IOException {
         FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        ArrayList<String> data = new ArrayList<>();
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            data.add(line);
-        }
+        ArrayList<String> data;
+        data = bufferedReader.lines().collect(Collectors.toCollection(ArrayList::new));
         return data;
     }
 
