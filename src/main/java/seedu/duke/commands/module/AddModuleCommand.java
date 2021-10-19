@@ -64,7 +64,7 @@ public class AddModuleCommand extends Command {
     private Module getModule(int indexOfCode, int indexOfName, int indexOfExpectedGrade) throws IllegalModuleException {
         String code;
         String name;
-        String expectedGrade;
+        Grade expectedGrade;
         Module module;
         boolean isInvalidInput = (indexOfCode == -1) || (indexOfName != -1 && indexOfCode > indexOfName)
                 || (indexOfName == -1 && indexOfExpectedGrade != -1)
@@ -76,7 +76,8 @@ public class AddModuleCommand extends Command {
         if (indexOfName != -1 && indexOfExpectedGrade != -1) {
             code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
             name = commandArgs.substring(indexOfName + 2, indexOfExpectedGrade).strip();
-            expectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).strip();
+            String rawExpectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).strip();
+            expectedGrade
             module = new Module(code, name, expectedGrade);
         } else if (indexOfName != -1) {
             code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
