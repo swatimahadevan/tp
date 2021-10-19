@@ -16,6 +16,10 @@ public class DeleteModuleCommand extends Command {
     public static final String MESSAGE_DELETE_MODULE = "I have deleted this module:";
     String commandArgs;
 
+    public DeleteModuleCommand() {
+        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
+    }
+
     /**
      * Class constructor.
      *

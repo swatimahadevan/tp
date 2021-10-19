@@ -20,11 +20,14 @@ import java.io.IOException;
 public class AddFoodCommand extends Command {
     private String inputString; //name + calorie
 
+    public AddFoodCommand() {
+        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
+    }
+
     public AddFoodCommand(String inputString) {
         super();
         this.inputString = inputString;
         this.helpMessage = "Adds a food item to a list";
-        this.syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
     }
 
     /**

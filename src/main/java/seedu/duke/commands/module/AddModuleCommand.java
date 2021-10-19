@@ -16,8 +16,11 @@ import java.io.IOException;
  * A representation of the command for adding a Module.
  */
 public class AddModuleCommand extends Command {
-
     String commandArgs;
+
+    public AddModuleCommand() {
+        syntax = "module add c/ [MODULE_CODE] n/ [MODULE_NAME] e/ [EXPECTED_GRADE]";
+    }
 
     /**
      * Class constructor.

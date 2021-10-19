@@ -15,6 +15,10 @@ public class DeleteTaskCommand extends Command {
     private int index;
     private String userInput;
 
+    public DeleteTaskCommand() {
+        syntax = "calendar delete TASK_INDEX";
+    }
+
     /**
      * Constructor for DeleteTaskCommand class.
      *
@@ -24,8 +28,8 @@ public class DeleteTaskCommand extends Command {
     public DeleteTaskCommand(int index, String userInput) {
         this.index = index;
         this.userInput = userInput;
-        this.helpMessage = "Delete task from calendar";
-        this.syntax = "calendar delete TASK_INDEX";
+        helpMessage = "Delete task from calendar";
+        syntax = "calendar delete TASK_INDEX";
     }
 
     /**
@@ -33,7 +37,7 @@ public class DeleteTaskCommand extends Command {
      *
      * @param ui      The component of CLICK that deals with the interaction with the user.
      * @param storage The component of CLICK that deals with loading tasks from the file and saving tasks in the file.
-     * @throws IOException if command entered is wrong.
+     * @throws IOException in case of writing to save file error.
      * @throws CalendarIndexNotFoundException if index is not found.
      * @throws IncorrectNumberOfArgumentsException in case of wrong number of arguments.
      */
@@ -47,4 +51,5 @@ public class DeleteTaskCommand extends Command {
         System.out.println(DELETED_TASK);
         StorageTasks.writeTaskList(Storage.tasksList);
     }
+
 }

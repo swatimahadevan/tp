@@ -10,12 +10,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 public class StorageZoom {
     private static final String folderName = "zoomdata/";
     private static final String fileName = "zoom.txt";
     private static String filePath =  folderName +  fileName;
 
     public static void saveLink(String moduleName, String zoomLink) throws IOException {
+        Storage.checkAndAddDirectory(folderName);
         File newList = new File(folderName + fileName);
         FileWriter fw = new FileWriter(folderName + fileName, true);
         fw.write(moduleName + '-' + zoomLink + "\n");

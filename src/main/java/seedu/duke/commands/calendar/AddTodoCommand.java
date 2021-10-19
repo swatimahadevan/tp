@@ -27,6 +27,10 @@ public class AddTodoCommand extends Command {
 
     private ArrayList<String> arguments;
 
+    public AddTodoCommand() {
+        syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
+    }
+
     /**
      * Constructor for AddTodoCommand.
      *
@@ -35,8 +39,7 @@ public class AddTodoCommand extends Command {
     public AddTodoCommand(ArrayList<String> arguments) {
         super();
         this.arguments = arguments;
-        this.helpMessage = "Add a todo task to calendar";
-        this.syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
+        helpMessage = "Add a todo task to calendar";
     }
 
     /**
@@ -62,12 +65,20 @@ public class AddTodoCommand extends Command {
         }
     }
 
+    public static void checkIfDuplicate(Task task) throws InvalidDateException, DuplicateTaskException {
+        for (int i = 0; i < Storage.tasksList.getTaskList().size(); i++) {
+            if (task.getDescription().equals(Storage.tasksList.getTaskList().get(i).getDescription())) {
+                throw new DuplicateTaskException();
+            }
+        }
+    }
+
     /**
      * To execute adding of todo.
      *
      * @param ui      The component of CLICK that deals with the interaction with the user.
      * @param storage The component of CLICK that deals with loading tasks from the file and saving tasks in the file.
-     * @throws IOException in case of wrong command.
+     * @throws IOException in case of writing to save file error.
      * @throws ParseException in case of error while parsing.
      * @throws InvalidDateException in case date is incorrect.
      * @throws DuplicateTaskException in case task already exists.
@@ -78,11 +89,7 @@ public class AddTodoCommand extends Command {
         String description = arguments.get(INDEX_TODO_DESCRIPTION).trim();
         String todoDateStringFormat = arguments.get(INDEX_TODO_DATE);
         Task task = new Todo(description, todoDateStringFormat);
-        for (int i = 0; i < storage.tasksList.getTaskList().size(); i++) {
-            if (task.getDescription().equals(storage.tasksList.getTaskList().get(i).getDescription())) {
-                throw new DuplicateTaskException();
-            }
-        }
+        checkIfDuplicate(task);
         checkIfDateValid(todoDateStringFormat);
         storage.tasksList.addTask(task);
         Ui.printTaskAddedMessage();

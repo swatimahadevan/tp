@@ -13,8 +13,13 @@ public class AddZoomCommand extends Command {
     private String moduleName;
     private String zoomLink;
 
+    public AddZoomCommand() {
+        syntax = "zoom add [MODULE_CODE] [ZOOM_LINK]";
+    }
+
     public AddZoomCommand(String moduleName, String zoomLink) {
-        this.helpMessage = "Displays all important zoom links";
+        helpMessage = "Adds zoom links";
+        syntax = "zoom add [MODULE_CODE] [ZOOM_LINK]";
         this.moduleName = moduleName;
         this.zoomLink = zoomLink;
     }
