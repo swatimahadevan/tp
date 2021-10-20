@@ -11,6 +11,7 @@ public class CommandConstants {
     public static final String COMMAND_SUFFIX_CLEAR = "clear";
     public static final String COMMAND_SUFFIX_LIST = "list";
     public static final String COMMAND_ADD_NOTE = "notebook";
+    public static final String COMMAND_DELETE_NOTE = "delete_notebook";
     public static final String COMMAND_ADD_ENTRY = "entry";
     public static final String COMMAND_JOURNAL_LIST = "list";
     public static final String COMMAND_NOTE = "journal";

@@ -151,7 +151,15 @@ public class Ui {
     public static void printAddedEntryMessage(String entryName) {
         System.out.println("Great you have added the entry: " + entryName);
     }
-    //end of UI for journal
+
+    /**
+     * Prints message to indicate notebook has been deleted.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printDeletedNotebookMessage(int indexOfDeletedNotebook) {
+        System.out.println("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
+    }
 
 
     //Schedule

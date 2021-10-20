@@ -25,11 +25,15 @@ public class ListJournalCommand extends Command {
     public void execute(Ui ui, Storage storage) {
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         ArrayList<Entry> entries = storage.collectionOfEntries.getEntriesArrayList();
+        int notebookIndex = 1;
+        int entryIndex = 1;
         for (Note note : notes) {
-            System.out.println("The notebook " + note.getNoteName() + " contains:");
+            System.out.println(notebookIndex + ". " + "The notebook " + note.getNoteName() + " contains:");
+            notebookIndex += 1;
             for (Entry entry : entries) {
                 if (entry.getEntryNoteName().equals(note.getNoteName())) {
-                    System.out.println(entry.getNameOfJournalEntry());
+                    System.out.println("\t" + entryIndex + ". " + entry.getNameOfJournalEntry());
+                    entryIndex += 1;
                 }
             }
         }

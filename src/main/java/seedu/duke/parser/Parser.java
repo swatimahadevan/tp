@@ -8,6 +8,7 @@ import seedu.duke.commands.calendar.EditTasksCommand;
 import seedu.duke.commands.calendar.DeleteTaskCommand;
 import seedu.duke.commands.journal.AddEntryCommand;
 import seedu.duke.commands.food.AddFoodCommand;
+import seedu.duke.commands.journal.DeleteNoteCommand;
 import seedu.duke.commands.module.AddModuleCommand;
 import seedu.duke.commands.journal.AddNoteCommand;
 import seedu.duke.commands.zoom.AddZoomCommand;
@@ -43,6 +44,7 @@ import java.util.ArrayList;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
+import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
@@ -173,6 +175,8 @@ public class Parser {
                 return new AddEntryCommand(userInput);
             case COMMAND_JOURNAL_LIST:
                 return new ListJournalCommand();
+            case COMMAND_DELETE_NOTE:
+                return new DeleteNoteCommand(userInput);
             case "":
                 throw new EmptyJournalArgumentException();
             default:
