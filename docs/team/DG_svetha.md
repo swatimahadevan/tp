@@ -24,12 +24,14 @@ You are free to enter a notebook name of your choice and observe the output of t
 
     Test case: journal notebook n/ TRIAL
     Expected: Great you have added the note: TRIAL
-2. You can enter the command journal entry n/ <ENTRY_NAME> to add an entry to a specific notebook.
+
+2.You can enter the command journal entry n/ <ENTRY_NAME> to add an entry to a specific notebook.
 You are free to enter an entry name of your choice and observe the output of this command.
 
     Test case: journal entry n/ TRIAL e/ TEST
     Expected: Great you have added the entry: TEST
-3. You can enter the command journal list to view list of notebooks and entries
+
+3.You can enter the command journal list to view list of notebooks and entries
 
     Test case: journal list
     Expected: The notebook TRIAL contains:
