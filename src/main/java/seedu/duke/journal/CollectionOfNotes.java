@@ -27,4 +27,13 @@ public class CollectionOfNotes {
         notes.add(new Note(nameOfNote));
     }
 
+    /**
+     * Deletes notebooks from a collection of notebooks.
+     *
+     * @param indexOfNote contains index of notebook to be deleted
+     */
+    public static void deleteNote(int indexOfNote) {
+        notes.remove(indexOfNote - 1);
+    }
+
 }

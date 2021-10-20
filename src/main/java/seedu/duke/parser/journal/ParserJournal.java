@@ -140,4 +140,15 @@ public class ParserJournal {
         String noteName = noteAndEntryName.split("e/")[0].trim();
         return new String[]{noteName, entryName};
     }
+
+    /**
+     * Parsing index for notebook to be deleted.
+     *
+     * @param input from user
+     * @return index for notebook to be deleted
+     */
+    public static int parseDeleteNoteCommand(String input) {
+        String indexOfDeletedNotebook = input.trim().split("delete_notebook")[1].trim();
+        return Integer.parseInt(indexOfDeletedNotebook);
+    }
 }
