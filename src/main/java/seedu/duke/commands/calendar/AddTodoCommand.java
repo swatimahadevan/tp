@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.DuplicateTaskException;
 import seedu.duke.exceptions.InvalidDateException;
+import seedu.duke.schedule.task.Task;
+import seedu.duke.schedule.task.Todo;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageTasks;
 import seedu.duke.ui.Ui;
-import seedu.duke.schedule.task.Task;
-import seedu.duke.schedule.task.Todo;
 
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
 import static seedu.duke.constants.Messages.INDEX_TODO_DATE;
@@ -27,10 +27,6 @@ public class AddTodoCommand extends Command {
 
     private ArrayList<String> arguments;
 
-    public AddTodoCommand() {
-        syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
-    }
-
     /**
      * Constructor for AddTodoCommand.
      *
@@ -39,7 +35,8 @@ public class AddTodoCommand extends Command {
     public AddTodoCommand(ArrayList<String> arguments) {
         super();
         this.arguments = arguments;
-        helpMessage = "Add a todo task to calendar";
+        this.helpMessage = "Add a todo task to calendar";
+        this.syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
     }
 
     /**

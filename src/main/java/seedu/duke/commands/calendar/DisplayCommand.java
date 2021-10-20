@@ -14,7 +14,7 @@ import static seedu.duke.constants.Messages.MONTH_LOWER_LIMIT;
 import static seedu.duke.constants.Messages.MONTH_UPPER_LIMIT;
 import static seedu.duke.constants.Messages.TOTAL_SIZE;
 
-public class DisplayCalendarCommand extends Command {
+public class DisplayCommand extends Command {
 
     private int year;
     private int month;
@@ -23,11 +23,11 @@ public class DisplayCalendarCommand extends Command {
     private ArrayList<ArrayList<String>> calendarTasks = new ArrayList<>(TOTAL_SIZE);
     private ArrayList<ArrayList<String>> calendarLectures = new ArrayList<>(TOTAL_SIZE);
 
-    public DisplayCalendarCommand() {
+    public DisplayCommand() {
         syntax = "calendar MM-YYYY";
     }
 
-    public DisplayCalendarCommand(String input) {
+    public DisplayCommand(String input) {
         helpMessage = "Display Calendar";
         syntax = "calendar MM-YYYY";
 
@@ -54,8 +54,8 @@ public class DisplayCalendarCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) {
         Ui.printCalenderTitle(inputYearMonth);
-        Schedule.parseTaskList(storage.tasksList, calendarTasks, this.month, this.year);
-        Schedule.parseLectureList(storage.lectureList, calendarLectures, this.month, this.year);
+        Schedule.arrangeTaskList(storage.tasksList, calendarTasks, this.month, this.year);
+        Schedule.arrangeLectureList(storage.lectureList, calendarLectures, this.month, this.year);
         Schedule.displayCalendar(inputYearMonth, calendarTasks, calendarLectures);
     }
 }

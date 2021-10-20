@@ -1,78 +1,38 @@
 @startuml
-!define CLICK_COLOR #1D8900
-!define PARSER_COLOR #3333C4
-!define MODEL_COLOR #9D0012
-!define STORAGE_COLOR #A38300
-!define STORAGE_COLOR_T1 #FFE374
-!define COMMAND_COLOR #9D0012
-!define USER_COLOR #000000
-
-skinparam BackgroundColor #FFFFFFF
-skinparam Shadowing false
-
-skinparam Class {
-    FontColor #FFFFFF
-    BorderThickness 1
-    BorderColor #FFFFFF
-    StereotypeFontColor #FFFFFF
-    FontName Arial
-}
-
-skinparam Actor {
-    BorderColor USER_COLOR
-    Color USER_COLOR
-    FontName Arial
-}
-
-skinparam Sequence {
-    MessageAlign center
-    BoxFontSize 15
-    BoxPadding 0
-    BoxFontColor #FFFFFF
-    FontName Arial
-}
-
-skinparam Participant {
-    FontColor #FFFFFFF
-    Padding 20
-}
-
-skinparam MinClassWidth 50
-skinparam ParticipantPadding 10
-skinparam Shadowing false
-skinparam DefaultTextAlignment center
-skinparam packageStyle Rectangle
-
-hide footbox
-hide members
-hide circle
-
-Actor User as user USER_COLOR
-Participant ":Click" as click CLICK_COLOR
-Participant ":Parser" as parser PARSER_COLOR
-Participant ":DisplayCalendarCommand" as displayCalendarCommand COMMAND_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
-
-user -[USER_COLOR]> click : "calendar 10-2021"
-activate click CLICK_COLOR
-
-click -[USER_COLOR]> parser : parseCommand("calendar 10-2021")
-activate parser PARSER_COLOR
-
-parser --[USER_COLOR]> click
-deactivate parser
-
-parser -[USER_COLOR]> displayCalendarCommand : new DisplayCalendarCommand("calendar 10-2021")
-
-parser -[USER_COLOR]> model : deletePerson(p)
-activate model MODEL_COLOR
-
-parser -[PARSER_COLOR]> storage : saveAddressBook(addressBook)
-activate storage STORAGE_COLOR
-
-storage -[USER_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
-storage --[USER_COLOR]> storage
-deactivate storage
+Actor User
+User -> ":Click" : "calendar 10-2021"
+participant ":Click"
+":Click" -> ":Parser" : parseCommand()
+participant ":Parser"
+activate ":Parser"
+create ":DisplayCommand"
+":Parser" -> ":DisplayCommand" : new DisplayCommand()
+activate ":DisplayCommand"
+":DisplayCommand" --> ":Parser"
+deactivate ":DisplayCommand"
+":Parser" --> ":Click"
+deactivate ":Parser"
+":Click" -> ":DisplayCommand" : execute()
+activate ":DisplayCommand"
+":DisplayCommand" -> ":DisplayCommand" : arrangeTaskList()
+activate ":DisplayCommand"
+return
+":DisplayCommand" -> ":DisplayCommand" : arrangeLectureList()
+activate ":DisplayCommand"
+return
+":DisplayCommand" -> ":Schedule" : displayCalendar()
+activate ":Schedule"
+":Schedule" -> ":Schedule" : printEntireCalendar()
+activate ":Schedule"
+":Schedule" -> ":Schedule" : printCalendarDates()
+activate ":Schedule"
+return
+":Schedule" -> ":Schedule" : printTaskLectureForWeek()
+activate ":Schedule"
+return
+return
+":Schedule" --> ":DisplayCommand"
+deactivate ":Schedule"
+":DisplayCommand" --> ":Click"
+deactivate ":DisplayCommand"
 @enduml

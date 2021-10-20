@@ -65,6 +65,9 @@ public class Messages {
     public static final int CALENDAR_COMMAND_SPLIT = 9;
     public static final int INDEX_ZERO = 0;
     public static final int INDEX_ONE = 1;
+    public static final String LECTURE_TASK_SPLIT = " **------------**  **------------** "
+                    + " **------------**  **------------**  "
+                    + "**------------**  **------------**  **------------** ";
     //SCHEDULE END
 
     //HELP BEGIN

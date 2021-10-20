@@ -24,7 +24,7 @@ public class ParserSchedule {
      * Parsing of calendar command for JUnit.
      *
      * @param input from user.
-     * @return year and month
+     * @return year and month.
      */
     public static YearMonth parseCalendarCommandForJunit(String input) {
         // takes substring excluding "calendar" from command
@@ -85,12 +85,14 @@ public class ParserSchedule {
         }
     }
 
-    private static void handleNoDate(String[] todoArguments, int i) {
+    private static String handleNoDate(String[] todoArguments, int i, String input) {
         if (todoArguments.length == i + 1) {
             System.out.println("You have not provided a date so "
                     + "I will add the task to today's date..."
                     + "please specify one in DD-MM-YYYY next time!");
+            input = parseTodoWhenDateNotGiven(input);
         }
+        return input;
     }
 
     //modified from @author SvethaMahadevan
@@ -113,12 +115,12 @@ public class ParserSchedule {
                 break;
             case "d/":
                 isDateArgumentPresent = true;
-                handleNoDate(todoArguments, i);
-                input = parseTodoWhenDateNotGiven(input);
+                input = handleNoDate(todoArguments, i, input);
                 break;
             default:
             }
         }
+        System.out.println(input);
         if (isNameArgumentPresent && isDateArgumentPresent) {
             return parseTodoArgumentsArray(input);
         }
@@ -142,11 +144,9 @@ public class ParserSchedule {
     public static ArrayList<String> parseTodoArgumentsArray(String input) {
         ArrayList<String> argumentsTodoCommand = new ArrayList<>();
         String todoDetails = input.trim().substring(CALENDAR_COMMAND_SPLIT);
-
         String descriptionAndDate = todoDetails.split("n/")[INDEX_ONE].trim();
         String description = descriptionAndDate.split("d/")[INDEX_ZERO].trim();
         String date = descriptionAndDate.split("d/")[INDEX_ONE].trim();
-
         List<String> todoInformation = Arrays.asList(TODO, description, date);
         argumentsTodoCommand.addAll(todoInformation);
         return argumentsTodoCommand;
