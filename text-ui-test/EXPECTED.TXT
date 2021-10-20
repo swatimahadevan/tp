@@ -47,8 +47,8 @@ I have deleted this module:
 cs1231  |  discrete structure  | Expected grade:  N/A
 Great you have added the note: Today's stuff
 Great you have added the entry: Random Observation
-The notebook Today's stuff contains:
-Random Observation
+1. The notebook Today's stuff contains:
+	1. Random Observation
 Task has been added successfully!
 Task has been deleted!
 	__________________________________________________

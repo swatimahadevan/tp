@@ -120,7 +120,6 @@ public class ParserSchedule {
             default:
             }
         }
-        System.out.println(input);
         if (isNameArgumentPresent && isDateArgumentPresent) {
             return parseTodoArgumentsArray(input);
         }
