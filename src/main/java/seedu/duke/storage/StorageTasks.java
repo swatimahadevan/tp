@@ -1,15 +1,13 @@
 package seedu.duke.storage;
 
-import seedu.duke.logger.ClickLogger;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
-import seedu.duke.task.Todo;
+import seedu.duke.schedule.task.Task;
+import seedu.duke.schedule.task.TaskList;
+import seedu.duke.schedule.task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 import static seedu.duke.constants.Messages.TODO;
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
@@ -29,7 +27,7 @@ public class StorageTasks {
      * @param data data from file.
      * @return tasks
      */
-    static ArrayList<Task> dataToTask(ArrayList<String> data) {
+    public static ArrayList<Task> dataToTask(ArrayList<String> data) {
         ArrayList<Task> tasks = new ArrayList<>();
         int i = 0;
         int dataSize = data.size();
@@ -37,37 +35,13 @@ public class StorageTasks {
             String dataLine = data.get(i);
             String[] todoArguments = dataLine.split("\\|");
             if (TODO.equals(todoArguments[INDEX_ZERO])) {
-                tasks.add(addToDo(todoArguments));
+                String description = todoArguments[INDEX_TODO_DESCRIPTION].trim();
+                String date = todoArguments[INDEX_TODO_DATE].trim();
+                tasks.add(new Todo(description, date));
             }
             i++;
         }
         return tasks;
-    }
-
-    /**
-     * Adds the todo task.
-     *
-     * @param todoArguments arguments for creation of Todo object.
-     * @return object of Todo Class with the task description and date.
-     */
-    private static Todo addToDo(String[] todoArguments) {
-        String description = todoArguments[INDEX_TODO_DESCRIPTION].trim();
-        String date = todoArguments[INDEX_TODO_DATE].trim();
-        return new Todo(description, date);
-    }
-
-    /**
-     * Coverts task to data for storage.
-     *
-     * @param tasks list of tasks to be converted to data for storage
-     * @return data Contains data for storage
-     */
-    public static ArrayList<String> tasksToData(ArrayList<Task> tasks) {
-        ArrayList<String> data = new ArrayList<>();
-        for (Task task : tasks) {
-            data.add(task.toSaveFileFormat());
-        }
-        return data;
     }
 
     /**
@@ -78,7 +52,10 @@ public class StorageTasks {
      */
     public static void writeTaskList(TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getTaskList();
-        ArrayList<String> data = StorageTasks.tasksToData(tasks);
+        ArrayList<String> data = new ArrayList<>();
+        for (Task task : tasks) {
+            data.add(task.toSaveFileFormat());
+        }
         Storage.writeDataOntoSaveFile(StorageTasks.filePath, data);
     }
 

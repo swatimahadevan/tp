@@ -1,12 +1,12 @@
 package seedu.duke.parser.journal;
 
-import seedu.duke.exceptions.DuplicateNoteException;
+import seedu.duke.exceptions.journal.DuplicateNoteException;
 import seedu.duke.exceptions.EmptyEntryArgumentsException;
-import seedu.duke.exceptions.EmptyNoteArgumentsException;
-import seedu.duke.exceptions.EmptyNoteNameException;
+import seedu.duke.exceptions.journal.EmptyNoteArgumentsException;
+import seedu.duke.exceptions.journal.EmptyNoteNameException;
 import seedu.duke.exceptions.EmptyEntryNameException;
-import seedu.duke.exceptions.NotebookArgumentNotFoundException;
-import seedu.duke.exceptions.NotebookNotFoundForEntryAddition;
+import seedu.duke.exceptions.journal.NotebookArgumentNotFoundException;
+import seedu.duke.exceptions.journal.NotebookNotFoundForEntryAddition;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -139,5 +139,16 @@ public class ParserJournal {
         String entryName = noteAndEntryName.split("e/")[1].trim();
         String noteName = noteAndEntryName.split("e/")[0].trim();
         return new String[]{noteName, entryName};
+    }
+
+    /**
+     * Parsing index for notebook to be deleted.
+     *
+     * @param input from user
+     * @return index for notebook to be deleted
+     */
+    public static int parseDeleteNoteCommand(String input) {
+        String indexOfDeletedNotebook = input.trim().split("delete_notebook")[1].trim();
+        return Integer.parseInt(indexOfDeletedNotebook);
     }
 }

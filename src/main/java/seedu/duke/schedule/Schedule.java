@@ -7,17 +7,24 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
+import seedu.duke.schedule.lecture.Lecture;
+import seedu.duke.schedule.lecture.LectureList;
+import seedu.duke.schedule.task.Task;
+import seedu.duke.schedule.task.TaskList;
 import seedu.duke.ui.Ui;
 
-import static seedu.duke.constants.Messages.NUMBER_OF_DAYS_IN_WEEK;
+import static seedu.duke.constants.Messages.DELIMITER_DATE;
+import static seedu.duke.constants.Messages.TOTAL_SIZE;
 import static seedu.duke.constants.Messages.DAYS_IN_MONTH;
-import static seedu.duke.constants.Messages.LEAVE_EMPTY_IN_DISPLAY;
-import static seedu.duke.constants.Messages.EMPTY_SPACE;
-import static seedu.duke.constants.Messages.CALENDER_DATE_FORMATTER;
-import static seedu.duke.constants.Messages.TASK_FORMATTER;
-import static seedu.duke.constants.Messages.SEPARATOR_DISPLAY;
 import static seedu.duke.constants.Messages.INDEX_ZERO;
 import static seedu.duke.constants.Messages.INDEX_ONE;
+import static seedu.duke.constants.Messages.NUMBER_OF_DAYS_IN_WEEK;
+import static seedu.duke.constants.Messages.LEAVE_EMPTY_IN_DISPLAY;
+import static seedu.duke.constants.Messages.EMPTY_SPACE;
+import static seedu.duke.constants.Messages.TASK_FORMATTER;
+import static seedu.duke.constants.Messages.SEPARATOR_DISPLAY;
+import static seedu.duke.constants.Messages.CALENDER_DATE_FORMATTER;
+import static seedu.duke.constants.Messages.LECTURE_TASK_SPLIT;
 
 /**
  * Represents the logic and UI behind calendar with tasks display.
@@ -25,12 +32,97 @@ import static seedu.duke.constants.Messages.INDEX_ONE;
 public class Schedule {
 
     /**
+     * Arranges the tasks from storage and sends
+     * each of them for adding to a particular calendar day.
+     *
+     * @param taskList The list of tasks from storage.
+     * @param calendarTasks The ArrayList of all calendar days and tasks.
+     * @param month The month input by user.
+     * @param year The year input by user.
+     */
+    public static void arrangeTaskList(TaskList taskList,
+                                     ArrayList<ArrayList<String>> calendarTasks, int month, int year) {
+        for (Task task : taskList.getTaskList()) {
+            String description = task.getDescription();
+            String[] dateArguments = task.getDate().split(DELIMITER_DATE);
+            addTaskToCalendarDay(dateArguments, description, month, year, calendarTasks);
+        }
+    }
+
+    /**
+     * Arranges the lectures from storage and sends
+     * each of them for adding to a particular calendar day.
+     *
+     * @param lectureList The list of lecture from storage.
+     * @param calendarLectures The ArrayList of all calendar days and lectures.
+     * @param month The month input by user.
+     * @param year The year input by user.
+     */
+    public static void arrangeLectureList(LectureList lectureList,
+                                        ArrayList<ArrayList<String>> calendarLectures, int month, int year) {
+        for (Lecture lecture : lectureList.getLectureList()) {
+            String moduleName = lecture.getModuleName();
+            String[] dateFromArguments = lecture.getDateFrom().split(DELIMITER_DATE);
+            String[] dateToArguments = lecture.getDateTo().split(DELIMITER_DATE);
+            addLectureToCalendarDay(moduleName, dateFromArguments, dateToArguments, month, year, calendarLectures);
+        }
+    }
+
+    /**
+     * Initializes all the days of the calendar with empty ArrayList
+     * to be filled with tasks (if present).
+     *
+     * @param calendarTasks The ArrayList of all calendar days and tasks.
+     */
+    public static void intializeCalendarDayTasksList(ArrayList<ArrayList<String>> calendarTasks) {
+        while (calendarTasks.size() != TOTAL_SIZE) {
+            calendarTasks.add(new ArrayList<>());
+        }
+    }
+
+    /**
+     * Initializes all the days of the calendar with empty ArrayList
+     * to be filled with lectures (if present).
+     *
+     * @param calendarLectures The ArrayList of all calendar days and lectures.
+     */
+    public static void intializeCalendarDayLectureList(ArrayList<ArrayList<String>> calendarLectures) {
+        while (calendarLectures.size() != TOTAL_SIZE) {
+            calendarLectures.add(new ArrayList<>());
+        }
+    }
+
+    private static void addTaskToCalendarDay(String[] dateArguments,
+                                             String description, int month,
+                                             int year, ArrayList<ArrayList<String>> calendarTasks) {
+        if (month == Integer.parseInt(dateArguments[1])
+                && year == Integer.parseInt(dateArguments[2])) {
+            int date = Integer.parseInt(dateArguments[0]);
+            calendarTasks.get(date).add(description);
+        }
+    }
+
+    private static void addLectureToCalendarDay(String moduleName,
+        String[] dateFromArguments, String[] dateToArguments,
+        int month, int year, ArrayList<ArrayList<String>> calendarLectures) {
+        if ((month >= Integer.parseInt(dateFromArguments[1]) || month <= Integer.parseInt(dateToArguments[1]))
+                && (year >= Integer.parseInt(dateFromArguments[2]) || year <= Integer.parseInt(dateToArguments[2]))) {
+            int date = Integer.parseInt(dateFromArguments[0]);
+            IntStream.iterate(date, i -> i < calendarLectures.size(),
+                i -> i + 7).filter(i -> i <= Integer.parseInt(dateToArguments[0]))
+                    .forEachOrdered(i -> calendarLectures.get(i).add(moduleName));
+
+        }
+    }
+
+    /**
      * Prints out the calendar after the calendar display command is used.
      *
      * @param inputYearMonth YearMonth object that is parsed from the year and month given by the user.
      * @param calendarTasks  The calendar
      */
-    public static void displayCalendar(YearMonth inputYearMonth, ArrayList<ArrayList<String>> calendarTasks) {
+    public static void displayCalendar(YearMonth inputYearMonth,
+        ArrayList<ArrayList<String>> calendarTasks, ArrayList<ArrayList<String>> calendarLectures) {
         ArrayList<String> calendar = new ArrayList<>();
         addDatesForDaysInMonth(inputYearMonth, calendar);
         addNoDatesInBeginning(inputYearMonth, calendar);
@@ -40,18 +132,19 @@ public class Schedule {
         int totalWeeks = (int) Math.ceil((double)calendar.size() / NUMBER_OF_DAYS_IN_WEEK);
         int currentWeek = 0;
         Ui.printCalendarLine();
-        printEntireCalendar(totalWeeks, currentWeek, calendar, calendarTasks);
+        printEntireCalendar(totalWeeks, currentWeek, calendar, calendarTasks, calendarLectures);
     }
 
     private static void printEntireCalendar(int totalWeeks, int currentWeek,
-                                            ArrayList<String> calendar, ArrayList<ArrayList<String>> calendarTasks) {
+        ArrayList<String> calendar,
+        ArrayList<ArrayList<String>> calendarTasks, ArrayList<ArrayList<String>> calendarLectures) {
         AtomicInteger j = new AtomicInteger();
         while (currentWeek < totalWeeks) {
             int indexOfDay = currentWeek * NUMBER_OF_DAYS_IN_WEEK;
             Ui.printDayDemarcation();
             printCalendarDates(calendar, indexOfDay);
             System.out.println();
-            printTaskForWeek(calendarTasks, calendar, indexOfDay);
+            printTaskLectureForWeek(calendarTasks, calendarLectures, calendar, indexOfDay);
             Ui.printCalendarLine();
             currentWeek++;
         }
@@ -87,31 +180,64 @@ public class Schedule {
         }
     }
 
-    private static void printTaskForWeek(ArrayList<ArrayList<String>> calendarTasks,
-                                         ArrayList<String> calendar, int indexOfDay) {
+    private static void printTaskLectureForWeek(ArrayList<ArrayList<String>>
+        calendarTasks, ArrayList<ArrayList<String>> calendarLectures,
+        ArrayList<String> calendar, int indexOfDay) {
         int calendarRow = 0;
-        while (calendarRow < 3) {
+        while (calendarRow < 2) {
             System.out.print(SEPARATOR_DISPLAY);
             for (int day = INDEX_ZERO; day < NUMBER_OF_DAYS_IN_WEEK; day++) {
-                printDetails(calendarTasks, calendar, indexOfDay, calendarRow, day);
+                printLectureCalendar(calendarLectures, calendar, indexOfDay, calendarRow, day);
             }
             System.out.println();
             calendarRow++;
         }
+        int calendarRow2 = 0;
+        System.out.println(LECTURE_TASK_SPLIT);
+        while (calendarRow2 < 2) {
+            System.out.print(SEPARATOR_DISPLAY);
+            for (int day = INDEX_ZERO; day < NUMBER_OF_DAYS_IN_WEEK; day++) {
+                printTasksCalendar(calendarTasks, calendar, indexOfDay, calendarRow2, day);
+            }
+            System.out.println();
+            calendarRow2++;
+        }
     }
 
-    private static void printDetails(ArrayList<ArrayList<String>> calendarTasks,
-                                     ArrayList<String> calendarDates, int indexOfDay, int calendarRow, int day) {
-        String dayString = calendarDates.get(indexOfDay + day).trim();
-        if (!dayString.equals(EMPTY_SPACE) && calendarTasks.get(Integer.parseInt(dayString)).size() > calendarRow) {
-            int currentDay = Integer.parseInt(dayString);
+
+
+    private static void printTasksCalendar(ArrayList<ArrayList<String>>
+        calendarTasks, ArrayList<String> calendarDates, int indexOfDay, int calendarRow, int day) {
+        String currentDayStringFormat = calendarDates.get(indexOfDay + day).trim();
+        if (!currentDayStringFormat.equals(EMPTY_SPACE)
+            && calendarTasks.get(Integer.parseInt(currentDayStringFormat)).size() > calendarRow) {
+            int currentDay = Integer.parseInt(currentDayStringFormat);
             String taskName = calendarTasks.get(currentDay).get(calendarRow);
-            if (taskName.length() > 10) {
-                taskName = taskName.substring(INDEX_ZERO, 10);
+            if (taskName.length() > 15) {
+                taskName = taskName.substring(INDEX_ZERO, 15);
             } else {
-                taskName = String.format("%-" + 10 + "s", taskName);
+                taskName = String.format("%-" + 15 + "s", taskName);
             }
             System.out.print(EMPTY_SPACE + taskName + TASK_FORMATTER);
+        } else {
+            Ui.printEmptyTaskSpot();
+        }
+    }
+
+    private static void printLectureCalendar(ArrayList<ArrayList<String>>
+        calendarLectures, ArrayList<String> calendarDates,
+        int indexOfDay, int calendarRow, int day) {
+        String currentDayStringFormat = calendarDates.get(indexOfDay + day).trim();
+        if (!currentDayStringFormat.equals(EMPTY_SPACE)
+            && calendarLectures.get(Integer.parseInt(currentDayStringFormat)).size() > calendarRow) {
+            int currentDay = Integer.parseInt(currentDayStringFormat);
+            String moduleLecture = calendarLectures.get(currentDay).get(calendarRow) + " lecture";
+            if (moduleLecture.length() > 15) {
+                moduleLecture = moduleLecture.substring(INDEX_ZERO, 15);
+            } else {
+                moduleLecture = String.format("%-" + 15 + "s", moduleLecture);
+            }
+            System.out.print(EMPTY_SPACE + moduleLecture + TASK_FORMATTER);
         } else {
             Ui.printEmptyTaskSpot();
         }

@@ -3,7 +3,10 @@ package seedu.duke.storage;
 import seedu.duke.food.WhatIAteList;
 import seedu.duke.journal.CollectionOfEntries;
 import seedu.duke.journal.CollectionOfNotes;
-import seedu.duke.task.TaskList;
+import seedu.duke.logger.ClickLogger;
+import seedu.duke.schedule.lecture.Lecture;
+import seedu.duke.schedule.lecture.LectureList;
+import seedu.duke.schedule.task.TaskList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,6 +18,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 public class Storage {
 
@@ -40,17 +45,30 @@ public class Storage {
     public CollectionOfNotes collectionOfNotes = StorageNotes.readCollectionOfNotes();
     public CollectionOfEntries collectionOfEntries = StorageEntries.readEntries();
     public StorageModule storageModule = new StorageModule();
+    public LectureList lectureList = StorageLecture.readLectureList();
 
     public Storage() throws IOException {
     }
 
-    //@author nigel
-    public static void checkAndAddDirectory(String folderName) throws IOException {
+    /**
+     * Creates directory if directory folderName is not found.
+     * access modifier left empty for working in Storage.
+     * @param folderName folder name to check
+     * @throws IOException case where directory not found
+     *
+     * @author ngnigel99
+     */
+    static void checkAndAddDirectory(String folderName) throws IOException {
+        assert folderName.contains("/") : "Please follow format [DIR_NAME]/";   //checks syntax of constant
         String home = new File("").getAbsolutePath() + '/';
         File dirCheck = new File(home + folderName);
+        ClickLogger.getNewLogger().log(Level.INFO,  "checking if directory exists!");
         if (dirCheck.isDirectory()) {
+            ClickLogger.getNewLogger().log(Level.INFO, "nice, directory found!");
             return;
         }
+        ClickLogger.getNewLogger().log(Level.CONFIG, "not nice, no directory found,"
+                +     "creating  new directory");
         System.out.println("Hey, I didn't find directory " + folderName);
         System.out.println("adding " + folderName + " into repository...");
         Files.createDirectories(Paths.get(home + folderName));
@@ -61,11 +79,8 @@ public class Storage {
     public static ArrayList<String> loadDataFromSaveFile(String filePath) throws IOException {
         FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        ArrayList<String> data = new ArrayList<>();
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            data.add(line);
-        }
+        ArrayList<String> data;
+        data = bufferedReader.lines().collect(Collectors.toCollection(ArrayList::new));
         return data;
     }
 
@@ -73,8 +88,7 @@ public class Storage {
     public static void writeDataOntoSaveFile(String filePath, ArrayList<String> data) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath));
         for (String dataObject : data) {
-            String dataLine = dataObject.toString();
-            bufferedWriter.write(dataLine + '\n');
+            bufferedWriter.write(dataObject + '\n');
         }
         bufferedWriter.close();
     }

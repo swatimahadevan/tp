@@ -11,17 +11,18 @@ public class CommandConstants {
     public static final String COMMAND_SUFFIX_CLEAR = "clear";
     public static final String COMMAND_SUFFIX_LIST = "list";
     public static final String COMMAND_ADD_NOTE = "notebook";
+    public static final String COMMAND_DELETE_NOTE = "delete_notebook";
     public static final String COMMAND_ADD_ENTRY = "entry";
     public static final String COMMAND_JOURNAL_LIST = "list";
     public static final String COMMAND_NOTE = "journal";
     public static final String COMMAND_TODO = "todo";
-    public static final String COMMAND_LIST_TASKS = "list";
 
     public static final String COMMAND_MODULE = "module";
     public static final String COMMAND_SUFFIX_DELETE = "delete";
+    public static final String COMMAND_SUFFIX_EDIT = "edit";
 
     public static final String COMMAND_HElP = "help";
     public static final String COMMAND_ZOOM = "zoom";
     public static final String COMMAND_ZOOM_SUFFIX_ADD = "add";
-    public static final String COMMAND_ZOOM_SUFFIX_SHOW = "show";
+    public static final String COMMAND_ZOOM_SUFFIX_LIST = "show";
 }

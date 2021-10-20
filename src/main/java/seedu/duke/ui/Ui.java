@@ -1,10 +1,10 @@
 package seedu.duke.ui;
 
-import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.calendar.DisplayCommand;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
-import seedu.duke.task.Task;
+import seedu.duke.schedule.task.Task;
 import seedu.duke.storage.Storage;
 
 import java.io.IOException;
@@ -17,12 +17,6 @@ import static seedu.duke.constants.Messages.ADDED_TASK;
 import static seedu.duke.constants.Messages.DISPLAY_LINE;
 import static seedu.duke.constants.Messages.DAY_DEMARCATION;
 import static seedu.duke.constants.Messages.NO_TASK_IN_DAY;
-import static seedu.duke.constants.Messages.CALENDAR_HEADER_LINE;
-import static seedu.duke.constants.Messages.HELP_MESSAGE;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_CALENDAR;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_EXIT;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_FOOD;
-import static seedu.duke.constants.Messages.HELP_MESSAGE_MODULE;
 import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
 import static seedu.duke.constants.Messages.INVALID_CALENDAR_INPUT;
 import static seedu.duke.constants.Messages.LIST_TASKS_HEADER;
@@ -157,7 +151,15 @@ public class Ui {
     public static void printAddedEntryMessage(String entryName) {
         System.out.println("Great you have added the entry: " + entryName);
     }
-    //end of UI for journal
+
+    /**
+     * Prints message to indicate that the notebook has been deleted.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printDeletedNotebookMessage(int indexOfDeletedNotebook) {
+        System.out.println("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
+    }
 
 
     //Schedule
@@ -167,9 +169,8 @@ public class Ui {
      * @param inputYearMonth The YearMonth object parsed from user input string.
      */
     public static void printCalenderTitle(YearMonth inputYearMonth) {
-        System.out.println("                     " + inputYearMonth.getMonth() + " "
+        System.out.println("                                       " + inputYearMonth.getMonth() + " "
                 + inputYearMonth.getYear());
-        System.out.println(CALENDAR_HEADER_LINE);
     }
 
     /**
@@ -188,7 +189,7 @@ public class Ui {
         YearMonth currentYearMonth = YearMonth.now();
         String month = String.valueOf(currentYearMonth.getMonthValue());
         String year = String.valueOf(currentYearMonth.getYear());
-        new DisplayCalendarCommand("calendar " + month + "-" + year).execute(ui, storage);
+        new DisplayCommand("calendar " + month + "-" + year).execute(ui, storage);
     }
 
     /**

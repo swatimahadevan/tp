@@ -1,0 +1,33 @@
+
+
+@startuml
+Actor User
+User -> ":Click" : "module list"
+participant ":Click"
+":Click" -> ":Parser" : parseCommand()
+participant ":Parser"
+activate ":Parser"
+create ":ListModuleCommand"
+":Parser" -> ":ListModuleCommand" : new ListModuleCommand()
+activate ":ListModuleCommand"
+return
+deactivate ":ListModuleCommand"
+":Parser" -> ":Click" : ListModuleCommand
+deactivate ":Parser"
+":Click" -> ":ListModuleCommand" : execute()
+activate ":ListModuleCommand"
+":ListModuleCommand" -> ":Storage" : storageModule.readDataFromFile()
+activate ":Storage"
+return "moduleList"
+
+alt moduleList is empty
+    ":ListModuleCommand" -> ":ListModuleCommand" : print(MESSAGE_NO_MODULE)
+else
+    ":ListModuleCommand" -> ":ListModuleCommand" : print(MESSAGE_LISTING_MODULES)
+    loop module in moduleList
+        ":ListModuleCommand" -> ":ListModuleCommand" : print(module)
+    end
+end
+":ListModuleCommand" --> ":Click"
+deactivate ":ListModuleCommand"
+@enduml
