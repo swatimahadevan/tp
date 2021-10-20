@@ -2,7 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.commands.calendar.AddLectureCommand;
 import seedu.duke.commands.calendar.AddTodoCommand;
-import seedu.duke.commands.calendar.DisplayCalendarCommand;
+import seedu.duke.commands.calendar.DisplayCommand;
 import seedu.duke.commands.calendar.ListTasksCommand;
 import seedu.duke.commands.calendar.EditTasksCommand;
 import seedu.duke.commands.calendar.DeleteTaskCommand;
@@ -60,7 +60,6 @@ import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
-import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_LIST;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
@@ -286,7 +285,7 @@ public class Parser {
             ArrayList<String> argumentsLecture = ParserSchedule.parseLectureCommand(userInput);
             return new AddLectureCommand(argumentsLecture);
         default:
-            return new DisplayCalendarCommand(userInput);
+            return new DisplayCommand(userInput);
         }
     }
 

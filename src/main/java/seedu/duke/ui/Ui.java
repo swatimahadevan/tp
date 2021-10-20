@@ -1,6 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.commands.calendar.DisplayCalendarCommand;
+import seedu.duke.commands.calendar.DisplayCommand;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
@@ -189,7 +189,7 @@ public class Ui {
         YearMonth currentYearMonth = YearMonth.now();
         String month = String.valueOf(currentYearMonth.getMonthValue());
         String year = String.valueOf(currentYearMonth.getYear());
-        new DisplayCalendarCommand("calendar " + month + "-" + year).execute(ui, storage);
+        new DisplayCommand("calendar " + month + "-" + year).execute(ui, storage);
     }
 
     /**
