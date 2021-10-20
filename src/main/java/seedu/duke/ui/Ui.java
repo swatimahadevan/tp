@@ -153,7 +153,7 @@ public class Ui {
     }
 
     /**
-     * Prints message to indicate notebook has been deleted.
+     * Prints message to indicate that the notebook has been deleted.
      *
      * @author SvethaMahadevan
      */
