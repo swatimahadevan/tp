@@ -15,7 +15,7 @@ On adding entry successfully, the message "Great you have added the entry: ENTRY
 
 The command for adding notebook is implemented by the `ListJournalCommand` class that extends `Command`.
 
-A list of notebooks with their entries will be displayed.
+A list of notebooks along with their entries will be displayed.
 
 ## 2. Testing
 
@@ -31,7 +31,7 @@ You are free to enter an entry name of your choice and observe the output of thi
     Test case: journal entry n/ TRIAL e/ TEST
     Expected: Great you have added the entry: TEST
 
-3.You can enter the command journal list to view list of notebooks and entries
+3.You can enter the command journal list to view list of notebooks and their entries
 
     Test case: journal list
     Expected: The notebook TRIAL contains:
