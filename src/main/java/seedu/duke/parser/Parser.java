@@ -32,7 +32,6 @@ import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
-import seedu.duke.module.Grade;
 import seedu.duke.module.Module;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.ui.Ui;
@@ -404,7 +403,7 @@ public class Parser {
         String code = module.getCode();
         String name = module.getName();
         String expectedGrade = module.getExpectedGrade();
-        String data = code + " | " + name + " | " + expectedGrade + "\n";
+        String data = code + "|" + name + "|" + expectedGrade + "\n";
         return data;
     }
 

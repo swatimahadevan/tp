@@ -7,10 +7,10 @@ package seedu.duke.module;
 public class Module {
     private String code;
     private String name;
-    private Grade expectedGrade; // to be replaced with enumeration
+    private String expectedGrade;
 
     private static final String DEFAULT_MODULE_NAME = "None";
-    private static final Grade DEFAULT_EXPECTED_GRADE = Grade.NA;
+    private static final String DEFAULT_EXPECTED_GRADE = "NA";
 
     /**
      * Class constructor specifying the module code.
@@ -42,7 +42,7 @@ public class Module {
      * @param name The module name.
      * @param expectedGrade The expected grade of the module.
      */
-    public Module(String code, String name, Grade expectedGrade) {
+    public Module(String code, String name, String expectedGrade) {
         this.code = code;
         this.name = name;
         this.expectedGrade = expectedGrade;
@@ -71,7 +71,7 @@ public class Module {
      *
      * @return the module expected grade.
      */
-    public Grade getExpectedGrade() {
+    public String getExpectedGrade() {
         return expectedGrade;
     }
 
@@ -98,7 +98,7 @@ public class Module {
      *
      * @param expectedGrade The grade to be set.
      */
-    public void setExpectedGrade(Grade expectedGrade) {
+    public void setExpectedGrade(String expectedGrade) {
         this.expectedGrade = expectedGrade;
     }
 
@@ -112,9 +112,9 @@ public class Module {
         if (this.name.equals(DEFAULT_MODULE_NAME) & this.expectedGrade == DEFAULT_EXPECTED_GRADE) {
             return this.code;
         } else if (this.expectedGrade == DEFAULT_EXPECTED_GRADE) {
-            return this.code + " | " + this.name;
+            return this.code + "|" + this.name;
         } else {
-            return this.code + " | " + this.name + " | Expected grade: " + this.expectedGrade;
+            return this.code + "|" + this.name + "|Expected grade: " + this.expectedGrade;
         }
     }
 
