@@ -71,8 +71,8 @@ A list of notebooks along with their entries will be displayed.
 1. You can enter the command journal notebook n/ <NOTEBOOK_NAME> to add a notebook.
    You are free to enter a notebook name of your choice and observe the output of this command.
 
-   Test case: journal notebook n/ TRIAL
-   Expected: Great you have added the note: TRIAL
+   Test case: journal entry n/ TRIAL e/ TEST
+   Expected: Great you have added the entry: TEST
 
 2.You can enter the command journal entry n/ <ENTRY_NAME> to add an entry to a specific notebook.
 You are free to enter an entry name of your choice and observe the output of this command.
