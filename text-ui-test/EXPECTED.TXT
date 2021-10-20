@@ -12,11 +12,15 @@ Hey, I didn't find journalNotes.txt in journalData/!
 creating new file...
 Hey, I didn't find journalEntries.txt in journalData/!
 creating new file...
+Hey, I didn't find scheduleLectures.txt in tasksdata/!
+creating new file...
 Hey, I didn't find list.txt in fooddata/!
 creating new file...
 Hey, I didn't find journalNotes.txt in journalData/!
 creating new file...
 Hey, I didn't find journalEntries.txt in journalData/!
+creating new file...
+Hey, I didn't find scheduleLectures.txt in tasksdata/!
 creating new file...
 	__________________________________________________
 	 _____ _  _     _
@@ -46,8 +50,6 @@ Great you have added the entry: Random Observation
 The notebook Today's stuff contains:
 Random Observation
 Task has been added successfully!
-Here's your task list:
-1. sometask (on: 10-10-2021)
 Task has been deleted!
 	__________________________________________________
 	Bye. Hope to see you again soon!

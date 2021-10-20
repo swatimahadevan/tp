@@ -5,7 +5,7 @@ import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.InvalidDateMonthException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
-import seedu.duke.task.Task;
+import seedu.duke.schedule.task.Task;
 import seedu.duke.storage.Storage;
 
 import java.io.IOException;

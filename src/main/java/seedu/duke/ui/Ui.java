@@ -4,7 +4,7 @@ import seedu.duke.commands.calendar.DisplayCalendarCommand;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
-import seedu.duke.task.Task;
+import seedu.duke.schedule.task.Task;
 import seedu.duke.storage.Storage;
 
 import java.io.IOException;
@@ -17,7 +17,6 @@ import static seedu.duke.constants.Messages.ADDED_TASK;
 import static seedu.duke.constants.Messages.DISPLAY_LINE;
 import static seedu.duke.constants.Messages.DAY_DEMARCATION;
 import static seedu.duke.constants.Messages.NO_TASK_IN_DAY;
-import static seedu.duke.constants.Messages.CALENDAR_HEADER_LINE;
 import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
 import static seedu.duke.constants.Messages.INVALID_CALENDAR_INPUT;
 import static seedu.duke.constants.Messages.LIST_TASKS_HEADER;
@@ -162,9 +161,8 @@ public class Ui {
      * @param inputYearMonth The YearMonth object parsed from user input string.
      */
     public static void printCalenderTitle(YearMonth inputYearMonth) {
-        System.out.println("                     " + inputYearMonth.getMonth() + " "
+        System.out.println("                                       " + inputYearMonth.getMonth() + " "
                 + inputYearMonth.getYear());
-        System.out.println(CALENDAR_HEADER_LINE);
     }
 
     /**

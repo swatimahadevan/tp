@@ -1,16 +1,12 @@
 package seedu.duke.commands.calendar;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.InvalidArgumentsException;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageTasks;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
+import seedu.duke.schedule.task.TaskList;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ListTasksCommand extends Command {
 

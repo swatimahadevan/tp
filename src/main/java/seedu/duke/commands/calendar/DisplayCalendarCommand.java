@@ -1,12 +1,9 @@
 package seedu.duke.commands.calendar;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.InvalidMonthException;
 import seedu.duke.logger.ClickLogger;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.storage.Storage;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 import seedu.duke.schedule.Schedule;
 import java.time.YearMonth;
@@ -16,7 +13,6 @@ import java.util.logging.Level;
 import static seedu.duke.constants.Messages.MONTH_LOWER_LIMIT;
 import static seedu.duke.constants.Messages.MONTH_UPPER_LIMIT;
 import static seedu.duke.constants.Messages.TOTAL_SIZE;
-import static seedu.duke.constants.Messages.DELIMITER_DATE;
 
 public class DisplayCalendarCommand extends Command {
 
@@ -25,6 +21,7 @@ public class DisplayCalendarCommand extends Command {
     private YearMonth inputYearMonth;
     private String[] yearMonthArguments;
     private ArrayList<ArrayList<String>> calendarTasks = new ArrayList<>(TOTAL_SIZE);
+    private ArrayList<ArrayList<String>> calendarLectures = new ArrayList<>(TOTAL_SIZE);
 
     public DisplayCalendarCommand() {
         syntax = "calendar MM-YYYY";
@@ -35,6 +32,7 @@ public class DisplayCalendarCommand extends Command {
         syntax = "calendar MM-YYYY";
 
         Schedule.intializeCalendarDayTasksList(calendarTasks);
+        Schedule.intializeCalendarDayLectureList(calendarLectures);
         try {
             this.yearMonthArguments = ParserSchedule.parseCalendarCommand(input);
             this.year = Integer.parseInt(yearMonthArguments[1]);
@@ -57,6 +55,7 @@ public class DisplayCalendarCommand extends Command {
     public void execute(Ui ui, Storage storage) {
         Ui.printCalenderTitle(inputYearMonth);
         Schedule.parseTaskList(storage.tasksList, calendarTasks, this.month, this.year);
-        Schedule.displayCalendar(inputYearMonth, calendarTasks);
+        Schedule.parseLectureList(storage.lectureList, calendarLectures, this.month, this.year);
+        Schedule.displayCalendar(inputYearMonth, calendarTasks, calendarLectures);
     }
 }

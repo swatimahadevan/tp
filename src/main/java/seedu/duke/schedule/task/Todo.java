@@ -1,4 +1,4 @@
-package seedu.duke.task;
+package seedu.duke.schedule.task;
 
 public class Todo extends Task {
 

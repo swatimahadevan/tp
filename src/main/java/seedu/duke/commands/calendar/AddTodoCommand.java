@@ -12,8 +12,8 @@ import seedu.duke.exceptions.InvalidDateException;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageTasks;
 import seedu.duke.ui.Ui;
-import seedu.duke.task.Task;
-import seedu.duke.task.Todo;
+import seedu.duke.schedule.task.Task;
+import seedu.duke.schedule.task.Todo;
 
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
 import static seedu.duke.constants.Messages.INDEX_TODO_DATE;

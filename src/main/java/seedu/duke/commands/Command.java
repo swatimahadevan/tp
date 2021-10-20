@@ -1,13 +1,10 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.ClickException;
-import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 import seedu.duke.storage.Storage;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
-import java.util.Scanner;
 
 //@@author nvbinh15
 

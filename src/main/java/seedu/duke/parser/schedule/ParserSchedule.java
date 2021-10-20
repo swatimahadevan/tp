@@ -44,6 +44,55 @@ public class ParserSchedule {
         return input;
     }
 
+    private static String[] splitTodoCommand(String input) {
+        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
+        assert commandTypeAndParams.length == 2;
+        final String commandArgs = commandTypeAndParams[1];
+        return commandArgs.split(" ");
+    }
+
+    private static String[] splitLectureCommand(String input) {
+        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
+        assert commandTypeAndParams.length == 2;
+        final String commandArgs = commandTypeAndParams[1];
+        return commandArgs.split(" ");
+    }
+
+    private static void throwExceptionNoName(String[] todoArguments, int i) throws IncorrectNumberOfArgumentsException {
+        if (todoArguments.length == i + 1 || todoArguments[i + 1].equals("d/")) {
+            throw new IncorrectNumberOfArgumentsException(NAME_ABSENT);
+        }
+    }
+
+    private static void throwExceptionNoModuleName(String[] lectureArguments,
+        int i) throws IncorrectNumberOfArgumentsException {
+        if (lectureArguments.length == i + 1 || lectureArguments[i + 1].equals("s/")) {
+            throw new IncorrectNumberOfArgumentsException("Module name not found after m/...");
+        }
+    }
+
+    private static void throwExceptionNoStartDate(String[] lectureArguments,
+        int i) throws IncorrectNumberOfArgumentsException {
+        if (lectureArguments.length == i + 1 || lectureArguments[i + 1].equals("e/")) {
+            throw new IncorrectNumberOfArgumentsException("Module start date not found after s/...");
+        }
+    }
+
+    private static void throwExceptionNoEndDate(String[] lectureArguments,
+        int i) throws IncorrectNumberOfArgumentsException {
+        if (lectureArguments.length == i + 1) {
+            throw new IncorrectNumberOfArgumentsException("Module end date not found after e/...");
+        }
+    }
+
+    private static void handleNoDate(String[] todoArguments, int i) {
+        if (todoArguments.length == i + 1) {
+            System.out.println("You have not provided a date so "
+                    + "I will add the task to today's date..."
+                    + "please specify one in DD-MM-YYYY next time!");
+        }
+    }
+
     //modified from @author SvethaMahadevan
     /**
      * Parsing of todo command.
@@ -53,27 +102,21 @@ public class ParserSchedule {
      * @throws IncorrectNumberOfArgumentsException to check if correct number of arguments.
      */
     public static ArrayList<String> parseTodoCommand(String input) throws IncorrectNumberOfArgumentsException {
-        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
-        assert commandTypeAndParams.length == 2;
-        final String commandArgs = commandTypeAndParams[1];
+        String[] todoArguments = splitTodoCommand(input);
         boolean isNameArgumentPresent = false;
         boolean isDateArgumentPresent = false;
-        String[] todoArguments = commandArgs.split(" ");
         for (int i = 0; i < todoArguments.length; i++) {
-            if (todoArguments[i].equals("n/")) {
+            switch (todoArguments[i]) {
+            case "n/":
                 isNameArgumentPresent = true;
-                if (todoArguments.length == i + 1 || todoArguments[i + 1].equals("d/")) {
-                    throw new IncorrectNumberOfArgumentsException(NAME_ABSENT);
-                }
-            }
-            if (todoArguments[i].equals("d/")) {
+                throwExceptionNoName(todoArguments, i);
+                break;
+            case "d/":
                 isDateArgumentPresent = true;
-                if (todoArguments.length == i + 1) {
-                    System.out.println("You have not provided a date so "
-                            + "I will add the task to today's date..."
-                            + "please specify one in DD-MM-YYYY next time!");
-                    input = parseTodoWhenDateNotGiven(input);
-                }
+                handleNoDate(todoArguments, i);
+                input = parseTodoWhenDateNotGiven(input);
+                break;
+            default:
             }
         }
         if (isNameArgumentPresent && isDateArgumentPresent) {
@@ -99,9 +142,11 @@ public class ParserSchedule {
     public static ArrayList<String> parseTodoArgumentsArray(String input) {
         ArrayList<String> argumentsTodoCommand = new ArrayList<>();
         String todoDetails = input.trim().substring(CALENDAR_COMMAND_SPLIT);
+
         String descriptionAndDate = todoDetails.split("n/")[INDEX_ONE].trim();
         String description = descriptionAndDate.split("d/")[INDEX_ZERO].trim();
         String date = descriptionAndDate.split("d/")[INDEX_ONE].trim();
+
         List<String> todoInformation = Arrays.asList(TODO, description, date);
         argumentsTodoCommand.addAll(todoInformation);
         return argumentsTodoCommand;
@@ -120,5 +165,45 @@ public class ParserSchedule {
         return arguments;
     }
 
+    public static ArrayList<String> parseLectureCommand(String input) throws IncorrectNumberOfArgumentsException {
+        String[] lectureArguments = splitLectureCommand(input);
+        boolean isModulePresent = false;
+        boolean isDateStartPresent = false;
+        boolean isDateEndPresent = false;
+        for (int i = 0; i < lectureArguments.length; i++) {
+            switch (lectureArguments[i]) {
+            case "m/":
+                isModulePresent = true;
+                throwExceptionNoModuleName(lectureArguments, i);
+                break;
+            case "s/":
+                isDateEndPresent = true;
+                throwExceptionNoStartDate(lectureArguments, i);
+                break;
+            case "t/":
+                isDateStartPresent = true;
+                throwExceptionNoEndDate(lectureArguments, i);
+                break;
+            default:
+            }
+        }
+        //todo argument present checks
+        return parseLectureArgumentsArray(input);
+    }
+
+    public static ArrayList<String> parseLectureArgumentsArray(String input) {
+        ArrayList<String> argumentsLectureCommand = new ArrayList<>();
+        String lectureDetails = input.trim().substring(17);
+
+        String nameAndDate = lectureDetails.split("m/")[INDEX_ONE].trim();
+        String name = nameAndDate.split("s/")[INDEX_ZERO].trim();
+        String dayAndLimits = nameAndDate.split("s/")[INDEX_ONE].trim();
+        String fromDate = dayAndLimits.split("e/")[INDEX_ZERO].trim();
+        String toDate = dayAndLimits.split("e/")[INDEX_ONE].trim();
+
+        List<String> lectureInformation = Arrays.asList(name, fromDate, toDate);
+        argumentsLectureCommand.addAll(lectureInformation);
+        return argumentsLectureCommand;
+    }
 
 }

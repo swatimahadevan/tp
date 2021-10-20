@@ -8,8 +8,8 @@ import seedu.duke.exceptions.calendar.CalendarIndexNotFoundException;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageTasks;
-import seedu.duke.task.Task;
-import seedu.duke.task.Todo;
+import seedu.duke.schedule.task.Task;
+import seedu.duke.schedule.task.Todo;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
