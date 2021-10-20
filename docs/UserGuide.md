@@ -50,13 +50,13 @@ Example of usage:
 
 Below are the answers to some of frequently askes questions about Click.
 
-**Q:** Can I use Click on different operating systems such as Windows and macOS?
+**Q:** Can I use Click on different operating systems such as Windows and macOS?\
 **A:** Yes. Click is compatible with Windows, macOS, and Linus as long as you have Java 11 or above installed in your machine.
 
-**Q:** What will happen to my data if Click crashed?
-A: Data is saved automatically to `STORAGEFILE` whenever you change your tasks. Therefore, your data will be safely saved even though Click is crashed.
+**Q:** What will happen to my data if Click crashed?\
+**A:** Data is saved automatically to `STORAGEFILE` whenever you change your tasks. Therefore, your data will be safely saved even though Click is crashed.
 
-**Q:** Can I exit Click without using the bye command?
+**Q:** Can I exit Click without using the bye command?\
 **A:** Yes, you can. As mentioned above, your data will be saved automatically if a change of the tasks occurs, so you can exit Click worry-free.
 
 
