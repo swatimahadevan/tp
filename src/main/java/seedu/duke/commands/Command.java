@@ -28,10 +28,6 @@ public abstract class Command implements Comparator<Command> {
 
     public abstract void execute(Ui ui, Storage storage) throws ClickException, Exception;
 
-    public void help() {
-        Ui.printHelpMessage(helpMessage, syntax);
-    }
-
     /**
      * Prints command name in a readable format for help.
      *

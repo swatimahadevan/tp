@@ -4,12 +4,15 @@ Actor User
 participant ":Parser"
 User -> ":Parser" : "help"
 activate ":Parser"
+create ":HelpCommand"
 ":Parser" -> ":HelpCommand" : HelpCommand()
 activate ":HelpCommand"
-":HelpCommand" -> "<<static>>\n:ClassPackageReader" : getCommandsAndPrintSyntax
+":Parser" -> ":HelpCommand" : execute()
+deactivate ":Parser"
+":HelpCommand" -> "<<static>>\n:ClassPackageReader" : getCommandsAndPrintSyntax()
 "<<static>>\n:ClassPackageReader" -> ":Command" : getSyntax()
 ":Command" --> "<<static>>\n:ClassPackageReader" : syntax
 "<<static>>\n:ClassPackageReader" --> User : Prints help messages
 destroy ":HelpCommand"
-":Parser" --> User : Finish command
+
 @enduml
