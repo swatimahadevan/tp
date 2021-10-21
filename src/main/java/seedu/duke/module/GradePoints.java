@@ -1,9 +1,9 @@
 package seedu.duke.module;
 
-import java.util.Map;
+import java.util.HashMap;
 
 public class GradePoints {
-    Map<String, Double> gradePoints;
+    static HashMap<String, Double> gradePoints = new HashMap<>();
 
     public GradePoints() {
         gradePoints.put("A+", 5.0);

@@ -8,9 +8,13 @@ import java.io.IOException;
 
 public class ModuleManager {
     static GradePoints gradePoints = new GradePoints();
-    static double expectedCap = 0.0;
+    static int totalModularCredits = 0;
     static StorageModule storageModule = new StorageModule();
     static ParserModule parserModule = new ParserModule();
+
+    public ModuleManager() {
+
+    }
 
     public void addNewModule(Module module) throws IOException {
         ModuleList moduleList = storageModule.readDataFromFile();
@@ -20,24 +24,30 @@ public class ModuleManager {
 
     public void deleteModule(int moduleIndex) throws IOException, IllegalModuleIndexException {
         ModuleList moduleList = storageModule.readDataFromFile();
+        System.out.println("read");
         boolean isValidIndex = (moduleIndex >= 0) && (moduleIndex < moduleList.getNumberOfModules());
         if (!isValidIndex) {
             throw new IllegalModuleIndexException();
         }
+        System.out.println("I have deleted this module:");
+        System.out.println(moduleList.getModuleByIndex(moduleIndex));
         moduleList.removeModuleByIndex(moduleIndex);
         storageModule.saveDataToFile(moduleList);
     }
 
     public double getExpectedCap() throws IOException {
-        expectedCap = 0.0;
+        double totalPoints = 0.0;
+        totalModularCredits = 0;
         ModuleList moduleList = storageModule.readDataFromFile();
         for (Module module : moduleList.getModules()) {
             double point = gradePoints.getPoint(module.getExpectedGrade());
             if (point != -1) {
-                expectedCap += point;
+                int credits = module.getModularCredits();
+                totalPoints += point * credits;
+                totalModularCredits += credits;
             }
         }
-        return expectedCap;
+        return totalPoints / totalModularCredits;
     }
 
 }

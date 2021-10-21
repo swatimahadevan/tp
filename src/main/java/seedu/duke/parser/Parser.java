@@ -9,6 +9,7 @@ import seedu.duke.commands.journal.AddEntryCommand;
 import seedu.duke.commands.food.AddFoodCommand;
 import seedu.duke.commands.module.AddModuleCommand;
 import seedu.duke.commands.journal.AddNoteCommand;
+import seedu.duke.commands.module.GetCapCommand;
 import seedu.duke.commands.zoom.AddZoomCommand;
 import seedu.duke.commands.food.ClearFoodCommand;
 import seedu.duke.commands.Command;
@@ -246,6 +247,8 @@ public class Parser {
             return new ListModuleCommand();
         case COMMAND_SUFFIX_DELETE:
             return new DeleteModuleCommand(moduleCommandAndArgs[1]);
+        case "cap":
+            return new GetCapCommand();
         default:
             throw new ClickException();
         }
@@ -416,7 +419,7 @@ public class Parser {
         String expectedGrade = tokens[2];
         int modularCredits = Integer.parseInt(tokens[3]);
         try {
-            return new Module(code, name, expectedGrade, modularCredits);
+            return new Module(code, name, modularCredits, expectedGrade);
         } catch (Exception e) {
             throw new StorageException();
         }
