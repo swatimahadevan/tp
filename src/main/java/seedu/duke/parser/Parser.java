@@ -403,18 +403,20 @@ public class Parser {
         String code = module.getCode();
         String name = module.getName();
         String expectedGrade = module.getExpectedGrade();
-        String data = code + "|" + name + "|" + expectedGrade + "\n";
+        int modularCredits = module.getModularCredits();
+        String data = code + "|" + name + "|" + expectedGrade + "|" + modularCredits + "\n";
         return data;
     }
 
     public static Module retrieveStoredModule(String data) throws StorageException {
         String[] tokens = data.split("\\|");
-        assert tokens.length == 3;
+        assert tokens.length == 4;
         String code = tokens[0];
         String name = tokens[1];
         String expectedGrade = tokens[2];
+        int modularCredits = Integer.parseInt(tokens[3]);
         try {
-            return new Module(code, name, expectedGrade);
+            return new Module(code, name, expectedGrade, modularCredits);
         } catch (Exception e) {
             throw new StorageException();
         }

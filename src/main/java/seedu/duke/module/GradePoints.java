@@ -22,6 +22,10 @@ public class GradePoints {
         gradePoints.put("NA", -1.0);
     }
 
+    public Double getPoint(String rawGrade) {
+        return gradePoints.get(rawGrade);
+    }
+
     public boolean isValidGrade(String rawGrade) {
         return gradePoints.containsKey(rawGrade);
     }
