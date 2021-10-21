@@ -92,7 +92,7 @@ The sequence diagram below summarizes how listing modules work:
 
 ### 4.3 Calendar-related Features
 
-####4.3.1 Displaying the calendar
+#### 4.3.1 Displaying the calendar
 
 **Implementation**
 
@@ -118,7 +118,7 @@ Given below is an example usage scenario and how the display calendar mechanism 
 The below sequence diagram shows the execution process of the calendar display feature.
 ![](./images/calendar/CalendarDisplaySequence.png)
 
-####4.3.2 Design Considerations
+#### 4.3.2 Design Considerations
 The following design considerations were kept in mind while implementing the calendar display feature,
 - Aspect: Calendar visual display
     - Alternative 1: Display two tasks and two lectures at any time.
@@ -128,27 +128,27 @@ The following design considerations were kept in mind while implementing the cal
         - Pros : The calendar displayed would show all the tasks and lectures.
         - Cons: Difficult to implement.
 
-###4.4 Journaling Feature
+### 4.4 Journaling Feature
 
-####4.4.1 Feature list
-####Add notebook feature
+#### 4.4.1 Feature list
+#### Add notebook feature
 
 The command for adding notebook is implemented by the `AddNoteCommand` class that extends `Command`.
 On adding notebook successfully, the message "Great you have added the note: NOTEBOOK_NAME" will be displayed.
 
-####Add entry feature
+#### Add entry feature
 
 The command for adding entry is implemented by the `AddEntryCommand` class that extends `Command`.
 
 On adding entry successfully, the message "Great you have added the entry: ENTRY_NAME" will be displayed.
 
-####List notebooks and entries
+#### List notebooks and entries
 
 The command for adding notebook is implemented by the `ListJournalCommand` class that extends `Command`.
 
 A list of notebooks along with their entries will be displayed.
 
-####4.4.2 Testing
+#### 4.4.2 Testing
 
 1. You can enter the command journal notebook n/ <NOTEBOOK_NAME> to add a notebook.
    You are free to enter a notebook name of your choice and observe the output of this command.
@@ -168,10 +168,10 @@ You are free to enter an entry name of your choice and observe the output of thi
     Expected: The notebook TRIAL contains:
               TEST
 
-###4.5 Food related features
+### 4.5 Food related features
 This segment focuses on describing the implementation of food-related features,
 the functionality of the commands as well as the design considerations taken.
-####4.5.1 Architecture
+#### 4.5.1 Architecture
 ##### Class Diagram of Food
 Food-related commands operate on a list of food records, and a food storage object. The following diagram  illustrates
 how the storage in a text file, and the current food list interact with each other.
@@ -181,7 +181,7 @@ Further discussion on the design considerations of writing an abstract class are
 design considerations.
 ![](./images/food/foodClassDiagram.png)
 
-#####Sequence diagram when food is parsed
+##### Sequence diagram when food is parsed
 The following diagram displays the interactions between the classes when the user enters a command starting with
 "food". You should take note of the interactions between the constructed command classes, and the current list it's
 iterating over - `WhatIAteTodayList`, especially the updates shown after the  end of every  command. An update is 
@@ -190,10 +190,10 @@ in the directory `fooddata` , with the text file named aptly as `food.txt`. Curr
 would be to integrate the dates in `Calendar` with  the `food.txt` file, enabling the user to search what they ate on a
 given day.
 ![](./images/food/food_architecture.png)
-####4.5.2 Feature List
+#### 4.5.2 Feature List
 > **Note**: the methods invoked in the following commands are visually depicted in the sequence  diagram,
 > and thus only the general functionality  is discussed, as  well as the design considerations taken.
-#####Adding Food Record
+##### Adding Food Record
 This feature allows user to add a new Food Record.
 Tags `n/` `c/` stand for name and calorie count respectively.
 
@@ -202,7 +202,7 @@ Tags `n/` `c/` stand for name and calorie count respectively.
 
 `food add n/ Samurai Burger c/ 433`
 
-#####Removing Food Record
+##### Removing Food Record
 
 This feature allows user to remove a Food Record created in the past.
 
@@ -210,7 +210,7 @@ This feature allows user to remove a Food Record created in the past.
 **Code example**
 
 `food delete [INDEX]`
-#####Listing All Food Records
+##### Listing All Food Records
 
 This feature allows user to view all Food Records.
 
@@ -220,7 +220,7 @@ This would be particularly useful for deleting items.
 
 `food list`
 
-#####Clearing food list
+##### Clearing food list
 
 This feature allows users to clear their Food List.
 
@@ -228,14 +228,14 @@ This feature allows users to clear their Food List.
 
 `food clear`
 
-#####Saving food list on successful command
+##### Saving food list on successful command
 
 The storage on hard-disk would be automatically
 updated on every successful command entered by the user.
 
 The interworking of this is described in detail in architecture.
 
-####4.5.3 Food Design considerations
+#### 4.5.3 Food Design considerations
 1. Why is there a need for calorie count?
    > Health tracking is important for students, especially during the pandemic
    where we stress eat during online lessons.
@@ -252,14 +252,14 @@ The interworking of this is described in detail in architecture.
     food courts - e.g. TechnoEdge. Another class could inherit from `ListOfRecords` in order to parse in
     the correct data, hence the generic `T` type used in the list.
    
-###4.6  Help command
+### 4.6  Help command
 This segment focuses on describing the not so-simple implementations behind what would otherwise
 be considered a simple feature. An interesting point for you to note before exploring this portion 
 would be the runtime-analysis of classes  done by the compiler, which reads the classes from the
 source code and extracts the syntax. This is perhaps more functional than printing out a string
 concatenating all command syntax.
 
-####4.6.1 Architecture  of Help Command
+#### 4.6.1 Architecture  of Help Command
 The following diagram illustrates the  interactions between the functional class `ClassPackageReader` and
 a particular command `ClickCommand`.
 ![](./images/help/helpCommandsClassDiagram.png)
@@ -289,7 +289,7 @@ and the syntax in a readable format to the user. Do note that the packages have 
 However, the core functionality of Click is already partitioned nicely into the packages and hence we do not expect
 many updates over the lifeline of this project.
 
-####4.6.2 Logic of Help Command
+#### 4.6.2 Logic of Help Command
 After describing the architecture of the help command, this portion will then describe the sequence of activation by
 the user when parsing a `help` command. Take the following sequence diagram for reference.
 ![](./images/help/HelpCommand_execute-Help_Commands.png)
@@ -313,8 +313,8 @@ You should take note that by step 5, this help functionality relies heavily on a
 when writing new `Commands`, a default constructor that contains no parameters has to overwrite the `syntax` element
 in abstract class `Command`. This ensures that the  method creation and invocation of method in step 5 would be ready
 to execute.
-####4.6.3 Design considerations of Help Command
-#####Aspect:  How to implement Help feature    
+#### 4.6.3 Design considerations of Help Command
+##### Aspect:  How to implement Help feature    
 | \ | Alternative 1 (current choice): Reads the name and syntax from the Classes | Alternative 2 (previous choice): Prints all available commands from a String, hard-coding every syntax and printing |
 |---|---|---|
 | Pros | 1. Dynamic, works well and sorts the names by order as long as the constructor is included for a command<br>2. Very readable and testable due to sorted names<br>3. OOP implementation with overloaded methods and branching on inheritance<br>4. The user gets to easily view *ALL*  possible commands with a single word | 1. Easy to implement, just adding all available commands into a String and print it out<br>2. Relatively fewer lines of code (LoC)<br>3. User gets specific syntax with command entered |
