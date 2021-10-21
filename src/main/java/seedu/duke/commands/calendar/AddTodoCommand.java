@@ -30,6 +30,7 @@ public class AddTodoCommand extends Command {
     public AddTodoCommand() {
         syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
     }
+
     /**
      * Constructor for AddTodoCommand.
      *
