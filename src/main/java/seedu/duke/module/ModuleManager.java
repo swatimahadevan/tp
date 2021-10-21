@@ -7,6 +7,7 @@ import seedu.duke.storage.StorageModule;
 
 import java.io.IOException;
 
+//@@author nvbinh15
 public class ModuleManager {
     public static final String MESSAGE_DELETE_MODULE = "I have deleted this module:";
 

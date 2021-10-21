@@ -7,6 +7,7 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
+//@@author nvbinh15
 public class GetCapCommand extends Command {
     private static ModuleManager moduleManager = new ModuleManager();
 
