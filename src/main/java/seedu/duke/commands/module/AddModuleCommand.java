@@ -17,6 +17,7 @@ import java.io.IOException;
  * A representation of the command for adding a Module.
  */
 public class AddModuleCommand extends Command {
+    public static final String MESSAGE_ADD_MODULE = "I have added this module:";
     ModuleManager moduleManager = new ModuleManager();
     String commandArgs;
 
@@ -50,7 +51,7 @@ public class AddModuleCommand extends Command {
         int indexOfExpectedGrade = commandArgs.indexOf("e/");
         Module module = getModule(indexOfCode, indexOfName, indexOfMc, indexOfExpectedGrade);
         moduleManager.addNewModule(module);
-        System.out.println("I have added this module:");
+        System.out.println(MESSAGE_ADD_MODULE);
         System.out.println(module);
     }
 

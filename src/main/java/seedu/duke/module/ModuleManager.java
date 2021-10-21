@@ -16,6 +16,9 @@ public class ModuleManager {
     static StorageModule storageModule = new StorageModule();
     static ParserModule parserModule = new ParserModule();
 
+    /**
+     * Default constructor.
+     */
     public ModuleManager() {
 
     }
@@ -23,9 +26,7 @@ public class ModuleManager {
     public void addNewModule(Module module) throws IOException, IllegalExpectedGradeException {
         ModuleList moduleList = storageModule.readDataFromFile();
         String expectedGrade = module.getExpectedGrade();
-        System.out.println("expected grade: " + expectedGrade);
         if (!gradePoints.isValidGrade(expectedGrade)) {
-            System.out.println("Invalid grade");
             throw new IllegalExpectedGradeException();
         }
         moduleList.addModule(module);
