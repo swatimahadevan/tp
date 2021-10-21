@@ -6,8 +6,8 @@ class FoodRecord {
 }
 
 class WhatIAteList {
-    addToList(recordToAdd : FoodRecord, isSilent boolean) : void
-    printIndexWithSuffix(index : int) : void
+    #addToList(recordToAdd : FoodRecord, isSilent boolean) : void
+    #printIndexWithSuffix(index : int) : void
 }
 
 class "{abstract}\nListOfRecords<T>" {

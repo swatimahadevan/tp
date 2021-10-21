@@ -24,12 +24,12 @@ public class DisplayCommand extends Command {
     private ArrayList<ArrayList<String>> calendarLectures = new ArrayList<>(TOTAL_SIZE);
 
     public DisplayCommand() {
-        syntax = "calendar MM-YYYY";
+        syntax = "calendar display MM-YYYY";
     }
 
     public DisplayCommand(String input) {
         helpMessage = "Display Calendar";
-        syntax = "calendar MM-YYYY";
+        syntax = "calendar display MM-YYYY";
 
         Schedule.intializeCalendarDayTasksList(calendarTasks);
         Schedule.intializeCalendarDayLectureList(calendarLectures);

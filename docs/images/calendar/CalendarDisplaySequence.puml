@@ -1,6 +1,6 @@
 @startuml
 Actor User
-User -> ":Click" : "calendar 10-2021"
+User -> ":Click" : "calendar display 10-2021"
 participant ":Click"
 ":Click" -> ":Parser" : parseCommand()
 participant ":Parser"
@@ -8,17 +8,26 @@ activate ":Parser"
 create ":DisplayCommand"
 ":Parser" -> ":DisplayCommand" : new DisplayCommand()
 activate ":DisplayCommand"
+":DisplayCommand" -> ":Schedule" : initializeCalendarDayTasksList()
+activate ":Schedule"
+return
+":DisplayCommand" -> ":Schedule" : initializeCalendarDayLectureList()
+activate ":Schedule"
+return
+":DisplayCommand" -> ":ParserSchedule" : parseCalendarCommand()
+activate ":ParserSchedule"
+return
 ":DisplayCommand" --> ":Parser"
 deactivate ":DisplayCommand"
 ":Parser" --> ":Click"
 deactivate ":Parser"
 ":Click" -> ":DisplayCommand" : execute()
 activate ":DisplayCommand"
-":DisplayCommand" -> ":DisplayCommand" : arrangeTaskList()
-activate ":DisplayCommand"
+":DisplayCommand" -> ":Schedule" : arrangeTaskList()
+activate ":Schedule"
 return
-":DisplayCommand" -> ":DisplayCommand" : arrangeLectureList()
-activate ":DisplayCommand"
+":DisplayCommand" -> ":Schedule" : arrangeLectureList()
+activate ":Schedule"
 return
 ":DisplayCommand" -> ":Schedule" : displayCalendar()
 activate ":Schedule"
@@ -33,6 +42,9 @@ return
 return
 ":Schedule" --> ":DisplayCommand"
 deactivate ":Schedule"
+destroy ":Schedule"
 ":DisplayCommand" --> ":Click"
 deactivate ":DisplayCommand"
+destroy ":DisplayCommand"
+participant ":ParserSchedule"
 @enduml

@@ -5,10 +5,11 @@
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)\
+3.0 [Help feature](#301-help-feature)\
 3.1 [Features Related to Module](#31-features-related-to-module)\
 3.2 [Features Related to Zoom Link](#32-features-related-to-zoom-link)\
 3.3 [Features Related to Calendar](#33-features-related-to-calendar)\
-3.4 [Fetures Related to Journal](#34-features-related-to-journal)\
+3.4 [Features Related to Journal](#34-features-related-to-journal)\
 3.5 [Features Related to Food](#35-features-related-to-food)
 4. [Command Summary](#4-command-summary)
 5. [Frequently Asked Questions](#5-frequently-asked-questions)
@@ -49,6 +50,12 @@ Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 - The `INDEX` used in various commands is a number specifying the order of an item in the list of items (1-based).
 - Parameters cannot be reordered.
   Example: If the command specifies `module add c/MODULE_CODE n/MODULE_NAME`, keying in `module add n/MODULE_NAME c/MODULE_CODE` will result in an invalid command.
+
+### 3.0.1 Help Feature
+
+Shows all available commands and syntax
+
+Format: `help`
 
 ### 3.1 Features Related to Module
 
@@ -116,7 +123,7 @@ Here are the modules in your list:
 
 Deletes the specified Module from the list of Modules.
 
-Format: `module delete 2`
+Format: `module delete INDEX`
 
 Expected outcome:
 
@@ -128,18 +135,229 @@ CS1231 | Discrete Structure | Expected grade: N/A
 ### 3.2 Features Related to Zoom Link
 
 ### 3.3 Features Related to Calendar
+### 3.3.1 Adding a lecture: `calendar lecture`
+Adds a lecture item.
+
+Note: Cannot add lecture to a module unless the module has been added previously.
+
+Format: `calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
+
+Example:
+```
+calendar lecture m/ CS2113T s/ 7-10-2021 e/ 31-10-2021
+```
+
+Expected outcome:
+```
+Added lecture!
+```
+
+### 3.3.2 Adding a task: `calendar task`
+Adds a task item.
+
+Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
+
+Example:
+```
+calendar todo n/ GER1000 Assignment d/ 14-10-2021
+```
+
+Expected outcome:
+```
+Task has been added successfully!
+```
+
+### 3.3.3 Listing tasks: `calendar list`
+Lists all the current task items.
+
+Format: `calendar list`
+
+Example:
+```
+calendar list
+```
+
+Expected outcome:
+```
+Here's your task list:
+1. GER1000 Assignment (on: 14-10-2021)
+2. GEQ1000 Assignment (on: 03-10-2021)
+```
+### 3.3.4 Deleting a task: `calendar delete`
+Deletes a task item based on the index.
+
+Format: `calendar delete TASK_INDEX`
+
+Example:
+```
+calendar delete 1
+```
+
+Expected outcome:
+```
+Task has been deleted!
+```
+### 3.3.5 Editing a task: `calendar edit`
+Edits a task item based on the index.
+
+Format: `calendar edit TASK_INDEX`
+
+Example:
+```
+calendar edit 1
+```
+
+Expected outcome:
+```
+Enter the entire todo command with the desired description and date that you want to replace in place of the current task at index 1
+>> calendar todo n/ changed task name d/ 22-12-2021
+Edited Task!
+```
+### 3.3.6 Displaying calendar: `calendar display`
+Edits a task item based on the index.
+
+Format: `calendar display MM-YYY`
+
+Example:
+```
+calendar display 10-2021
+```
+
+Expected outcome:
+![](./images/calendar/calendar_full.png)
+
 
 ### 3.4 Features Related to Journal
+### 3.4.1 Adding a notebook: `journal notebook`
+Adds a notebook with the desired name.
+
+Format: `journal notebook n/ NOTEBOOK_NAME`
+
+Example: `journal notebook n/ Today`
+
+Expected outcome:
+
+```
+Great you have added the notebook: Today
+```
+
+### 3.4.2 Adding an entry: `journal entry`
+Adds an entry with the desired name to a specific notebook
+
+Format: `journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
+
+Example: `journal entry n/ Today e/ Random Observation`
+
+Expected outcome:
+
+```
+Great you have added the entry: Random Observation
+```
+
+### 3.4.3 Listing notebooks with entries: `journal list`
+Lists all notebooks with their entries.
+
+Format: `journal list`
+
+Example: `journal list`
+
+Expected outcome:
+
+```
+The notebook Today contains:
+Random Observation
+```
 
 ### 3.5 Features Related to Food
+### 3.5.1 Adding a food item: `food add`
+Adds a food item with name and calorie count.
+
+Format: `food add n/FOOD_NAME n/KCALORIE`
+
+Example: 
+
+```
+food add n/ Samurai Burger c/ 433
+food add n/ Seaweed Shaker Fries Seasoning c/ 15
+food add n/ Large Fries c/  461
+food add n/ Caramel Frappé - Medium c/ 624
+food add n/ A Thousand Tide Pods c/ 92
+```
+
+Expected outcome:
+
+```
+Nice.  I've added Samurai Burger to the list, with 433 calories!
+Nice.  I've added Seaweed Shaker Fries Seasoning to the list, with 15 calories!
+Nice.  I've added Large Fries to the list, with 461 calories!
+Nice.  I've added Caramel Frappé - Medium to the list, with 624 calories!
+Nice.  I've added A Thousand Tide Pods to the list, with 92 calories!
+```
+
+### 3.5.2 Listing food records: `food list`
+
+Format : `food list`
+
+
+Expected outcome:
+
+```
+1st,You consumed  Samurai Burger , which has a calorie count of : 433!
+2nd,You consumed  Seaweed Shaker Fries Seasoning , which has a calorie count of : 15!
+3rd,You consumed  Large Fries , which has a calorie count of : 461!
+4th,You consumed  Caramel Frappé - Medium , which has a calorie count of : 624!
+5th,You consumed  A Thousand Tide Pods , which has a calorie count of : 92!
+Wow, that's a lot of food! Finished reading today's list
+You consumed 1625 calories in total today!
+```
+
+### 3.5.3 Deleting food records: `food delete`
+
+Format: `food delete INDEX`
+
+Example: `food delete 5`
+
+Expected outcome:
+
+```
+Deleted food record  A Thousand Tide Pods at index: 5
+```
+
+### 3.5.4 Clearing food list: `food clear`
+
+Format : `food clear`
+
+
+Expected outcome:
+
+```
+Cleared food record list for today!
+```
+
 
 ## 4. Command Summary
 
 **Action** | **Format, Examples**
 |----------|---------------------|
+**Add Entry**|`journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
+**Add Food**|`food add`
+**Add Lecture**|`calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
 **Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME`<br><br> Example: `module add c/CS2113T n/Software Engineering`<br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
-**List All Modules**|`module list`
+**Add Note**|`journal notebook n/ NOTEBOOK_NAME`
+**Add Todo**|`calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
+**Add Zoom**|`zoom add [MODULE_CODE] [ZOOM_LINK]`
+**Clear Food**|`food clear`
+**Delete Food**|`food delete INDEX`
 **Delete Module**|`module delete INDEX`<br><br> Example: `module delete 2`
+**Delete Note**|`journal delete NOTE_INDEX`
+**Delete Task**|`calendar delete TASK_INDEX`
+**Display**|`calendar display MM-YYYY`
+**Edit Tasks**|`calendar edit TASK_INDEX`
+**List  Food Items**|`food list`
+**List  Journal**|`journal list`
+**List  Modules**|`module list`
+**List Tasks**|`calendar list`
+**List Zoom Links**|`zoom list`
 **Exit**|`exit`
 
 

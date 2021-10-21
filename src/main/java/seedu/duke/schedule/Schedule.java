@@ -105,8 +105,8 @@ public class Schedule {
     private static void addLectureToCalendarDay(String moduleName,
         String[] dateFromArguments, String[] dateToArguments,
         int month, int year, ArrayList<ArrayList<String>> calendarLectures) {
-        if ((month >= Integer.parseInt(dateFromArguments[1]) || month <= Integer.parseInt(dateToArguments[1]))
-                && (year >= Integer.parseInt(dateFromArguments[2]) || year <= Integer.parseInt(dateToArguments[2]))) {
+        if ((month >= Integer.parseInt(dateFromArguments[1]) && month <= Integer.parseInt(dateToArguments[1]))
+                && (year >= Integer.parseInt(dateFromArguments[2]) && year <= Integer.parseInt(dateToArguments[2]))) {
             int date = Integer.parseInt(dateFromArguments[0]);
             IntStream.iterate(date, i -> i < calendarLectures.size(),
                 i -> i + 7).filter(i -> i <= Integer.parseInt(dateToArguments[0]))
