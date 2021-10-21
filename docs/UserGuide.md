@@ -6,11 +6,11 @@
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)\
 3.0 [Help feature](#301-getting-help)\
-3.1 [Features Related to Module](#31-managing-your-modules)\
-3.2 [Features Related to Zoom Link](#32-managing-your-zoom-links)\
-3.3 [Features Related to Calendar](#33-managing-your-calendar)\
-3.4 [Features Related to Journal](#34-managing-your-journal)\
-3.5 [Features Related to Food](#35-managing-your-food-consumption)
+3.1 [Managing your modules](#31-managing-your-modules)\
+3.2 [Managing your zoom-links](#32-managing-your-zoom-links)\
+3.3 [Managing your calendar](#33-managing-your-calendar)\
+3.4 [Managing your journal](#34-managing-your-journal)\
+3.5 [Managing your food consumption](#35-managing-your-food-consumption)
 4. [Command Summary](#4-command-summary)
 5. [Frequently Asked Questions](#5-frequently-asked-questions)
 6. [Bug reports](#6-bug-reports)
