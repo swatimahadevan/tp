@@ -6,7 +6,10 @@
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)\
 3.1 [Features Related to Module](#31-features-related-to-module)\
-
+3.2 [Features Related to Zoom Link](#32-features-related-to-zoom-link)\
+3.3 [Features Related to Calendar](#33-features-related-to-calendar)\
+3.4 [Fetures Related to Journal](#34-features-related-to-journal)\
+3.5 [Features Related to Food](#35-features-related-to-food)
 4. [Command Summary](#4-command-summary)
 5. [Frequently Asked Questions](#5-frequently-asked-questions)
 
@@ -122,6 +125,13 @@ I have deleted this module:
 CS1231 | Discrete Structure | Expected grade: N/A
 ```
 
+### 3.2 Features Related to Zoom Link
+
+### 3.3 Features Related to Calendar
+
+### 3.4 Features Related to Journal
+
+### 3.5 Features Related to Food
 
 ## 4. Command Summary
 
