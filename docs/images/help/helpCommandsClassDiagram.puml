@@ -1,0 +1,49 @@
+@startuml
+!include Style.puml
+abstract class Command {
+    + helpMessage : String
+    + syntax : String
+    + {abstract}execute()  : void
+    + printClassNameAndSyntax() : void
+    +  compare(command1 Command, command2 Command) : int
+}
+
+note bottom of Command : compare method is used for sorting commands by  name
+package someFeature  {
+class  ClickCommand {
+    + syntax  : some syntax unique  to  command
+    +
+}
+}
+
+note right of someFeature : this describes the package  we  keep all related  classes in.
+
+ClickCommand -up|> Command
+
+class ClassPackageReader {
+- {static} PACKAGE_NAME : String
+- {static} METHOD_NAME : String
++ {static} getClasses(packageName String)  : Set<Class>
++ {static} mergeSet(... Set<T>) : <T> Set<T>
++ {static} getClass(className String, packageName  String) : Class
++ {static} getCommmandsAndPrintSyntax() : void
+- {static}  runSyntaxCommands(filteredCommands List<Class>) : void
+- {static} filterClassesByCommand(allClasses Set<Class>) : List<Class>
+- {static} sortCommandByName(filteredCommands List<Class>) : void
+}
+
+ClassPackageReader "1" -up- "*" ClickCommand  : reads from >
+'WhatIAteList -u StorageFood : < reads and writes
+'WhatIAteList --u|> "{abstract}\nListOfRecords<T>"
+'note right of WhatIAteList: Overrides T with FoodRecord
+'WhatIAteList --> "*" FoodRecord
+
+@enduml
+
+class StorageFood {
+- folderName : String
+- fileName : String
+- filePath : String
+{static} +saveList(whatIAteList WhatIAteList) : void
+{static} +load() : WhatIAteList
+}
