@@ -23,11 +23,14 @@ import seedu.duke.ui.Ui;
 public class AddLectureCommand extends Command {
     private ArrayList<String> argumentsLecture;
 
+    public AddLectureCommand() {
+        syntax = "calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)";
+    }
+
     /**
      * Constructor for AddLectureCommand.
      */
     public AddLectureCommand(ArrayList<String> argumentsLecture) {
-        syntax = "calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)";
         this.argumentsLecture = argumentsLecture;
     }
 

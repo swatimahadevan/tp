@@ -27,6 +27,9 @@ public class AddTodoCommand extends Command {
 
     private ArrayList<String> arguments;
 
+    public AddTodoCommand() {
+        syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
+    }
     /**
      * Constructor for AddTodoCommand.
      *
@@ -36,7 +39,6 @@ public class AddTodoCommand extends Command {
         super();
         this.arguments = arguments;
         this.helpMessage = "Add a todo task to calendar";
-        this.syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
     }
 
     /**

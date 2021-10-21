@@ -28,7 +28,6 @@ public class DeleteFoodCommand extends Command {
         super();
         this.inputString = inputString.trim();
         helpMessage = "Deletes aa food item from a list given a valid index";
-        syntax = "food delete [INDEX]";
     }
 
     /**
@@ -94,7 +93,7 @@ public class DeleteFoodCommand extends Command {
      */
     private void checkIndexAndThrowException(Storage storage, int indexToDelete) throws FoodIndexNotFoundException {
         if (indexToDelete < 0
-                || indexToDelete >= storage.whatIAteTodayList.getList().size()) {
+                || indexToDelete > storage.whatIAteTodayList.getList().size()) {
             throw new FoodIndexNotFoundException();
         }
     }
