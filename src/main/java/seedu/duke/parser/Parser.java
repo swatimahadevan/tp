@@ -272,6 +272,8 @@ public class Parser {
         switch (calendarArguments[0]) {
         case COMMAND_SUFFIX_LIST:
             return new ListTasksCommand();
+        case "display":
+            return new DisplayCommand(userInput);
         case COMMAND_SUFFIX_EDIT:
             return new EditTasksCommand(getTaskIndex(calendarArguments));
         case COMMAND_TODO:
@@ -279,13 +281,11 @@ public class Parser {
             return new AddTodoCommand(arguments);
         case COMMAND_SUFFIX_DELETE:
             return new DeleteTaskCommand(getTaskIndex(calendarArguments), userInput);
-        case EMPTY_STRING:
-            throw new IncorrectNumberOfArgumentsException(CALENDAR_INVALID_ARGS);
         case "lecture":
             ArrayList<String> argumentsLecture = ParserSchedule.parseLectureCommand(userInput);
             return new AddLectureCommand(argumentsLecture);
         default:
-            return new DisplayCommand(userInput);
+            throw new IncorrectNumberOfArgumentsException(CALENDAR_INVALID_ARGS);
         }
     }
 

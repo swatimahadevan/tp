@@ -135,6 +135,97 @@ CS1231 | Discrete Structure | Expected grade: N/A
 ### 3.2 Features Related to Zoom Link
 
 ### 3.3 Features Related to Calendar
+### 3.3.1 Adding a lecture: `calendar lecture`
+Adds a lecture item.
+
+Note: Cannot add lecture to a module unless the module has been added previously.
+
+Format: `calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
+
+Example:
+```
+calendar lecture m/ CS2113T s/ 7-10-2021 e/ 31-10-2021
+```
+
+Expected outcome:
+```
+Added lecture!
+```
+
+### 3.3.2 Adding a task: `calendar task`
+Adds a task item.
+
+Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
+
+Example:
+```
+calendar todo n/ GER1000 Assignment d/ 14-10-2021
+```
+
+Expected outcome:
+```
+Task has been added successfully!
+```
+
+### 3.3.3 Listing tasks: `calendar list`
+Lists all the current task items.
+
+Format: `calendar list`
+
+Example:
+```
+calendar list
+```
+
+Expected outcome:
+```
+Here's your task list:
+1. GER1000 Assignment (on: 14-10-2021)
+2. GEQ1000 Assignment (on: 03-10-2021)
+```
+### 3.3.4 Deleting a task: `calendar delete`
+Deletes a task item based on the index.
+
+Format: `calendar delete TASK_INDEX`
+
+Example:
+```
+calendar delete 1
+```
+
+Expected outcome:
+```
+Task has been deleted!
+```
+### 3.3.5 Editing a task: `calendar edit`
+Edits a task item based on the index.
+
+Format: `calendar edit TASK_INDEX`
+
+Example:
+```
+calendar edit 1
+```
+
+Expected outcome:
+```
+Enter the entire todo command with the desired description and date that you want to replace in place of the current task at index 1
+>> calendar todo n/ changed task name d/ 22-12-2021
+Edited Task!
+```
+### 3.3.6 Displaying calendar: `calendar display`
+Edits a task item based on the index.
+
+Format: `calendar display MM-YYY`
+
+Example:
+```
+calendar display 10-2021
+```
+
+Expected outcome:
+![](./images/calendar/calendar_full.png)
+
 
 ### 3.4 Features Related to Journal
 
@@ -221,8 +312,8 @@ Cleared food record list for today!
 **Delete Module**|`module delete INDEX`<br><br> Example: `module delete 2`
 **Delete Note**|`journal delete NOTE_INDEX`
 **Delete Task**|`calendar delete TASK_INDEX`
-**Display**|`calendar MM-YYYY`
-**Edit Tasks**|`calendar delete TASK_INDEX`
+**Display**|`calendar display MM-YYYY`
+**Edit Tasks**|`calendar edit TASK_INDEX`
 **List  Food Items**|`food list`
 **List  Journal**|`journal list`
 **List  Modules**|`module list`
