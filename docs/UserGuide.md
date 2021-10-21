@@ -9,7 +9,7 @@
 3.1 [Features Related to Module](#31-features-related-to-module)\
 3.2 [Features Related to Zoom Link](#32-features-related-to-zoom-link)\
 3.3 [Features Related to Calendar](#33-features-related-to-calendar)\
-3.4 [Fetures Related to Journal](#34-features-related-to-journal)\
+3.4 [Features Related to Journal](#34-features-related-to-journal)\
 3.5 [Features Related to Food](#35-features-related-to-food)
 4. [Command Summary](#4-command-summary)
 5. [Frequently Asked Questions](#5-frequently-asked-questions)
@@ -137,6 +137,45 @@ CS1231 | Discrete Structure | Expected grade: N/A
 ### 3.3 Features Related to Calendar
 
 ### 3.4 Features Related to Journal
+### 3.4.1 Adding a notebook: `journal notebook`
+Adds a notebook with the desired name.
+
+Format: `journal notebook n/ NOTEBOOK_NAME`
+
+Example: `journal notebook n/ Today`
+
+Expected outcome:
+
+```
+Great you have added the notebook: Today
+```
+
+### 3.4.2 Adding an entry: `journal entry`
+Adds an entry with the desired name to a specific notebook
+
+Format: `journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
+
+Example: `journal entry n/ Today e/ Random Observation`
+
+Expected outcome:
+
+```
+Great you have added the entry: Random Observation
+```
+
+### 3.4.3 Listing notebooks with entries: `journal list`
+Lists all notebooks with their entries.
+
+Format: `journal list`
+
+Example: `journal list`
+
+Expected outcome:
+
+```
+The notebook Today contains:
+Random Observation
+```
 
 ### 3.5 Features Related to Food
 ### 3.5.1 Adding a food item: `food add`
