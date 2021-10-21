@@ -15,12 +15,13 @@ public class ParserModule {
 
     public static Module retrieveStoredModule(String data) throws StorageException {
         String[] tokens = data.split("\\|");
-        assert tokens.length == 3;
+        assert tokens.length == 4;
         String code = tokens[0];
         String name = tokens[1];
-        String expectedGrade = tokens[2];
+        int modularCredits = Integer.parseInt(tokens[2]);
+        String expectedGrade = tokens[3];
         try {
-            return new Module(code, name, expectedGrade);
+            return new Module(code, name, modularCredits, expectedGrade);
         } catch (Exception e) {
             throw new StorageException();
         }

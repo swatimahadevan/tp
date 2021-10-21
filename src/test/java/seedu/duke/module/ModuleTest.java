@@ -89,8 +89,8 @@ class ModuleTest {
         int modularCredits = 4;
         String expectedGrade = "A";
         Module module = new Module(moduleCode, moduleName, modularCredits, expectedGrade);
-        String expectedString = "CS2113T | Software Engineering & Object-Oriented Programming | MC: 4" +
-                " | Expected grade: A";
+        String expectedString = "CS2113T | Software Engineering & Object-Oriented Programming | MC: 4"
+                + " | Expected grade: A";
         assertEquals(expectedString, module.toString());
     }
 
