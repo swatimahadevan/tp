@@ -123,7 +123,7 @@ Here are the modules in your list:
 
 Deletes the specified Module from the list of Modules.
 
-Format: `module delete 2`
+Format: `module delete INDEX`
 
 Expected outcome:
 
