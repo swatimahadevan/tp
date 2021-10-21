@@ -5,7 +5,8 @@
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)\
-3.1 [Features Related to Module](#31-features-related-to-module)
+3.1 [Features Related to Module](#31-features-related-to-module)\
+
 4. [Command Summary](#4-command-summary)
 5. [Frequently Asked Questions](#5-frequently-asked-questions)
 
@@ -52,7 +53,46 @@ Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 
 Adds a new Module to the list of Modules.
 
-Click supports 3 types of adding Modules.
+Click supports 3 types of adding Modules:
+- Adding with module code, module name, and expected grade.
+- Adding with module code and module name.
+- Adding with module code only.
+
+**Adding with module code, module name, and expected grade**
+
+Format: `module add c/MODULE_CODE n/MODULE_NAME e/EXPECTED_GRADE`
+
+Example: `module add c/CS2113T n/Software Engineering e/A`
+
+Expected outcome:
+
+```
+Added CS2113T | Software Engineering | Expected grade: A
+```
+
+**Adding with module code and module name**
+
+Format: `module add c/MODULE_CODE n/MODULE_NAME`
+
+Example: `module add c/CS1231 n/Discrete Structure`
+
+Expected outcome:
+
+```
+Added CS1231 | Discrete Structure
+```
+
+**Adding with module code only**
+
+Format: `module add c/MODULE_CODE`
+
+Example: `module add c/GEQ1000`
+
+Expected outcome:
+
+```
+Added GEQ1000
+```
 
 ### 3.1.2 Listing all Modules: `module list`
 
@@ -63,7 +103,10 @@ Format: `module list`
 Expected outcome:
 
 ```
-
+Here are the modules in your list:
+1. CS2113T  |   Software Engineering | Expected grade: A
+2. CS1231  |   Discrete Structure   | Expected grade: N/A
+3. GEQ1000  |  NONE  | Expected grade: N/A
 ```
 
 ### 3.1.3 Deleting a Module: `module delete`
@@ -75,8 +118,10 @@ Format: `module delete 2`
 Expected outcome:
 
 ```
-
+I have deleted this module:
+CS1231 | Discrete Structure | Expected grade: N/A
 ```
+
 
 ## 4. Command Summary
 
@@ -86,7 +131,6 @@ Expected outcome:
 **List All Modules**|`module list`
 **Delete Module**|`module delete INDEX`<br><br> Example: `module delete 2`
 **Exit**|`exit`
-
 
 
 ## 5. Frequently Asked Questions
