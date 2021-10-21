@@ -5,18 +5,24 @@
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)\
-3.0 [Help feature](#301-help-feature)\
-3.1 [Features Related to Module](#31-features-related-to-module)\
-3.2 [Features Related to Zoom Link](#32-features-related-to-zoom-link)\
-3.3 [Features Related to Calendar](#33-features-related-to-calendar)\
-3.4 [Features Related to Journal](#34-features-related-to-journal)\
-3.5 [Features Related to Food](#35-features-related-to-food)
+3.0 [Help feature](#301-getting-help)\
+3.1 [Features Related to Module](#31-managing-your-modules)\
+3.2 [Features Related to Zoom Link](#32-managing-your-zoom-links)\
+3.3 [Features Related to Calendar](#33-managing-your-calendar)\
+3.4 [Features Related to Journal](#34-managing-your-journal)\
+3.5 [Features Related to Food](#35-managing-your-food-consumption)
 4. [Command Summary](#4-command-summary)
 5. [Frequently Asked Questions](#5-frequently-asked-questions)
+6. [Bug reports](#6-bug-reports)
 
 ## 1. Introduction
 
-Click (which stands for "command line interface for cramming & knowledge") is a desktop app for managing modules, lifestyle, schedule, and CAP planning. Click is optimised for those who prefer typing and can type fast.
+Welcome to your all-in-one desktop app for managing modules, tracking your food consumption, time scheduling, journaling, and CAP planning!
+We know that you are a CS student here at NUS 👨‍🎓 and may prefer typing ⌨ to swiping (Hello Vim! 😉)
+, so we think that our command line interface for cramming & knowledge (Click) is a great fit for you! 
+
+This user guide provides a guide to *traversing* our *array* of features for you to *sort* your life into place.
+Every feature of Click is carefully documented, and the syntax requirements are provided for  you to explore.
 
 Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 
@@ -25,7 +31,7 @@ Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `click.jar` from [here](https://github.com/AY2122S1-CS2113T-T09-4/tp/releases/tag/v1.0).
 3. Copy the file to the folder you want to use as the _home folder_ for Click.
-4. In the home folder for Click, launch the `jar` file using the `java -jar click.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see some think like this:
+4. In the home folder for Click, launch the `jar` file using the `java -jar click.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see something like this:
 
 ```
 	__________________________________________________
@@ -44,26 +50,29 @@ Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 
 ## 3. Features 
 
-**Notes about the command format:**
+**Before you begin, please note the command format:**
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.
-- The `INDEX` used in various commands is a number specifying the order of an item in the list of items (1-based).
+- Words in `UPPER_CASE` are the parameters to be supplied by you.
+  
+- The `INDEX` used in various commands must be a number specifying the order of an item in the list of items (1-based).
+  
 - Parameters cannot be reordered.
   Example: If the command specifies `module add c/MODULE_CODE n/MODULE_NAME`, keying in `module add n/MODULE_NAME c/MODULE_CODE` will result in an invalid command.
 
-### 3.0.1 Help Feature
-
-Shows all available commands and syntax
+### 3.0.1 Getting Help
+Click helps you by showing all available commands and syntax
 
 Format: `help`
 
-### 3.1 Features Related to Module
+You can refer  to [Command Summary](#4-command-summary) for a TLDR version.
+
+### 3.1 Managing your modules
 
 ### 3.1.1 Adding a Module: `module add`
 
 Adds a new Module to the list of Modules.
 
-Click supports 3 types of adding Modules:
+Click supports 3 ways of adding Modules:
 - Adding with module code, module name, and expected grade.
 - Adding with module code and module name.
 - Adding with module code only.
@@ -104,7 +113,7 @@ Expected outcome:
 Added GEQ1000
 ```
 
-### 3.1.2 Listing all Modules: `module list`
+### 3.1.2 Listing Modules: `module list`
 
 Lists all Modules in Click with numbering according to the order they are added (1-based index).
 
@@ -132,13 +141,13 @@ I have deleted this module:
 CS1231 | Discrete Structure | Expected grade: N/A
 ```
 
-### 3.2 Features Related to Zoom Link
+### 3.2 Managing your Zoom links
 
-### 3.3 Features Related to Calendar
+### 3.3 Managing your calendar
 ### 3.3.1 Adding a lecture: `calendar lecture`
 Adds a lecture item.
 
-Note: Cannot add lecture to a module unless the module has been added previously.
+Note: You cannot add a lecture to a module unless the module has been added previously.
 
 Format: `calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
 
@@ -227,7 +236,7 @@ Expected outcome:
 ![](./images/calendar/calendar_full.png)
 
 
-### 3.4 Features Related to Journal
+### 3.4 Managing your journal
 ### 3.4.1 Adding a notebook: `journal notebook`
 Adds a notebook with the desired name.
 
@@ -268,7 +277,7 @@ The notebook Today contains:
 Random Observation
 ```
 
-### 3.5 Features Related to Food
+### 3.5 Managing your food consumption
 ### 3.5.1 Adding a food item: `food add`
 Adds a food item with name and calorie count.
 
@@ -335,6 +344,8 @@ Cleared food record list for today!
 ```
 
 
+
+
 ## 4. Command Summary
 
 **Action** | **Format, Examples**
@@ -353,6 +364,7 @@ Cleared food record list for today!
 **Delete Task**|`calendar delete TASK_INDEX`
 **Display**|`calendar display MM-YYYY`
 **Edit Tasks**|`calendar edit TASK_INDEX`
+**Help**|`help`
 **List  Food Items**|`food list`
 **List  Journal**|`journal list`
 **List  Modules**|`module list`
@@ -363,15 +375,25 @@ Cleared food record list for today!
 
 ## 5. Frequently Asked Questions
 
-Below are the answers to some of frequently askes questions about Click.
+We know you are a curious individual, so here
+are the answers to some frequently asked questions about Click.
 
-**Q:** Can I use Click on different operating systems such as Windows and macOS?\
-**A:** Yes. Click is compatible with Windows, macOS, and Linus as long as you have Java 11 or above installed in your machine.
+Can I use Click on different operating systems such as Windows and macOS?
+>Yes. Click is compatible with Windows, macOS, and Linux as long as you have Java 11 or above installed in your machine.
 
-**Q:** What will happen to my data if Click crashed?\
-**A:** Data is saved automatically to `STORAGEFILE` whenever you change your tasks. Therefore, your data will be safely saved even though Click is crashed.
+What will happen to my data if Click crashes when I'm using my laptop? My battery life is pretty bad.
+>Data is saved automatically to `STORAGEFILE` whenever you change your tasks. Therefore, your data will be safely saved even though Click is crashed.
 
-**Q:** Can I exit Click without using the bye command?\
-**A:** Yes, you can. As mentioned above, your data will be saved automatically if a change of the tasks occurs, so you can exit Click worry-free.
+Can I exit Click without using the bye command? I recently learnt shortcuts  such as <kbd>Ctrl-C</kbd> and <kbd>Alt-F4</kbd> and would rather
+forcefully exit the app.
+> Yes, you can. As mentioned above, your data will be saved automatically if a change of the tasks occurs, so you can exit Click worry-free.
 
+This app seems to replicate what I'm currently  doing on paper, such as writing my tasks on a physical calendar,
+and recording my calorie count on a journal. I'd like to  know some  benefits of  this over paper.
+>  Sure, while we acknowledge your  love of pen and paper we'd like to remind you the scalability of digital apps,
+>  preservation of data as well as  the efficiency of the CLI in typing rather than writing. 
 
+## 6. Bug Report
+
+Found  a ***content error*** or just something which doesn't look right?
+[Get in touch with our team on GitHub](https://github.com/AY2122S1-CS2113T-T09-4/tp/blob/master/docs/AboutUs.md) and let us know.
