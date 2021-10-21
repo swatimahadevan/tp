@@ -1,16 +1,59 @@
 # Click - Developer Guide
 
+This guide aims to give you a big-picture view of how our application operates. From the macro view on how Click runs its main program,
+to the micro view on  how  we  translate sentence input to an object with attributes. 
+By sharing this information, we appreciate feedback on any ways we can improve 
+the functionality or documentation in order to give you the best experience on Click.
 ## Table of Contents
 
 ## 1. Introduction
-
+**_Welcome to Click_!** It's a Java-based  Command-Line Interface for Cramming and Knowledge (CLICK), providing a one-stop access point
+for managing various parts of your Computing student life here at NUS. We aim to provide a simple interface 
+that quantifies how you use your time and if you're taking care of your overall well-being. 
 ## 2. Setting Up
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `click.jar` from [here](https://github.com/AY2122S1-CS2113T-T09-4/tp/releases/tag/v1.0).
+3. Copy the file to the folder you want to use as the _home folder_ for Click.
+4. In the home folder for Click, launch the `jar` file using the `java -jar click.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see something like this:
+
+```
+	__________________________________________________
+	 _____ _  _     _
+	/  __ \ |(_)   | |
+	| /  \/ |_  ___| | __
+	| \__/\ | | (__|   <
+	\_____/_|_|\___|_|\_\
+
+	Hello! I'm Duke
+	What can I do for you?
+	__________________________________________________
+```
+
+5. Type the valid command into the terminal (or Command Prompt) and press <kbd>return</kbd> (or <kbd>Enter</kbd>) to run the command.
 
 ## 3. Design
 
+This section is designed to demonstrate our software design description, and aims to provide you with an overall guidance to the architecture of Duke.
+The following sequence diagram illustrates a command call by the user to Click. 
+The steps are as follows:
+1. When the user runs Click, a greeting would be printed to the user
+1. User enters some input which may be a command
+1. The command entered by the user would be parsed
+    1. if command, go ahead and execute it respectively
+    1. if not throw exception and ask for input again
+1. Parser returns control to Click
+![](./images/ClickRun.png)
+
+You should note that this is a general overview of the Click functionality, and the `:Command` entity simply represents a Command to be called by the Parser.
+Another point for you to note is the difference between a Duke exception and other exception. Duke, as aptly referenced from our Individual project, has unique
+exceptions that belong to our program. For instance, invalid dates extending beyond a  student's  matriculation,  or a  lack of entries when adding a journal. 
+This is different from that of an "other" exception, which could be briefly categorized as a general exception. For instance, a `NumberFormatException` on the parsing
+of a String to an Integer.
+
 ## 4. Implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+This  section provides  the mechanisms of the many features of Click, where you can find documentation for the features as well
+as code examples.
 
 ### 4.1. Module-related Features
 
@@ -169,10 +212,14 @@ You are free to enter an entry name of your choice and observe the output of thi
               TEST
 
 ### 4.5 Food related features
+
 This segment focuses on describing the implementation of food-related features,
 the functionality of the commands as well as the design considerations taken.
+
 #### 4.5.1 Architecture
+
 ##### Class Diagram of Food
+
 Food-related commands operate on a list of food records, and a food storage object. The following diagram  illustrates
 how the storage in a text file, and the current food list interact with each other.
 Food storage object contains static methods to read and write data from said list.
@@ -182,6 +229,7 @@ design considerations.
 ![](./images/food/foodClassDiagram.png)
 
 ##### Sequence diagram when food is parsed
+
 The following diagram displays the interactions between the classes when the user enters a command starting with
 "food". You should take note of the interactions between the constructed command classes, and the current list it's
 iterating over - `WhatIAteTodayList`, especially the updates shown after the  end of every  command. An update is 
@@ -190,10 +238,14 @@ in the directory `fooddata` , with the text file named aptly as `food.txt`. Curr
 would be to integrate the dates in `Calendar` with  the `food.txt` file, enabling the user to search what they ate on a
 given day.
 ![](./images/food/food_architecture.png)
+
 #### 4.5.2 Feature List
+
 > **Note**: the methods invoked in the following commands are visually depicted in the sequence  diagram,
 > and thus only the general functionality  is discussed, as  well as the design considerations taken.
+
 ##### Adding Food Record
+
 This feature allows user to add a new Food Record.
 Tags `n/` `c/` stand for name and calorie count respectively.
 
@@ -210,6 +262,7 @@ This feature allows user to remove a Food Record created in the past.
 **Code example**
 
 `food delete [INDEX]`
+
 ##### Listing All Food Records
 
 This feature allows user to view all Food Records.
@@ -236,6 +289,7 @@ updated on every successful command entered by the user.
 The interworking of this is described in detail in architecture.
 
 #### 4.5.3 Food Design considerations
+
 1. Why is there a need for calorie count?
    > Health tracking is important for students, especially during the pandemic
    where we stress eat during online lessons.
@@ -253,6 +307,7 @@ The interworking of this is described in detail in architecture.
     the correct data, hence the generic `T` type used in the list.
    
 ### 4.6  Help command
+
 This segment focuses on describing the not so-simple implementations behind what would otherwise
 be considered a simple feature. An interesting point for you to note before exploring this portion 
 would be the runtime-analysis of classes  done by the compiler, which reads the classes from the
@@ -260,6 +315,7 @@ source code and extracts the syntax. This is perhaps more functional than printi
 concatenating all command syntax.
 
 #### 4.6.1 Architecture  of Help Command
+
 The following diagram illustrates the  interactions between the functional class `ClassPackageReader` and
 a particular command `ClickCommand`.
 ![](./images/help/helpCommandsClassDiagram.png)
@@ -290,7 +346,8 @@ However, the core functionality of Click is already partitioned nicely into the 
 many updates over the lifeline of this project.
 
 #### 4.6.2 Logic of Help Command
-After describing the architecture of the help command, this portion will then describe the sequence of activation by
+
+After describing the [architecture](#461-architecture--of-help-command) of the help command, this portion will then describe the sequence of activation by
 the user when parsing a `help` command. Take the following sequence diagram for reference.
 ![](./images/help/HelpCommand_execute-Help_Commands.png)
 The sequence diagram provides a high-level view on how the entities interact. You should notice the interaction between
@@ -313,8 +370,11 @@ You should take note that by step 5, this help functionality relies heavily on a
 when writing new `Commands`, a default constructor that contains no parameters has to overwrite the `syntax` element
 in abstract class `Command`. This ensures that the  method creation and invocation of method in step 5 would be ready
 to execute.
+
 #### 4.6.3 Design considerations of Help Command
+
 ##### Aspect:  How to implement Help feature    
+
 | \ | Alternative 1 (current choice): Reads the name and syntax from the Classes | Alternative 2 (previous choice): Prints all available commands from a String, hard-coding every syntax and printing |
 |---|---|---|
 | Pros | 1. Dynamic, works well and sorts the names by order as long as the constructor is included for a command<br>2. Very readable and testable due to sorted names<br>3. OOP implementation with overloaded methods and branching on inheritance<br>4. The user gets to easily view *ALL*  possible commands with a single word | 1. Easy to implement, just adding all available commands into a String and print it out<br>2. Relatively fewer lines of code (LoC)<br>3. User gets specific syntax with command entered |
@@ -322,8 +382,10 @@ to execute.
 
 While we submitted Alternative 2 in version 1 due to a lack of time and easier implementation. with more time given in Version 2.0 - we
 decided  to switch over to Alternative 1 for the user to easily view all the syntax at a glance.
-## 5. Testing
 
+## 5. Testing
+> ***WORK IN PROGRESS***
+> To include code coverage, instructions for the reader to self test
 ## 6. Dev Ops
 
 ## Appendices
