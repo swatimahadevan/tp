@@ -27,6 +27,6 @@ public class GradePoints {
     }
 
     public boolean isValidGrade(String rawGrade) {
-        return gradePoints.containsKey(rawGrade);
+        return gradePoints.containsKey(rawGrade.toUpperCase());
     }
 }

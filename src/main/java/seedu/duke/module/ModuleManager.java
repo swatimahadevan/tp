@@ -1,5 +1,6 @@
 package seedu.duke.module;
 
+import seedu.duke.exceptions.module.IllegalExpectedGradeException;
 import seedu.duke.exceptions.module.IllegalModuleIndexException;
 import seedu.duke.parser.module.ParserModule;
 import seedu.duke.storage.StorageModule;
@@ -7,6 +8,8 @@ import seedu.duke.storage.StorageModule;
 import java.io.IOException;
 
 public class ModuleManager {
+    public static final String MESSAGE_DELETE_MODULE = "I have deleted this module:";
+
     static GradePoints gradePoints = new GradePoints();
     static int totalModularCredits = 0;
     static StorageModule storageModule = new StorageModule();
@@ -16,8 +19,14 @@ public class ModuleManager {
 
     }
 
-    public void addNewModule(Module module) throws IOException {
+    public void addNewModule(Module module) throws IOException, IllegalExpectedGradeException {
         ModuleList moduleList = storageModule.readDataFromFile();
+        String expectedGrade = module.getExpectedGrade();
+        System.out.println("expected grade: " + expectedGrade);
+        if (!gradePoints.isValidGrade(expectedGrade)) {
+            System.out.println("Invalid grade");
+            throw new IllegalExpectedGradeException();
+        }
         moduleList.addModule(module);
         storageModule.saveDataToFile(moduleList);
     }
@@ -28,7 +37,7 @@ public class ModuleManager {
         if (!isValidIndex) {
             throw new IllegalModuleIndexException();
         }
-        System.out.println("I have deleted this module:");
+        System.out.println(MESSAGE_DELETE_MODULE);
         System.out.println(moduleList.getModuleByIndex(moduleIndex));
         moduleList.removeModuleByIndex(moduleIndex);
         storageModule.saveDataToFile(moduleList);

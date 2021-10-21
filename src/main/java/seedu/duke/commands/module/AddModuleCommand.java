@@ -93,7 +93,7 @@ public class AddModuleCommand extends Command {
             code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
             name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
             modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3, indexOfExpectedGrade).strip());
-            expectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).strip();
+            expectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).strip().toUpperCase();
             module = new Module(code, name, modularCredits, expectedGrade);
         }
 
