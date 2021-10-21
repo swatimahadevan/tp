@@ -15,7 +15,7 @@ class ParserScheduleTest {
 
     @Test
     void formatYearMonth() {
-        assertEquals(YearMonth.of(2021, 10), parser.parseCalendarCommandForJunit("calendar 10-2021"));
+        assertEquals(YearMonth.of(2021, 10), parser.parseCalendarCommandForJunit("calendar display 10-2021"));
     }
 
     @Test

@@ -28,7 +28,7 @@ public class ParserSchedule {
      */
     public static YearMonth parseCalendarCommandForJunit(String input) {
         // takes substring excluding "calendar" from command
-        String extractMonthYear = input.substring(CALENDAR_COMMAND_SPLIT);
+        String extractMonthYear = input.substring(17);
         var arguments = extractMonthYear.split(DELIMITER_DATE);
         int month = Integer.parseInt(arguments[INDEX_ZERO]);
         assert month <= MONTH_UPPER_LIMIT;
@@ -124,10 +124,10 @@ public class ParserSchedule {
             return parseTodoArgumentsArray(input);
         }
         if (isNameArgumentPresent) {
-            throw new IncorrectNumberOfArgumentsException("Date argument not found!");
+            throw new IncorrectNumberOfArgumentsException("Date argument 'd/' not found!");
         }
         if (isDateArgumentPresent) {
-            throw new IncorrectNumberOfArgumentsException("Name argument not found!");
+            throw new IncorrectNumberOfArgumentsException("Name argument 'n/'not found!");
         } else {
             throw new IncorrectNumberOfArgumentsException("Name and date arguments not found!");
         }
@@ -159,7 +159,7 @@ public class ParserSchedule {
      */
     public static String[] parseCalendarCommand(String input) {
         // takes substring excluding "calendar" from command
-        String extractMonthYear = input.substring(CALENDAR_COMMAND_SPLIT);
+        String extractMonthYear = input.substring(17);
         String[] arguments = extractMonthYear.split(DELIMITER_DATE);
         return arguments;
     }
@@ -186,8 +186,20 @@ public class ParserSchedule {
             default:
             }
         }
-        //todo argument present checks
-        return parseLectureArgumentsArray(input);
+        if (isModulePresent  && isDateEndPresent && isDateStartPresent) {
+            return parseLectureArgumentsArray(input);
+        }
+        if (!isModulePresent && isDateEndPresent && isDateStartPresent) {
+            throw new IncorrectNumberOfArgumentsException("Module name argument 'm/' not found!");
+        }
+        if (isModulePresent && isDateEndPresent && !isDateStartPresent) {
+            throw new IncorrectNumberOfArgumentsException("Start date argument 's/' not found!");
+        }
+        if (isModulePresent && !isDateEndPresent && isDateStartPresent) {
+            throw new IncorrectNumberOfArgumentsException("End date argument 's/' not found!");
+        } else {
+            throw new IncorrectNumberOfArgumentsException("Incorrect number of arguments!");
+        }
     }
 
     public static ArrayList<String> parseLectureArgumentsArray(String input) {
