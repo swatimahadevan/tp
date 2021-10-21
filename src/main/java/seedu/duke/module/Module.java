@@ -1,17 +1,18 @@
 package seedu.duke.module;
 
 //@@author nvbinh15
-
 /**
  * A representation of a Module.
  */
 public class Module {
     private String code;
     private String name;
-    private String expectedGrade; // to be replaced with enumeration
+    private int modularCredits;
+    private String expectedGrade;
 
-    private static final String DEFAULT_MODULE_NAME = "NONE";
-    private static final String DEFAULT_EXPECTED_GRADE = "N/A";
+    private static final String DEFAULT_MODULE_NAME = "None";
+    private static final int DEFAULT_MODULAR_CREDITS = 4;
+    private static final String DEFAULT_EXPECTED_GRADE = "NA";
 
     /**
      * Class constructor specifying the module code.
@@ -21,6 +22,7 @@ public class Module {
     public Module(String code) {
         this.code = code;
         this.name = DEFAULT_MODULE_NAME;
+        this.modularCredits = DEFAULT_MODULAR_CREDITS;
         this.expectedGrade = DEFAULT_EXPECTED_GRADE;
     }
 
@@ -33,6 +35,7 @@ public class Module {
     public Module(String code, String name) {
         this.code = code;
         this.name = name;
+        this.modularCredits = DEFAULT_MODULAR_CREDITS;
         this.expectedGrade = DEFAULT_EXPECTED_GRADE;
     }
 
@@ -41,12 +44,29 @@ public class Module {
      *
      * @param code The module code.
      * @param name The module name.
-     * @param expectedGrade The expected grade of the module.
+     * @param modularCredits The modular credits of the module.
      */
-    public Module(String code, String name, String expectedGrade) {
+    public Module(String code, String name, int modularCredits) {
+        this.code = code;
+        this.name = name;
+        this.modularCredits = modularCredits;
+        this.expectedGrade = DEFAULT_EXPECTED_GRADE;
+    }
+
+    /**
+     * Class constructor specifying the module code, module name, the expected grade,
+     *     and the modular credits.
+     *
+     * @param code The module code.
+     * @param name The module name.
+     * @param expectedGrade The expected grade of the module.
+     * @param modularCredits The modular credits of the module.
+     */
+    public Module(String code, String name, int modularCredits, String expectedGrade) {
         this.code = code;
         this.name = name;
         this.expectedGrade = expectedGrade;
+        this.modularCredits = modularCredits;
     }
 
     /**
@@ -77,6 +97,15 @@ public class Module {
     }
 
     /**
+     * Returns the modular credits.
+     *
+     * @return the modular credits.
+     */
+    public int getModularCredits() {
+        return modularCredits;
+    }
+
+    /**
      * Sets the code of the module.
      *
      * @param code The code to be set.
@@ -104,19 +133,23 @@ public class Module {
     }
 
     /**
+     * Sets the modular credits.
+     *
+     * @param modularCredits The modular credits to be set.
+     */
+    public void setModularCredits(int modularCredits) {
+        this.modularCredits = modularCredits;
+    }
+
+    /**
      * Overrides toString method of class Object to get the string representation of Module.
      *
      * @return The string representation of the module.
      */
     @Override
     public String toString() {
-        if (this.name.equals(DEFAULT_MODULE_NAME) & this.expectedGrade == DEFAULT_EXPECTED_GRADE) {
-            return this.code;
-        } else if (this.expectedGrade == DEFAULT_EXPECTED_GRADE) {
-            return this.code + " | " + this.name;
-        } else {
-            return this.code + " | " + this.name + " | Expected grade: " + this.expectedGrade;
-        }
+        return this.code + " | " + this.name + " | MC: " + this.modularCredits
+                + " | Expected grade: " + this.expectedGrade;
     }
 
 }
