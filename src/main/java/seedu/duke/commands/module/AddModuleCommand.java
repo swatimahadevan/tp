@@ -63,7 +63,8 @@ public class AddModuleCommand extends Command {
      * @return A new Module based on user's input.
      * @throws IllegalModuleException If user's input is not in the correct format.
      */
-    private Module getModule(int indexOfCode, int indexOfName, int indexOfMc, int indexOfExpectedGrade) throws IllegalModuleException {
+    private Module getModule(int indexOfCode, int indexOfName, int indexOfMc, int indexOfExpectedGrade)
+            throws IllegalModuleException {
         String code;
         String name;
         int modularCredits;
