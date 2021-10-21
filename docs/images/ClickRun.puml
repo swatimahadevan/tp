@@ -1,0 +1,43 @@
+@startuml
+hide footbox
+
+Actor User
+User -> ":Click" : run
+activate ":Click"
+User -> ":Click" : input
+":Click" -> ":Ui" : printGreeting
+activate ":Ui"
+":Ui" -> ":Ui" : printMessage
+activate ":Ui"
+":Ui" --> ":Ui"
+deactivate ":Ui"
+":Ui" --> ":Click"
+deactivate ":Ui"
+":Click" -> ":Parser" : parse command
+activate ":Parser"
+":Parser" -> ":Parser" : splitCommandAndArgs
+
+alt command is valid
+    create ":Command"
+    ":Click" -> ":Command"
+    activate ":Command"
+    ":Click" -> ":Command" : execute
+    ":Command" --> ":Click"
+    deactivate ":Command"
+    destroy ":Command"
+
+else command is invalid
+    alt Duke exception
+        ":Click" -> ":ExceptionHandler" : handleDukeExceptions
+        activate ":ExceptionHandler"
+        ":ExceptionHandler" --> ":Click"
+        deactivate ":ExceptionHandler"
+    else Not Duke exception:
+        ":Click" -> ":ExceptionHandler" : handleOtherExceptions
+        activate ":ExceptionHandler"
+        ":ExceptionHandler" --> ":Click"
+        deactivate ":ExceptionHandler"
+    end
+end
+return
+@enduml
