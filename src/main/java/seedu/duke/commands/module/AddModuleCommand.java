@@ -5,6 +5,7 @@ import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.module.IllegalModuleException;
 import seedu.duke.module.Module;
 import seedu.duke.module.ModuleList;
+import seedu.duke.module.ModuleManager;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
  * A representation of the command for adding a Module.
  */
 public class AddModuleCommand extends Command {
+    ModuleManager moduleManager = new ModuleManager();
     String commandArgs;
 
     public AddModuleCommand() {
@@ -44,12 +46,12 @@ public class AddModuleCommand extends Command {
     public void execute(Ui ui, Storage storage) throws ClickException, IOException {
         int indexOfCode = commandArgs.indexOf("c/");
         int indexOfName = commandArgs.indexOf("n/");
+        int indexOfMc = commandArgs.indexOf("mc/");
         int indexOfExpectedGrade = commandArgs.indexOf("e/");
-        Module module = getModule(indexOfCode, indexOfName, indexOfExpectedGrade);
-        ModuleList moduleList = storage.storageModule.readDataFromFile();
-        moduleList.addModule(module);
-        System.out.println("Added " + module);
-        storage.storageModule.saveDataToFile(moduleList);
+        Module module = getModule(indexOfCode, indexOfName, indexOfMc, indexOfExpectedGrade);
+        moduleManager.addNewModule(module);
+        System.out.println("I have added this module:");
+        System.out.println(module);
     }
 
     /**
@@ -61,31 +63,55 @@ public class AddModuleCommand extends Command {
      * @return A new Module based on user's input.
      * @throws IllegalModuleException If user's input is not in the correct format.
      */
-    private Module getModule(int indexOfCode, int indexOfName, int indexOfExpectedGrade) throws IllegalModuleException {
+    private Module getModule(int indexOfCode, int indexOfName, int indexOfMc, int indexOfExpectedGrade)
+            throws IllegalModuleException {
         String code;
         String name;
+        int modularCredits;
         String expectedGrade;
         Module module;
-        boolean isInvalidInput = (indexOfCode == -1) || (indexOfName != -1 && indexOfCode > indexOfName)
-                || (indexOfName == -1 && indexOfExpectedGrade != -1)
-                || (indexOfExpectedGrade != -1
-                && (indexOfName > indexOfExpectedGrade || indexOfCode > indexOfExpectedGrade));
-        if (isInvalidInput) {
+
+        boolean isValidIndexes = isValidIndexes(indexOfCode, indexOfName, indexOfMc, indexOfExpectedGrade);
+
+        if (!isValidIndexes) {
             throw new IllegalModuleException();
         }
-        if (indexOfName != -1 && indexOfExpectedGrade != -1) {
-            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
-            name = commandArgs.substring(indexOfName + 2, indexOfExpectedGrade).strip();
-            expectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).strip();
-            module = new Module(code, name, expectedGrade);
-        } else if (indexOfName != -1) {
+
+        if (indexOfName == -1 && indexOfMc == -1 && indexOfExpectedGrade == -1) {
+            code = commandArgs.substring(indexOfCode + 2).strip();
+            module = new Module(code);
+        } else if (indexOfMc == -1 && indexOfExpectedGrade == -1) {
             code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
             name = commandArgs.substring(indexOfName + 2).strip();
             module = new Module(code, name);
-        } else { // indexOfName == -1
-            code = commandArgs.substring(indexOfCode + 2).strip();
-            module = new Module(code);
+        } else if (indexOfExpectedGrade == -1) {
+            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
+            name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
+            modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3).strip());
+            module = new Module(code, name, modularCredits);
+        } else {
+            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
+            name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
+            modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3, indexOfExpectedGrade).strip());
+            expectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).strip().toUpperCase();
+            module = new Module(code, name, modularCredits, expectedGrade);
         }
+
         return module;
+    }
+
+    private boolean isValidIndexes(int indexOfCode, int indexOfName, int indexOfMc, int indexOfExpectedGrade) {
+        boolean hasCode = indexOfCode != -1;
+        boolean isValidCodeOnly = (indexOfName == -1) && (indexOfMc == -1) && (indexOfExpectedGrade == -1);
+        boolean isValidCodeAndName = (indexOfName != -1) && (indexOfMc == -1) && (indexOfExpectedGrade == -1)
+                && (indexOfName > indexOfCode);
+        boolean isValidCodeNameAndMc = (indexOfName != -1) && (indexOfMc != -1) && (indexOfExpectedGrade == -1)
+                && (indexOfName > indexOfCode) && (indexOfMc > indexOfName);
+        boolean isValidCodeNameMcAndGrade = (indexOfName != -1) && (indexOfMc != -1) && (indexOfExpectedGrade != -1)
+                && (indexOfName > indexOfCode) && (indexOfMc > indexOfName) && (indexOfExpectedGrade > indexOfMc);
+
+        boolean isValidIndexes = hasCode && (isValidCodeOnly || isValidCodeAndName
+                || isValidCodeNameAndMc || isValidCodeNameMcAndGrade);
+        return isValidIndexes;
     }
 }

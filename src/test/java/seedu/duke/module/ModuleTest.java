@@ -22,11 +22,21 @@ class ModuleTest {
     }
 
     @Test
-    void getExpectedGrade_newModuleSpecifyingCodeNameAndGrade_specifiedGrade() {
+    void getModularCredits_newModuleSpecifyingCodeNameAndMc_specifiedMc() {
         String moduleCode = "CS2113T";
         String moduleName = "Software Engineering & Object-Oriented Programming";
-        String expectedGrade = "A-";
-        Module module = new Module(moduleCode, moduleName, expectedGrade);
+        int modularCredits = 4;
+        Module module = new Module(moduleCode, moduleName, modularCredits);
+        assertEquals(modularCredits, module.getModularCredits());
+    }
+
+    @Test
+    void getExpectedGrade_newModuleSpecifyingCodeNameMcAndGrade_specifiedGrade() {
+        String moduleCode = "CS2113T";
+        String moduleName = "Software Engineering & Object-Oriented Programming";
+        int modularCredits = 4;
+        String expectedGrade = "A";
+        Module module = new Module(moduleCode, moduleName, modularCredits, expectedGrade);
         assertEquals(expectedGrade, module.getExpectedGrade());
     }
 
@@ -53,20 +63,36 @@ class ModuleTest {
     void setExpectedGrade_newModuleChangeToNewGrade_newGrade() {
         String moduleCode = "CS2113T";
         String moduleName = "Software Engineering & Object-Oriented Programming";
-        String expectedGrade = "A-";
-        Module module = new Module(moduleCode, moduleName, expectedGrade);
-        String newExpectedGrade = "A";
+        int modularCredits = 4;
+        String expectedGrade = "A";
+        Module module = new Module(moduleCode, moduleName, modularCredits, expectedGrade);
+        String newExpectedGrade = "A-";
         module.setExpectedGrade(newExpectedGrade);
         assertEquals(newExpectedGrade, module.getExpectedGrade());
+    }
+
+    @Test
+    void setModularCredits_newModuleChangeToNewMc_newMc() {
+        String moduleCode = "CS2113T";
+        String moduleName = "Software Engineering & Object-Oriented Programming";
+        int modularCredits = 3;
+        Module module = new Module(moduleCode, moduleName, modularCredits);
+        int newModularCredits = 4;
+        module.setModularCredits(newModularCredits);
+        assertEquals(newModularCredits, module.getModularCredits());
     }
 
     @Test
     void testToString() {
         String moduleCode = "CS2113T";
         String moduleName = "Software Engineering & Object-Oriented Programming";
+        int modularCredits = 4;
         String expectedGrade = "A";
-        String moduleStringRepresentation = moduleCode + " | " + moduleName + " | Expected grade: " + expectedGrade;
-        Module module = new Module(moduleCode, moduleName, expectedGrade);
-        assertEquals(moduleStringRepresentation, module.toString());
+        Module module = new Module(moduleCode, moduleName, modularCredits, expectedGrade);
+        String expectedString = "CS2113T | Software Engineering & Object-Oriented Programming | MC: 4"
+                + " | Expected grade: A";
+        assertEquals(expectedString, module.toString());
     }
+
+
 }
