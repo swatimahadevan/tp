@@ -2,6 +2,7 @@ package seedu.duke.module;
 
 import java.util.HashMap;
 
+//@@author nvbinh15
 public class GradePoints {
     static HashMap<String, Double> gradePoints = new HashMap<>();
 

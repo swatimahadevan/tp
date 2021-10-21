@@ -3,6 +3,7 @@ package seedu.duke.parser.module;
 import seedu.duke.exceptions.StorageException;
 import seedu.duke.module.Module;
 
+//@@author nvbinh15
 public class ParserModule {
 
     public static String formatModuleToStore(Module module) {

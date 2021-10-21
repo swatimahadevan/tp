@@ -7,7 +7,9 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
+//@@author nvbinh15
 public class GetCapCommand extends Command {
+    public static final String MESSAGE_EXPECTED_CAP = "Your expected CAP is: ";
     private static ModuleManager moduleManager = new ModuleManager();
 
     public GetCapCommand() {
@@ -17,7 +19,7 @@ public class GetCapCommand extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
-        System.out.print("Your expected CAP is: ");
+        System.out.print(MESSAGE_EXPECTED_CAP);
         System.out.println(String.format("%,.2f", moduleManager.getExpectedCap()));
     }
 }
