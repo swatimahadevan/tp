@@ -79,7 +79,8 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
             printIndexWithSuffix(index);
             System.out.println("You consumed  " + listRecord.getFoodName()
                                 + " , which has a calorie count of : "
-                                + listRecord.getCalorieCount() + "!");
+                                + listRecord.getCalorieCount()
+                    + ((listRecord.getDateIAte() != null) ? " on " + listRecord.getDateIAte() + "!" : "!"));
             index++;
             calorieSum += listRecord.getCalorieCount();
         }

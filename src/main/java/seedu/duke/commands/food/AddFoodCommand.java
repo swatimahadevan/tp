@@ -22,7 +22,7 @@ public class AddFoodCommand extends Command {
     private String inputString; //name + calorie
 
     public AddFoodCommand() {
-        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
+        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DATE}";
     }
 
     public AddFoodCommand(String inputString) {

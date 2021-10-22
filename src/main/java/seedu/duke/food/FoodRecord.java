@@ -1,7 +1,10 @@
 package seedu.duke.food;
 
 import seedu.duke.constants.Messages;
-import seedu.duke.ui.Ui;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 /**
  *  A food record simply records the name and calorie count of a food item.
@@ -12,10 +15,19 @@ import seedu.duke.ui.Ui;
 public class FoodRecord {
     private String foodName;
     private Integer calorieCount;
+    private LocalDate dateIAte = null;
 
     public FoodRecord(String foodName, Integer calorieCount) {
         this.foodName = foodName;
         this.calorieCount = calorieCount;
+    }
+
+    public void setDateIAte(LocalDate dateIAte) {
+        this.dateIAte = dateIAte;
+    }
+
+    public LocalDate getDateIAte() {
+        return dateIAte;
     }
 
     public String getFoodName() {
@@ -34,7 +46,14 @@ public class FoodRecord {
     }
 
     public String toSaveListFormat() {
-        return foodName + "|" + calorieCount + "\n";
+        return foodName + "|" + calorieCount + stringLocalDateIfExist() + "\n";
     }
 
+    public String stringLocalDateIfExist() {
+        if (this.dateIAte != null) {
+            String printDateWithFormat = dateIAte.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            return "|" + printDateWithFormat;
+        }
+        return "";
+    }
 }

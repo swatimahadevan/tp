@@ -19,8 +19,9 @@ public class Messages {
 
     // Food partition
     public static final String PRINT_DONE_CLEAR_LIST = "Cleared food record list for today!";
-    public static final String PRINT_ADD_FOOD_SYNTAX = "Please enter the name of the food [TEXT] "
-                                                        + "followed by the calorie count [INT]";
+    public static final String PRINT_ADD_FOOD_SYNTAX = "Please enter the name of the food n/ [TEXT] "
+                                                        + "followed by the calorie count c/ [INT]"
+                                                        + "optional d/ {DD-MM-YYYY}";
     public static final String NON_NULL_INPUT = "Please do not leave fields empty!";
     public static final String RECORD_ATTRIBUTE_DIVIDER = " : ";
     public static final String LIST_PROPER_FEATURE  =  "Please list a proper feature tagged with ";
