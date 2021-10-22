@@ -133,6 +133,22 @@ The sequence diagram below summarizes how listing modules work:
 
 ### 4.2 Zoom related features
 
+### 4.2.1 Showing all available zoom links
+
+This command is implemented by the `ShowZoomLinks` class. The basic functionality of this command is to access the data stored on the local drive to display the relevant zoom links along with the module codes.
+The `ShowZoomLinks` class extends `Command`.
+
+Syntax: `zoom list`
+
+### 4.2.2 Adding a new zoom link
+
+This command is implemented by the `AddZoomCommand` class. The basic functionality of this command is to write a new zoom link to a local storage file and associate it to the relevant module code. The `AddZoomCommand`
+class extends `Command`.
+
+Syntax: `zoom add LINK MODULE_CODE`
+Example: `zoom add nus.sg/testlink ABC101`
+
+
 ### 4.3 Calendar-related Features
 
 #### 4.3.1 Displaying the calendar
