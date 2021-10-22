@@ -8,8 +8,8 @@ import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
+//@@author ngnigel99
 public class FoodTest {
     private Parser parser = new Parser();
 

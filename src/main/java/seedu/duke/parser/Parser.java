@@ -203,6 +203,7 @@ public class Parser {
         }
     }
 
+    //@@author ngnigel99
     /**
      * Returns appropriate command related to Food based  on user's input.
      *
@@ -232,6 +233,7 @@ public class Parser {
             throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
         }
     }
+    //@@author ngnigel99
 
     //@@author nvbinh15
     /**
@@ -309,6 +311,7 @@ public class Parser {
         return input.trim().split(" ").length;
     }
 
+    //@@author ngnigel99
     /**
      * Returns a string representing a data block, separated by 2 dividers.
      * For example, n/ [DATA_1] c/ [DATA_2], if n/ is passed, DATA_1 would be returned.
@@ -417,6 +420,8 @@ public class Parser {
         String data = code + "|" + name + "|" + expectedGrade + "|" + modularCredits + "\n";
         return data;
     }
+
+    //@@author ngnigel99
 
     public static Module retrieveStoredModule(String data) throws StorageException {
         String[] tokens = data.split("\\|");
