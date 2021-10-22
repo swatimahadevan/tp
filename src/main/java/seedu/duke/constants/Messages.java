@@ -14,7 +14,8 @@ public class Messages {
     public static final String NEW_LINE = LINE_SEPARATOR + LINE_PREFIX;
     public static final String HORIZONTAL_LINE = LINE_PREFIX + "__________________________________________________";
 
-    public static final String MESSAGE_GREETING = LINE_PREFIX + "Hello! I'm Click" + NEW_LINE + "What can I do for you?";
+    public static final String MESSAGE_GREETING = LINE_PREFIX + "Hello! I'm Click"
+            + NEW_LINE + "What can I do for you?";
     public static final String MESSAGE_GOODBYE = LINE_PREFIX + "Bye. Hope to see you again soon!";
 
     // Food partition

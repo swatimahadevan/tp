@@ -367,7 +367,7 @@ public class Parser {
      * @author ngnigel99
      */
     public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
-            ArgumentsNotFoundException{
+            ArgumentsNotFoundException {
         try {
             FoodRecord recordToAdd = null;
             if (getWordCount(input) < FOOD_MINIMUM_PARAMETER) {
