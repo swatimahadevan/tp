@@ -20,6 +20,7 @@ public class CommandConstants {
     public static final String COMMAND_MODULE = "module";
     public static final String COMMAND_SUFFIX_DELETE = "delete";
     public static final String COMMAND_SUFFIX_EDIT = "edit";
+    public static final String COMMAND_SUFFIX_CAP = "cap";
 
     public static final String COMMAND_HElP = "help";
     public static final String COMMAND_ZOOM = "zoom";

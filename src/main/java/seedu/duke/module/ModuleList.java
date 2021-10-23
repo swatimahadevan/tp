@@ -5,7 +5,7 @@ import java.util.ArrayList;
 //@@author nvbinh15
 
 /**
- * A class that deals with operations related to Modules.
+ * A class that represents the list of Modules.
  */
 public class ModuleList {
     private ArrayList<Module> modules;

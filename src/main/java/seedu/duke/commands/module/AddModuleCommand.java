@@ -4,7 +4,6 @@ import seedu.duke.commands.Command;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.module.IllegalModuleException;
 import seedu.duke.module.Module;
-import seedu.duke.module.ModuleList;
 import seedu.duke.module.ModuleManager;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -21,6 +20,9 @@ public class AddModuleCommand extends Command {
     ModuleManager moduleManager = new ModuleManager();
     String commandArgs;
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public AddModuleCommand() {
         syntax = "module add c/ [MODULE_CODE] n/ [MODULE_NAME] e/ [EXPECTED_GRADE]";
     }
@@ -60,6 +62,7 @@ public class AddModuleCommand extends Command {
      *
      * @param indexOfCode Index of Module code.
      * @param indexOfName Index of Module name.
+     * @param indexOfMc Index of the modular credits.
      * @param indexOfExpectedGrade Index of Module expected grade.
      * @return A new Module based on user's input.
      * @throws IllegalModuleException If user's input is not in the correct format.
@@ -101,6 +104,15 @@ public class AddModuleCommand extends Command {
         return module;
     }
 
+    /**
+     * Checks if the indexes of the parameters from user's input is correct or not.
+     *
+     * @param indexOfCode Index of Module code.
+     * @param indexOfName Index of Module name.
+     * @param indexOfMc Index of the modular credits.
+     * @param indexOfExpectedGrade Index of Module expected grade.
+     * @return true if the indexes are valid, false otherwise.
+     */
     private boolean isValidIndexes(int indexOfCode, int indexOfName, int indexOfMc, int indexOfExpectedGrade) {
         boolean hasCode = indexOfCode != -1;
         boolean isValidCodeOnly = (indexOfName == -1) && (indexOfMc == -1) && (indexOfExpectedGrade == -1);
