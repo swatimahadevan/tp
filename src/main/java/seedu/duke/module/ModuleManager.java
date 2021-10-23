@@ -8,6 +8,10 @@ import seedu.duke.storage.StorageModule;
 import java.io.IOException;
 
 //@@author nvbinh15
+
+/**
+ * A class that deals with the operations related to Modules.
+ */
 public class ModuleManager {
     public static final String MESSAGE_DELETE_MODULE = "I have deleted this module:";
 
@@ -23,6 +27,13 @@ public class ModuleManager {
 
     }
 
+    /**
+     * Adds a new module to the ModuleList.
+     *
+     * @param module The Module to be added.
+     * @throws IOException If there is an exceptions when reading or writing data to file.
+     * @throws IllegalExpectedGradeException If the expected grade of the Module is illegal.
+     */
     public void addNewModule(Module module) throws IOException, IllegalExpectedGradeException {
         ModuleList moduleList = storageModule.readDataFromFile();
         String expectedGrade = module.getExpectedGrade();
@@ -33,6 +44,13 @@ public class ModuleManager {
         storageModule.saveDataToFile(moduleList);
     }
 
+    /**
+     * Deletes a module from the ModuleList.
+     *
+     * @param moduleIndex Index of the Module to be deleted.
+     * @throws IOException If there is an exceptions when reading or writing data to file.
+     * @throws IllegalModuleIndexException If the index of the Module is illegal.
+     */
     public void deleteModule(int moduleIndex) throws IOException, IllegalModuleIndexException {
         ModuleList moduleList = storageModule.readDataFromFile();
         boolean isValidIndex = (moduleIndex >= 0) && (moduleIndex < moduleList.getNumberOfModules());
@@ -45,6 +63,12 @@ public class ModuleManager {
         storageModule.saveDataToFile(moduleList);
     }
 
+    /**
+     * Returns the expected Cumulative Average Point (CAP).
+     *
+     * @return The expected CAP.
+     * @throws IOException If there is an exceptions when reading data to file.
+     */
     public double getExpectedCap() throws IOException {
         double totalPoints = 0.0;
         totalModularCredits = 0;

@@ -19,6 +19,9 @@ public class DeleteModuleCommand extends Command {
 
     private static ModuleManager moduleManager = new ModuleManager();
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public DeleteModuleCommand() {
         syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
     }
@@ -44,7 +47,6 @@ public class DeleteModuleCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws ClickException, Exception {
-        ModuleList moduleList = storage.storageModule.readDataFromFile();
         int moduleIndex = Integer.parseInt(commandArgs.strip()) - 1;
         moduleManager.deleteModule(moduleIndex);
     }
