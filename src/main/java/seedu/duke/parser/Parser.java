@@ -52,6 +52,7 @@ import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
 import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CAP;
 import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
 import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
@@ -251,7 +252,7 @@ public class Parser {
             return new ListModuleCommand();
         case COMMAND_SUFFIX_DELETE:
             return new DeleteModuleCommand(moduleCommandAndArgs[1]);
-        case "cap":
+        case COMMAND_SUFFIX_CAP:
             return new GetCapCommand();
         default:
             throw new ClickException();
