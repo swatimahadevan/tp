@@ -11,6 +11,7 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
+//@@author ngnigel99
 /**
  * Command to add a food item to the existing  list.
  * prefix would be food add [FOOD_NAME] [CALORIE_COUNT(kcal)]
@@ -21,7 +22,7 @@ public class AddFoodCommand extends Command {
     private String inputString; //name + calorie
 
     public AddFoodCommand() {
-        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
+        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DATE}";
     }
 
     public AddFoodCommand(String inputString) {

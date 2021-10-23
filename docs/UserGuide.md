@@ -54,8 +54,11 @@ Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 
 - Words in `UPPER_CASE` are the parameters to be supplied by you.
   
-- The `INDEX` used in various commands must be a number specifying the order of an item in the list of items (1-based).
+- The `INDEX` used in various commands must be a number specifying the order of an item in the list of items.
+The smallest index would naturally be 1. (1-based)
   
+- The `{}` wrapping indicates an optional parameter.
+
 - Parameters cannot be reordered.
   Example: If the command specifies `module add c/MODULE_CODE n/MODULE_NAME`, keying in `module add n/MODULE_NAME c/MODULE_CODE` will result in an invalid command.
 
@@ -281,7 +284,7 @@ Random Observation
 ### 3.5.1 Adding a food item: `food add`
 Adds a food item with name and calorie count.
 
-Format: `food add n/FOOD_NAME n/KCALORIE`
+Format: `food add n/FOOD_NAME n/KCALORIE d/ {DATE}`
 
 Example: 
 
