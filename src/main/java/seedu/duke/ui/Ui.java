@@ -161,6 +161,15 @@ public class Ui {
         System.out.println("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
     }
 
+    /**
+     * Prints message to indicate that the entry has been deleted.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printDeletedEntryMessage() {
+        System.out.println("Great you have deleted the entry");
+    }
+
 
     //Schedule
     /**
