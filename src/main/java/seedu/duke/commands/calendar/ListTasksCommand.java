@@ -12,7 +12,7 @@ public class ListTasksCommand extends Command {
 
     public ListTasksCommand() {
         this.helpMessage = "List all tasks";
-        this.syntax = "calendar list";
+        this.syntax = "calendar list task";
     }
 
     /**
