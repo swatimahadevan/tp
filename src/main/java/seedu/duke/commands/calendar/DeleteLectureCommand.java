@@ -19,7 +19,7 @@ public class DeleteLectureCommand extends Command {
     private String userInput;
 
     public DeleteLectureCommand() {
-        syntax = "calendar delete TASK_INDEX";
+        syntax = "calendar delete lec LECTURE_INDEX";
     }
 
     /**
@@ -31,8 +31,6 @@ public class DeleteLectureCommand extends Command {
     public DeleteLectureCommand(int index, String userInput) {
         this.index = index;
         this.userInput = userInput;
-        helpMessage = "Delete task from calendar";
-        syntax = "calendar delete TASK_INDEX";
     }
 
     /**
