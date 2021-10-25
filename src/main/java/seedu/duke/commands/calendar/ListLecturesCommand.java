@@ -1,18 +1,20 @@
 package seedu.duke.commands.calendar;
 
 import seedu.duke.commands.Command;
-import seedu.duke.storage.Storage;
-import seedu.duke.storage.StorageTasks;
+import seedu.duke.schedule.lecture.LectureList;
 import seedu.duke.schedule.task.TaskList;
+import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageLecture;
+import seedu.duke.storage.StorageTasks;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
-public class ListTasksCommand extends Command {
+public class ListLecturesCommand extends Command {
 
-    public ListTasksCommand() {
-        this.helpMessage = "List all tasks";
-        this.syntax = "calendar list task";
+    public ListLecturesCommand() {
+        this.helpMessage = "List all lectures";
+        this.syntax = "calendar list lec";
     }
 
     /**
@@ -24,7 +26,7 @@ public class ListTasksCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
-        TaskList tasks = StorageTasks.readTaskList();
-        Ui.printTaskList(tasks.getTaskList());
+        LectureList lectures = StorageLecture.readLectureList();
+        Ui.printLectureList(lectures.getLectureList());
     }
 }

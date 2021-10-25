@@ -3,7 +3,7 @@ package seedu.duke.commands;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.commands.calendar.AddTodoCommand;
-import seedu.duke.exceptions.InvalidDateException;
+import seedu.duke.exceptions.calendar.InvalidDateException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

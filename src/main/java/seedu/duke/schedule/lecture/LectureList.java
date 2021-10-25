@@ -1,5 +1,7 @@
 package seedu.duke.schedule.lecture;
 
+import seedu.duke.schedule.task.Task;
+
 import java.util.ArrayList;
 
 public class LectureList {
@@ -21,5 +23,4 @@ public class LectureList {
     public void deleteLecture(int index) {
         lectures.remove(index - 1);
     }
-
 }

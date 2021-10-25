@@ -1,6 +1,6 @@
 package seedu.duke.parser.schedule;
 
-import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.parser.Parser;
 
 import java.text.SimpleDateFormat;
@@ -176,11 +176,11 @@ public class ParserSchedule {
                 throwExceptionNoModuleName(lectureArguments, i);
                 break;
             case "s/":
-                isDateEndPresent = true;
+                isDateStartPresent = true;
                 throwExceptionNoStartDate(lectureArguments, i);
                 break;
-            case "t/":
-                isDateStartPresent = true;
+            case "e/":
+                isDateEndPresent = true;
                 throwExceptionNoEndDate(lectureArguments, i);
                 break;
             default:
@@ -188,15 +188,6 @@ public class ParserSchedule {
         }
         if (isModulePresent  && isDateEndPresent && isDateStartPresent) {
             return parseLectureArgumentsArray(input);
-        }
-        if (!isModulePresent && isDateEndPresent && isDateStartPresent) {
-            throw new IncorrectNumberOfArgumentsException("Module name argument 'm/' not found!");
-        }
-        if (isModulePresent && isDateEndPresent && !isDateStartPresent) {
-            throw new IncorrectNumberOfArgumentsException("Start date argument 's/' not found!");
-        }
-        if (isModulePresent && !isDateEndPresent && isDateStartPresent) {
-            throw new IncorrectNumberOfArgumentsException("End date argument 's/' not found!");
         } else {
             throw new IncorrectNumberOfArgumentsException("Incorrect number of arguments!");
         }

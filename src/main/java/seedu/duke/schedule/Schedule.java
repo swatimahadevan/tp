@@ -1,6 +1,7 @@
 package seedu.duke.schedule;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -105,13 +106,22 @@ public class Schedule {
     private static void addLectureToCalendarDay(String moduleName,
         String[] dateFromArguments, String[] dateToArguments,
         int month, int year, ArrayList<ArrayList<String>> calendarLectures) {
-        if ((month >= Integer.parseInt(dateFromArguments[1]) && month <= Integer.parseInt(dateToArguments[1]))
-                && (year >= Integer.parseInt(dateFromArguments[2]) && year <= Integer.parseInt(dateToArguments[2]))) {
-            int date = Integer.parseInt(dateFromArguments[0]);
-            IntStream.iterate(date, i -> i < calendarLectures.size(),
-                i -> i + 7).filter(i -> i <= Integer.parseInt(dateToArguments[0]))
-                    .forEachOrdered(i -> calendarLectures.get(i).add(moduleName));
-
+        int paramDate = Integer.parseInt(dateFromArguments[0]);
+        int paramMonth = Integer.parseInt(dateFromArguments[1]);
+        int paramYear = Integer.parseInt(dateFromArguments[2]);
+        LocalDate localDate = LocalDate.of(paramYear, paramMonth, paramDate);
+        java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+        if ((month >= Integer.parseInt(dateFromArguments[1])
+                && (month <= Integer.parseInt(dateToArguments[1])))
+                && (year >= Integer.parseInt(dateFromArguments[2]))
+                && (year <= Integer.parseInt(dateToArguments[2]))) {
+            YearMonth yearMonthObject = YearMonth.of(year, month);
+            int daysInMonth = yearMonthObject.lengthOfMonth();
+            for (int i = 1; i <= daysInMonth; i++) {
+                if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek) {
+                    calendarLectures.get(i).add(moduleName);
+                }
+            }
         }
     }
 

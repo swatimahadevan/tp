@@ -1,4 +1,4 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.calendar;
 
 public class IncorrectNumberOfArgumentsException extends Exception {
     public IncorrectNumberOfArgumentsException(String message) {

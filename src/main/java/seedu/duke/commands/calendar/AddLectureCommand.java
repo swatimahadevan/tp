@@ -7,7 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.InvalidDateException;
+import seedu.duke.exceptions.calendar.DuplicateTaskException;
+import seedu.duke.exceptions.calendar.InvalidDateException;
 import seedu.duke.exceptions.calendar.ModuleNotFoundException;
 import seedu.duke.module.ModuleList;
 import seedu.duke.schedule.lecture.Lecture;
@@ -15,16 +16,24 @@ import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageLecture;
 import seedu.duke.ui.Ui;
 
+//@@author swatimahadevan
+//@@author
 /**
  * Class to execute adding of module lecture.
- *
- * @author swatimahadevan
  */
 public class AddLectureCommand extends Command {
     private ArrayList<String> argumentsLecture;
 
     public AddLectureCommand() {
         syntax = "calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)";
+    }
+
+    public static void checkIfDuplicate(Lecture lecture) throws InvalidDateException, DuplicateTaskException {
+        for (int i = 0; i < Storage.lectureList.getLectureList().size(); i++) {
+            if (lecture.getModuleName().equals(Storage.lectureList.getLectureList().get(i).getModuleName())) {
+                throw new DuplicateTaskException("A lecture for this module has already been added!");
+            }
+        }
     }
 
     /**
@@ -61,7 +70,9 @@ public class AddLectureCommand extends Command {
      * @throws ModuleNotFoundException in case module has not been added before.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException, ModuleNotFoundException, InvalidDateException {
+
+    public void execute(Ui ui, Storage storage) throws IOException,
+            ModuleNotFoundException, InvalidDateException, DuplicateTaskException {
         ModuleList moduleList = storage.storageModule.readModulesFromFile();
         String module = argumentsLecture.get(0).trim();
         boolean isModuleInList = false;
@@ -76,6 +87,7 @@ public class AddLectureCommand extends Command {
             Lecture lecture = new Lecture(argumentsLecture.get(0), dateStartStringFormat, dateEndStringFormat);
             checkIfDateValid(dateStartStringFormat);
             checkIfDateValid(dateEndStringFormat);
+            checkIfDuplicate(lecture);
             storage.lectureList.addLecture(lecture);
             System.out.println("Added lecture!");
         } else {

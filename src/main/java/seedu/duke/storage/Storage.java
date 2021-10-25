@@ -45,7 +45,15 @@ public class Storage {
     public CollectionOfNotes collectionOfNotes = StorageNotes.readCollectionOfNotes();
     public CollectionOfEntries collectionOfEntries = StorageEntries.readEntries();
     public StorageModule storageModule = new StorageModule();
-    public LectureList lectureList = StorageLecture.readLectureList();
+    public static LectureList lectureList;
+
+    static {
+        try {
+            lectureList = StorageLecture.readLectureList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Storage() throws IOException {
     }

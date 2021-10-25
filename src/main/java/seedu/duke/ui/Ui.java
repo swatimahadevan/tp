@@ -1,9 +1,10 @@
 package seedu.duke.ui;
 
 import seedu.duke.commands.calendar.DisplayCommand;
-import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
+import seedu.duke.schedule.lecture.Lecture;
 import seedu.duke.schedule.task.Task;
 import seedu.duke.storage.Storage;
 
@@ -199,6 +200,18 @@ public class Ui {
         String month = String.valueOf(currentYearMonth.getMonthValue());
         String year = String.valueOf(currentYearMonth.getYear());
         new DisplayCommand("calendar " + month + "-" + year).execute(ui, storage);
+    }
+
+    public static void printLectureList(ArrayList<Lecture> lectures) {
+        System.out.println("Here is your list of lectures:");
+        if (!lectures.isEmpty()) {
+            int i = 1;
+            for (Lecture item : lectures) {
+                System.out.println((i++) + ". " + item);
+            }
+        } else {
+            System.out.println("NO Lectures!");
+        }
     }
 
     /**
