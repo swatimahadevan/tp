@@ -36,15 +36,18 @@ public class ListModuleCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws ClickException, Exception {
         ModuleList moduleList = storage.storageModule.readModulesFromFile();
+        ui.printLine();
         if (moduleList.getNumberOfModules() <= 0) {
-            System.out.println(MESSAGE_NO_MODULE);
+            ui.printMessage(MESSAGE_NO_MODULE);
+            ui.printLine();
             return;
         }
-        System.out.println(MESSAGE_LISTING_MODULES);
+        ui.printMessage(MESSAGE_LISTING_MODULES);
         int i = 1;
         for (Module m : moduleList.getModules()) {
-            System.out.println(i + ". " + m);
+            ui.printMessage(i + ". " + m);
             i++;
         }
+        ui.printLine();
     }
 }
