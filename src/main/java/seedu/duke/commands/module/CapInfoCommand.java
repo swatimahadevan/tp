@@ -8,7 +8,7 @@ import seedu.duke.module.ModuleManager;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
-import javax.sound.midi.Soundbank;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CapInfoCommand extends Command {
@@ -21,7 +21,7 @@ public class CapInfoCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage) throws ClickException {
+    public void execute(Ui ui, Storage storage) throws ClickException, IOException {
         System.out.println("What is your current cumulative average point (CAP)?");
         Scanner scanner = new Scanner(System.in);
         double currentCap = Double.parseDouble(ui.getUserInput(scanner));

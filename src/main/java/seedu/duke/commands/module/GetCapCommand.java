@@ -30,9 +30,10 @@ public class GetCapCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
+        double expectedCap = moduleManager.getExpectedCap();
         System.out.println("Your current CAP is " + moduleManager.getCurrentCap()
                 + " with the total of MCs contributing to your CAP is " + moduleManager.getTotalMcTaken());
         System.out.print(MESSAGE_EXPECTED_CAP);
-        System.out.println(String.format(CAP_FORMAT, moduleManager.getExpectedCap()));
+        System.out.println(String.format(CAP_FORMAT, expectedCap));
     }
 }

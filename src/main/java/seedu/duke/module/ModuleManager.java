@@ -6,6 +6,7 @@ import seedu.duke.parser.module.ParserModule;
 import seedu.duke.storage.StorageModule;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 //@@author nvbinh15
 
@@ -36,13 +37,13 @@ public class ModuleManager {
      * @throws IllegalExpectedGradeException If the expected grade of the Module is illegal.
      */
     public void addNewModule(Module module) throws IOException, IllegalExpectedGradeException {
-        ModuleList moduleList = storageModule.readDataFromFile();
+        ModuleList moduleList = storageModule.readModulesFromFile();
         String expectedGrade = module.getExpectedGrade();
         if (!gradePoints.isValidGrade(expectedGrade)) {
             throw new IllegalExpectedGradeException();
         }
         moduleList.addModule(module);
-        storageModule.saveDataToFile(moduleList);
+        storageModule.saveModuleToFile(moduleList);
     }
 
     /**
@@ -53,7 +54,7 @@ public class ModuleManager {
      * @throws IllegalModuleIndexException If the index of the Module is illegal.
      */
     public void deleteModule(int moduleIndex) throws IOException, IllegalModuleIndexException {
-        ModuleList moduleList = storageModule.readDataFromFile();
+        ModuleList moduleList = storageModule.readModulesFromFile();
         boolean isValidIndex = (moduleIndex >= 0) && (moduleIndex < moduleList.getNumberOfModules());
         if (!isValidIndex) {
             throw new IllegalModuleIndexException();
@@ -61,12 +62,13 @@ public class ModuleManager {
         System.out.println(MESSAGE_DELETE_MODULE);
         System.out.println(moduleList.getModuleByIndex(moduleIndex));
         moduleList.removeModuleByIndex(moduleIndex);
-        storageModule.saveDataToFile(moduleList);
+        storageModule.saveModuleToFile(moduleList);
     }
 
-    public static void setCapInfo(double cap, int mc) {
+    public static void setCapInfo(double cap, int mc) throws IOException {
         currentCap = cap;
         totalMcTaken = mc;
+        storageModule.saveCapInfoToFile(cap, mc);
     }
 
     public double getCurrentCap() {
@@ -84,9 +86,13 @@ public class ModuleManager {
      * @throws IOException If there is an exceptions when reading data to file.
      */
     public double getExpectedCap() throws IOException {
+        ArrayList<Double> capAndMc = storageModule.readCapInfoFromFile();
+        assert capAndMc.size() == 2;
+        currentCap = capAndMc.get(0);
+        totalMcTaken = capAndMc.get(1).intValue();
         double totalPoints = currentCap * totalMcTaken;
         int totalModularCredits = totalMcTaken;
-        ModuleList moduleList = storageModule.readDataFromFile();
+        ModuleList moduleList = storageModule.readModulesFromFile();
         for (Module module : moduleList.getModules()) {
             double point = gradePoints.getPoint(module.getExpectedGrade());
             if (point != -1) {

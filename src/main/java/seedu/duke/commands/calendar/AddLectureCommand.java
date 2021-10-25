@@ -62,7 +62,7 @@ public class AddLectureCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException, ModuleNotFoundException, InvalidDateException {
-        ModuleList moduleList = storage.storageModule.readDataFromFile();
+        ModuleList moduleList = storage.storageModule.readModulesFromFile();
         String module = argumentsLecture.get(0).trim();
         boolean isModuleInList = false;
         for (int i = 0; i < moduleList.getNumberOfModules(); i++) {
