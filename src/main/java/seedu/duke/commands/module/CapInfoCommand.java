@@ -33,8 +33,8 @@ public class CapInfoCommand extends Command {
         if (totalMcTaken < 0) {
             throw new IllegalTotalMcTakenException();
         }
-        System.out.println("Thank you for your information. " +
-                "You can view your expected CAP by keying in cap expected");
+        System.out.println("Thank you for your information. "
+                + "You can view your expected CAP by keying in cap expected");
         moduleManager.setCapInfo(currentCap, totalMcTaken);
     }
 }
