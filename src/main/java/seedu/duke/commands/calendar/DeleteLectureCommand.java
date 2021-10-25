@@ -1,22 +1,25 @@
 package seedu.duke.commands.calendar;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.calendar.CalendarIndexNotFoundException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.LectureIndexNotFoundException;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageLecture;
 import seedu.duke.storage.StorageTasks;
 import seedu.duke.ui.Ui;
-import static seedu.duke.constants.Messages.DELETED_TASK;
 
 import java.io.IOException;
 
+import static seedu.duke.constants.Messages.DELETED_TASK;
 
-public class DeleteTaskCommand extends Command {
+
+public class DeleteLectureCommand extends Command {
     private int index;
     private String userInput;
 
-    public DeleteTaskCommand() {
-        syntax = "calendar delete task TASK_INDEX";
+    public DeleteLectureCommand() {
+        syntax = "calendar delete lec LECTURE_INDEX";
     }
 
     /**
@@ -25,11 +28,9 @@ public class DeleteTaskCommand extends Command {
      * @param index index of task to be deleted
      * @param userInput input from user
      */
-    public DeleteTaskCommand(int index, String userInput) {
+    public DeleteLectureCommand(int index, String userInput) {
         this.index = index;
         this.userInput = userInput;
-        helpMessage = "Delete task from calendar";
-        syntax = "calendar delete TASK_INDEX";
     }
 
     /**
@@ -42,14 +43,14 @@ public class DeleteTaskCommand extends Command {
      * @throws IncorrectNumberOfArgumentsException in case of wrong number of arguments.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException,
-            CalendarIndexNotFoundException, IncorrectNumberOfArgumentsException {
-        if (this.index > storage.tasksList.getTaskList().size()) {
-            throw new CalendarIndexNotFoundException();
+    public void execute(Ui ui, Storage storage)
+            throws IOException, IncorrectNumberOfArgumentsException, LectureIndexNotFoundException {
+        if (this.index > storage.lectureList.getLectureList().size()) {
+            throw new LectureIndexNotFoundException();
         }
-        Storage.tasksList.deleteTask(this.index);
-        System.out.println(DELETED_TASK);
-        StorageTasks.writeTaskList(Storage.tasksList);
+        Storage.lectureList.deleteLecture(this.index);
+        System.out.println("Lecture has been deleted!");
+        StorageLecture.writeLectureList(Storage.lectureList);
     }
 
 }

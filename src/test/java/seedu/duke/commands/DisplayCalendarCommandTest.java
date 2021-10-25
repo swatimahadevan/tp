@@ -2,7 +2,7 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.calendar.DisplayCommand;
-import seedu.duke.exceptions.InvalidMonthException;
+import seedu.duke.exceptions.calendar.InvalidMonthException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
