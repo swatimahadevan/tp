@@ -46,26 +46,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
-import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_ENTRY;
-import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
-import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
-import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
-import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
-import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CAP;
-import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
-import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
-import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
-import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
-import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
+import static seedu.duke.constants.CommandConstants.*;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
@@ -198,6 +179,15 @@ public class Parser {
             }
         case COMMAND_MODULE:
             return getModuleCommand(commandArgs);
+        case COMMAND_CAP:
+            switch (commandArgs) {
+            case COMMAND_SUFFIX_EDIT:
+                return new CapInfoCommand();
+            case COMMAND_SUFFIX_EXPECTED:
+                return new GetCapCommand();
+            default:
+                throw new ClickException();
+            }
         case COMMAND_ZOOM:
             String[] zoomArgs = commandArgs.split(" ");
             switch (zoomArgs[0]) {
@@ -267,10 +257,6 @@ public class Parser {
             return new ListModuleCommand();
         case COMMAND_SUFFIX_DELETE:
             return new DeleteModuleCommand(moduleCommandAndArgs[1]);
-        case COMMAND_SUFFIX_CAP:
-            return new GetCapCommand();
-        case "info":
-            return new CapInfoCommand();
         default:
             throw new ClickException();
         }
