@@ -1,10 +1,10 @@
 package seedu.duke.storage;
 
+import seedu.duke.food.ReferenceList;
 import seedu.duke.food.WhatIAteList;
 import seedu.duke.journal.CollectionOfEntries;
 import seedu.duke.journal.CollectionOfNotes;
 import seedu.duke.logger.ClickLogger;
-import seedu.duke.schedule.lecture.Lecture;
 import seedu.duke.schedule.lecture.LectureList;
 import seedu.duke.schedule.task.TaskList;
 
@@ -17,19 +17,23 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class Storage {
 
-    /**
-     * Synchronised date with food record  list.
-     *
-     * @author ngnigel99
-     * */
-    private Date todaysDate;    //TODO sync date with file
     private String tasksFilePath;
+    public ReferenceList AsianDelights = new ReferenceList("food/", "TE_asian_delights.txt");
+    public ReferenceList CaiFan = new ReferenceList("food/", "TE_cai_fan.txt");
+    public ReferenceList ChickenRice = new ReferenceList("food/", "TE_chicken_rice.txt");
+    public ReferenceList HongKongCuisine = new ReferenceList("food/", "TE_hong_long_cuisine.txt");
+    public ReferenceList HungryBurger = new ReferenceList("food/", "TE_hungry_burger.txt");
+    public ReferenceList Indian = new ReferenceList("food/", "TE_indian.txt");
+    public ReferenceList NasiPadang = new ReferenceList("food/", "TE_nasi_padang.txt");
+    public ReferenceList RamenFish = new ReferenceList("food/", "TE_ramen_fish.txt");
+    public ReferenceList TaiwaneseCuisine = new ReferenceList("food/", "TE_taiwanese_cuisine.txt");
+    public ReferenceList Vegetarian = new ReferenceList("food/", "TE_vegetarian.txt");
+    public ReferenceList Western = new ReferenceList("food/", "TE_western.txt");
 
     public WhatIAteList whatIAteTodayList =  StorageFood.load();
     public static TaskList tasksList;
@@ -58,6 +62,7 @@ public class Storage {
     public Storage() throws IOException {
     }
 
+    //@@author ngnigel99
     /**
      * Creates directory if directory folderName is not found.
      * access modifier left empty for working in Storage.
@@ -81,6 +86,7 @@ public class Storage {
         System.out.println("adding " + folderName + " into repository...");
         Files.createDirectories(Paths.get(home + folderName));
     }
+    //@@author
 
     //@author swatim
     //Loads data in the form of ArrayList<String> data from the save file

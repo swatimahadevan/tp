@@ -12,20 +12,16 @@ import java.util.Date;
  *
  * @author ngnigel99
  */
-public class WhatIAteList extends ListOfRecords<FoodRecord> {
+public class WhatIAteList  {
 
-    private Date dayOfRecordList;
-
-    public WhatIAteList(Date dayOfRecordList) {
-        this.dayOfRecordList = dayOfRecordList;
-    }
+    private ArrayList<FoodRecord> whatIAteList = new ArrayList<>();
 
     //if date not given
     public WhatIAteList() {
     }
 
     public ArrayList<FoodRecord> getList() {
-        return list;
+        return whatIAteList;
     }
 
     /**
@@ -37,7 +33,7 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
      * @param isSilent checks whether to print Ui message
      */
     public void addToList(FoodRecord recordToAdd, boolean isSilent) {
-        super.addToList(recordToAdd);
+        whatIAteList.add(recordToAdd);
         if (!isSilent) {
             Ui.printAddRecord(recordToAdd);
 
@@ -71,11 +67,10 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
      *
      * @author ngnigel99
      */
-    @Override
     public void printList() {
         int index = 1;  //TODO integrate this with storage so it's not a magic number
         int calorieSum =  0;
-        for (FoodRecord listRecord : list) {
+        for (FoodRecord listRecord : whatIAteList) {
             printIndexWithSuffix(index);
             System.out.println("You consumed  " + listRecord.getFoodName()
                                 + " , which has a calorie count of : "
@@ -88,9 +83,8 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
         System.out.println("You consumed " + calorieSum +  " calories in total today!");
     }
 
-    @Override
     public void clearList() {
-        super.clearList();
+        whatIAteList.clear();
         Ui.printDoneClearList();
     }
 }

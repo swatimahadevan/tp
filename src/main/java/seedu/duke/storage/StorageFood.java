@@ -84,4 +84,33 @@ public class StorageFood {
         }
         return listToReturn;
     }
+
+
+    public static WhatIAteList load(String folderName, String fileName) {
+        WhatIAteList listToReturn = new WhatIAteList();
+        try {
+            Storage.checkAndAddDirectory(folderName);
+            File f = new File(folderName + fileName);
+            Scanner scanList = new Scanner(f);
+            while (scanList.hasNext()) {
+                String readLine = scanList.nextLine();
+                if (readLine.equals("")) {
+                    break;
+                }
+                listToReturn.addToList(Parser.parseFoodSavedListToRecord(readLine), true);
+            }
+            return listToReturn;
+        } catch (FileNotFoundException e) {
+            ClickLogger.getNewLogger().log(Level.WARNING, "file not found on load");
+            File f = new File(filePath);
+            System.out.println("Hey, I didn't find list.txt in " + folderName + "!");
+            System.out.println("creating new file...");
+            ClickLogger.getNewLogger().log(Level.CONFIG, "create new text file");
+        } catch (NullPointerException e) {
+            System.out.println("Null Pointer Exception, try again!");
+        } catch (IOException e) {
+            System.out.println("Hey, Input/ Output exception, returning empty list...");
+        }
+        return listToReturn;
+    }
 }
