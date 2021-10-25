@@ -2,10 +2,12 @@ package seedu.duke.parser;
 
 import seedu.duke.commands.calendar.AddLectureCommand;
 import seedu.duke.commands.calendar.AddTodoCommand;
-import seedu.duke.commands.calendar.DisplayCommand;
-import seedu.duke.commands.calendar.ListTasksCommand;
+import seedu.duke.commands.calendar.DeleteLectureCommand;
 import seedu.duke.commands.calendar.EditTasksCommand;
+import seedu.duke.commands.calendar.ListLecturesCommand;
+import seedu.duke.commands.calendar.DisplayCommand;
 import seedu.duke.commands.calendar.DeleteTaskCommand;
+import seedu.duke.commands.calendar.ListTasksCommand;
 import seedu.duke.commands.journal.AddEntryCommand;
 import seedu.duke.commands.food.AddFoodCommand;
 import seedu.duke.commands.journal.DeleteNoteCommand;
@@ -23,7 +25,8 @@ import seedu.duke.commands.food.ListFoodCommand;
 import seedu.duke.commands.journal.ListJournalCommand;
 import seedu.duke.commands.module.ListModuleCommand;
 import seedu.duke.commands.zoom.ListZoomLinks;
-import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.IncorrectCommandException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
@@ -61,6 +64,8 @@ import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_DISPLAY;
+import static seedu.duke.constants.CommandConstants.COMMAND_LECTURE;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
@@ -153,7 +158,7 @@ public class Parser {
      */
     public Command parseCommand(String userInput)
             throws ClickException, IncorrectNumberOfArgumentsException, IncorrectJournalArgumentException,
-            EmptyJournalArgumentException {
+            EmptyJournalArgumentException, IncorrectCommandException {
         final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
         assert commandTypeAndParams.length == 2;
         final String commandType = commandTypeAndParams[0];
@@ -270,12 +275,13 @@ public class Parser {
      * @author swatimahadevan
      */
     private Command getCalendarCommand(String commandArgs, String userInput)
-        throws IncorrectNumberOfArgumentsException {
+            throws IncorrectNumberOfArgumentsException, IncorrectCommandException {
         String[] calendarArguments = commandArgs.split(" ");
         switch (calendarArguments[0]) {
         case COMMAND_SUFFIX_LIST:
-            return new ListTasksCommand();
-        case "display":
+            Command list = getCalendarListCommand(calendarArguments);
+            return list;
+        case COMMAND_DISPLAY:
             return new DisplayCommand(userInput);
         case COMMAND_SUFFIX_EDIT:
             return new EditTasksCommand(getTaskIndex(calendarArguments));
@@ -283,8 +289,9 @@ public class Parser {
             ArrayList<String> arguments = ParserSchedule.parseTodoCommand(userInput);
             return new AddTodoCommand(arguments);
         case COMMAND_SUFFIX_DELETE:
-            return new DeleteTaskCommand(getTaskIndex(calendarArguments), userInput);
-        case "lecture":
+            Command delete = getCalendarDeleteCommand(calendarArguments, userInput);
+            return delete;
+        case COMMAND_LECTURE:
             ArrayList<String> argumentsLecture = ParserSchedule.parseLectureCommand(userInput);
             return new AddLectureCommand(argumentsLecture);
         default:
@@ -292,13 +299,35 @@ public class Parser {
         }
     }
 
+    private Command getCalendarListCommand(String[] calendarArguments)
+            throws IncorrectCommandException {
+        if (calendarArguments[1].equals("task")) {
+            return new ListTasksCommand();
+        } else if (calendarArguments[1].equals("lec")) {
+            return new ListLecturesCommand();
+        } else {
+            throw new IncorrectCommandException("Incorrect command for list!");
+        }
+    }
+
+    private Command getCalendarDeleteCommand(String[] calendarArguments, String userInput)
+            throws IncorrectCommandException, IncorrectNumberOfArgumentsException {
+        if (calendarArguments[1].equals("task")) {
+            return new DeleteTaskCommand(getTaskIndex(calendarArguments), userInput);
+        } else if (calendarArguments[1].equals("lec")) {
+            return new DeleteLectureCommand(getTaskIndex(calendarArguments), userInput);
+        } else {
+            throw new IncorrectCommandException("Incorrect command for delete!");
+        }
+    }
+
     private int getTaskIndex(String[] calendarArguments) throws IncorrectNumberOfArgumentsException {
-        if (calendarArguments.length == 1) {
+        if (calendarArguments.length != 3) {
             throw new IncorrectNumberOfArgumentsException(CALENDAR_EDIT_DELETE_INVALID_ARGS);
         }
         int indexOfTaskToBeEdited = 0;
         try {
-            indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[1]);
+            indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[2]);
         } catch (NumberFormatException e) {
             System.out.println(PRINT_NOT_AN_INT);
         }

@@ -1,7 +1,7 @@
 package seedu.duke.parser.schedule;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 
 import java.time.YearMonth;
 import java.util.ArrayList;
