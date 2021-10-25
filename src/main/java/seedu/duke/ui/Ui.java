@@ -1,7 +1,7 @@
 package seedu.duke.ui;
 
 import seedu.duke.commands.calendar.DisplayCommand;
-import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.schedule.task.Task;
@@ -159,6 +159,15 @@ public class Ui {
      */
     public static void printDeletedNotebookMessage(int indexOfDeletedNotebook) {
         System.out.println("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
+    }
+
+    /**
+     * Prints message to indicate that the entry has been deleted.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printDeletedEntryMessage() {
+        System.out.println("Great you have deleted the entry");
     }
 
 

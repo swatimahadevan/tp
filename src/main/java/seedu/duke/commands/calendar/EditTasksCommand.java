@@ -1,9 +1,9 @@
 package seedu.duke.commands.calendar;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.DuplicateTaskException;
-import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
-import seedu.duke.exceptions.InvalidDateException;
+import seedu.duke.exceptions.calendar.DuplicateTaskException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.InvalidDateException;
 import seedu.duke.exceptions.calendar.CalendarIndexNotFoundException;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.storage.Storage;
