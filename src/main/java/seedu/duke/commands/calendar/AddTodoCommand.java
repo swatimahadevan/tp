@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.DuplicateTaskException;
-import seedu.duke.exceptions.InvalidDateException;
+import seedu.duke.exceptions.calendar.DuplicateTaskException;
+import seedu.duke.exceptions.calendar.InvalidDateException;
 import seedu.duke.schedule.task.Task;
 import seedu.duke.schedule.task.Todo;
 import seedu.duke.storage.Storage;
@@ -68,7 +68,7 @@ public class AddTodoCommand extends Command {
     public static void checkIfDuplicate(Task task) throws InvalidDateException, DuplicateTaskException {
         for (int i = 0; i < Storage.tasksList.getTaskList().size(); i++) {
             if (task.getDescription().equals(Storage.tasksList.getTaskList().get(i).getDescription())) {
-                throw new DuplicateTaskException();
+                throw new DuplicateTaskException("A task by this name has already been added!");
             }
         }
     }

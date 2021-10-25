@@ -28,4 +28,7 @@ public class Lecture {
         return moduleName + "|" + dateFrom + "|" + dateTo;
     }
 
+    public String toString() {
+        return moduleName + " (from: " + dateFrom + ") " + "(to: " + dateTo + ") ";
+    }
 }

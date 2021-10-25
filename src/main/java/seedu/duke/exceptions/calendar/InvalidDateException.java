@@ -1,4 +1,4 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.calendar;
 
 public class InvalidDateException extends Exception {
     private static String message = "Invalid date given, use format DD-MM-YYYY!";
