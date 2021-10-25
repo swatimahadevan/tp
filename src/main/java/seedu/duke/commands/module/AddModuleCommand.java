@@ -54,8 +54,10 @@ public class AddModuleCommand extends Command {
         int indexOfExpectedGrade = commandArgs.indexOf("e/");
         Module module = getModule(indexOfCode, indexOfName, indexOfMc, indexOfExpectedGrade);
         moduleManager.addNewModule(module);
-        System.out.println(MESSAGE_ADD_MODULE);
-        System.out.println(module);
+        ui.printLine();
+        ui.printMessage(MESSAGE_ADD_MODULE);
+        ui.printMessage(String.valueOf(module));
+        ui.printLine();
     }
 
     /**

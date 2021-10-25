@@ -26,7 +26,9 @@ public class HelpCommand extends Command {
     public void execute(Ui ui, Storage storage) throws InvocationTargetException,
             InstantiationException, IllegalAccessException {
         ClassPackageReader.getCommandsAndPrintSyntax();
+        Ui.printLine();
         Ui.printMessage("Done printing all commands! Enjoy CLICKing :)");
+        Ui.printLine();
     }
 
 }

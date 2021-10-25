@@ -4,6 +4,7 @@ import seedu.duke.exceptions.module.IllegalExpectedGradeException;
 import seedu.duke.exceptions.module.IllegalModuleIndexException;
 import seedu.duke.parser.module.ParserModule;
 import seedu.duke.storage.StorageModule;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class ModuleManager {
     public static final String MESSAGE_DELETE_MODULE = "I have deleted this module:";
 
+    private static Ui ui = new Ui();
     private static GradePoints gradePoints = new GradePoints();
     private static StorageModule storageModule = new StorageModule();
     private static ParserModule parserModule = new ParserModule();
@@ -59,8 +61,10 @@ public class ModuleManager {
         if (!isValidIndex) {
             throw new IllegalModuleIndexException();
         }
-        System.out.println(MESSAGE_DELETE_MODULE);
-        System.out.println(moduleList.getModuleByIndex(moduleIndex));
+        ui.printLine();
+        ui.printMessage(MESSAGE_DELETE_MODULE);
+        ui.printMessage(String.valueOf(moduleList.getModuleByIndex(moduleIndex)));
+        ui.printLine();
         moduleList.removeModuleByIndex(moduleIndex);
         storageModule.saveModuleToFile(moduleList);
     }
