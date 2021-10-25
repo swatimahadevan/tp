@@ -15,10 +15,11 @@ import java.io.IOException;
 public class ModuleManager {
     public static final String MESSAGE_DELETE_MODULE = "I have deleted this module:";
 
-    static GradePoints gradePoints = new GradePoints();
-    static int totalModularCredits = 0;
-    static StorageModule storageModule = new StorageModule();
-    static ParserModule parserModule = new ParserModule();
+    private static GradePoints gradePoints = new GradePoints();
+    private static StorageModule storageModule = new StorageModule();
+    private static ParserModule parserModule = new ParserModule();
+    private static double currentCap = 0.0;
+    private static int totalMcTaken = 0;
 
     /**
      * Default constructor.
@@ -63,6 +64,19 @@ public class ModuleManager {
         storageModule.saveDataToFile(moduleList);
     }
 
+    public static void setCapInfo(double cap, int mc) {
+        currentCap = cap;
+        totalMcTaken = mc;
+    }
+
+    public double getCurrentCap() {
+        return currentCap;
+    }
+
+    public int getTotalMcTaken() {
+        return totalMcTaken;
+    }
+
     /**
      * Returns the expected Cumulative Average Point (CAP).
      *
@@ -70,8 +84,8 @@ public class ModuleManager {
      * @throws IOException If there is an exceptions when reading data to file.
      */
     public double getExpectedCap() throws IOException {
-        double totalPoints = 0.0;
-        totalModularCredits = 0;
+        double totalPoints = currentCap * totalMcTaken;
+        int totalModularCredits = totalMcTaken;
         ModuleList moduleList = storageModule.readDataFromFile();
         for (Module module : moduleList.getModules()) {
             double point = gradePoints.getPoint(module.getExpectedGrade());

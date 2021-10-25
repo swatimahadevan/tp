@@ -10,19 +10,16 @@ import seedu.duke.commands.journal.AddEntryCommand;
 import seedu.duke.commands.food.AddFoodCommand;
 import seedu.duke.commands.journal.DeleteNoteCommand;
 import seedu.duke.commands.journal.DeleteEntryCommand;
-import seedu.duke.commands.module.AddModuleCommand;
+import seedu.duke.commands.module.*;
 import seedu.duke.commands.journal.AddNoteCommand;
-import seedu.duke.commands.module.GetCapCommand;
 import seedu.duke.commands.zoom.AddZoomCommand;
 import seedu.duke.commands.food.ClearFoodCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.food.DeleteFoodCommand;
-import seedu.duke.commands.module.DeleteModuleCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.food.ListFoodCommand;
 import seedu.duke.commands.journal.ListJournalCommand;
-import seedu.duke.commands.module.ListModuleCommand;
 import seedu.duke.commands.zoom.ListZoomLinks;
 import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
@@ -272,6 +269,8 @@ public class Parser {
             return new DeleteModuleCommand(moduleCommandAndArgs[1]);
         case COMMAND_SUFFIX_CAP:
             return new GetCapCommand();
+        case "info":
+            return new CapInfoCommand();
         default:
             throw new ClickException();
         }
