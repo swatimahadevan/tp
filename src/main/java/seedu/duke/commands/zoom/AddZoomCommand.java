@@ -3,6 +3,8 @@ package seedu.duke.commands.zoom;
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.FileNotFoundException;
+import seedu.duke.exceptions.StorageException;
+import seedu.duke.exceptions.module.IllegalModuleException;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageZoom;
 import seedu.duke.ui.Ui;
@@ -25,12 +27,7 @@ public class AddZoomCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException {
-        try {
-            StorageZoom.saveLink(moduleName, zoomLink);
-            System.out.println("Successful");
-        } catch (IOException e) {
-            System.out.println("Unsuccessful");
-        }
+    public void execute(Ui ui, Storage storage) throws IOException, IllegalModuleException, StorageException {
+        StorageZoom.saveLink(moduleName, zoomLink);
     }
 }
