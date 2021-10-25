@@ -3,6 +3,8 @@ package seedu.duke.parser.module;
 import seedu.duke.exceptions.StorageException;
 import seedu.duke.module.Module;
 
+import java.util.ArrayList;
+
 //@@author nvbinh15
 
 /**
@@ -42,6 +44,25 @@ public class ParserModule {
         try {
             return new Module(code, name, modularCredits, expectedGrade);
         } catch (Exception e) {
+            throw new StorageException();
+        }
+    }
+
+    public static String formatCapInfoToStore(double currentCap, int totalMcTaken) {
+        String data = currentCap + "|" + totalMcTaken + '\n';
+        return data;
+    }
+
+    public static ArrayList<Double> retrieveStoredCapInfo(String data) throws StorageException {
+        String[] tokens = data.split("\\|");
+        if (tokens.length == 2) {
+            ArrayList<Double> capInfo = new ArrayList();
+            double cap = Double.parseDouble(tokens[0]);
+            double mc = Double.parseDouble(tokens[1]);
+            capInfo.add(cap);
+            capInfo.add(mc);
+            return capInfo;
+        } else {
             throw new StorageException();
         }
     }

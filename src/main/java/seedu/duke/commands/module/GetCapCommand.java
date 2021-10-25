@@ -9,7 +9,7 @@ import java.io.IOException;
 
 //@@author nvbinh15
 public class GetCapCommand extends Command {
-    public static final String MESSAGE_EXPECTED_CAP = "Your expected CAP is: ";
+    public static final String MESSAGE_EXPECTED_CAP = "Your expected CAP based on the modules you are taking is: ";
     public static final String CAP_FORMAT = "%,.2f";
     private static ModuleManager moduleManager = new ModuleManager();
 
@@ -30,7 +30,10 @@ public class GetCapCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
+        double expectedCap = moduleManager.getExpectedCap();
+        System.out.println("Your current CAP is " + moduleManager.getCurrentCap()
+                + ", and the total of MCs contributing to your CAP is " + moduleManager.getTotalMcTaken());
         System.out.print(MESSAGE_EXPECTED_CAP);
-        System.out.println(String.format(CAP_FORMAT, moduleManager.getExpectedCap()));
+        System.out.println(String.format(CAP_FORMAT, expectedCap));
     }
 }

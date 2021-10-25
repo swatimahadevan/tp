@@ -46,6 +46,7 @@ public class AddModuleCommand extends Command {
      * @throws ClickException If there is an exception of type ClickException occurs.
      * @throws IOException If there is an error while saving data to file.
      */
+    @Override
     public void execute(Ui ui, Storage storage) throws ClickException, IOException {
         int indexOfCode = commandArgs.indexOf("c/");
         int indexOfName = commandArgs.indexOf("n/");
