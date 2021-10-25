@@ -4,7 +4,6 @@ import seedu.duke.commands.calendar.DisplayCommand;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
-import seedu.duke.schedule.lecture.Lecture;
 import seedu.duke.schedule.task.Task;
 import seedu.duke.storage.Storage;
 
@@ -162,6 +161,15 @@ public class Ui {
         System.out.println("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
     }
 
+    /**
+     * Prints message to indicate that the entry has been deleted.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printDeletedEntryMessage() {
+        System.out.println("Great you have deleted the entry");
+    }
+
 
     //Schedule
     /**
@@ -214,18 +222,6 @@ public class Ui {
             }
         } else {
             System.out.println("NO TASKS!");
-        }
-    }
-
-    public static void printLectureList(ArrayList<Lecture> lectures) {
-        System.out.println("Here is your list of lectures:");
-        if (!lectures.isEmpty()) {
-            int i = 1;
-            for (Lecture item : lectures) {
-                System.out.println((i++) + ". " + item);
-            }
-        } else {
-            System.out.println("NO Lectures!");
         }
     }
 
