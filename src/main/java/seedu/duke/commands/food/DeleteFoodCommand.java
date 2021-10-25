@@ -11,6 +11,7 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//@@author ngnigel99
 /**
  * Deletes a food item from a list given  a  valid index.
  * @author ngnigel99

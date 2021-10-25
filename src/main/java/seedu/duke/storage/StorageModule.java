@@ -4,6 +4,7 @@ import seedu.duke.exceptions.StorageException;
 import seedu.duke.module.Module;
 import seedu.duke.module.ModuleList;
 import seedu.duke.parser.Parser;
+import seedu.duke.parser.module.ParserModule;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,7 +23,7 @@ import java.util.Scanner;
  */
 public class StorageModule {
 
-    private static Parser parser = new Parser();
+    private static ParserModule parserModule = new ParserModule();
 
     public static final String PROJECT_ROOT = System.getProperty("user.dir");
     public static final String STORAGE_FOLDER = "module";
@@ -61,7 +62,7 @@ public class StorageModule {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
                 Module module;
-                module = parser.retrieveStoredModule(scanner.nextLine());
+                module = parserModule.retrieveStoredModule(scanner.nextLine());
                 storedModules.add(module);
             }
         } catch (FileNotFoundException e) {
@@ -84,7 +85,7 @@ public class StorageModule {
     public static void saveDataToFile(ModuleList moduleList) throws IOException {
         FileWriter fileWriter = new FileWriter(String.valueOf(PATH_TO_STORAGE_FILE));
         for (Module m : moduleList.getModules()) {
-            fileWriter.write(parser.formatModuleToStore(m));
+            fileWriter.write(parserModule.formatModuleToStore(m));
         }
         fileWriter.close();
     }

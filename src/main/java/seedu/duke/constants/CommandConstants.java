@@ -12,6 +12,7 @@ public class CommandConstants {
     public static final String COMMAND_SUFFIX_LIST = "list";
     public static final String COMMAND_ADD_NOTE = "notebook";
     public static final String COMMAND_DELETE_NOTE = "delete_notebook";
+    public static final String COMMAND_DELETE_ENTRY = "delete_entry";
     public static final String COMMAND_ADD_ENTRY = "entry";
     public static final String COMMAND_JOURNAL_LIST = "list";
     public static final String COMMAND_NOTE = "journal";
@@ -22,6 +23,7 @@ public class CommandConstants {
     public static final String COMMAND_MODULE = "module";
     public static final String COMMAND_SUFFIX_DELETE = "delete";
     public static final String COMMAND_SUFFIX_EDIT = "edit";
+    public static final String COMMAND_SUFFIX_CAP = "cap";
 
     public static final String COMMAND_HElP = "help";
     public static final String COMMAND_ZOOM = "zoom";

@@ -7,6 +7,7 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
+//@@author ngnigel99
 /**
  * Clears the current list  of food, and clear entries in storage.
  * @author  ngnigel99

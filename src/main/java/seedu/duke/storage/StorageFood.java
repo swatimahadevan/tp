@@ -10,14 +10,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.logging.Level;
 
+//@@author ngnigel99
 /**
  * This class deals with passing food records to and fro a save file.
- * Note: i used my IP implementation, TBD on final format.
  * @author ngnigel99
  */
 public class StorageFood {
