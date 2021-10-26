@@ -18,13 +18,14 @@ import seedu.duke.ui.Ui;
 public class AddFoodFromReferenceCommand extends Command {
     int storeIndex;
     int itemIndex;
+
     public AddFoodFromReferenceCommand() {
         this.syntax = "food radd /s [STORE_INDEX] /i [ITEM_INDEX]";
     }
 
     //assumes string given after food radd
     public AddFoodFromReferenceCommand(String userInput) throws WrongDividerOrderException,
-            ArgumentsNotFoundException {
+        ArgumentsNotFoundException {
         String[] data = Parser.getData(userInput, "/s", "/i");
         String storeIndexString = data[0];
         String itemIndexString = data[1];
@@ -35,12 +36,13 @@ public class AddFoodFromReferenceCommand extends Command {
             Ui.printOnlyIntegers();
         }
     }
+
     @Override
     public void execute(Ui ui, Storage storage) throws ClickException, Exception {
-        FoodRecord toAdd = storage.
-                reference.
-                getTechnoEdge().
-                getFoodRecordFromStall(storeIndex, itemIndex);
+        FoodRecord toAdd = storage
+            .reference
+            .getTechnoEdge()
+            .getFoodRecordFromStall(storeIndex, itemIndex);
         System.out.println(toAdd.toString());
         storage.whatIAteTodayList.addToList(toAdd, false);
         StorageFood.saveList(storage.whatIAteTodayList);

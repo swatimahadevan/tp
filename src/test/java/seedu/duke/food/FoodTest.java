@@ -47,8 +47,11 @@ public class FoodTest {
     void testLoadFoodFromReferenceListLine() {
         String readLine = "Set A - Butterfly Plea Flower Rice w Ayam Penyet (Regular) | 1151";
         FoodRecord testFoodRecord = Parser.parseFoodSavedListToRecord(readLine);
-        FoodRecord actualFoodRecord = new FoodRecord("Set A - Butterfly Plea Flower Rice w Ayam Penyet (Regular)", 1151);
+        FoodRecord actualFoodRecord = new FoodRecord(
+            "Set A - Butterfly Plea Flower Rice w Ayam Penyet (Regular)", 1151
+        );
     }
+
     @Test
     void addFoodItem_stringNotInt_illegalFoodParameterThrown() throws IllegalFoodParameterException {
         boolean nfeThrown = false;

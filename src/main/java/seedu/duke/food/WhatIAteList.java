@@ -23,31 +23,13 @@ public class WhatIAteList  {
     private String stallName;
     private ArrayList<FoodRecord> whatIAteList = new ArrayList<>();
 
-    /**
-     * No stallName - for the User
-     */
+
     public WhatIAteList() {
 
     }
 
-    /**
-     * For a reference list
-     * @param stallName name of a stall
-     */
-    public WhatIAteList(String stallName) {
-        this.stallName = stallName;
-    }
-
     public ArrayList<FoodRecord> getList() {
         return whatIAteList;
-    }
-
-    /**
-     * For reference list
-     * @param whatIAteList loaded reference list
-     */
-    public void setWhatIAteList(ArrayList<FoodRecord> whatIAteList) {
-        this.whatIAteList = whatIAteList;
     }
 
     /**

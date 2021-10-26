@@ -14,6 +14,7 @@ import seedu.duke.ui.Ui;
  */
 public class ViewReferenceFoodCommand extends Command {
     private String userInput;
+
     public ViewReferenceFoodCommand() {
         this.syntax = "food view, food view [STORE_INDEX], food view all \n";
     }

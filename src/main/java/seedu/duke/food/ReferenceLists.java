@@ -2,7 +2,7 @@ package seedu.duke.food;
 
 //@@author ngnigel99
 
-import seedu.duke.foodreferencelists.stallsDataDump;
+import seedu.duke.foodreferencelists.StallsDataAndLogic;
 
 import java.util.ArrayList;
 
@@ -15,12 +15,12 @@ import java.util.ArrayList;
  */
 public class ReferenceLists {
     private static ReferenceLists lists = null;
-    private stallsDataDump technoEdge = new stallsDataDump();
+    private StallsDataAndLogic technoEdge = new StallsDataAndLogic();
     public ArrayList<WhatIAteList> storeData;
 
     //singleton design as only one food court is viewed
     private ReferenceLists() {
-        technoEdge = new stallsDataDump();
+        technoEdge = new StallsDataAndLogic();
     }
 
     public static ReferenceLists getLists() {
@@ -30,7 +30,7 @@ public class ReferenceLists {
         return lists;
     }
 
-    public stallsDataDump getTechnoEdge() {
+    public StallsDataAndLogic getTechnoEdge() {
         return technoEdge;
     }
 

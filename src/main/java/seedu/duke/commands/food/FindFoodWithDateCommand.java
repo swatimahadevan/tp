@@ -11,6 +11,7 @@ import java.time.format.DateTimeParseException;
 
 public class FindFoodWithDateCommand extends Command {
     LocalDate dateInput;
+
     public FindFoodWithDateCommand() {
         this.syntax = "food find [DD-MM-YYYY]";
     }
