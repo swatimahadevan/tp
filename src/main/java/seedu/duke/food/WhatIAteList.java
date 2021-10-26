@@ -62,7 +62,6 @@ public class WhatIAteList  {
         whatIAteList.add(recordToAdd);
         if (!isSilent) {
             Ui.printAddRecord(recordToAdd);
-
         }
     }
 

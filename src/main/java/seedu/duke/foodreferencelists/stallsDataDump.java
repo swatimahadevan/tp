@@ -1,5 +1,6 @@
 package seedu.duke.foodreferencelists;
 
+import seedu.duke.exceptions.food.FoodIndexNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.food.WhatIAteList;
 import seedu.duke.parser.Parser;
@@ -69,6 +70,20 @@ public class stallsDataDump {
         System.out.println("Wow, thats a lot of options! Finished printing");
     }
 
+    public static FoodRecord getFoodRecordFromStall(int storeIndex, int foodIndex)
+            throws FoodIndexNotFoundException {
+        if (storeIndex <= 0 || storeIndex > MAX_STORE_INDEX) {
+            System.out.println("Oops, can't find store " + storeIndex);
+            throw new FoodIndexNotFoundException();
+        }
+        int itemCount = idData.get(storeIndex).length;
+        if (foodIndex >= itemCount) {
+            throw new FoodIndexNotFoundException();
+        }
+        String foodData =  idData.get(storeIndex)[foodIndex];
+        FoodRecord toReturn = Parser.parseFoodSavedListToRecord(foodData);
+        return toReturn;
+    }
 
     /**
      * Prints ALL FOOD ITEMS from all stores (not recommended)

@@ -215,7 +215,8 @@ public class Parser {
      * @author ngnigel99
      */
     private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException,
-            MissingDateException {
+            MissingDateException, WrongDividerOrderException,
+            ArgumentsNotFoundException {
         String[] foodArgs = commandArgs.split(" ");
         switch (foodArgs[0]) {  //consider 2nd word
         case COMMAND_SUFFIX_ADD:
@@ -235,7 +236,13 @@ public class Parser {
         case COMMAND_SUFFIX_FIND:
             if (userInput.split(" ").length == 3) {
                 return new FindFoodWithDateCommand(foodArgs[1]);
-            } else throw new MissingDateException();
+            } else {
+                throw new MissingDateException();
+            }
+        case COMMAND_SUFFIX_RADD:
+            return new AddFoodFromReferenceCommand(
+                    filterStringAfterCommand(userInput, COMMAND_FOOD
+                            + " " + COMMAND_SUFFIX_RADD));
         default:
             throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
         }
