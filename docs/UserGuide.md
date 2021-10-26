@@ -31,7 +31,7 @@ Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `click.jar` from [here](https://github.com/AY2122S1-CS2113T-T09-4/tp/releases/tag/v1.0).
 3. Copy the file to the folder you want to use as the _home folder_ for Click.
-4. In the home folder for Click, launch the `jar` file using the `java -jar click.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see something like this:
+4. In the home folder for Click, launch the `jar` file using the `java -jar click.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see the following:
 
 ```
 	__________________________________________________
@@ -62,7 +62,7 @@ The smallest index would naturally be 1. (1-based)
 - Parameters cannot be reordered.
   Example: If the command specifies `module add c/MODULE_CODE n/MODULE_NAME`, keying in `module add n/MODULE_NAME c/MODULE_CODE` will result in an invalid command.
 
-### 3.0.1 Getting Help
+### 3.0 Getting Help
 Click helps you by showing all available commands and syntax
 
 Format: `help`
@@ -71,83 +71,149 @@ You can refer  to [Command Summary](#4-command-summary) for a TLDR version.
 
 ### 3.1 Managing your modules
 
-### 3.1.1 Adding a Module: `module add`
+#### 3.1.1 Adding a Module: `module add`
 
-Adds a new Module to the list of Modules.
+Adds a new module to the list of modules so that you can keep track of the modules you are taking or planning to take.
 
-Click supports 3 ways of adding Modules:
-- Adding with module code, module name, and expected grade.
+Click supports 4 ways of adding Modules:
+- Adding with module code, module name, modular credits and expected grade.
+- Adding with module code, module name, and modular credits.
 - Adding with module code and module name.
 - Adding with module code only.
 
-**Adding with module code, module name, and expected grade**
+**Adding with module code, module name, modular credits, and expected grade**
 
-Format: `module add c/MODULE_CODE n/MODULE_NAME e/EXPECTED_GRADE`
+Format: `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`
 
-Example: `module add c/CS2113T n/Software Engineering e/A`
+Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`
 
 Expected outcome:
 
 ```
-Added CS2113T | Software Engineering | Expected grade: A
+	__________________________________________________
+	I have added this module:
+	CS2113T | Software Engineering | MC: 4 | Expected grade: A
+	__________________________________________________
+```
+
+**Adding with module code, module name, and modular credits**
+
+Format: `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`
+
+Example: `module add c/CS1231 n/Discrete Structure mc/4`
+
+Expected outcome:
+
+```
+	__________________________________________________
+	I have added this module:
+	CS1231 | Discrete Structure | MC: 4 | Expected grade: NA
+	__________________________________________________
 ```
 
 **Adding with module code and module name**
 
 Format: `module add c/MODULE_CODE n/MODULE_NAME`
 
-Example: `module add c/CS1231 n/Discrete Structure`
+Example: `module add c/CS1010 n/Programming Methodology`
 
 Expected outcome:
 
 ```
-Added CS1231 | Discrete Structure
+	__________________________________________________
+	I have added this module:
+	CS1010 | Programming Methodology | MC: 4 | Expected grade: NA
+	__________________________________________________
 ```
 
 **Adding with module code only**
 
 Format: `module add c/MODULE_CODE`
 
-Example: `module add c/GEQ1000`
+Example: `module add c/CG2028`
 
 Expected outcome:
 
 ```
-Added GEQ1000
+	__________________________________________________
+	I have added this module:
+	CG2028 | None | MC: 4 | Expected grade: NA
+	__________________________________________________
 ```
 
-### 3.1.2 Listing Modules: `module list`
+#### 3.1.2 Listing Modules: `module list`
 
-Lists all Modules in Click with numbering according to the order they are added (1-based index).
+Lists all modules in Click with numbering according to the order they are added (1-based index) so that you can have an overview of your modules.
 
 Format: `module list`
 
 Expected outcome:
 
 ```
-Here are the modules in your list:
-1. CS2113T  |   Software Engineering | Expected grade: A
-2. CS1231  |   Discrete Structure   | Expected grade: N/A
-3. GEQ1000  |  NONE  | Expected grade: N/A
+	__________________________________________________
+	Here are the modules in your list:
+	1. CS2113T | Software Engineering | MC: 4 | Expected grade: A
+	2. CS1231 | Discrete Structure | MC: 4 | Expected grade: NA
+	3. CS1010 | Programming Methodology | MC: 4 | Expected grade: NA
+	4. CG2028 | None | MC: 4 | Expected grade: NA
+	__________________________________________________
 ```
 
-### 3.1.3 Deleting a Module: `module delete`
+#### 3.1.3 Deleting a Module: `module delete`
 
-Deletes the specified Module from the list of Modules.
+Deletes the specified module from the list of modules so that you can get rid of the modules you do not want to take anymore.
 
 Format: `module delete INDEX`
+
+Example: `module delete 3`
 
 Expected outcome:
 
 ```
-I have deleted this module:
-CS1231 | Discrete Structure | Expected grade: N/A
+	__________________________________________________
+	I have deleted this module:
+	CS1010 | Programming Methodology | MC: 4 | Expected grade: NA
+	__________________________________________________
+```
+
+#### 3.1.4 Editing CAP Information
+
+Edits information of your current Cumulative Average Point (CAP) and the number of modular credits you have taken so that Click can calculate your expected CAP.
+
+Format: `cap edit`
+
+Example:
+
+```
+	__________________________________________________
+	What is your current cumulative average point (CAP)?
+4.5
+	How many modular credits contributing to CAP you have taken?
+40
+	Thank you for your information. You can view your expected CAP by keying in cap expected
+	__________________________________________________
+```
+
+#### 3.1.5 Getting the Expected CAP
+
+Gets the expected CAP based on the provided information and the modules you are taking.
+
+Format: `cap expected`
+
+Expected outcome:
+
+```
+	__________________________________________________
+	Your current CAP is 4.5, and the total of MCs contributing to your CAP is 40
+	Your expected CAP based on the modules you are taking is: 4.55
+	__________________________________________________
 ```
 
 ### 3.2 Managing your Zoom links
 
 ### 3.3 Managing your calendar
-### 3.3.1 Adding a lecture: `calendar lecture`
+
+#### 3.3.1 Adding a lecture: `calendar lecture`
 Adds a lecture item.
 
 Note: You cannot add a lecture to a module unless the module has been added previously.
@@ -164,7 +230,7 @@ Expected outcome:
 Added lecture!
 ```
 
-### 3.3.2 Adding a task: `calendar task`
+#### 3.3.2 Adding a task: `calendar task`
 Adds a task item.
 
 Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
@@ -179,7 +245,7 @@ Expected outcome:
 Task has been added successfully!
 ```
 
-### 3.3.3 Listing tasks: `calendar list`
+#### 3.3.3 Listing tasks: `calendar list`
 Lists all the current task items.
 
 Format: `calendar list`
@@ -195,7 +261,7 @@ Here's your task list:
 1. GER1000 Assignment (on: 14-10-2021)
 2. GEQ1000 Assignment (on: 03-10-2021)
 ```
-### 3.3.4 Deleting a task: `calendar delete`
+#### 3.3.4 Deleting a task: `calendar delete`
 Deletes a task item based on the index.
 
 Format: `calendar delete TASK_INDEX`
@@ -209,7 +275,7 @@ Expected outcome:
 ```
 Task has been deleted!
 ```
-### 3.3.5 Editing a task: `calendar edit`
+#### 3.3.5 Editing a task: `calendar edit`
 Edits a task item based on the index.
 
 Format: `calendar edit TASK_INDEX`
@@ -225,7 +291,7 @@ Enter the entire todo command with the desired description and date that you wan
 >> calendar todo n/ changed task name d/ 22-12-2021
 Edited Task!
 ```
-### 3.3.6 Displaying calendar: `calendar display`
+#### 3.3.6 Displaying calendar: `calendar display`
 Edits a task item based on the index.
 
 Format: `calendar display MM-YYY`
@@ -240,7 +306,7 @@ Expected outcome:
 
 
 ### 3.4 Managing your journal
-### 3.4.1 Adding a notebook: `journal notebook`
+#### 3.4.1 Adding a notebook: `journal notebook`
 Adds a notebook with the desired name.
 
 Format: `journal notebook n/ NOTEBOOK_NAME`
@@ -253,7 +319,7 @@ Expected outcome:
 Great you have added the notebook: Today
 ```
 
-### 3.4.2 Adding an entry: `journal entry`
+#### 3.4.2 Adding an entry: `journal entry`
 Adds an entry with the desired name to a specific notebook
 
 Format: `journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
@@ -266,7 +332,7 @@ Expected outcome:
 Great you have added the entry: Random Observation
 ```
 
-### 3.4.3 Listing notebooks with entries: `journal list`
+#### 3.4.3 Listing notebooks with entries: `journal list`
 Lists all notebooks with their entries.
 
 Format: `journal list`
@@ -281,7 +347,7 @@ Random Observation
 ```
 
 ### 3.5 Managing your food consumption
-### 3.5.1 Adding a food item: `food add`
+#### 3.5.1 Adding a food item: `food add`
 Adds a food item with name and calorie count.
 
 Format: `food add n/FOOD_NAME n/KCALORIE d/ {DATE}`
@@ -306,7 +372,7 @@ Nice.  I've added Caramel Frappé - Medium to the list, with 624 calories!
 Nice.  I've added A Thousand Tide Pods to the list, with 92 calories!
 ```
 
-### 3.5.2 Listing food records: `food list`
+#### 3.5.2 Listing food records: `food list`
 
 Format : `food list`
 
@@ -323,7 +389,7 @@ Wow, that's a lot of food! Finished reading today's list
 You consumed 1625 calories in total today!
 ```
 
-### 3.5.3 Deleting food records: `food delete`
+#### 3.5.3 Deleting food records: `food delete`
 
 Format: `food delete INDEX`
 
@@ -335,7 +401,7 @@ Expected outcome:
 Deleted food record  A Thousand Tide Pods at index: 5
 ```
 
-### 3.5.4 Clearing food list: `food clear`
+#### 3.5.4 Clearing food list: `food clear`
 
 Format : `food clear`
 
@@ -347,8 +413,6 @@ Cleared food record list for today!
 ```
 
 
-
-
 ## 4. Command Summary
 
 **Action** | **Format, Examples**
@@ -356,7 +420,7 @@ Cleared food record list for today!
 **Add Entry**|`journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
 **Add Food**|`food add`
 **Add Lecture**|`calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
-**Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME`<br><br> Example: `module add c/CS2113T n/Software Engineering`<br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
+**Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
 **Add Note**|`journal notebook n/ NOTEBOOK_NAME`
 **Add Todo**|`calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
 **Add Zoom**|`zoom add [MODULE_CODE] [ZOOM_LINK]`
@@ -366,7 +430,9 @@ Cleared food record list for today!
 **Delete Note**|`journal delete NOTE_INDEX`
 **Delete Task**|`calendar delete TASK_INDEX`
 **Display**|`calendar display MM-YYYY`
+**Edit CAP Information**|`cap edit`
 **Edit Tasks**|`calendar edit TASK_INDEX`
+**Get Expected CAP**|`cap expected`
 **Help**|`help`
 **List  Food Items**|`food list`
 **List  Journal**|`journal list`
