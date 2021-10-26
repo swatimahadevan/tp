@@ -2,7 +2,14 @@ package seedu.duke.food;
 
 import seedu.duke.ui.Ui;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Represents a list of what the user has eaten.
@@ -114,5 +121,20 @@ public class WhatIAteList  {
     public void clearList() {
         whatIAteList.clear();
         Ui.printDoneClearList();
+    }
+
+    public void printFoodWithFoundDate(LocalDate date) {
+        WhatIAteList whatIAteThatDay = new WhatIAteList();
+        String formattedDate = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+        for (FoodRecord foodRecord : whatIAteList) {
+            if (foodRecord.getDateIAte().equals(date)) {
+                whatIAteThatDay.getList().add(foodRecord);
+            }
+        }
+        if (whatIAteThatDay.getList().isEmpty()) {
+            return;
+        }
+        System.out.println("Nice, I found the items you ate on " + formattedDate);
+        whatIAteThatDay.printList(true);
     }
 }

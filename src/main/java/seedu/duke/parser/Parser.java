@@ -31,6 +31,7 @@ import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.WrongDividerOrderException;
 import seedu.duke.exceptions.StorageException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
+import seedu.duke.exceptions.food.MissingDateException;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
 import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
@@ -213,7 +214,8 @@ public class Parser {
      *
      * @author ngnigel99
      */
-    private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException {
+    private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException,
+            MissingDateException {
         String[] foodArgs = commandArgs.split(" ");
         switch (foodArgs[0]) {  //consider 2nd word
         case COMMAND_SUFFIX_ADD:
@@ -230,6 +232,10 @@ public class Parser {
             return new ListFoodCommand();
         case COMMAND_SUFFIX_VIEW:
             return new ViewReferenceFoodCommand(userInput);
+        case COMMAND_SUFFIX_FIND:
+            if (userInput.split(" ").length == 3) {
+                return new FindFoodWithDateCommand(foodArgs[1]);
+            } else throw new MissingDateException();
         default:
             throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
         }
@@ -416,6 +422,11 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Sets a date for a food Record.
+     * @param recordToAdd food record to be added
+     * @param inputAfterDateDivider date as input string
+     */
     private static void setDateOnFoodRecord(FoodRecord recordToAdd, String inputAfterDateDivider) {
         DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate dateIAte = LocalDate.parse(inputAfterDateDivider, localDateFormatter);

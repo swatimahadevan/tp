@@ -8,8 +8,5 @@ import seedu.duke.storage.StorageFood;
 public class test {
 
     public static void main(String[] args) {
-    ReferenceLists techno = ReferenceLists.getLists();
-    techno.getTechnoEdge().printStalls();
-    techno.getTechnoEdge().printItems(1);
     }
 }
