@@ -1,9 +1,10 @@
 package seedu.duke.ui;
 
 import seedu.duke.commands.calendar.DisplayCommand;
-import seedu.duke.exceptions.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
+import seedu.duke.schedule.lecture.Lecture;
 import seedu.duke.schedule.task.Task;
 import seedu.duke.storage.Storage;
 
@@ -12,17 +13,17 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 import static seedu.duke.constants.Messages.ADDED_TASK;
-import static seedu.duke.constants.Messages.DISPLAY_LINE;
 import static seedu.duke.constants.Messages.DAY_DEMARCATION;
-import static seedu.duke.constants.Messages.NO_TASK_IN_DAY;
+import static seedu.duke.constants.Messages.DISPLAY_LINE;
 import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
 import static seedu.duke.constants.Messages.INVALID_CALENDAR_INPUT;
+import static seedu.duke.constants.Messages.LINE_PREFIX;
 import static seedu.duke.constants.Messages.LIST_TASKS_HEADER;
 import static seedu.duke.constants.Messages.LOGO;
 import static seedu.duke.constants.Messages.MESSAGE_GOODBYE;
 import static seedu.duke.constants.Messages.MESSAGE_GREETING;
+import static seedu.duke.constants.Messages.NO_TASK_IN_DAY;
 
 public class Ui {
 
@@ -60,7 +61,9 @@ public class Ui {
      * Prints the greeting message to standard output.
      */
     public static void printGreeting() {
+        printLine();
         printMessage(LOGO + MESSAGE_GREETING);
+        printLine();
         //printCurrentMonthCalendar();
     }
 
@@ -68,7 +71,9 @@ public class Ui {
      * Prints the goodbye message to standard output.
      */
     public static void printGoodBye() {
+        printLine();
         printMessage(MESSAGE_GOODBYE);
+        printLine();
     }
 
     /**
@@ -77,10 +82,9 @@ public class Ui {
      * @param message The message to be printed.
      */
     public static void printMessage(String message) {
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(message);
-        System.out.println(HORIZONTAL_LINE);
+        System.out.println(LINE_PREFIX + message);
     }
+
 
     //start of FOOD
     /**
@@ -199,6 +203,18 @@ public class Ui {
         String month = String.valueOf(currentYearMonth.getMonthValue());
         String year = String.valueOf(currentYearMonth.getYear());
         new DisplayCommand("calendar " + month + "-" + year).execute(ui, storage);
+    }
+
+    public static void printLectureList(ArrayList<Lecture> lectures) {
+        System.out.println("Here is your list of lectures:");
+        if (!lectures.isEmpty()) {
+            int i = 1;
+            for (Lecture item : lectures) {
+                System.out.println((i++) + ". " + item);
+            }
+        } else {
+            System.out.println("NO Lectures!");
+        }
     }
 
     /**
