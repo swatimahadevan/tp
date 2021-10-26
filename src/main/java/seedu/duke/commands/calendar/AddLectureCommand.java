@@ -70,9 +70,10 @@ public class AddLectureCommand extends Command {
      * @throws ModuleNotFoundException in case module has not been added before.
      */
     @Override
+
     public void execute(Ui ui, Storage storage) throws IOException,
             ModuleNotFoundException, InvalidDateException, DuplicateTaskException {
-        ModuleList moduleList = storage.storageModule.readDataFromFile();
+        ModuleList moduleList = storage.storageModule.readModulesFromFile();
         String module = argumentsLecture.get(0).trim();
         boolean isModuleInList = false;
         for (int i = 0; i < moduleList.getNumberOfModules(); i++) {

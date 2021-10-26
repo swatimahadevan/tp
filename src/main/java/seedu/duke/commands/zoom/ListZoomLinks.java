@@ -12,10 +12,13 @@ public class ListZoomLinks extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws Exception {
+        ui.printLine();
         try {
             StorageZoom.displayLinks();
+            ui.printLine();
         } catch (Exception e) {
             System.out.println("Unable to open the file");
+            ui.printLine();
         }
     }
 }
