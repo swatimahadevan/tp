@@ -27,6 +27,7 @@ import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.food.ListFoodCommand;
 import seedu.duke.commands.journal.ListJournalCommand;
 import seedu.duke.commands.zoom.ListZoomLinks;
+import seedu.duke.commands.zoom.OpenZoomLink;
 import seedu.duke.exceptions.calendar.IncorrectCommandException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
@@ -54,28 +55,28 @@ import java.util.ArrayList;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_NOTE;
-import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_ENTRY;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_CAP;
+import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_ENTRY;
+import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_NOTE;
+import static seedu.duke.constants.CommandConstants.COMMAND_DISPLAY;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
 import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_LECTURE;
 import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
 import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EXPECTED;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
-import static seedu.duke.constants.CommandConstants.COMMAND_DISPLAY;
-import static seedu.duke.constants.CommandConstants.COMMAND_LECTURE;
-import static seedu.duke.constants.CommandConstants.COMMAND_CAP;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EXPECTED;
-import static seedu.duke.constants.CommandConstants.COMMAND_LECTURE;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_OPEN;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
@@ -224,6 +225,8 @@ public class Parser {
                 return new AddZoomCommand(zoomArgs[1], zoomArgs[2]);
             case COMMAND_SUFFIX_LIST:
                 return new ListZoomLinks();
+            case COMMAND_ZOOM_SUFFIX_OPEN:
+                return new OpenZoomLink(zoomArgs[1]);
             default:
                 throw new ArgumentsNotFoundException();
             }

@@ -8,29 +8,39 @@ import seedu.duke.ui.Ui;
 //@@author shoibloya
 
 /**
- * A representation of the command to list all the zoom links.
+ * This class represents the zoom command to open a link.
  */
-public class ListZoomLinks extends Command {
+public class OpenZoomLink extends Command {
+    private String module;
 
     /**
-     * Constructor to display syntax via the help feature.
+     * Constructor to print syntax via the help feature.
      */
-    public ListZoomLinks() {
-        syntax = "zoom list";
+    public OpenZoomLink() {
+        syntax = "zoom open [MODULE_CODE]";
     }
 
     /**
-     * Function to execute the ListZoomLinks command.
+     * Class constructor.
+     *
+     * @param module The module
+     */
+    public OpenZoomLink(String module) {
+        this.module = module;
+    }
+
+    /**
+     * Execute the OpenZoomLink command.
      *
      * @param ui      The component of Duke that deals with the interaction with the user.
      * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
-     * @throws Exception throws the default exception.
+     * @throws Exception Throws the default exception
      */
     @Override
     public void execute(Ui ui, Storage storage) throws Exception {
         ui.printLine();
         try {
-            StorageZoom.displayLinks();
+            StorageZoom.openZoomLink(module);
             ui.printLine();
         } catch (Exception e) {
             ui.printLine();

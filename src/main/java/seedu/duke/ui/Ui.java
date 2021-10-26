@@ -271,7 +271,7 @@ public class Ui {
 
     public static void displayZoomLink(String moduleName, String zoomLink) {
         System.out.println("Module: " + moduleName);
-        System.out.println("Zoom: " + zoomLink + "\n");
+        System.out.println("Zoom: " + zoomLink);
     }
 
 
