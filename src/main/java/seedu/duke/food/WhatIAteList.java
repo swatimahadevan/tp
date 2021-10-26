@@ -3,7 +3,6 @@ package seedu.duke.food;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Represents a list of what the user has eaten.
@@ -14,14 +13,34 @@ import java.util.Date;
  */
 public class WhatIAteList  {
 
+    private String stallName;
     private ArrayList<FoodRecord> whatIAteList = new ArrayList<>();
 
-    //if date not given
+    /**
+     * No stallName - for the User
+     */
     public WhatIAteList() {
+
+    }
+
+    /**
+     * For a reference list
+     * @param stallName name of a stall
+     */
+    public WhatIAteList(String stallName) {
+        this.stallName = stallName;
     }
 
     public ArrayList<FoodRecord> getList() {
         return whatIAteList;
+    }
+
+    /**
+     * For reference list
+     * @param whatIAteList loaded reference list
+     */
+    public void setWhatIAteList(ArrayList<FoodRecord> whatIAteList) {
+        this.whatIAteList = whatIAteList;
     }
 
     /**
@@ -49,11 +68,13 @@ public class WhatIAteList  {
     public void printIndexWithSuffix(int index) {
         String[] suffixList = {"st", "nd", "rd", "th"};
         String suffixToPrint;
-        if ((index - 1) %  10 == 0) {
+        int lastDigit = index % 10;
+        int exceptionTeen = index % 100; //11,12,13th
+        if (lastDigit == 1 && exceptionTeen != 11) {
             suffixToPrint = suffixList[0];
-        } else if ((index - 2) % 10 == 0) {
+        } else if (lastDigit == 2 && exceptionTeen != 12) {
             suffixToPrint = suffixList[1];
-        } else if ((index - 3) % 10 == 0) {
+        } else if (lastDigit == 3 && exceptionTeen != 13) {
             suffixToPrint = suffixList[2];
         } else {
             suffixToPrint = suffixList[3];
@@ -66,21 +87,28 @@ public class WhatIAteList  {
      * In context, for today.
      *
      * @author ngnigel99
+     * @param withMessages if messages are to be included
      */
-    public void printList() {
+    public void printList(boolean withMessages) {
         int index = 1;  //TODO integrate this with storage so it's not a magic number
         int calorieSum =  0;
         for (FoodRecord listRecord : whatIAteList) {
             printIndexWithSuffix(index);
-            System.out.println("You consumed  " + listRecord.getFoodName()
-                                + " , which has a calorie count of : "
-                                + listRecord.getCalorieCount()
-                    + ((listRecord.getDateIAte() != null) ? " on " + listRecord.getDateIAte() + "!" : "!"));
+            if (withMessages) {
+                System.out.println("You consumed  " + listRecord.getFoodName()
+                        + " , which has a calorie count of : "
+                        + listRecord.getCalorieCount()
+                        + ((listRecord.getDateIAte() != null) ? " on " + listRecord.getDateIAte() + "!" : "!"));
+            } else {
+                System.out.println(listRecord.getFoodName() + " : " + listRecord.getCalorieCount() + "Kcal");
+            }
             index++;
             calorieSum += listRecord.getCalorieCount();
         }
-        System.out.println("Wow, that's a lot of food! Finished reading today's list");
-        System.out.println("You consumed " + calorieSum +  " calories in total today!");
+        System.out.println("Wow, that's a lot of food! Finished reading the list");
+        if (withMessages) {
+            System.out.println("You consumed " + calorieSum + " calories in total today!");
+        }
     }
 
     public void clearList() {

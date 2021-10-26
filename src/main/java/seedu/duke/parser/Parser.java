@@ -156,7 +156,7 @@ public class Parser {
     public static FoodRecord parseFoodSavedListToRecord(String readLine) {
         String[] nameCalories = readLine.split("\\|");
         if (nameCalories.length == 2) {
-            return new FoodRecord(nameCalories[0], Integer.parseInt(nameCalories[1]));
+            return new FoodRecord(nameCalories[0], Integer.parseInt(nameCalories[1].trim()));
         }
         FoodRecord recordWithDate = new FoodRecord(nameCalories[0], Integer.parseInt(nameCalories[1]));
         String dateToParse = nameCalories[2];
