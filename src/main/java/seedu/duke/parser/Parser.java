@@ -8,20 +8,29 @@ import seedu.duke.commands.calendar.ListLecturesCommand;
 import seedu.duke.commands.calendar.DisplayCommand;
 import seedu.duke.commands.calendar.DeleteTaskCommand;
 import seedu.duke.commands.calendar.ListTasksCommand;
-import seedu.duke.commands.food.*;
+import seedu.duke.commands.food.AddFoodCommand;
+import seedu.duke.commands.food.AddFoodFromReferenceCommand;
+import seedu.duke.commands.food.ClearFoodCommand;
+import seedu.duke.commands.food.DeleteFoodCommand;
+import seedu.duke.commands.food.FindFoodWithDateCommand;
+import seedu.duke.commands.food.ListFoodCommand;
+import seedu.duke.commands.food.ViewReferenceFoodCommand;
 import seedu.duke.commands.journal.AddEntryCommand;
 import seedu.duke.commands.journal.DeleteNoteCommand;
 import seedu.duke.commands.journal.DeleteEntryCommand;
-import seedu.duke.commands.module.AddModuleCommand;
 import seedu.duke.commands.journal.AddNoteCommand;
+import seedu.duke.commands.module.AddModuleCommand;
+import seedu.duke.commands.module.CapInfoCommand;
+import seedu.duke.commands.module.DeleteModuleCommand;
 import seedu.duke.commands.module.GetCapCommand;
+import seedu.duke.commands.module.ListModuleCommand;
 import seedu.duke.commands.zoom.AddZoomCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.module.DeleteModuleCommand;
+import seedu.duke.commands.food.DeleteFoodCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.journal.ListJournalCommand;
-import seedu.duke.commands.module.ListModuleCommand;
 import seedu.duke.commands.zoom.ListZoomLinks;
 import seedu.duke.exceptions.calendar.IncorrectCommandException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
@@ -49,9 +58,31 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import static seedu.duke.constants.CommandConstants.*;
+import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
+import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
+import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_NOTE;
+import static seedu.duke.constants.CommandConstants.COMMAND_DELETE_ENTRY;
+import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
+import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
+import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
+import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
+import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
+import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_DISPLAY;
+import static seedu.duke.constants.CommandConstants.COMMAND_LECTURE;
+import static seedu.duke.constants.CommandConstants.COMMAND_CAP;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EXPECTED;
+import static seedu.duke.constants.CommandConstants.COMMAND_LECTURE;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
@@ -184,6 +215,15 @@ public class Parser {
             }
         case COMMAND_MODULE:
             return getModuleCommand(commandArgs);
+        case COMMAND_CAP:
+            switch (commandArgs) {
+            case COMMAND_SUFFIX_EDIT:
+                return new CapInfoCommand();
+            case COMMAND_SUFFIX_EXPECTED:
+                return new GetCapCommand();
+            default:
+                throw new ClickException();
+            }
         case COMMAND_ZOOM:
             String[] zoomArgs = commandArgs.split(" ");
             switch (zoomArgs[0]) {
@@ -267,8 +307,6 @@ public class Parser {
             return new ListModuleCommand();
         case COMMAND_SUFFIX_DELETE:
             return new DeleteModuleCommand(moduleCommandAndArgs[1]);
-        case COMMAND_SUFFIX_CAP:
-            return new GetCapCommand();
         default:
             throw new ClickException();
         }
