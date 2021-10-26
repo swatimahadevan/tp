@@ -143,7 +143,7 @@ Expected outcome:
 
 #### 3.1.2 Listing Modules: `module list`
 
-Lists all Modules in Click with numbering according to the order they are added (1-based index).
+Lists all modules in Click with numbering according to the order they are added (1-based index) so that you can have an overview of your modules.
 
 Format: `module list`
 
@@ -161,7 +161,7 @@ Expected outcome:
 
 #### 3.1.3 Deleting a Module: `module delete`
 
-Deletes the specified Module from the list of Modules.
+Deletes the specified module from the list of modules so that you can get rid of the modules you do not want to take anymore.
 
 Format: `module delete INDEX`
 
@@ -178,7 +178,7 @@ Expected outcome:
 
 #### 3.1.4 Editing CAP Information
 
-Edits information to calculate the Cumulative Average Point (CAP).
+Edits information of your current Cumulative Average Point (CAP) and the number of modular credits you have taken so that Click can calculate your expected CAP.
 
 Format: `cap edit`
 
@@ -413,8 +413,6 @@ Cleared food record list for today!
 ```
 
 
-
-
 ## 4. Command Summary
 
 **Action** | **Format, Examples**
@@ -422,7 +420,7 @@ Cleared food record list for today!
 **Add Entry**|`journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
 **Add Food**|`food add`
 **Add Lecture**|`calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
-**Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME`<br><br> Example: `module add c/CS2113T n/Software Engineering`<br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
+**Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
 **Add Note**|`journal notebook n/ NOTEBOOK_NAME`
 **Add Todo**|`calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
 **Add Zoom**|`zoom add [MODULE_CODE] [ZOOM_LINK]`
@@ -432,7 +430,9 @@ Cleared food record list for today!
 **Delete Note**|`journal delete NOTE_INDEX`
 **Delete Task**|`calendar delete TASK_INDEX`
 **Display**|`calendar display MM-YYYY`
+**Edit CAP Information**|`cap edit`
 **Edit Tasks**|`calendar edit TASK_INDEX`
+**Get Expected CAP**|`cap expected`
 **Help**|`help`
 **List  Food Items**|`food list`
 **List  Journal**|`journal list`
