@@ -29,4 +29,5 @@ public class CommandConstants {
     public static final String COMMAND_ZOOM = "zoom";
     public static final String COMMAND_ZOOM_SUFFIX_ADD = "add";
     public static final String COMMAND_ZOOM_SUFFIX_LIST = "show";
+    public static final String COMMAND_SUFFIX_VIEW = "view";
 }

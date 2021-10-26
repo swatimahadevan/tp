@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class Storage {
 
     private String tasksFilePath;
-    public ReferenceLists technoEdge = ReferenceLists.getLists();
+    public static ReferenceLists reference = ReferenceLists.getLists();
     public WhatIAteList whatIAteTodayList =  StorageFood.load();
     public static TaskList tasksList;
 

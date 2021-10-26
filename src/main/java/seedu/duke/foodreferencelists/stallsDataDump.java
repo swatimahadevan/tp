@@ -3,6 +3,7 @@ package seedu.duke.foodreferencelists;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.food.WhatIAteList;
 import seedu.duke.parser.Parser;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ public class stallsDataDump {
     public stallsDataDump() {
         initialiseNameIdMap();
         initialiseIdPointerMap();
+        collateAllItems();
     }
 
     private void initialiseNameIdMap() {
@@ -53,12 +55,29 @@ public class stallsDataDump {
     }
 
     /**
+     * Collates all items from all stores into array list.
+     */
+    private void collateAllItems() {
+        idData.forEach((key,value) -> compoundedItemsList.add(value));
+    }
+
+    /**
      * Helper function to list all current stores
      */
     public static void printStalls() {
         idName.forEach((key, value) -> System.out.println(key + " | " + value));
+        System.out.println("Wow, thats a lot of options! Finished printing");
     }
 
+
+    /**
+     * Prints ALL FOOD ITEMS from all stores (not recommended)
+     *
+     */
+    /**
+     * Prints items for a specific store with given index
+     * @param index index of the store
+     */
     public static void printItems(int index) {
         if (index <= 0 || index > MAX_STORE_INDEX) {
             System.out.println("Oops, can't find store " + index);
@@ -70,6 +89,18 @@ public class stallsDataDump {
                 tempFormattedList.addToList(toAdd, true);
             }
             tempFormattedList.printList(false);
+        }
+    }
+
+    /**
+     * Trivial function to print every item
+     */
+    public static void printAllItems() {
+        for (int storeIndex : idName.keySet()) {
+            String storeName = idName.get(storeIndex);
+            System.out.println(storeName);
+            Ui.printLine();
+            printItems(storeIndex);
         }
     }
 
