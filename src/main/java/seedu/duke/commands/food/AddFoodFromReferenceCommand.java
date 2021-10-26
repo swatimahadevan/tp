@@ -8,6 +8,7 @@ import seedu.duke.food.FoodRecord;
 import seedu.duke.food.ReferenceLists;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageFood;
 import seedu.duke.ui.Ui;
 
 /**
@@ -42,5 +43,6 @@ public class AddFoodFromReferenceCommand extends Command {
                 getFoodRecordFromStall(storeIndex, itemIndex);
         System.out.println(toAdd.toString());
         storage.whatIAteTodayList.addToList(toAdd, false);
+        StorageFood.saveList(storage.whatIAteTodayList);
     }
 }
