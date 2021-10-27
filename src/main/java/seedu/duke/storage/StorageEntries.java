@@ -69,9 +69,6 @@ public class StorageEntries {
             return collectionOfEntries;
         } catch (FileNotFoundException e) {
             File f = new File(StorageEntries.filePath);
-            System.out.println("Hey, I didn't find " + StorageEntries.fileName + " in " + StorageEntries.folderName
-                    + "!");
-            System.out.println("creating new file...");
         }
         return collectionOfEntries;
     }

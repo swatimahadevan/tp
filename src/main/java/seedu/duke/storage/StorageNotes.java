@@ -63,8 +63,6 @@ public class StorageNotes {
         } catch (FileNotFoundException e) {
             ClickLogger.getNewLogger().log(Level.WARNING, "file not found on load");
             File f = new File(StorageNotes.filePath);
-            System.out.println("Hey, I didn't find " + StorageNotes.fileName + " in " + StorageNotes.folderName + "!");
-            System.out.println("creating new file...");
         }
         return collectionOfNotes;
     }
