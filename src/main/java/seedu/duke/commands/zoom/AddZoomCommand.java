@@ -58,7 +58,8 @@ public class AddZoomCommand extends Command {
      * @throws StorageException throws the Storage Exception
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException, IllegalModuleException, StorageException, InvalidZoomLinkException {
+    public void execute(Ui ui, Storage storage) throws IOException, IllegalModuleException,
+            StorageException, InvalidZoomLinkException {
         if (zoomLink.contains("https://")) {
             ui.printLine();
             try {
