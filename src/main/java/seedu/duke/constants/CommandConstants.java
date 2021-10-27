@@ -15,6 +15,8 @@ public class CommandConstants {
     public static final String COMMAND_DELETE_ENTRY = "delete_entry";
     public static final String COMMAND_ADD_ENTRY = "entry";
     public static final String COMMAND_JOURNAL_LIST = "list";
+    public static final String COMMAND_JOURNAL_TAG = "tag";
+    public static final String COMMAND_JOURNAL_FIND = "find";
     public static final String COMMAND_NOTE = "journal";
     public static final String COMMAND_TODO = "todo";
     public static final String COMMAND_DISPLAY = "display";
