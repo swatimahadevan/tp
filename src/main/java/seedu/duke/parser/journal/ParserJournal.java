@@ -35,7 +35,7 @@ public class ParserJournal {
     }
 
     /**
-     * Checking if addition of notebook will result in duplicates.
+     * Checking if addition of the notebook will result in duplicates.
      *
      * @param input getting userInput regarding notebook
      * @param notes list of notes
