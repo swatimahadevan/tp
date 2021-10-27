@@ -6,6 +6,8 @@ import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
+import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageFood;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,6 +41,15 @@ public class FoodTest {
         //test fields are correctly constructed
         assertEquals(testFoodRecord.getFoodName(), actualFoodRecord.getFoodName());
         assertEquals(testFoodRecord.getCalorieCount(), actualFoodRecord.getCalorieCount());
+    }
+
+    @Test
+    void testLoadFoodFromReferenceListLine() {
+        String readLine = "Set A - Butterfly Plea Flower Rice w Ayam Penyet (Regular) | 1151";
+        FoodRecord testFoodRecord = Parser.parseFoodSavedListToRecord(readLine);
+        FoodRecord actualFoodRecord = new FoodRecord(
+            "Set A - Butterfly Plea Flower Rice w Ayam Penyet (Regular)", 1151
+        );
     }
 
     @Test
