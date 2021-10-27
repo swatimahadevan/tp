@@ -58,7 +58,7 @@ public class DeleteLectureCommand extends Command {
             throw new LectureIndexNotFoundException();
         }
         Storage.lectureList.deleteLecture(this.index);
-        System.out.println(MESSAGE_DELETE_LECTURE);
+        ui.printMessage(MESSAGE_DELETE_LECTURE);
         ui.printLine();
         StorageLecture.writeLectureList(Storage.lectureList);
     }

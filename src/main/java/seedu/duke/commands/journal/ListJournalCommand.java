@@ -34,12 +34,12 @@ public class ListJournalCommand extends Command {
         int entryIndex = 1;
         ui.printLine();
         for (Note note : notes) {
-            System.out.println(notebookIndex + ". " + "The notebook " + note.getNoteName()
+            ui.printMessage(notebookIndex + ". " + "The notebook " + note.getNoteName()
                    + "(tag: " + note.getTag().trim() + ")" + " contains:");
             notebookIndex += 1;
             for (Entry entry : entries) {
                 if (entry.getEntryNoteName().equals(note.getNoteName())) {
-                    System.out.println("\t" + entryIndex + ". " + entry.getNameOfJournalEntry());
+                    ui.printMessage("\t" + entryIndex + ". " + entry.getNameOfJournalEntry());
                     entryIndex += 1;
                 }
             }

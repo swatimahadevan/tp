@@ -47,10 +47,10 @@ public class FindNotebooksByTagCommand extends Command {
         String tagName = ParserJournal.parseTagForFinding(userInput);
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         ui.printLine();
-        System.out.println("Notebooks with the tag " + tagName.trim() + " are: ");
+        ui.printMessage("Notebooks with the tag " + tagName.trim() + " are: ");
         for (Note note: notes) {
             if (note.getTag().equals(tagName.trim())) {
-                System.out.println(note.getNoteName());
+                ui.printMessage(note.getNoteName());
             }
         }
         ui.printLine();
