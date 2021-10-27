@@ -20,7 +20,7 @@ public class DeleteEntryCommand extends Command {
     public String userInput;
 
     public DeleteEntryCommand() {
-        syntax = "journal delete_entry n/ NOTEBOOK_NAME e/ ENTRY_INDEX";
+        syntax = "journal delete_entry n/ [NOTEBOOK_NAME] e/ [ENTRY_INDEX]";
     }
 
     /**

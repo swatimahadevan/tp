@@ -18,7 +18,7 @@ public class AddNoteCommand extends Command {
     public String userInput;
 
     public AddNoteCommand() {
-        syntax = "journal notebook n/ NOTEBOOK_NAME";
+        syntax = "journal notebook n/ [NOTEBOOK_NAME]";
     }
 
     /**
