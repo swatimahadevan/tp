@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class ReferenceLists {
     private static ReferenceLists lists = null;
     private StallsDataAndLogic technoEdge = new StallsDataAndLogic();
-    public ArrayList<WhatIAteList> storeData;
 
     //singleton design as only one food court is viewed
     private ReferenceLists() {

@@ -16,8 +16,8 @@ import seedu.duke.ui.Ui;
  * radd refers to "reference add"
  */
 public class AddFoodFromReferenceCommand extends Command {
-    int storeIndex;
-    int itemIndex;
+    private int storeIndex;
+    private int itemIndex;
 
     public AddFoodFromReferenceCommand() {
         this.syntax = "food radd /s [STORE_INDEX] /i [ITEM_INDEX]";

@@ -95,7 +95,7 @@ public class WhatIAteList  {
         }
         System.out.println("Wow, that's a lot of food! Finished reading the list");
         if (withMessages) {
-            System.out.println("You consumed " + calorieSum + " calories in total today!");
+            Ui.printMessage("You consumed " + calorieSum + " calories in total today!");
         }
     }
 
