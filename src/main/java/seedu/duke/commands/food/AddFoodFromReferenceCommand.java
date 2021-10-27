@@ -20,13 +20,13 @@ public class AddFoodFromReferenceCommand extends Command {
     private int itemIndex;
 
     public AddFoodFromReferenceCommand() {
-        this.syntax = "food radd /s [STORE_INDEX] /i [ITEM_INDEX]";
+        this.syntax = "food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]";
     }
 
     //assumes string given after food radd
     public AddFoodFromReferenceCommand(String userInput) throws WrongDividerOrderException,
         ArgumentsNotFoundException {
-        String[] data = Parser.getData(userInput, "/s", "/i");
+        String[] data = Parser.getData(userInput, "s/", "i/");
         String storeIndexString = data[0];
         String itemIndexString = data[1];
         try {
