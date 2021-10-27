@@ -230,7 +230,7 @@ Expected outcome:
 Added lecture!
 ```
 
-#### 3.3.2 Adding a todo task: `calendar task`
+#### 3.3.2 Adding a todo task: `calendar todo`
 Adds a task item.
 
 Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
@@ -261,7 +261,7 @@ Here's your task list:
 1. GER1000 Assignment (on: 14-10-2021)
 2. GEQ1000 Assignment (on: 03-10-2021)
 ```
-#### 3.3.4 Deleting a task: `calendar delete`
+#### 3.3.4 Deleting a task: `calendar delete task`
 Deletes a task item based on the index.
 
 Format: `calendar delete task TASK_INDEX`
@@ -418,7 +418,7 @@ Expected outcome:
 Great you have tagged the notebook
 ```
 
-#### 3.4.6 Find a notebook by tag
+#### 3.4.7 Find a notebook by tag
 Allows you to find a notebook which has the tag.
 
 Format: `journal find TAG_NAME`
@@ -512,20 +512,25 @@ Cleared food record list for today!
 **Add Todo**|`calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
 **Add Zoom**|`zoom add [MODULE_CODE] [ZOOM_LINK]`
 **Clear Food**|`food clear`
+**Delete Entry**|`journal delete_entry n/ NOTE_NAME e/ ENTRY_NAME`
 **Delete Food**|`food delete INDEX`
 **Delete Module**|`module delete INDEX`<br><br> Example: `module delete 2`
-**Delete Note**|`journal delete NOTE_INDEX`
-**Delete Task**|`calendar delete TASK_INDEX`
+**Delete Note**|`journal delete_notebook NOTE_INDEX`
+**Delete Task**|`calendar delete task TASK_INDEX`
+**Delete Lecture**|`calendar delete lec LECTURE_INDEX`
 **Display**|`calendar display MM-YYYY`
 **Edit CAP Information**|`cap edit`
 **Edit Tasks**|`calendar edit TASK_INDEX`
+**Find Notebook by tag**|`journal find TAG_NAME`
 **Get Expected CAP**|`cap expected`
 **Help**|`help`
 **List  Food Items**|`food list`
 **List  Journal**|`journal list`
 **List  Modules**|`module list`
-**List Tasks**|`calendar list`
+**List Tasks**|`calendar list task`
+**List Lectures**|`calendar list lec`
 **List Zoom Links**|`zoom list`
+**Tag Journal**|`journal tag n/ NOTE_INDEX t/ TAG_NAME`
 **Exit**|`exit`
 
 
