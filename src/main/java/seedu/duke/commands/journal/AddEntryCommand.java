@@ -21,6 +21,13 @@ public class AddEntryCommand extends Command {
     public String userInput;
 
     /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
+    public AddEntryCommand() {
+        syntax = "journal entry n/ [NOTEBOOK_NAME] e/ [ENTRY_NAME]";
+    }
+
+    /**
      * Constructor for the AddEntryCommand.
      *
      * @param userInput input from the user

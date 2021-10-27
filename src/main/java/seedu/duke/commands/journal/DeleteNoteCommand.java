@@ -18,6 +18,13 @@ public class DeleteNoteCommand extends Command {
     public String userInput;
 
     /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
+    public DeleteNoteCommand() {
+        syntax = "journal delete_notebook [NOTE_INDEX]";
+    }
+
+    /**
      * Constructor for the DeleteNoteCommand.
      *
      * @param userInput input from the user.
@@ -25,7 +32,7 @@ public class DeleteNoteCommand extends Command {
     public DeleteNoteCommand(String userInput) {
         this.userInput = userInput;
         helpMessage = "Delete a notebook from list";
-        syntax = "journal delete_notebook n/ NOTEBOOK_NAME";
+        syntax = "journal delete_notebook NOTEBOOK_INDEX";
     }
 
 

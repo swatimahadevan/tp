@@ -18,6 +18,13 @@ public class AddNoteCommand extends Command {
     public String userInput;
 
     /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
+    public AddNoteCommand() {
+        syntax = "journal notebook n/ [NOTEBOOK_NAME]";
+    }
+
+    /**
      * Constructor for the AddNoteCommand.
      *
      * @param userInput input from the user.

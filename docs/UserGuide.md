@@ -375,9 +375,63 @@ Example: `journal list`
 Expected outcome:
 
 ```
-The notebook Today contains:
-Random Observation
+1. The notebook Today contains:
+  1. Random Observation
 ```
+
+#### 3.4.4 Deleting notebooks `journal delete_notebook`
+Deletes specific notebook.
+
+Format: `journal delete_notebook NOTE_INDEX`
+
+Example: `journal delete_notebook 1`
+
+Expected outcome:
+
+```
+Great you have deleted the notebook at : 1
+```
+
+#### 3.4.5 Deleting entry `journal delete_entry`
+Deletes the entry.
+
+Format: `journal delete_entry n/ NOTE_NAME e/ ENTRY_NAME`
+
+Example: `journal delete_entry n/ CS2113 e/ Have to finish HW`
+
+Expected outcome:
+
+```
+Great you have deleted the entry
+```
+
+#### 3.4.6 Tagging a notebook
+Allows you to tag a notebook.
+
+Format: `journal tag n/ NOTE_INDEX t/ TAG_NAME`
+
+Example: `journal tag n/ 1 t/ important`
+
+Expected outcome:
+
+```
+Great you have tagged the notebook
+```
+
+#### 3.4.6 Find a notebook by tag
+Allows you to find a notebook which has the tag.
+
+Format: `journal find TAG_NAME`
+
+Example: `journal find important`
+
+Expected outcome:
+
+```
+Notebooks with the tag important are: 
+CS2113 HW
+```
+
 
 ### 3.5 Managing your food consumption
 #### 3.5.1 Adding a food item: `food add`

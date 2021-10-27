@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 public class ListJournalCommand extends Command {
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public ListJournalCommand() {
         helpMessage = "Listing notebooks with entries";
         syntax = "journal list";
