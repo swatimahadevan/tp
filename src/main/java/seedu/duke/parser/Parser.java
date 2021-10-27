@@ -23,9 +23,9 @@ import seedu.duke.commands.journal.FindNotebooksByTagCommand;
 import seedu.duke.commands.journal.ListJournalCommand;
 import seedu.duke.commands.journal.TagNotebookCommand;
 import seedu.duke.commands.module.AddModuleCommand;
-import seedu.duke.commands.module.CapInfoCommand;
+import seedu.duke.commands.module.CapEditInfoCommand;
 import seedu.duke.commands.module.DeleteModuleCommand;
-import seedu.duke.commands.module.GetCapCommand;
+import seedu.duke.commands.module.GetExpectedCapCommand;
 import seedu.duke.commands.module.ListModuleCommand;
 import seedu.duke.commands.zoom.AddZoomCommand;
 import seedu.duke.commands.Command;
@@ -223,9 +223,9 @@ public class Parser {
         case COMMAND_CAP:
             switch (commandArgs) {
             case COMMAND_SUFFIX_EDIT:
-                return new CapInfoCommand();
+                return new CapEditInfoCommand();
             case COMMAND_SUFFIX_EXPECTED:
-                return new GetCapCommand();
+                return new GetExpectedCapCommand();
             default:
                 throw new ClickException();
             }
