@@ -19,7 +19,7 @@ public class AddEntryCommand extends Command {
     public String userInput;
 
     public AddEntryCommand() {
-        syntax = "journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME";
+        syntax = "journal entry n/ [NOTEBOOK_NAME] e/ [ENTRY_NAME]";
     }
 
     /**

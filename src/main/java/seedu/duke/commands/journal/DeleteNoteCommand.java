@@ -18,7 +18,7 @@ public class DeleteNoteCommand extends Command {
     public String userInput;
 
     public DeleteNoteCommand() {
-        syntax = "journal delete NOTE_INDEX";
+        syntax = "journal delete [NOTE_INDEX]";
     }
 
     /**
