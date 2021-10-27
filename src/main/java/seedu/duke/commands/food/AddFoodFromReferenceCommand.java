@@ -43,7 +43,9 @@ public class AddFoodFromReferenceCommand extends Command {
             .reference
             .getTechnoEdge()
             .getFoodRecordFromStall(storeIndex, itemIndex);
-        System.out.println(toAdd.toString());
+        Ui.printLine();
+        Ui.printMessageSameLine("Nice, adding the record - ");
+        Ui.printMessage(toAdd.toString());
         storage.whatIAteTodayList.addToList(toAdd, false);
         StorageFood.saveList(storage.whatIAteTodayList);
     }
