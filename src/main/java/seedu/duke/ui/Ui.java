@@ -161,7 +161,7 @@ public class Ui {
      */
     public static void printAddedNoteMessage(String noteName) {
         ui.printLine();
-        System.out.println("Great you have added the note: " + noteName);
+        printMessage("Great you have added the note: " + noteName);
         ui.printLine();
     }
 
@@ -170,7 +170,7 @@ public class Ui {
      */
     public static void printAddedEntryMessage(String entryName) {
         ui.printLine();
-        System.out.println("Great you have added the entry: " + entryName);
+        printMessage("Great you have added the entry: " + entryName);
         ui.printLine();
     }
 
@@ -179,7 +179,7 @@ public class Ui {
      */
     public static void printDeletedNotebookMessage(int indexOfDeletedNotebook) {
         ui.printLine();
-        System.out.println("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
+        printMessage("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
         ui.printLine();
     }
 
@@ -188,7 +188,7 @@ public class Ui {
      */
     public static void printDeletedEntryMessage() {
         ui.printLine();
-        System.out.println("Great you have deleted the entry");
+        printMessage("Great you have deleted the entry");
         ui.printLine();
     }
 
@@ -197,7 +197,7 @@ public class Ui {
      */
     public static void printTaggedNotebookMessage() {
         ui.printLine();
-        System.out.println("Great you have tagged the notebook");
+        printMessage("Great you have tagged the notebook");
         ui.printLine();
     }
     //@@author SvethaMahadevan
@@ -298,14 +298,14 @@ public class Ui {
     //@@author
 
     public static void displayZoomLink(String moduleName, String zoomLink) {
-        System.out.println("Module: " + moduleName);
-        System.out.println("Zoom: " + zoomLink);
+        printMessage("Module: " + moduleName);
+        printMessage("Zoom: " + zoomLink);
     }
 
     public static void printHelpMessage(String helpMessage, String syntax) {
-        System.out.println("Description: " + helpMessage);
+        printMessage("Description: " + helpMessage);
         //System.out.println("Syntax: ");
-        System.out.println("Syntax: " + syntax);
+        printMessage("Syntax: " + syntax);
     }
 
 }
