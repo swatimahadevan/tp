@@ -334,6 +334,9 @@ public class Parser {
         String[] calendarArguments = commandArgs.split(" ");
         switch (calendarArguments[0]) {
         case COMMAND_SUFFIX_LIST:
+            if (calendarArguments.length < 2) {
+                throw new IncorrectCommandException("Incorrect command for list!");
+            }
             Command list = getCalendarListCommand(calendarArguments);
             return list;
         case COMMAND_DISPLAY:
@@ -344,6 +347,9 @@ public class Parser {
             ArrayList<String> arguments = ParserSchedule.parseTodoCommand(userInput);
             return new AddTodoCommand(arguments);
         case COMMAND_SUFFIX_DELETE:
+            if (calendarArguments.length < 2) {
+                throw new IncorrectCommandException("Incorrect command for delete!");
+            }
             Command delete = getCalendarDeleteCommand(calendarArguments, userInput);
             return delete;
         case COMMAND_LECTURE:
