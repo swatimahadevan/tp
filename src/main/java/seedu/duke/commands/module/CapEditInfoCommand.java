@@ -17,7 +17,7 @@ public class CapEditInfoCommand extends Command {
 
     public CapEditInfoCommand() {
         helpMessage = "Get user's information to calculate expected CAP";
-        syntax = "module info";
+        syntax = "cap edit";
     }
 
     @Override

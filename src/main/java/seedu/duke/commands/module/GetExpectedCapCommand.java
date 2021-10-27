@@ -18,7 +18,7 @@ public class GetExpectedCapCommand extends Command {
      */
     public GetExpectedCapCommand() {
         this.helpMessage = "Get the expected CAP";
-        this.syntax = "module cap";
+        this.syntax = "cap expected";
     }
 
     /**

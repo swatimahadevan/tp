@@ -47,7 +47,7 @@ public class CommandConstants {
             +
         "\tAdd Lecture  : calendar lecture m/ [MODULE_CODE] s/ [DD-MM-YYYY(START_DATE)] e/ [DD-MM-YYYY(END_DATE)]\n"
             +
-        "\tAdd Module  : module add c/ [MODULE_CODE] n/ [MODULE_NAME] e/ [EXPECTED_GRADE]\n"
+        "\tAdd Module  : module add c/ [MODULE_CODE] n/ [MODULE_NAME] mc/ [MODULAR CREDITS] e/ [EXPECTED_GRADE]\n"
             +
         "\tAdd Note  : journal notebook n/ [NOTEBOOK_NAME]\n"
             +
@@ -55,7 +55,7 @@ public class CommandConstants {
             +
         "\tAdd Zoom  : zoom add [MODULE_CODE] [ZOOM_LINK]\n"
             +
-        "\tCap Edit Info  : module info\n"
+        "\tCap Edit Info  : cap edit\n"
             +
         "\tClear Food  : food clear\n"
             +
@@ -79,7 +79,7 @@ public class CommandConstants {
             +
         "\tFind Notebooks By Tag  : journal find [TAG_NAME]\n"
             +
-        "\tGet Expected Cap  : module cap\n"
+        "\tGet Expected Cap  : cap expected\n"
             +
         "\tList Food  : food list\n"
             +
