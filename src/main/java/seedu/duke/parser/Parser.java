@@ -319,6 +319,7 @@ public class Parser {
         }
     }
 
+    //@@author swatimahadevan
     /**
      * Returns a Calendar command based on the user input.
      *
@@ -327,8 +328,6 @@ public class Parser {
      * @return A calendar based command.
      * @throws IncorrectNumberOfArgumentsException If command entered
      *         by the user does not have the required number of arguments.
-     *
-     * @author swatimahadevan
      */
     private Command getCalendarCommand(String commandArgs, String userInput)
             throws IncorrectNumberOfArgumentsException, IncorrectCommandException {
@@ -389,6 +388,7 @@ public class Parser {
         }
         return indexOfTaskToBeEdited;
     }
+    //@@author
 
     public static int getWordCount(String input) {
         return input.trim().split(" ").length;

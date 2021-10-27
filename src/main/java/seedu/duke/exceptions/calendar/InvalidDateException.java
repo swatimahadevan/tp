@@ -1,10 +1,12 @@
 package seedu.duke.exceptions.calendar;
 
+import seedu.duke.ui.Ui;
+
 public class InvalidDateException extends Exception {
-    private static String message = "Invalid date given, use format DD-MM-YYYY!";
+    private static String message = "Invalid date given!";
 
     public InvalidDateException() {
-        System.out.println(message);
+        Ui.printMessage(message);
     }
 
     @Override

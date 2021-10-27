@@ -1,5 +1,10 @@
 package seedu.duke.schedule.task;
 
+//@@author swatimahadevan
+
+/**
+ * Represents the Todo object.
+ */
 public class Todo extends Task {
 
     public Todo(String description, String date) {

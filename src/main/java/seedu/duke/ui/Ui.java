@@ -202,14 +202,14 @@ public class Ui {
     }
     //@@author SvethaMahadevan
 
-    //Schedule
+    //@@author swatimahadevan
     /**
      * Prints the header of the calendar with the month and year.
      *
      * @param inputYearMonth The YearMonth object parsed from user input string.
      */
     public static void printCalenderTitle(YearMonth inputYearMonth) {
-        System.out.println("                                       " + inputYearMonth.getMonth() + " "
+        ui.printMessage("                                       " + inputYearMonth.getMonth() + " "
                 + inputYearMonth.getYear());
     }
 
@@ -218,7 +218,9 @@ public class Ui {
      * telling user to use 'command help'.
      */
     public static void printInvalidCalendarInput() {
-        System.out.println(INVALID_CALENDAR_INPUT);
+        ui.printLine();
+        ui.printMessage(INVALID_CALENDAR_INPUT);
+        ui.printLine();
     }
 
     /**
@@ -232,15 +234,20 @@ public class Ui {
         new DisplayCommand("calendar " + month + "-" + year).execute(ui, storage);
     }
 
+    /**
+     * Prints out lecture list.
+     *
+     * @param lectures List of lectures to be displayed.
+     */
     public static void printLectureList(ArrayList<Lecture> lectures) {
-        System.out.println("Here is your list of lectures:");
+        ui.printMessage("Here is your list of lectures:");
         if (!lectures.isEmpty()) {
             int i = 1;
             for (Lecture item : lectures) {
-                System.out.println((i++) + ". " + item);
+                ui.printMessage((i++) + ". " + item);
             }
         } else {
-            System.out.println("NO Lectures!");
+            ui.printMessage("NO Lectures!");
         }
     }
 
@@ -248,7 +255,7 @@ public class Ui {
      * Prints confirmatory message after task is added successfully.
      */
     public static void printTaskAddedMessage() {
-        System.out.println(ADDED_TASK);
+        ui.printMessage(ADDED_TASK);
     }
 
     /**
@@ -257,21 +264,15 @@ public class Ui {
      * @param tasks List of tasks to be displayed.
      */
     public static void printTaskList(ArrayList<Task> tasks) {
-        System.out.println(LIST_TASKS_HEADER);
+        ui.printMessage(LIST_TASKS_HEADER);
         if (!tasks.isEmpty()) {
             int i = 1;
             for (Task item : tasks) {
-                System.out.println((i++) + ". " + item);
+                ui.printMessage((i++) + ". " + item);
             }
         } else {
-            System.out.println("NO TASKS!");
+            ui.printMessage("NO TASKS!");
         }
-    }
-
-    public static void printHelpMessage(String helpMessage, String syntax) {
-        System.out.println("Description: " + helpMessage);
-        //System.out.println("Syntax: ");
-        System.out.println("Syntax: " + syntax);
     }
 
     /**
@@ -294,12 +295,17 @@ public class Ui {
     public static void printEmptyTaskSpot() {
         System.out.print(NO_TASK_IN_DAY);
     }
-    //End Schedule
+    //@@author
 
     public static void displayZoomLink(String moduleName, String zoomLink) {
         System.out.println("Module: " + moduleName);
         System.out.println("Zoom: " + zoomLink);
     }
 
+    public static void printHelpMessage(String helpMessage, String syntax) {
+        System.out.println("Description: " + helpMessage);
+        //System.out.println("Syntax: ");
+        System.out.println("Syntax: " + syntax);
+    }
 
 }
