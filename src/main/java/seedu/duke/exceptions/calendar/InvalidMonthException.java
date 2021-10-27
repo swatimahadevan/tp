@@ -1,6 +1,7 @@
 package seedu.duke.exceptions.calendar;
 
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.ui.Ui;
 
 public class InvalidMonthException extends ClickException {
     private static String message = "The month has to be a value between 01-12!";
@@ -14,6 +15,6 @@ public class InvalidMonthException extends ClickException {
     }
 
     public static void printMessage() {
-        System.out.println(message);
+        Ui.printMessage(message);
     }
 }

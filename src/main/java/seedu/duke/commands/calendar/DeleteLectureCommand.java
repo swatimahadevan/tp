@@ -13,11 +13,19 @@ import java.io.IOException;
 
 import static seedu.duke.constants.Messages.DELETED_TASK;
 
+//@@author swatimahadevan
 
+/**
+ * Represents the class to execute deletion of lecture.
+ */
 public class DeleteLectureCommand extends Command {
     private int index;
+    public static final String MESSAGE_DELETE_LECTURE = "Lecture has been deleted!";
     private String userInput;
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public DeleteLectureCommand() {
         syntax = "calendar delete lec [LECTURE_INDEX]";
     }
@@ -45,11 +53,13 @@ public class DeleteLectureCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage)
             throws IOException, IncorrectNumberOfArgumentsException, LectureIndexNotFoundException {
+        ui.printLine();
         if (this.index > storage.lectureList.getLectureList().size()) {
             throw new LectureIndexNotFoundException();
         }
         Storage.lectureList.deleteLecture(this.index);
-        System.out.println("Lecture has been deleted!");
+        System.out.println(MESSAGE_DELETE_LECTURE);
+        ui.printLine();
         StorageLecture.writeLectureList(Storage.lectureList);
     }
 

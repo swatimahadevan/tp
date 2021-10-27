@@ -10,11 +10,18 @@ import static seedu.duke.constants.Messages.DELETED_TASK;
 
 import java.io.IOException;
 
+//@@author swatimahadevan
 
+/**
+ * Represents the class to execute deletion of todo task.
+ */
 public class DeleteTaskCommand extends Command {
     private int index;
     private String userInput;
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public DeleteTaskCommand() {
         syntax = "calendar delete task [TASK_INDEX]";
     }
@@ -44,11 +51,13 @@ public class DeleteTaskCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws IOException,
             CalendarIndexNotFoundException, IncorrectNumberOfArgumentsException {
+        ui.printLine();
         if (this.index > storage.tasksList.getTaskList().size()) {
             throw new CalendarIndexNotFoundException();
         }
         Storage.tasksList.deleteTask(this.index);
-        System.out.println(DELETED_TASK);
+        ui.printMessage(DELETED_TASK);
+        ui.printLine();
         StorageTasks.writeTaskList(Storage.tasksList);
     }
 

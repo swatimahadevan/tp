@@ -19,14 +19,22 @@ import java.util.Scanner;
 import static seedu.duke.constants.Messages.INDEX_TODO_DESCRIPTION;
 import static seedu.duke.constants.Messages.INDEX_TODO_DATE;
 
+//@@author swatimahadevan
+
 /**
  * Class to execute editing of todo task.
- *
- * @author swatimahadevan
  */
 public class EditTasksCommand extends Command {
     private int index;
+    public static final String MESSAGE_EDITED_TASK = "Edited Task!";
+    public static final String MESSAGE_ENTER_TASK_COMMAND = "Enter the entire todo command "
+            + "with the desired description and date that you "
+            + "want to replace in place of the current task at index ";
 
+
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public EditTasksCommand() {
         syntax = "calendar edit [TASK_INDEX]";
 
@@ -55,12 +63,11 @@ public class EditTasksCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws IOException, IncorrectNumberOfArgumentsException,
             CalendarIndexNotFoundException, InvalidDateException, DuplicateTaskException {
+        ui.printLine();
         if (this.index > storage.tasksList.getTaskList().size()) {
             throw new CalendarIndexNotFoundException();
         }
-        System.out.println("Enter the entire todo command "
-                + "with the desired description and date that you "
-                + "want to replace in place of the current task at index " + this.index);
+        ui.printMessage(MESSAGE_ENTER_TASK_COMMAND + this.index);
         Scanner in = new Scanner(System.in);
         String followUpInput = in.nextLine();
         ArrayList<String> arguments = ParserSchedule.parseTodoCommand(followUpInput);
@@ -70,7 +77,8 @@ public class EditTasksCommand extends Command {
         AddTodoCommand.checkIfDuplicate(task);
         AddTodoCommand.checkIfDateValid(date);
         Storage.tasksList.editTask(this.index, description, date);
-        System.out.println("Edited Task!");
+        ui.printMessage(MESSAGE_EDITED_TASK);
+        ui.printLine();
         StorageTasks.writeTaskList(Storage.tasksList);
     }
 }

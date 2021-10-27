@@ -27,6 +27,8 @@ import static seedu.duke.constants.Messages.SEPARATOR_DISPLAY;
 import static seedu.duke.constants.Messages.CALENDER_DATE_FORMATTER;
 import static seedu.duke.constants.Messages.LECTURE_TASK_SPLIT;
 
+//@@author swatimahadevan
+
 /**
  * Represents the logic and UI behind calendar with tasks display.
  */

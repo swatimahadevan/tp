@@ -230,7 +230,7 @@ Expected outcome:
 Added lecture!
 ```
 
-#### 3.3.2 Adding a task: `calendar task`
+#### 3.3.2 Adding a todo task: `calendar task`
 Adds a task item.
 
 Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
@@ -245,14 +245,14 @@ Expected outcome:
 Task has been added successfully!
 ```
 
-#### 3.3.3 Listing tasks: `calendar list`
+#### 3.3.3 Listing tasks: `calendar list task`
 Lists all the current task items.
 
-Format: `calendar list`
+Format: `calendar list task`
 
 Example:
 ```
-calendar list
+calendar list task 
 ```
 
 Expected outcome:
@@ -264,11 +264,11 @@ Here's your task list:
 #### 3.3.4 Deleting a task: `calendar delete`
 Deletes a task item based on the index.
 
-Format: `calendar delete TASK_INDEX`
+Format: `calendar delete task TASK_INDEX`
 
 Example:
 ```
-calendar delete 1
+calendar delete task 1
 ```
 
 Expected outcome:
@@ -292,7 +292,9 @@ Enter the entire todo command with the desired description and date that you wan
 Edited Task!
 ```
 #### 3.3.6 Displaying calendar: `calendar display`
-Edits a task item based on the index.
+Displays a calendar based on the month.
+
+Note: If month entered by user is incorrect, then CLICK will display the calendar of the current month.
 
 Format: `calendar display MM-YYY`
 
@@ -304,6 +306,37 @@ calendar display 10-2021
 Expected outcome:
 ![](./images/calendar/calendar_full.png)
 
+#### 3.3.7 Deleting a lecture: `calendar delete lec`
+Deletes a lecture item based on the index.
+
+Format: `calendar delete lec LECTURE_INDEX`
+
+Example:
+```
+calendar delete lec 1
+```
+
+Expected outcome:
+```
+Lecture has been deleted!
+```
+
+#### 3.3.3 Listing lectures: `calendar list lec`
+Lists all the current task items.
+
+Format: `calendar list lec`
+
+Example:
+```
+calendar list lec 
+```
+
+Expected outcome:
+```
+Here is your list of lectures:
+1. ger1000 (from: 02-10-2021) (to: 31-10-2021) 
+2. cs2101 (from: 10-10-2021) (to: 30-11-2021) 
+```
 
 ### 3.4 Managing your journal
 #### 3.4.1 Adding a notebook: `journal notebook`

@@ -1,7 +1,11 @@
 package seedu.duke.schedule.task;
 
-public abstract class Task {
+//@@author swatimahadevan
 
+/**
+ * Represents the Task object.
+ */
+public abstract class Task {
     protected String description;
     protected String date;
 
