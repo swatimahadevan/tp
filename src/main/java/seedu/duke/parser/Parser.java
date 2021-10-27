@@ -16,9 +16,12 @@ import seedu.duke.commands.food.FindFoodWithDateCommand;
 import seedu.duke.commands.food.ListFoodCommand;
 import seedu.duke.commands.food.ViewReferenceFoodCommand;
 import seedu.duke.commands.journal.AddEntryCommand;
-import seedu.duke.commands.journal.DeleteNoteCommand;
-import seedu.duke.commands.journal.DeleteEntryCommand;
 import seedu.duke.commands.journal.AddNoteCommand;
+import seedu.duke.commands.journal.DeleteEntryCommand;
+import seedu.duke.commands.journal.DeleteNoteCommand;
+import seedu.duke.commands.journal.FindNotebooksByTagCommand;
+import seedu.duke.commands.journal.ListJournalCommand;
+import seedu.duke.commands.journal.TagNotebookCommand;
 import seedu.duke.commands.module.AddModuleCommand;
 import seedu.duke.commands.module.CapInfoCommand;
 import seedu.duke.commands.module.DeleteModuleCommand;
@@ -28,7 +31,6 @@ import seedu.duke.commands.zoom.AddZoomCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.journal.ListJournalCommand;
 import seedu.duke.commands.zoom.ListZoomLinksCommand;
 import seedu.duke.commands.zoom.OpenZoomLink;
 import seedu.duke.exceptions.calendar.IncorrectCommandException;
@@ -63,7 +65,9 @@ import static seedu.duke.constants.CommandConstants.COMMAND_DISPLAY;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_FIND;
 import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_TAG;
 import static seedu.duke.constants.CommandConstants.COMMAND_LECTURE;
 import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
 import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
@@ -80,7 +84,6 @@ import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_OPEN;
-
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
@@ -206,6 +209,10 @@ public class Parser {
                 return new DeleteNoteCommand(userInput);
             case COMMAND_DELETE_ENTRY:
                 return new DeleteEntryCommand(userInput);
+            case COMMAND_JOURNAL_TAG:
+                return new TagNotebookCommand(userInput);
+            case COMMAND_JOURNAL_FIND:
+                return new FindNotebooksByTagCommand(userInput);
             case "":
                 throw new EmptyJournalArgumentException();
             default:
