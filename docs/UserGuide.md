@@ -505,22 +505,24 @@ Cleared food record list for today!
 **Action** | **Format, Examples**
 |----------|---------------------|
 **Add Entry**|`journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
-**Add Food**|`food add`
+**Add Food**|`food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DD-MM-YYYY(DATE_RECORDED)}`
 **Add Lecture**|`calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
 **Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
 **Add Note**|`journal notebook n/ NOTEBOOK_NAME`
 **Add Todo**|`calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
 **Add Zoom**|`zoom add [MODULE_CODE] [ZOOM_LINK]`
+**Cap Info**|`module info`
 **Clear Food**|`food clear`
 **Delete Entry**|`journal delete_entry n/ NOTE_NAME e/ ENTRY_NAME`
 **Delete Food**|`food delete INDEX`
+**Delete Lecture**|`calendar delete lec LECTURE_INDEX`
 **Delete Module**|`module delete INDEX`<br><br> Example: `module delete 2`
 **Delete Note**|`journal delete_notebook NOTE_INDEX`
 **Delete Task**|`calendar delete task TASK_INDEX`
-**Delete Lecture**|`calendar delete lec LECTURE_INDEX`
 **Display**|`calendar display MM-YYYY`
 **Edit CAP Information**|`cap edit`
 **Edit Tasks**|`calendar edit TASK_INDEX`
+**Find Food With Date**|`food find [DD-MM-YYYY]`
 **Find Notebook by tag**|`journal find TAG_NAME`
 **Get Expected CAP**|`cap expected`
 **Help**|`help`
@@ -530,7 +532,9 @@ Cleared food record list for today!
 **List Tasks**|`calendar list task`
 **List Lectures**|`calendar list lec`
 **List Zoom Links**|`zoom list`
+**Open Zoom Link**|`zoom open [MODULE_CODE]`
 **Tag Journal**|`journal tag n/ NOTE_INDEX t/ TAG_NAME`
+**View Reference Food**|`food view, food view [STORE_INDEX], food view all`
 **Exit**|`exit`
 
 
