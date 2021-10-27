@@ -46,7 +46,8 @@ public class AddFoodCommand extends Command {
         try {
             foodRecord = Parser.parseFoodRecord(inputString);
         } catch (ArgumentsNotFoundException e) {
-            e.printStackTrace();    //dividers are not aligned with syntax
+            Ui.printLine();
+            Ui.printMessage("Wrong syntax! Refer to help for more options.");
         }
         storage.whatIAteTodayList.addToList(foodRecord, false);
         StorageFood.saveList(storage.whatIAteTodayList);
