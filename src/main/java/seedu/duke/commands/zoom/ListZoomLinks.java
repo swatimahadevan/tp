@@ -10,7 +10,7 @@ import seedu.duke.ui.Ui;
 /**
  * A representation of the command to list all the zoom links.
  */
-public class ListZoomLinks extends Command {
+public class ListZoomLinksCommand extends Command {
 
     /**
      * Constructor to display syntax via the help feature.
