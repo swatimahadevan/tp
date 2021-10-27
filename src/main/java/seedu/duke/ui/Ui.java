@@ -85,8 +85,11 @@ public class Ui {
         System.out.println(LINE_PREFIX + message);
     }
 
+    public static void printMessageSameLine(String message) {
+        System.out.print(LINE_PREFIX + message);
+    }
 
-    //start of FOOD
+    //@@author ngnigel99
     /**
      * Prints the name of the record, as well as the calorie count.
      * @author ngnigel99
@@ -94,11 +97,13 @@ public class Ui {
      */
     //TODO  remove messages, may be neater
     public static void printAddRecord(FoodRecord record)  {
-        System.out.println("Nice.  I've added "
+        Ui.printLine();
+        Ui.printMessage("Nice.  I've added "
                 + record.getFoodName()
                 + " to the list, with "
                 + record.getCalorieCount()
                 + " calories!");
+        Ui.printLine();
     }
 
     /**
@@ -107,19 +112,27 @@ public class Ui {
      * @author ngnigel99
      */
     public static void printDoneClearList() {
-        System.out.println(Messages.PRINT_DONE_CLEAR_LIST);
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_DONE_CLEAR_LIST);
+        Ui.printLine();
     }
 
     public static void printAddFoodSyntax() {
-        System.out.println(Messages.PRINT_ADD_FOOD_SYNTAX);
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_ADD_FOOD_SYNTAX);
+        Ui.printLine();
     }
 
     public static void printNonNullInput() {
-        System.out.println(Messages.NON_NULL_INPUT);
+        Ui.printLine();
+        Ui.printMessage(Messages.NON_NULL_INPUT);
+        Ui.printLine();
     }
 
     public static void printOnlyIntegers() {
-        System.out.println(Messages.PRINT_NOT_AN_INT);
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_NOT_AN_INT);
+        Ui.printLine();
     }
 
     /**
@@ -128,61 +141,75 @@ public class Ui {
      * for exceptions - implement in further testing versions.
      */
     public static void printErrorMessageGeneral() {
-        System.out.println(Messages.PRINT_ERROR_MESSAGE_GENERAL);
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_ERROR_MESSAGE_GENERAL);
+        Ui.printLine();
     }
 
     public static void printDoneDeleteFood(FoodRecord foodRecord, int index) {
-        System.out.println(Messages.PRINT_DONE_DELETE_INDEX + " "
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_DONE_DELETE_INDEX + " "
                 +  foodRecord.getFoodName()
                 + " at index: " + index);
+        Ui.printLine();
     }
-    //end of FOOD
+    //@@author ngnigel99
 
+    //@@author SvethaMahadevan
     /**
      * Prints message to indicate note has been added.
-     *
-     * @author SvethaMahadevan
      */
     public static void printAddedNoteMessage(String noteName) {
-        System.out.println("Great you have added the note: " + noteName);
+        ui.printLine();
+        printMessage("Great you have added the note: " + noteName);
+        ui.printLine();
     }
 
     /**
      * Prints message to indicate entry has been added.
-     *
-     * @author SvethaMahadevan
      */
     public static void printAddedEntryMessage(String entryName) {
-        System.out.println("Great you have added the entry: " + entryName);
+        ui.printLine();
+        printMessage("Great you have added the entry: " + entryName);
+        ui.printLine();
     }
 
     /**
      * Prints message to indicate that the notebook has been deleted.
-     *
-     * @author SvethaMahadevan
      */
     public static void printDeletedNotebookMessage(int indexOfDeletedNotebook) {
-        System.out.println("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
+        ui.printLine();
+        printMessage("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
+        ui.printLine();
     }
 
     /**
      * Prints message to indicate that the entry has been deleted.
-     *
-     * @author SvethaMahadevan
      */
     public static void printDeletedEntryMessage() {
-        System.out.println("Great you have deleted the entry");
+        ui.printLine();
+        printMessage("Great you have deleted the entry");
+        ui.printLine();
     }
 
+    /**
+     * Prints message to indicate that the notebook had been tagged.
+     */
+    public static void printTaggedNotebookMessage() {
+        ui.printLine();
+        printMessage("Great you have tagged the notebook");
+        ui.printLine();
+    }
+    //@@author SvethaMahadevan
 
-    //Schedule
+    //@@author swatimahadevan
     /**
      * Prints the header of the calendar with the month and year.
      *
      * @param inputYearMonth The YearMonth object parsed from user input string.
      */
     public static void printCalenderTitle(YearMonth inputYearMonth) {
-        System.out.println("                                       " + inputYearMonth.getMonth() + " "
+        ui.printMessage("                                       " + inputYearMonth.getMonth() + " "
                 + inputYearMonth.getYear());
     }
 
@@ -191,7 +218,9 @@ public class Ui {
      * telling user to use 'command help'.
      */
     public static void printInvalidCalendarInput() {
-        System.out.println(INVALID_CALENDAR_INPUT);
+        ui.printLine();
+        ui.printMessage(INVALID_CALENDAR_INPUT);
+        ui.printLine();
     }
 
     /**
@@ -205,15 +234,20 @@ public class Ui {
         new DisplayCommand("calendar " + month + "-" + year).execute(ui, storage);
     }
 
+    /**
+     * Prints out lecture list.
+     *
+     * @param lectures List of lectures to be displayed.
+     */
     public static void printLectureList(ArrayList<Lecture> lectures) {
-        System.out.println("Here is your list of lectures:");
+        ui.printMessage("Here is your list of lectures:");
         if (!lectures.isEmpty()) {
             int i = 1;
             for (Lecture item : lectures) {
-                System.out.println((i++) + ". " + item);
+                ui.printMessage((i++) + ". " + item);
             }
         } else {
-            System.out.println("NO Lectures!");
+            ui.printMessage("NO Lectures!");
         }
     }
 
@@ -221,7 +255,7 @@ public class Ui {
      * Prints confirmatory message after task is added successfully.
      */
     public static void printTaskAddedMessage() {
-        System.out.println(ADDED_TASK);
+        ui.printMessage(ADDED_TASK);
     }
 
     /**
@@ -230,21 +264,15 @@ public class Ui {
      * @param tasks List of tasks to be displayed.
      */
     public static void printTaskList(ArrayList<Task> tasks) {
-        System.out.println(LIST_TASKS_HEADER);
+        ui.printMessage(LIST_TASKS_HEADER);
         if (!tasks.isEmpty()) {
             int i = 1;
             for (Task item : tasks) {
-                System.out.println((i++) + ". " + item);
+                ui.printMessage((i++) + ". " + item);
             }
         } else {
-            System.out.println("NO TASKS!");
+            ui.printMessage("NO TASKS!");
         }
-    }
-
-    public static void printHelpMessage(String helpMessage, String syntax) {
-        System.out.println("Description: " + helpMessage);
-        //System.out.println("Syntax: ");
-        System.out.println("Syntax: " + syntax);
     }
 
     /**
@@ -267,12 +295,17 @@ public class Ui {
     public static void printEmptyTaskSpot() {
         System.out.print(NO_TASK_IN_DAY);
     }
-    //End Schedule
+    //@@author
 
     public static void displayZoomLink(String moduleName, String zoomLink) {
-        System.out.println("Module: " + moduleName);
-        System.out.println("Zoom: " + zoomLink);
+        printMessage("Module: " + moduleName);
+        printMessage("Zoom: " + zoomLink);
     }
 
+    public static void printHelpMessage(String helpMessage, String syntax) {
+        printMessage("Description: " + helpMessage);
+        //System.out.println("Syntax: ");
+        printMessage("Syntax: " + syntax);
+    }
 
 }

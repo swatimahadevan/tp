@@ -11,13 +11,13 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class CapInfoCommand extends Command {
+public class CapEditInfoCommand extends Command {
 
     ModuleManager moduleManager = new ModuleManager();
 
-    public CapInfoCommand() {
+    public CapEditInfoCommand() {
         helpMessage = "Get user's information to calculate expected CAP";
-        syntax = "module info";
+        syntax = "cap edit";
     }
 
     @Override

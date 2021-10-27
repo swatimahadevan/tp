@@ -37,6 +37,12 @@ public class ParserSchedule {
         return yearMonth;
     }
 
+    /**
+     * Handles the input when todo date is not given by user.
+     *
+     * @param input The input from the user.
+     * @return The modified input that will hold the current date.
+     */
     public static String parseTodoWhenDateNotGiven(String input) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String date = sdf.format(new Date());
@@ -164,6 +170,13 @@ public class ParserSchedule {
         return arguments;
     }
 
+    /**
+     * Parsing of lecture command.
+     *
+     * @param input The input from the user.
+     * @return the parsed lecture command arguments if the command is correct.
+     * @throws IncorrectNumberOfArgumentsException if the user command is incorrect.
+     */
     public static ArrayList<String> parseLectureCommand(String input) throws IncorrectNumberOfArgumentsException {
         String[] lectureArguments = splitLectureCommand(input);
         boolean isModulePresent = false;
@@ -193,6 +206,12 @@ public class ParserSchedule {
         }
     }
 
+    /**
+     * Parsing of lecture arguments.
+     *
+     * @param input Input from user.
+     * @return the name of lecture, start date and end date.
+     */
     public static ArrayList<String> parseLectureArgumentsArray(String input) {
         ArrayList<String> argumentsLectureCommand = new ArrayList<>();
         String lectureDetails = input.trim().substring(17);

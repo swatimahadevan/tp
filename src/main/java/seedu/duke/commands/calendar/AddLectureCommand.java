@@ -17,45 +17,72 @@ import seedu.duke.storage.StorageLecture;
 import seedu.duke.ui.Ui;
 
 //@@author swatimahadevan
-//@@author
+
 /**
- * Class to execute adding of module lecture.
+ * Represents the class to execute adding of module lecture.
  */
 public class AddLectureCommand extends Command {
+    public static final String MESSAGE_DUPLICATE_LECTURE = "A lecture for this module has already been added!";
+    public static final String MESSAGE_ADD_LECTURE = "Added lecture!";
+    public static final String MESSAGE_NOT_FOUND_MODULE = "Could not find module, "
+            + "add module first before adding lecture!";
     private ArrayList<String> argumentsLecture;
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public AddLectureCommand() {
-        syntax = "calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)";
+        syntax = "calendar lecture m/ [MODULE_CODE] s/ [DD-MM-YYYY(START_DATE)] e/ [DD-MM-YYYY(END_DATE)]";
     }
 
-    public static void checkIfDuplicate(Lecture lecture) throws InvalidDateException, DuplicateTaskException {
+    /**
+     * Checks if a lecture for the same module already exists.
+     *
+     * @param lecture The Lecture object.
+     * @throws DuplicateTaskException If user tries to add a duplicate task/lecture.
+     */
+    public static void checkIfDuplicate(Lecture lecture) throws DuplicateTaskException {
         for (int i = 0; i < Storage.lectureList.getLectureList().size(); i++) {
             if (lecture.getModuleName().equals(Storage.lectureList.getLectureList().get(i).getModuleName())) {
-                throw new DuplicateTaskException("A lecture for this module has already been added!");
+                throw new DuplicateTaskException(MESSAGE_DUPLICATE_LECTURE);
             }
         }
     }
 
     /**
-     * Constructor for AddLectureCommand.
+     * Class constructor.
+     *
+     * @param argumentsLecture The arguments for lecture command.
      */
     public AddLectureCommand(ArrayList<String> argumentsLecture) {
         this.argumentsLecture = argumentsLecture;
     }
 
-    public static boolean isValid(String todoDateStringFormat) {
+    /**
+     * Checks if the date provided by the user is valid.
+     *
+     * @param lectureDateStringFormat The date from user in string format.
+     * @return True if the date is valid else False.
+     */
+    public static boolean isValid(String lectureDateStringFormat) {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
         try {
-            dateFormat.parse(todoDateStringFormat);
+            dateFormat.parse(lectureDateStringFormat);
         } catch (ParseException e) {
             return false;
         }
         return true;
     }
 
-    public static void checkIfDateValid(String todoDateStringFormat) throws InvalidDateException {
-        if (!isValid(todoDateStringFormat)) {
+    /**
+     * Throws exception if date not valid.
+     *
+     * @param lectureDateStringFormat The date from user in string format.
+     * @throws InvalidDateException If user provides invalid date.
+     */
+    public static void checkIfDateValid(String lectureDateStringFormat) throws InvalidDateException {
+        if (!isValid(lectureDateStringFormat)) {
             throw new InvalidDateException();
         }
     }
@@ -68,6 +95,7 @@ public class AddLectureCommand extends Command {
      * @throws IOException in case of writing to save file error.
      * @throws InvalidDateException in case date is incorrect.
      * @throws ModuleNotFoundException in case module has not been added before.
+     * @throws DuplicateTaskException in case user is trying to add duplicate task.
      */
     @Override
 
@@ -81,6 +109,7 @@ public class AddLectureCommand extends Command {
                 isModuleInList = true;
             }
         }
+        ui.printLine();
         if (isModuleInList) {
             String dateStartStringFormat = argumentsLecture.get(1).trim();
             String dateEndStringFormat = argumentsLecture.get(2);
@@ -89,11 +118,11 @@ public class AddLectureCommand extends Command {
             checkIfDateValid(dateEndStringFormat);
             checkIfDuplicate(lecture);
             storage.lectureList.addLecture(lecture);
-            System.out.println("Added lecture!");
+            ui.printMessage(MESSAGE_ADD_LECTURE);
         } else {
-            System.out.println("Could not find module, "
-                    + "add module first before adding lecture!");
+            ui.printMessage(MESSAGE_NOT_FOUND_MODULE);
         }
+        ui.printLine();
         StorageLecture.writeLectureList(storage.lectureList);
     }
 

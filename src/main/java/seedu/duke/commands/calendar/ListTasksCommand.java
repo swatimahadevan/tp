@@ -8,11 +8,19 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
+//@@author swatimahadevan
+
+/**
+ * Represents the class to execute listing of tasks.
+ */
 public class ListTasksCommand extends Command {
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public ListTasksCommand() {
-        this.helpMessage = "List all tasks";
-        this.syntax = "calendar list task";
+        syntax = "calendar list task";
+
     }
 
     /**
@@ -25,6 +33,8 @@ public class ListTasksCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
         TaskList tasks = StorageTasks.readTaskList();
+        ui.printLine();
         Ui.printTaskList(tasks.getTaskList());
+        ui.printLine();
     }
 }

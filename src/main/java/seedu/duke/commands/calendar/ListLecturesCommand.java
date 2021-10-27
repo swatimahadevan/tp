@@ -10,11 +10,19 @@ import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
+//@@author swatimahadevan
+
+/**
+ * Represents the class to execute listing of lectures.
+ */
 public class ListLecturesCommand extends Command {
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public ListLecturesCommand() {
-        this.helpMessage = "List all lectures";
-        this.syntax = "calendar list lec";
+        syntax = "calendar list lec";
+
     }
 
     /**
@@ -27,6 +35,8 @@ public class ListLecturesCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws IOException {
         LectureList lectures = StorageLecture.readLectureList();
+        ui.printLine();
         Ui.printLectureList(lectures.getLectureList());
+        ui.printLine();
     }
 }

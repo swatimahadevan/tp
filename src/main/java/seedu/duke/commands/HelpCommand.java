@@ -1,6 +1,8 @@
 package seedu.duke.commands;
 
 
+import seedu.duke.constants.CommandConstants;
+import seedu.duke.constants.Messages;
 import seedu.duke.help.ClassPackageReader;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -25,9 +27,9 @@ public class HelpCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws InvocationTargetException,
             InstantiationException, IllegalAccessException {
-        ClassPackageReader.getCommandsAndPrintSyntax();
+        //ClassPackageReader.getCommandsAndPrintSyntax(); - to be done using source files
         Ui.printLine();
-        Ui.printMessage("Done printing all commands! Enjoy CLICKing :)");
+        System.out.println(CommandConstants.HELP_MESSAGES);
         Ui.printLine();
     }
 

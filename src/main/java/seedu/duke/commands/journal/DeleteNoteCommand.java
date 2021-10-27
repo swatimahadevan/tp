@@ -1,24 +1,27 @@
 package seedu.duke.commands.journal;
 
+//@@author SvethaMahadevan
+
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.journal.DuplicateNoteException;
-import seedu.duke.exceptions.journal.EmptyNoteArgumentsException;
-import seedu.duke.exceptions.journal.EmptyNoteNameException;
-import seedu.duke.exceptions.journal.NotebookArgumentNotFoundException;
+import seedu.duke.exceptions.journal.InvalidNotebookIndexException;
+import seedu.duke.journal.Note;
 import seedu.duke.parser.journal.ParserJournal;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageNotes;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DeleteNoteCommand extends Command {
 
-
     public String userInput;
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public DeleteNoteCommand() {
-        syntax = "journal delete NOTE_INDEX";
+        syntax = "journal delete_notebook [NOTE_INDEX]";
     }
 
     /**
@@ -29,7 +32,7 @@ public class DeleteNoteCommand extends Command {
     public DeleteNoteCommand(String userInput) {
         this.userInput = userInput;
         helpMessage = "Delete a notebook from list";
-        syntax = "journal delete_notebook n/ NOTEBOOK_NAME";
+        syntax = "journal delete_notebook NOTEBOOK_INDEX";
     }
 
 
@@ -38,14 +41,17 @@ public class DeleteNoteCommand extends Command {
      *
      * @param ui allows for printing that note is added
      * @param storage to allow for storage of notes
-     * @throws EmptyNoteNameException No note name entered after 'n/'.
-     * @throws EmptyNoteArgumentsException if no arguments found for notebook.
+     * @throws InvalidNotebookIndexException if index of notebook is invalid
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException {
+    public void execute(Ui ui, Storage storage) throws IOException, InvalidNotebookIndexException {
+        ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         int indexOfNotebookToDelete = ParserJournal.parseDeleteNoteCommand(userInput);
+        if (indexOfNotebookToDelete < 1 || indexOfNotebookToDelete > notes.size()) {
+            throw new InvalidNotebookIndexException();
+        }
         ui.printDeletedNotebookMessage(indexOfNotebookToDelete);
-        storage.collectionOfNotes.deleteNote(indexOfNotebookToDelete);
+        storage.collectionOfNotes.deleteNote(indexOfNotebookToDelete, storage);
         StorageNotes.writeCollectionOfNotes(storage.collectionOfNotes);
     }
 }

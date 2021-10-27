@@ -8,7 +8,7 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 
 //@@author nvbinh15
-public class GetCapCommand extends Command {
+public class GetExpectedCapCommand extends Command {
     public static final String MESSAGE_EXPECTED_CAP = "Your expected CAP based on the modules you are taking is: ";
     public static final String CAP_FORMAT = "%,.2f";
     private static ModuleManager moduleManager = new ModuleManager();
@@ -16,9 +16,9 @@ public class GetCapCommand extends Command {
     /**
      * Class constructor.
      */
-    public GetCapCommand() {
+    public GetExpectedCapCommand() {
         this.helpMessage = "Get the expected CAP";
-        this.syntax = "module cap";
+        this.syntax = "cap expected";
     }
 
     /**

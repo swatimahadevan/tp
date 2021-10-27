@@ -21,7 +21,7 @@ class AddTodoCommandTest {
         try {
             AddTodoCommand.checkIfDateValid(todoDateStringFormat);
         } catch (Exception e) {
-            assertEquals("Invalid date given, use format DD-MM-YYYY!", e.getMessage());
+            assertEquals("Invalid date given!", e.getMessage());
         }
     }
 

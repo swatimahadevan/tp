@@ -1,5 +1,7 @@
 package seedu.duke.commands.journal;
 
+//@@author SvethaMahadevan
+
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.journal.DuplicateNoteException;
 import seedu.duke.exceptions.journal.EmptyNoteArgumentsException;
@@ -13,12 +15,13 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 
 public class AddNoteCommand extends Command {
-
-
     public String userInput;
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
     public AddNoteCommand() {
-        syntax = "journal notebook n/ NOTEBOOK_NAME";
+        syntax = "journal notebook n/ [NOTEBOOK_NAME]";
     }
 
     /**
@@ -40,6 +43,8 @@ public class AddNoteCommand extends Command {
      * @param storage to allow for storage of notes
      * @throws EmptyNoteNameException No note name entered after 'n/'.
      * @throws EmptyNoteArgumentsException if no arguments found for notebook.
+     * @throws DuplicateNoteException if a note with same name is in list
+     * @throws NotebookArgumentNotFoundException if no note arguments are provided
      */
     @Override
     public void execute(Ui ui, Storage storage) throws EmptyNoteNameException, EmptyNoteArgumentsException, IOException,
@@ -50,7 +55,7 @@ public class AddNoteCommand extends Command {
         }
         assert (noteName != null);
         ui.printAddedNoteMessage(noteName);
-        storage.collectionOfNotes.addNote(noteName);
+        storage.collectionOfNotes.addNote(noteName, "none");
         StorageNotes.writeCollectionOfNotes(storage.collectionOfNotes);
     }
 }

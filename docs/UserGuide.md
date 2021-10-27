@@ -230,7 +230,7 @@ Expected outcome:
 Added lecture!
 ```
 
-#### 3.3.2 Adding a task: `calendar task`
+#### 3.3.2 Adding a todo task: `calendar todo`
 Adds a task item.
 
 Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
@@ -245,14 +245,14 @@ Expected outcome:
 Task has been added successfully!
 ```
 
-#### 3.3.3 Listing tasks: `calendar list`
+#### 3.3.3 Listing tasks: `calendar list task`
 Lists all the current task items.
 
-Format: `calendar list`
+Format: `calendar list task`
 
 Example:
 ```
-calendar list
+calendar list task 
 ```
 
 Expected outcome:
@@ -261,14 +261,14 @@ Here's your task list:
 1. GER1000 Assignment (on: 14-10-2021)
 2. GEQ1000 Assignment (on: 03-10-2021)
 ```
-#### 3.3.4 Deleting a task: `calendar delete`
+#### 3.3.4 Deleting a task: `calendar delete task`
 Deletes a task item based on the index.
 
-Format: `calendar delete TASK_INDEX`
+Format: `calendar delete task TASK_INDEX`
 
 Example:
 ```
-calendar delete 1
+calendar delete task 1
 ```
 
 Expected outcome:
@@ -292,7 +292,9 @@ Enter the entire todo command with the desired description and date that you wan
 Edited Task!
 ```
 #### 3.3.6 Displaying calendar: `calendar display`
-Edits a task item based on the index.
+Displays a calendar based on the month.
+
+Note: If month entered by user is incorrect, then CLICK will display the calendar of the current month.
 
 Format: `calendar display MM-YYY`
 
@@ -304,6 +306,37 @@ calendar display 10-2021
 Expected outcome:
 ![](./images/calendar/calendar_full.png)
 
+#### 3.3.7 Deleting a lecture: `calendar delete lec`
+Deletes a lecture item based on the index.
+
+Format: `calendar delete lec LECTURE_INDEX`
+
+Example:
+```
+calendar delete lec 1
+```
+
+Expected outcome:
+```
+Lecture has been deleted!
+```
+
+#### 3.3.3 Listing lectures: `calendar list lec`
+Lists all the current task items.
+
+Format: `calendar list lec`
+
+Example:
+```
+calendar list lec 
+```
+
+Expected outcome:
+```
+Here is your list of lectures:
+1. ger1000 (from: 02-10-2021) (to: 31-10-2021) 
+2. cs2101 (from: 10-10-2021) (to: 30-11-2021) 
+```
 
 ### 3.4 Managing your journal
 #### 3.4.1 Adding a notebook: `journal notebook`
@@ -342,9 +375,63 @@ Example: `journal list`
 Expected outcome:
 
 ```
-The notebook Today contains:
-Random Observation
+1. The notebook Today contains:
+  1. Random Observation
 ```
+
+#### 3.4.4 Deleting notebooks `journal delete_notebook`
+Deletes specific notebook.
+
+Format: `journal delete_notebook NOTE_INDEX`
+
+Example: `journal delete_notebook 1`
+
+Expected outcome:
+
+```
+Great you have deleted the notebook at : 1
+```
+
+#### 3.4.5 Deleting entry `journal delete_entry`
+Deletes the entry.
+
+Format: `journal delete_entry n/ NOTE_NAME e/ ENTRY_NAME`
+
+Example: `journal delete_entry n/ CS2113 e/ Have to finish HW`
+
+Expected outcome:
+
+```
+Great you have deleted the entry
+```
+
+#### 3.4.6 Tagging a notebook
+Allows you to tag a notebook.
+
+Format: `journal tag n/ NOTE_INDEX t/ TAG_NAME`
+
+Example: `journal tag n/ 1 t/ important`
+
+Expected outcome:
+
+```
+Great you have tagged the notebook
+```
+
+#### 3.4.7 Find a notebook by tag
+Allows you to find a notebook which has the tag.
+
+Format: `journal find TAG_NAME`
+
+Example: `journal find important`
+
+Expected outcome:
+
+```
+Notebooks with the tag important are: 
+CS2113 HW
+```
+
 
 ### 3.5 Managing your food consumption
 #### 3.5.1 Adding a food item: `food add`
@@ -418,27 +505,36 @@ Cleared food record list for today!
 **Action** | **Format, Examples**
 |----------|---------------------|
 **Add Entry**|`journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
-**Add Food**|`food add`
+**Add Food**|`food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DD-MM-YYYY(DATE_RECORDED)}`
 **Add Lecture**|`calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
 **Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
 **Add Note**|`journal notebook n/ NOTEBOOK_NAME`
 **Add Todo**|`calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
 **Add Zoom**|`zoom add [MODULE_CODE] [ZOOM_LINK]`
+**Cap Info**|`module info`
 **Clear Food**|`food clear`
+**Delete Entry**|`journal delete_entry n/ NOTE_NAME e/ ENTRY_NAME`
 **Delete Food**|`food delete INDEX`
+**Delete Lecture**|`calendar delete lec LECTURE_INDEX`
 **Delete Module**|`module delete INDEX`<br><br> Example: `module delete 2`
-**Delete Note**|`journal delete NOTE_INDEX`
-**Delete Task**|`calendar delete TASK_INDEX`
+**Delete Note**|`journal delete_notebook NOTE_INDEX`
+**Delete Task**|`calendar delete task TASK_INDEX`
 **Display**|`calendar display MM-YYYY`
 **Edit CAP Information**|`cap edit`
 **Edit Tasks**|`calendar edit TASK_INDEX`
+**Find Food With Date**|`food find [DD-MM-YYYY]`
+**Find Notebook by tag**|`journal find TAG_NAME`
 **Get Expected CAP**|`cap expected`
 **Help**|`help`
 **List  Food Items**|`food list`
 **List  Journal**|`journal list`
 **List  Modules**|`module list`
-**List Tasks**|`calendar list`
+**List Tasks**|`calendar list task`
+**List Lectures**|`calendar list lec`
 **List Zoom Links**|`zoom list`
+**Open Zoom Link**|`zoom open [MODULE_CODE]`
+**Tag Journal**|`journal tag n/ NOTE_INDEX t/ TAG_NAME`
+**View Reference Food**|`food view, food view [STORE_INDEX], food view all`
 **Exit**|`exit`
 
 

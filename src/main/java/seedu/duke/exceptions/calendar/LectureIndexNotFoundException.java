@@ -1,8 +1,10 @@
 package seedu.duke.exceptions.calendar;
 
+import seedu.duke.ui.Ui;
+
 public class LectureIndexNotFoundException extends Exception {
     public LectureIndexNotFoundException() {
-        System.out.println("Cannot find index of lecture to delete! Use 'calendar list lec' first"
+        Ui.printMessage("Cannot find index of lecture to delete! Use 'calendar list lec' first"
                 + "to find desired lecture index");
     }
 }

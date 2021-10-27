@@ -71,8 +71,6 @@ public class Storage {
         }
         ClickLogger.getNewLogger().log(Level.CONFIG, "not nice, no directory found,"
                 +     "creating  new directory");
-        System.out.println("Hey, I didn't find directory " + folderName);
-        System.out.println("adding " + folderName + " into repository...");
         Files.createDirectories(Paths.get(home + folderName));
     }
     //@@author
