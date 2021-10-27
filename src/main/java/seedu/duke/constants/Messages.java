@@ -2,7 +2,7 @@ package seedu.duke.constants;
 
 public class Messages {
 
-    public static final String LOGO = "\t" + " _____ _  _     _\n"
+    public static final String LOGO = " _____ _  _     _\n"
             + "\t" + "/  __ \\ |(_)   | |\n"
             + "\t" + "| /  \\/ |_  ___| | __\n"
             + "\t" + "| \\__/\\ | | (__|   <\n"

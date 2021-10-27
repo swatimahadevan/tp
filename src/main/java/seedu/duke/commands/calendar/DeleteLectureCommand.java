@@ -54,7 +54,7 @@ public class DeleteLectureCommand extends Command {
     public void execute(Ui ui, Storage storage)
             throws IOException, IncorrectNumberOfArgumentsException, LectureIndexNotFoundException {
         ui.printLine();
-        if (this.index > storage.lectureList.getLectureList().size()) {
+        if (this.index > storage.lectureList.getLectureList().size() || this.index <= 0) {
             throw new LectureIndexNotFoundException();
         }
         Storage.lectureList.deleteLecture(this.index);

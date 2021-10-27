@@ -52,9 +52,6 @@ public class StorageLecture {
             return lectureList;
         } catch (FileNotFoundException e) {
             File f = new File(StorageLecture.filePath);
-            System.out.println("Hey, I didn't find "
-                    + StorageLecture.fileName + " in " + StorageLecture.folderName + "!");
-            System.out.println("creating new file...");
         }
         return lectureList;
     }
