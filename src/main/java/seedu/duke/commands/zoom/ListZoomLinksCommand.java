@@ -15,7 +15,7 @@ public class ListZoomLinksCommand extends Command {
     /**
      * Constructor to display syntax via the help feature.
      */
-    public ListZoomLinks() {
+    public ListZoomLinksCommand() {
         syntax = "zoom list";
     }
 

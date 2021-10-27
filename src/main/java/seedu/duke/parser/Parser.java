@@ -26,12 +26,10 @@ import seedu.duke.commands.module.GetCapCommand;
 import seedu.duke.commands.module.ListModuleCommand;
 import seedu.duke.commands.zoom.AddZoomCommand;
 import seedu.duke.commands.Command;
-import seedu.duke.commands.module.DeleteModuleCommand;
-import seedu.duke.commands.food.DeleteFoodCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.journal.ListJournalCommand;
-import seedu.duke.commands.zoom.ListZoomLinks;
+import seedu.duke.commands.zoom.ListZoomLinksCommand;
 import seedu.duke.commands.zoom.OpenZoomLink;
 import seedu.duke.exceptions.calendar.IncorrectCommandException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
@@ -39,7 +37,6 @@ import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.WrongDividerOrderException;
-import seedu.duke.exceptions.StorageException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.exceptions.food.MissingDateException;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
@@ -47,13 +44,9 @@ import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
-import seedu.duke.module.Module;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.ui.Ui;
 
-import javax.swing.text.View;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -235,7 +228,7 @@ public class Parser {
             case COMMAND_ZOOM_SUFFIX_ADD:
                 return new AddZoomCommand(zoomArgs[1], zoomArgs[2]);
             case COMMAND_SUFFIX_LIST:
-                return new ListZoomLinks();
+                return new ListZoomLinksCommand();
             case COMMAND_ZOOM_SUFFIX_OPEN:
                 return new OpenZoomLink(zoomArgs[1]);
             default:

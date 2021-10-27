@@ -5,6 +5,7 @@ import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.FileNotFoundException;
 import seedu.duke.exceptions.StorageException;
 import seedu.duke.exceptions.module.IllegalModuleException;
+import seedu.duke.exceptions.zoom.InvalidZoomLinkException;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageZoom;
 import seedu.duke.ui.Ui;
@@ -57,15 +58,18 @@ public class AddZoomCommand extends Command {
      * @throws StorageException throws the Storage Exception
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException, IllegalModuleException, StorageException {
-        assert (zoomLink.contains("https://")) : "Invalid link";
-        ui.printLine();
-        try {
-            StorageZoom.saveLink(moduleName, zoomLink);
+    public void execute(Ui ui, Storage storage) throws IOException, IllegalModuleException, StorageException, InvalidZoomLinkException {
+        if (zoomLink.contains("https://")) {
             ui.printLine();
-        } catch (IOException e) {
-            ui.printMessage("Unsuccessful");
-            ui.printLine();
+            try {
+                StorageZoom.saveLink(moduleName, zoomLink);
+                ui.printLine();
+            } catch (IOException e) {
+                ui.printMessage("Unsuccessful");
+                ui.printLine();
+            }
+        } else {
+            throw new InvalidZoomLinkException();
         }
     }
 }
