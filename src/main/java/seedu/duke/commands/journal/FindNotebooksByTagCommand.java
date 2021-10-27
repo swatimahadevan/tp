@@ -16,6 +16,13 @@ public class FindNotebooksByTagCommand extends Command {
 
     public String userInput;
 
+    /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
+    public FindNotebooksByTagCommand() {
+        syntax = "journal find [TAG_NAME]";
+    }
+
 
     /**
      * Constructor for the FindNotebookByTagCommand.

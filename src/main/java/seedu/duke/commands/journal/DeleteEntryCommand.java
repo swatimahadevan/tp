@@ -24,6 +24,13 @@ public class DeleteEntryCommand extends Command {
     public String userInput;
 
     /**
+     * Class constructor providing syntax for the HelpCommand.
+     */
+    public DeleteEntryCommand() {
+        syntax = "journal delete_entry n/ [NOTEBOOK_NAME] e/ [ENTRY_NAME]";
+    }
+
+    /**
      * Constructor for the DeleteEntryCommand.
      *
      * @param userInput input from the user
