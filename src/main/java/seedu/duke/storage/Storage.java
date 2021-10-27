@@ -1,10 +1,10 @@
 package seedu.duke.storage;
 
+import seedu.duke.food.ReferenceLists;
 import seedu.duke.food.WhatIAteList;
 import seedu.duke.journal.CollectionOfEntries;
 import seedu.duke.journal.CollectionOfNotes;
 import seedu.duke.logger.ClickLogger;
-import seedu.duke.schedule.lecture.Lecture;
 import seedu.duke.schedule.lecture.LectureList;
 import seedu.duke.schedule.task.TaskList;
 
@@ -17,20 +17,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class Storage {
 
-    /**
-     * Synchronised date with food record  list.
-     *
-     * @author ngnigel99
-     * */
-    private Date todaysDate;    //TODO sync date with file
     private String tasksFilePath;
-
+    public static ReferenceLists reference = ReferenceLists.getLists();
     public WhatIAteList whatIAteTodayList =  StorageFood.load();
     public static TaskList tasksList;
 
@@ -58,6 +51,7 @@ public class Storage {
     public Storage() throws IOException {
     }
 
+    //@@author ngnigel99
     /**
      * Creates directory if directory folderName is not found.
      * access modifier left empty for working in Storage.
@@ -81,6 +75,7 @@ public class Storage {
         System.out.println("adding " + folderName + " into repository...");
         Files.createDirectories(Paths.get(home + folderName));
     }
+    //@@author
 
     //@author swatim
     //Loads data in the form of ArrayList<String> data from the save file

@@ -19,14 +19,13 @@ import java.util.logging.Level;
  * @author ngnigel99
  */
 public class StorageFood {
-    private static final String folderName = "fooddata/";
-    private static final String fileName = "food.txt";
+    private static String folderName = "fooddata/";
+    private static String fileName = "food.txt";
     private static String filePath =  folderName +  fileName;
 
     public StorageFood(String filePathToInput) {
         filePath = filePathToInput;
     }
-
 
     /**
      * Saves list to save file.
@@ -74,7 +73,7 @@ public class StorageFood {
         } catch (FileNotFoundException e) {
             ClickLogger.getNewLogger().log(Level.WARNING, "file not found on load");
             File f = new File(filePath);
-            System.out.println("Hey, I didn't find list.txt in " + folderName + "!");
+            System.out.println("Hey, I didn't find the text file in " + folderName + "!");
             System.out.println("creating new file...");
             ClickLogger.getNewLogger().log(Level.CONFIG, "create new text file");
         } catch (NullPointerException e) {

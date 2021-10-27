@@ -8,8 +8,14 @@ import seedu.duke.commands.calendar.ListLecturesCommand;
 import seedu.duke.commands.calendar.DisplayCommand;
 import seedu.duke.commands.calendar.DeleteTaskCommand;
 import seedu.duke.commands.calendar.ListTasksCommand;
-import seedu.duke.commands.journal.AddEntryCommand;
 import seedu.duke.commands.food.AddFoodCommand;
+import seedu.duke.commands.food.AddFoodFromReferenceCommand;
+import seedu.duke.commands.food.ClearFoodCommand;
+import seedu.duke.commands.food.DeleteFoodCommand;
+import seedu.duke.commands.food.FindFoodWithDateCommand;
+import seedu.duke.commands.food.ListFoodCommand;
+import seedu.duke.commands.food.ViewReferenceFoodCommand;
+import seedu.duke.commands.journal.AddEntryCommand;
 import seedu.duke.commands.journal.DeleteNoteCommand;
 import seedu.duke.commands.journal.DeleteEntryCommand;
 import seedu.duke.commands.journal.AddNoteCommand;
@@ -19,12 +25,11 @@ import seedu.duke.commands.module.DeleteModuleCommand;
 import seedu.duke.commands.module.GetCapCommand;
 import seedu.duke.commands.module.ListModuleCommand;
 import seedu.duke.commands.zoom.AddZoomCommand;
-import seedu.duke.commands.food.ClearFoodCommand;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.module.DeleteModuleCommand;
 import seedu.duke.commands.food.DeleteFoodCommand;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.food.ListFoodCommand;
 import seedu.duke.commands.journal.ListJournalCommand;
 import seedu.duke.commands.zoom.ListZoomLinks;
 import seedu.duke.commands.zoom.OpenZoomLink;
@@ -36,6 +41,7 @@ import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.WrongDividerOrderException;
 import seedu.duke.exceptions.StorageException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
+import seedu.duke.exceptions.food.MissingDateException;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
 import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
@@ -45,6 +51,7 @@ import seedu.duke.module.Module;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.ui.Ui;
 
+import javax.swing.text.View;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -72,11 +79,15 @@ import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EXPECTED;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_FIND;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_RADD;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_VIEW;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_ZOOM_SUFFIX_OPEN;
+
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.PRINT_NOT_AN_INT;
 import static seedu.duke.constants.Messages.CALENDAR_INVALID_ARGS;
@@ -159,7 +170,7 @@ public class Parser {
     public static FoodRecord parseFoodSavedListToRecord(String readLine) {
         String[] nameCalories = readLine.split("\\|");
         if (nameCalories.length == 2) {
-            return new FoodRecord(nameCalories[0], Integer.parseInt(nameCalories[1]));
+            return new FoodRecord(nameCalories[0], Integer.parseInt(nameCalories[1].trim()));
         }
         FoodRecord recordWithDate = new FoodRecord(nameCalories[0], Integer.parseInt(nameCalories[1]));
         String dateToParse = nameCalories[2];
@@ -250,7 +261,9 @@ public class Parser {
      *
      * @author ngnigel99
      */
-    private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException {
+    private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException,
+            MissingDateException, WrongDividerOrderException,
+            ArgumentsNotFoundException {
         String[] foodArgs = commandArgs.split(" ");
         switch (foodArgs[0]) {  //consider 2nd word
         case COMMAND_SUFFIX_ADD:
@@ -265,6 +278,18 @@ public class Parser {
             return new ClearFoodCommand();
         case COMMAND_SUFFIX_LIST:
             return new ListFoodCommand();
+        case COMMAND_SUFFIX_VIEW:
+            return new ViewReferenceFoodCommand(userInput);
+        case COMMAND_SUFFIX_FIND:
+            if (userInput.split(" ").length == 3) {
+                return new FindFoodWithDateCommand(foodArgs[1]);
+            } else {
+                throw new MissingDateException();
+            }
+        case COMMAND_SUFFIX_RADD:
+            return new AddFoodFromReferenceCommand(
+                    filterStringAfterCommand(userInput, COMMAND_FOOD
+                            + " " + COMMAND_SUFFIX_RADD));
         default:
             throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
         }
@@ -449,6 +474,11 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Sets a date for a food Record.
+     * @param recordToAdd food record to be added
+     * @param inputAfterDateDivider date as input string
+     */
     private static void setDateOnFoodRecord(FoodRecord recordToAdd, String inputAfterDateDivider) {
         DateTimeFormatter localDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate dateIAte = LocalDate.parse(inputAfterDateDivider, localDateFormatter);
