@@ -13,9 +13,10 @@ import java.time.format.DateTimeFormatter;
  * @author  ngnigel99
  */
 public class FoodRecord {
+    private final LocalDate defaultDate = LocalDate.now();
     private String foodName;
     private Integer calorieCount;
-    private LocalDate dateIAte = null;
+    private LocalDate dateIAte = defaultDate;
 
     public FoodRecord(String foodName, Integer calorieCount) {
         this.foodName = foodName;

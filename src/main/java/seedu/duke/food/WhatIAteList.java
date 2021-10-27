@@ -2,8 +2,14 @@ package seedu.duke.food;
 
 import seedu.duke.ui.Ui;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Represents a list of what the user has eaten.
@@ -12,20 +18,18 @@ import java.util.Date;
  *
  * @author ngnigel99
  */
-public class WhatIAteList extends ListOfRecords<FoodRecord> {
+public class WhatIAteList  {
 
-    private Date dayOfRecordList;
+    private String stallName;
+    private ArrayList<FoodRecord> whatIAteList = new ArrayList<>();
 
-    public WhatIAteList(Date dayOfRecordList) {
-        this.dayOfRecordList = dayOfRecordList;
-    }
 
-    //if date not given
     public WhatIAteList() {
+
     }
 
     public ArrayList<FoodRecord> getList() {
-        return list;
+        return whatIAteList;
     }
 
     /**
@@ -37,10 +41,9 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
      * @param isSilent checks whether to print Ui message
      */
     public void addToList(FoodRecord recordToAdd, boolean isSilent) {
-        super.addToList(recordToAdd);
+        whatIAteList.add(recordToAdd);
         if (!isSilent) {
             Ui.printAddRecord(recordToAdd);
-
         }
     }
 
@@ -53,11 +56,13 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
     public void printIndexWithSuffix(int index) {
         String[] suffixList = {"st", "nd", "rd", "th"};
         String suffixToPrint;
-        if ((index - 1) %  10 == 0) {
+        int lastDigit = index % 10;
+        int exceptionTeen = index % 100; //11,12,13th
+        if (lastDigit == 1 && exceptionTeen != 11) {
             suffixToPrint = suffixList[0];
-        } else if ((index - 2) % 10 == 0) {
+        } else if (lastDigit == 2 && exceptionTeen != 12) {
             suffixToPrint = suffixList[1];
-        } else if ((index - 3) % 10 == 0) {
+        } else if (lastDigit == 3 && exceptionTeen != 13) {
             suffixToPrint = suffixList[2];
         } else {
             suffixToPrint = suffixList[3];
@@ -70,27 +75,47 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
      * In context, for today.
      *
      * @author ngnigel99
+     * @param withMessages if messages are to be included
      */
-    @Override
-    public void printList() {
+    public void printList(boolean withMessages) {
         int index = 1;  //TODO integrate this with storage so it's not a magic number
         int calorieSum =  0;
-        for (FoodRecord listRecord : list) {
+        for (FoodRecord listRecord : whatIAteList) {
             printIndexWithSuffix(index);
-            System.out.println("You consumed  " + listRecord.getFoodName()
-                                + " , which has a calorie count of : "
-                                + listRecord.getCalorieCount()
-                    + ((listRecord.getDateIAte() != null) ? " on " + listRecord.getDateIAte() + "!" : "!"));
+            if (withMessages) {
+                System.out.println("You consumed  " + listRecord.getFoodName()
+                        + " , which has a calorie count of : "
+                        + listRecord.getCalorieCount()
+                        + ((listRecord.getDateIAte() != null) ? " on " + listRecord.getDateIAte() + "!" : "!"));
+            } else {
+                System.out.println(listRecord.getFoodName() + " : " + listRecord.getCalorieCount() + "Kcal");
+            }
             index++;
             calorieSum += listRecord.getCalorieCount();
         }
-        System.out.println("Wow, that's a lot of food! Finished reading today's list");
-        System.out.println("You consumed " + calorieSum +  " calories in total today!");
+        System.out.println("Wow, that's a lot of food! Finished reading the list");
+        if (withMessages) {
+            Ui.printMessage("You consumed " + calorieSum + " calories in total today!");
+        }
     }
 
-    @Override
     public void clearList() {
-        super.clearList();
+        whatIAteList.clear();
         Ui.printDoneClearList();
+    }
+
+    public void printFoodWithFoundDate(LocalDate date) {
+        WhatIAteList whatIAteThatDay = new WhatIAteList();
+        String formattedDate = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+        for (FoodRecord foodRecord : whatIAteList) {
+            if (foodRecord.getDateIAte().equals(date)) {
+                whatIAteThatDay.getList().add(foodRecord);
+            }
+        }
+        if (whatIAteThatDay.getList().isEmpty()) {
+            return;
+        }
+        System.out.println("Nice, I found the items you ate on " + formattedDate);
+        whatIAteThatDay.printList(true);
     }
 }

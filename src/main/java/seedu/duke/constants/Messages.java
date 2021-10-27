@@ -16,7 +16,7 @@ public class Messages {
 
     public static final String MESSAGE_GREETING = LINE_PREFIX + "Hello! I'm Click"
             + NEW_LINE + "What can I do for you?";
-    public static final String MESSAGE_GOODBYE = LINE_PREFIX + "Bye. Hope to see you again soon!";
+    public static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
 
     // Food partition
     public static final String PRINT_DONE_CLEAR_LIST = "Cleared food record list for today!";

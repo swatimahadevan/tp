@@ -23,10 +23,15 @@ public class CommandConstants {
     public static final String COMMAND_MODULE = "module";
     public static final String COMMAND_SUFFIX_DELETE = "delete";
     public static final String COMMAND_SUFFIX_EDIT = "edit";
-    public static final String COMMAND_SUFFIX_CAP = "cap";
+
+    public static final String COMMAND_CAP = "cap";
+    public static final String COMMAND_SUFFIX_EXPECTED = "expected";
 
     public static final String COMMAND_HElP = "help";
     public static final String COMMAND_ZOOM = "zoom";
     public static final String COMMAND_ZOOM_SUFFIX_ADD = "add";
     public static final String COMMAND_ZOOM_SUFFIX_LIST = "show";
+    public static final String COMMAND_SUFFIX_VIEW = "view";
+    public static final String COMMAND_SUFFIX_FIND = "find";
+    public static final String COMMAND_SUFFIX_RADD = "radd";
 }
