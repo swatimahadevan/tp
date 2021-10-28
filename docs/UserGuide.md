@@ -29,7 +29,7 @@ Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 ## 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `click.jar` from [here](https://github.com/AY2122S1-CS2113T-T09-4/tp/releases/tag/v1.0).
+2. Download the latest `click.jar` from [here](https://github.com/AY2122S1-CS2113T-T09-4/tp/releases/tag/v2.0).
 3. Copy the file to the folder you want to use as the _home folder_ for Click.
 4. In the home folder for Click, launch the `jar` file using the `java -jar click.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see the following:
 
@@ -198,6 +198,10 @@ Example:
 	__________________________________________________
 ```
 
+Note:
+- Your current CAP has to be in the range [0.0 - 5.5].
+- The modular credits contributing to CAP you have taken has to be an integer.
+
 #### 3.1.5 Getting the Expected CAP
 
 Gets the expected CAP based on the provided information and the modules you are taking.
@@ -358,7 +362,7 @@ Edited Task!
 #### 3.3.6 Displaying calendar: `calendar display`
 Displays a calendar based on the month.
 
-Note: If month entered by user is incorrect, then CLICK will display the calendar of the current month.
+Note: If the calendar layout appears skewed, maximise terminal to full screen or zoom out.
 
 Format: `calendar display MM-YYY`
 
