@@ -36,6 +36,9 @@ public class ParserModule {
      */
     public static Module retrieveStoredModule(String data) throws StorageException {
         String[] tokens = data.split("\\|");
+        if (tokens.length != 4) {
+            throw new StorageException();
+        }
         assert tokens.length == 4;
         String code = tokens[0];
         String name = tokens[1];
