@@ -18,11 +18,11 @@
 ## 1. Introduction
 
 Welcome to your all-in-one desktop app for managing modules, tracking your food consumption, time scheduling, journaling, and CAP planning!
-We know that you are a CS student here at NUS 👨‍🎓 and may prefer typing ⌨ to swiping (Hello Vim! 😉)
+We know that you are a Computing student here at NUS 👨‍🎓 and may prefer typing ⌨ to swiping (Hello Vim! 😉)
 , so we think that our command line interface for cramming & knowledge (Click) is a great fit for you! 
 
-This user guide provides a guide to *traversing* our *array* of features for you to *sort* your life into place.
-Every feature of Click is carefully documented, and the syntax requirements are provided for  you to explore.
+This user guide serves to give you a brief overview of our features, as well as how to use them.
+
 
 Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 
@@ -494,10 +494,23 @@ CS2113 HW
 
 
 ### 3.5 Managing your food consumption
+
+Sometimes you snack, maybe go for supper breaks now and then.
+After all, you need to power the processor we all have - our brain!
+Click provides you with the ability to track your food consumption to
+match your dieting needs to consume the recommended amount of calories 
+you need every day!
+
 #### 3.5.1 Adding a food item: `food add`
-Adds a food item with name and calorie count.
+Allows you to add a food item and calorie count
 
 Format: `food add n/FOOD_NAME n/KCALORIE d/ {DATE}`
+
+For instance, imagine you've just had a nice meal at McDonald's after
+a three-hour-long lecture. You feel guilty about having so much fast food.
+However, how do you quantify your guilty-ness? Simply tell Click what you've
+eaten and how many calories are included, so you can see how far you should run
+to burn them away!
 
 Example: 
 
@@ -512,36 +525,92 @@ food add n/ A Thousand Tide Pods c/ 92
 Expected outcome:
 
 ```
-Nice.  I've added Samurai Burger to the list, with 433 calories!
-Nice.  I've added Seaweed Shaker Fries Seasoning to the list, with 15 calories!
-Nice.  I've added Large Fries to the list, with 461 calories!
-Nice.  I've added Caramel Frappé - Medium to the list, with 624 calories!
-Nice.  I've added A Thousand Tide Pods to the list, with 92 calories!
+    __________________________________________________
+	Nice.  I've added Samurai Burger to the list, with 433 calories!
+	__________________________________________________
+	__________________________________________________
+	Nice.  I've added Seaweed Shaker Fries Seasoning to the list, with 15 calories!
+	__________________________________________________
+	__________________________________________________
+	Nice.  I've added Large Fries to the list, with 461 calories!
+	__________________________________________________
+	__________________________________________________
+	Nice.  I've added Caramel Frappé - Medium to the list, with 624 calories!
+	__________________________________________________
+
+	__________________________________________________
+	Nice.  I've added A Thousand Tide Pods to the list, with 92 calories!
+	__________________________________________________
 ```
 
-#### 3.5.2 Listing food records: `food list`
+Example of adding with a date
+
+`food add n/ something i ate 2 weeks ago but forgot to record c/ 300 d/ 13-10-2021`
+
+Expected outcome:
+```
+	Nice, I see you consumed something i ate 2 weeks ago but forgot to record on 2021-10-13, and have recorded 
+	__________________________________________________
+	Nice.  I've added something i ate 2 weeks ago but forgot to record to the list, with 300 calories!
+	__________________________________________________
+```
+
+#### 3.5.2a Listing food records: `food list`
 
 Format : `food list`
 
+What did you have for lunch on the 27th of October - forgot already? 
+Not to worry. Simply tell Click to list the food items you've recorded.
+Additionally, the calories consumed are nicely added up for you.
 
 Expected outcome:
 
 ```
-1st,You consumed  Samurai Burger , which has a calorie count of : 433!
-2nd,You consumed  Seaweed Shaker Fries Seasoning , which has a calorie count of : 15!
-3rd,You consumed  Large Fries , which has a calorie count of : 461!
-4th,You consumed  Caramel Frappé - Medium , which has a calorie count of : 624!
-5th,You consumed  A Thousand Tide Pods , which has a calorie count of : 92!
-Wow, that's a lot of food! Finished reading today's list
-You consumed 1625 calories in total today!
+	__________________________________________________
+	1st,You consumed  Samurai Burger , which has a calorie count of : 433 on 2021-10-27!
+	2nd,You consumed  Seaweed Shaker Fries Seasoning , which has a calorie count of : 15 on 2021-10-27!
+	3rd,You consumed  Large Fries , which has a calorie count of : 461 on 2021-10-27!
+	4th,You consumed  Caramel Frappé - Medium , which has a calorie count of : 624 on 2021-10-27!
+	5th,You consumed  A Thousand Tide Pods , which has a calorie count of : 92 on 2021-10-27!
+	Wow, that's a lot of food! Finished reading the list
+	You consumed 1625 calories in total!
+	__________________________________________________
 ```
+
+#### 3.5.2b Finding food records with a date:  `food find`
+
+Format  : `food  find DD-MM-YYYY`
+
+Want to go even further and see what you ate on a specific date?
+Simply give Click the date to search for, and the list of food items
+you've recorded would be shown to you!
+
+Expected outcome : 
+
+Shows you a list of items you've consumed on that particular day.
+
+```
+food find 11-10-2021
+	Nice, I found the items you ate on Monday, 11 October 2021
+	__________________________________________________
+	1st,You consumed  something i ate 2 weeks back , which has a calorie count of : 20 on 2021-10-11!
+	2nd,You consumed  something else i consumed 2 weeks ago , which has a calorie count of : 40 on 2021-10-11!
+	Wow, that's a lot of food! Finished reading the list
+	You consumed 60 calories in total!
+	__________________________________________________
+```
+
 
 #### 3.5.3 Deleting food records: `food delete`
 
 Format: `food delete INDEX`
 
-Example: `food delete 5`
+Oops, you accidentally entered a wrong food item as you confused your food list with
+your shopping list. 
+Not to worry, simply delete that item by giving Click the index
+of the item to delete!
 
+Example: `food delete 5`
 Expected outcome:
 
 ```
@@ -550,15 +619,64 @@ Deleted food record  A Thousand Tide Pods at index: 5
 
 #### 3.5.4 Clearing food list: `food clear`
 
-Format : `food clear`
+Just finished an all-you-can-eat buffet and feel too guilty?
+No worries - simply clear your food list to start anew!
 
+Format : `food clear`
 
 Expected outcome:
 
 ```
-Cleared food record list for today!
+	__________________________________________________
+	Cleared food record list for today!
+	__________________________________________________
 ```
 
+Congrats, you've cleared your list.
+
+#### 3.5.5 Viewing food stalls at Techno edge `food view`
+
+Format : `food view`
+
+Want to quickly browse what stalls exist at Techno edge before the queue starts?
+Simply use this command to see the list and take note of the index of the stalls!
+
+Expected outcome:
+
+Shows you the index of every stall at techno edge, and the corresponding stall name
+so that you can easily add your items later.
+
+#### 3.5.6 Viewing items sold by a particular stall `food view [STALL_INDEX]`
+
+Format : `food view [STALL_INDEX]`
+
+Expected outcome:
+
+Shows you the menu of a particular stall when you give Click the store index, 
+find the stall index using `food view`, then view the menu of the stall with
+`food view [STALL_INDEX`. Do take note of the index of the food item you want
+to add to your list.
+
+#### 3.5.7 Adding items from a particular stall to your list
+
+Format : `food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]`
+
+Expected outcome:
+
+Allows you to add a food item you consumed from a particular stall without typing
+in the name of the item and the calorie count.
+
+For example, if you had just consumed a chicken burger set (Item index 5) sold by
+Hungry Burger (Store index 5), you should see the following:
+
+```
+food radd s/ 5 i/ 5
+	__________________________________________________
+	Nice, adding the record - 	Chicken Burger Set  : 607 KCal
+	__________________________________________________
+	Nice.  I've added Chicken Burger Set  to the list, with 607 calories!
+	__________________________________________________
+```
 
 ## 4. Command Summary
 
@@ -566,6 +684,7 @@ Cleared food record list for today!
 |----------|---------------------|
 **Add Entry**|`journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
 **Add Food**|`food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DD-MM-YYYY(DATE_RECORDED)}`
+**Add Food From Reference**|`food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]`
 **Add Lecture**|`calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
 **Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
 **Add Note**|`journal notebook n/ NOTEBOOK_NAME`
