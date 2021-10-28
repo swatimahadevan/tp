@@ -41,13 +41,16 @@ This document describes the software architecture, software design requirement, 
 
 1. Fork [this repository](https://github.com/AY2122S1-CS2113T-T09-4/tp) and clone the fork to your computer.
 2. Open IntelliJ IDEA (if you are not in the welcome screen, close the existing project by clicking `File` > `Close Project`)
-3. Set up the correct JDK version.\
+3. Set up the correct JDK version:\
 i. Click `File` > `Project Structure`. Under `Project Setting`, choose `Project` > `Project SDK`.\
 ii. If `JDK 11` is listed in the dropdown, select it. Otherwise, click `+ Add SDK` > `JDK...` and select the directory where you installed `JDK 11`.\
 iii. Click `OK`.
 4. Click `Import Project`.
 5. Locate the `buid.gradle` file in the repository you have cloned and select it. Click `OK`.
 6. Click `OK` to accept the default setting.
+7. Verify the setup:\
+i. Go to `src/main/java/seedu.duke.Click`, run `Click.main()` and trying a few commands.\
+ii. Go to `src/test/java/seedu.duke` and run `Tests in seedu.duke` to ensure they all pass.
 
 ## 3. Design
 
