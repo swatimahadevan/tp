@@ -1,35 +1,56 @@
 # Click - Developer Guide
 
-This guide aims to give you a big-picture view of how our application operates. From the macro view on how Click runs its main program,
-to the micro view on  how  we  translate sentence input to an object with attributes. 
-By sharing this information, we appreciate feedback on any ways we can improve 
-the functionality or documentation in order to give you the best experience on Click.
 ## Table of Contents
 
+1. [Introduction](#1-introduction)\
+1.1 [Background](#11-background)\
+1.2 [Purpose](#12-purpose)\
+1.3 [Scope](#13-scope)
+2. [Setting Up](#2-setting-up)\
+2.1 [Prerequisite](#21-prerequisite)\
+2.2 [Setting up the Project in Your Computer](#22-setting-up-the-project-in-your-computer)
+3. [Design](#3-design)
+
 ## 1. Introduction
+
+### 1.1 Background
+
 **_Welcome to Click_!** It's a Java-based  Command-Line Interface for Cramming and Knowledge (CLICK), providing a one-stop access point
 for managing various parts of your Computing student life here at NUS. We aim to provide a simple interface 
 that quantifies how you use your time and if you're taking care of your overall well-being. 
+
+### 1.2 Purpose
+
+This guide aims to give you a big-picture view of how our application operates. From the macro view on how Click runs its main program,
+to the micro view on  how  we  translate sentence input to an object with attributes.
+
+By sharing this information, we appreciate feedback on any ways we can improve the functionality or documentation in order to give you the best experience on Click.
+
+### 1.3 Scope
+
+This document describes the software architecture, software design requirement, implementation and testing for Click. This guide is mainly for software developers, designers, and software engineers that are going to work on Click.
+
 ## 2. Setting Up
-1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `click.jar` from [here](https://github.com/AY2122S1-CS2113T-T09-4/tp/releases/tag/v1.0).
-3. Copy the file to the folder you want to use as the _home folder_ for Click.
-4. In the home folder for Click, launch the `jar` file using the `java -jar click.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see something like this:
 
-```
-	__________________________________________________
-	 _____ _  _     _
-	/  __ \ |(_)   | |
-	| /  \/ |_  ___| | __
-	| \__/\ | | (__|   <
-	\_____/_|_|\___|_|\_\
+### 2.1 Prerequisite
 
-	Hello! I'm Duke
-	What can I do for you?
-	__________________________________________________
-```
+1. JDK `11`
+2. IntelliJ IDEA
 
-5. Type the valid command into the terminal (or Command Prompt) and press <kbd>return</kbd> (or <kbd>Enter</kbd>) to run the command.
+### 2.2 Setting up the Project in Your Computer
+
+1. Fork [this repository](https://github.com/AY2122S1-CS2113T-T09-4/tp) and clone the fork to your computer.
+2. Open IntelliJ IDEA (if you are not in the welcome screen, close the existing project by clicking `File` > `Close Project`)
+3. Set up the correct JDK version:\
+i. Click `File` > `Project Structure`. Under `Project Setting`, choose `Project` > `Project SDK`.\
+ii. If `JDK 11` is listed in the dropdown, select it. Otherwise, click `+ Add SDK` > `JDK...` and select the directory where you installed `JDK 11`.\
+iii. Click `OK`.
+4. Click `Import Project`.
+5. Locate the `buid.gradle` file in the repository you have cloned and select it. Click `OK`.
+6. Click `OK` to accept the default setting.
+7. Verify the setup:\
+i. Go to `src/main/java/seedu.duke.Click`, run `Click.main()` and trying a few commands.\
+ii. Go to `src/test/java/seedu.duke` and run `Tests in seedu.duke` to ensure they all pass.
 
 ## 3. Design
 
