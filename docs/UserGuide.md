@@ -362,7 +362,7 @@ Edited Task!
 #### 3.3.6 Displaying calendar: `calendar display`
 Displays a calendar based on the month.
 
-Note: If month entered by user is incorrect, then CLICK will display the calendar of the current month.
+Note: If the calendar layout appears skewed, maximise terminal to full screen or zoom out.
 
 Format: `calendar display MM-YYY`
 
