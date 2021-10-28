@@ -81,6 +81,10 @@ Click supports 4 ways of adding Modules:
 - Adding with module code and module name.
 - Adding with module code only.
 
+Note:
+- The supported expected grades are: `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`, `CS`, `CU`, `NA`. Specifying the expected grade other than the supported grades will cause an error.
+- The default values of module name, modular credits, and expected grades are `None`, `4`, and `NA`, respectively.
+
 **Adding with module code, module name, modular credits, and expected grade**
 
 Format: `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`
@@ -502,6 +506,7 @@ match your dieting needs to consume the recommended amount of calories
 you need every day!
 
 #### 3.5.1 Adding a food item: `food add`
+
 Allows you to add a food item and calorie count
 
 Format: `food add n/FOOD_NAME n/KCALORIE d/ {DATE}`
