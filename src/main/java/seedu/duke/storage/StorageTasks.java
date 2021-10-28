@@ -79,8 +79,6 @@ public class StorageTasks {
             return tasksList;
         } catch (FileNotFoundException e) {
             File f = new File(StorageTasks.filePath);
-            System.out.println("Hey, I didn't find " + StorageTasks.fileName + " in " + StorageTasks.folderName + "!");
-            System.out.println("creating new file...");
         }
         return tasksList;
     }

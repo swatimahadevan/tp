@@ -334,6 +334,9 @@ public class Parser {
         String[] calendarArguments = commandArgs.split(" ");
         switch (calendarArguments[0]) {
         case COMMAND_SUFFIX_LIST:
+            if (calendarArguments.length < 2) {
+                throw new IncorrectCommandException("Incorrect command for list!");
+            }
             Command list = getCalendarListCommand(calendarArguments);
             return list;
         case COMMAND_DISPLAY:
@@ -344,6 +347,9 @@ public class Parser {
             ArrayList<String> arguments = ParserSchedule.parseTodoCommand(userInput);
             return new AddTodoCommand(arguments);
         case COMMAND_SUFFIX_DELETE:
+            if (calendarArguments.length < 2) {
+                throw new IncorrectCommandException("Incorrect command for delete!");
+            }
             Command delete = getCalendarDeleteCommand(calendarArguments, userInput);
             return delete;
         case COMMAND_LECTURE:
@@ -370,7 +376,7 @@ public class Parser {
         if (calendarArguments[1].equals("task")) {
             return new DeleteTaskCommand(getTaskIndex(calendarArguments), userInput);
         } else if (calendarArguments[1].equals("lec")) {
-            return new DeleteLectureCommand(getTaskIndex(calendarArguments), userInput);
+            return new DeleteLectureCommand(getLectureIndex(calendarArguments), userInput);
         } else {
             throw new IncorrectCommandException("Incorrect command for delete!");
         }
@@ -379,6 +385,19 @@ public class Parser {
     private int getTaskIndex(String[] calendarArguments) throws IncorrectNumberOfArgumentsException {
         if (calendarArguments.length != 3) {
             throw new IncorrectNumberOfArgumentsException(CALENDAR_EDIT_DELETE_INVALID_ARGS);
+        }
+        int indexOfTaskToBeEdited = 0;
+        try {
+            indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[2]);
+        } catch (NumberFormatException e) {
+            System.out.println(PRINT_NOT_AN_INT);
+        }
+        return indexOfTaskToBeEdited;
+    }
+
+    private int getLectureIndex(String[] calendarArguments) throws IncorrectNumberOfArgumentsException {
+        if (calendarArguments.length != 3) {
+            throw new IncorrectNumberOfArgumentsException("Lecture index not entered...");
         }
         int indexOfTaskToBeEdited = 0;
         try {

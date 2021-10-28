@@ -211,6 +211,66 @@ Expected outcome:
 
 ### 3.2 Managing your Zoom links
 
+#### 3.2.1 Adding a new zoom link: `zoom add`
+Adds a zoom link.
+
+Note: You cannot add a lecture to a module unless the module has been added previously.
+
+Format: `zoom add [MODULE_CODE] [ZOOM_LINK]`
+
+Example:
+```
+zoom add CS2113T https://nus-sg.com
+```
+
+Expected outcome:
+```
+Zoom link added successfully
+```
+
+#### 3.2.2 Updating a zoom link: `zoom add`
+Updates a zoom link.
+
+Note: You can edit the zoom link for a module only if it already exists.
+
+Format: `zoom add [MODULE_CODE] [ZOOM_LINK]`
+
+Example:
+```
+zoom add CS2113T https://nus-sg.com/updatedLink
+```
+
+Expected outcome:
+```
+Zoom link updated successfully!
+```
+
+#### 3.2.3 List all zoom links: `zoom list`
+Lists all zoom links.
+
+Format: `zoom list`
+
+Example:
+```
+zoom list
+```
+
+Expected outcome:
+```
+Module: CS2113T
+Zoom: https://nus-sg.com/updatedLink
+```
+
+#### 3.2.4 Opens the zoom link on browser: `zoom open`
+Opens zoom link on browser.
+
+Format: `zoom open [MODULE_CODE]`
+
+Example:
+```
+zoom open CS2113T
+```
+
 ### 3.3 Managing your calendar
 
 #### 3.3.1 Adding a lecture: `calendar lecture`

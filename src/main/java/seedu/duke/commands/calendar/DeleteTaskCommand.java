@@ -52,7 +52,7 @@ public class DeleteTaskCommand extends Command {
     public void execute(Ui ui, Storage storage) throws IOException,
             CalendarIndexNotFoundException, IncorrectNumberOfArgumentsException {
         ui.printLine();
-        if (this.index > storage.tasksList.getTaskList().size()) {
+        if (this.index > storage.tasksList.getTaskList().size() || this.index <= 0) {
             throw new CalendarIndexNotFoundException();
         }
         Storage.tasksList.deleteTask(this.index);

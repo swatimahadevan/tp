@@ -41,6 +41,11 @@ public class StorageZoom {
         Storage.checkAndAddDirectory(folderName);
         File newList = new File(folderName + fileName);
 
+        if (!newList.exists()) {
+            newList.getParentFile().mkdirs();
+            newList.createNewFile();
+        }
+
         if (isModuleIn(folderName + fileName, moduleName)) {
             String newData = "";
             Scanner scanner = new Scanner(newList);

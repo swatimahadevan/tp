@@ -73,8 +73,6 @@ public class StorageFood {
         } catch (FileNotFoundException e) {
             ClickLogger.getNewLogger().log(Level.WARNING, "file not found on load");
             File f = new File(filePath);
-            System.out.println("Hey, I didn't find the text file in " + folderName + "!");
-            System.out.println("creating new file...");
             ClickLogger.getNewLogger().log(Level.CONFIG, "create new text file");
         } catch (NullPointerException e) {
             System.out.println("Null Pointer Exception, try again!");
