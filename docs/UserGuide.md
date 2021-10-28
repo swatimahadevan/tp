@@ -198,6 +198,10 @@ Example:
 	__________________________________________________
 ```
 
+Note:
+- Your current CAP has to be in the range [0.0 - 5.5].
+- The modular credits contributing to CAP you have taken has to be an integer.
+
 #### 3.1.5 Getting the Expected CAP
 
 Gets the expected CAP based on the provided information and the modules you are taking.
