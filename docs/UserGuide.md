@@ -5,7 +5,7 @@
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)\
-3.0 [Help feature](#30-getting-help)\
+3.0 [Getting Help](#30-getting-help)\
 3.1 [Managing your modules](#31-managing-your-modules)\
 3.2 [Managing your zoom-links](#32-managing-your-zoom-links)\
 3.3 [Managing your calendar](#33-managing-your-calendar)\
