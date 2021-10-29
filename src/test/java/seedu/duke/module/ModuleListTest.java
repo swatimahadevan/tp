@@ -8,6 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 //@@author nvbinh15
+
+/**
+ * A test class for ModuleList
+ */
 class ModuleListTest {
 
     ModuleList moduleList;

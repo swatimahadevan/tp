@@ -8,8 +8,16 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//@@author nvbinh15
+
+/**
+ * A test class for ParserModule.
+ */
 class ParserModuleTest {
 
+    /**
+     * Checks formatModuleToStore return the expected data with valid input Module.
+     */
     @Test
     void formatModuleToStore_sampleModule_respectiveStringRepOfSampleModule() {
         Module sampleModule = new Module("CS2113T", "Software Engineering", 4, "A");
@@ -18,6 +26,11 @@ class ParserModuleTest {
         assertEquals(data, expectedData);
     }
 
+    /**
+     * Checks retrieveStoredModule return the expected Module with valid data in the storage file.
+     *
+     * @throws StorageException If there is something wrong with the storage file.
+     */
     @Test
     void retrieveStoredModule_validData_expectedModule() throws StorageException {
         String data = "CS2113T|Software Engineering|A|4";
@@ -26,12 +39,18 @@ class ParserModuleTest {
         assertEquals(retrievedModule.toString(), expectedModule.toString());
     }
 
+    /**
+     * Checks StorageExceptionThrown when the data in the storage file passed into retrievedStoredModule is invalid.
+     */
     @Test
     void retrieveStoredModule_invalidData_StorageExceptionThrown() {
         String invalidData = "CS2113T|Software Engineering|A";
         assertThrows(StorageException.class, () -> ParserModule.retrieveStoredModule(invalidData));
     }
 
+    /**
+     * Checks formatCapInfoToStore return the expected data with valid input.
+     */
     @Test
     void formatCapInfoToStore_sampleCapInfo_respectiveFormattedData() {
         double cap = 4.5;
@@ -41,6 +60,9 @@ class ParserModuleTest {
         assertEquals(data, expectedData);
     }
 
+    /**
+     * Checks StorageException thrown when data in the storage file passed into retrieveStoreData is invalid.
+     */
     @Test
     void retrieveStoredCapInfo_invalidData_StorageExceptionThrown() {
         String invalidData = "4.5|";
