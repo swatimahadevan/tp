@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
+/**
+ * A class that deals with loading data from the file and saving data to the file.
+ */
 public class Storage {
 
     private String tasksFilePath;

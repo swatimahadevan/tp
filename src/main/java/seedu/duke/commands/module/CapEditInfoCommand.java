@@ -11,15 +11,31 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+//@@author nvbinh15
+
+/**
+ * A representation of the command for editing information related to CAP.
+ */
 public class CapEditInfoCommand extends Command {
 
     ModuleManager moduleManager = new ModuleManager();
 
+    /**
+     * Class constructor.
+     */
     public CapEditInfoCommand() {
         helpMessage = "Get user's information to calculate expected CAP";
         syntax = "cap edit";
     }
 
+    /**
+     * Executes the CapEditInfoCommand.
+     *
+     * @param ui      The component of Duke that deals with the interaction with the user.
+     * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @throws ClickException If there is an exception of type ClickException occurs.
+     * @throws IOException If there is an error while saving data to file.
+     */
     @Override
     public void execute(Ui ui, Storage storage) throws ClickException, IOException {
         ui.printLine();

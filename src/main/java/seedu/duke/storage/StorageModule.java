@@ -18,7 +18,7 @@ import java.util.Scanner;
 //@@author nvbinh15
 
 /**
- * A class that deals with loading modules from the file and saving modules into the file.
+ * A class that deals with loading and saving data related to Modules into the file.
  */
 public class StorageModule {
 
@@ -45,6 +45,11 @@ public class StorageModule {
         file.createNewFile();
     }
 
+    /**
+     * Creates a new file to store data related to CAP.
+     *
+     * @throws IOException If there are failed or interrupted I/O operations.
+     */
     public static void createCapStorageFile() throws IOException {
         File file = new File(String.valueOf(PATH_TO_CAP_STORAGE_FILE));
         if (file.exists()) {
@@ -89,7 +94,7 @@ public class StorageModule {
     /**
      * Saves data to the Module storage file.
      *
-     * @param moduleList The ModuleList to be stored
+     * @param moduleList The ModuleList to be stored.
      * @throws IOException If there are failed or interrupted I/O operations.
      */
     public static void saveModuleToFile(ModuleList moduleList) throws IOException {
@@ -100,6 +105,12 @@ public class StorageModule {
         fileWriter.close();
     }
 
+    /**
+     * Reads data that stored in the CAP info storage file.
+     *
+     * @return An ArrayList containing CAP and MC.
+     * @throws IOException If there are failed or interrupted I/O operations.
+     */
     public static ArrayList<Double> readCapInfoFromFile() throws IOException {
         if (Files.notExists(PATH_TO_CAP_STORAGE_FILE)) {
             createCapStorageFile();
@@ -127,6 +138,13 @@ public class StorageModule {
         return capAndMc;
     }
 
+    /**
+     * Saves data to the CAP storage file.
+     *
+     * @param currentCap The current CAP of the user.
+     * @param totalMcTaken The total of modular credits that contribute to the cap.
+     * @throws IOException If there are failed or interrupted I/O operations.
+     */
     public static void saveCapInfoToFile(double currentCap, int totalMcTaken) throws IOException {
         if (Files.notExists(PATH_TO_CAP_STORAGE_FILE)) {
             createCapStorageFile();
