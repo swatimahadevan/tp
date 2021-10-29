@@ -5,7 +5,7 @@
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)\
-3.0 [Help feature](#301-getting-help)\
+3.0 [Help feature](#30-getting-help)\
 3.1 [Managing your modules](#31-managing-your-modules)\
 3.2 [Managing your zoom-links](#32-managing-your-zoom-links)\
 3.3 [Managing your calendar](#33-managing-your-calendar)\
@@ -74,6 +74,7 @@ The smallest index would naturally be 1. (1-based)
 
 > **NOTE**: 
 > We left out some expected commands for readability as they will print out similar messages
+
 ### 3.0 Getting Help
 Click helps you by showing all available commands and syntax
 
@@ -93,7 +94,7 @@ Click supports 4 ways of adding Modules:
 - Adding with module code and module name.
 - Adding with module code only.
 
-> Note:
+> **Note:**
 > - The supported expected grades are: `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`, `CS`, `CU`, `NA`. Specifying the expected grade other than the supported grades will cause an error.
 > - The default values of module name, modular credits, and expected grades are `None`, `4`, and `NA`, respectively.
 
@@ -832,7 +833,7 @@ and recording my calorie count on a journal. I'd like to  know some  benefits of
 >  Sure, while we acknowledge your  love of pen and paper we'd like to remind you the scalability of digital apps,
 >  preservation of data as well as  the efficiency of the CLI in typing rather than writing. 
 
-## 6. Bug Report
+## 6. Bug Reports
 
 Found  a ***content error*** or just something which doesn't look right?
 [Get in touch with our team on GitHub](https://github.com/AY2122S1-CS2113T-T09-4/tp/blob/master/docs/AboutUs.md) and let us know.
