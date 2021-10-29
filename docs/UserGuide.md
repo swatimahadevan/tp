@@ -21,8 +21,17 @@ Welcome to your all-in-one desktop app for managing modules, tracking your food 
 We know that you are a Computing student here at NUS 👨‍🎓 and may prefer typing ⌨ to swiping (Hello Vim! 😉)
 , so we think that our command line interface for cramming & knowledge (Click) is a great fit for you! 
 
-This user guide serves to give you a brief overview of our features, as well as how to use them.
+This user guide serves to give you a brief overview of our features, as well as how to use them. 
 
+>**To use this guide effectively** 
+> 
+> We ordered the commands and features in ***sequential order*** for you,
+> so some commands cannot work independently without using other commands first.
+> If you want to follow our sequence, please enter every command given in the examples.
+> 
+> An example of dependent commands is : you cannot add a lecture or zoom link without adding the specified module.
+> 
+> Therefore, please follow the sequence from 3.0 on to 3.5! 
 
 Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 
@@ -41,7 +50,7 @@ Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 	| \__/\ | | (__|   <
 	\_____/_|_|\___|_|\_\
 
-	Hello! I'm Duke
+	Hello! I'm Click
 	What can I do for you?
 	__________________________________________________
 ```
@@ -62,6 +71,8 @@ The smallest index would naturally be 1. (1-based)
 - Parameters cannot be reordered.
   Example: If the command specifies `module add c/MODULE_CODE n/MODULE_NAME`, keying in `module add n/MODULE_NAME c/MODULE_CODE` will result in an invalid command.
 
+> **NOTE**: 
+> We left out some expected commands for readability as they will print out similar messages
 ### 3.0 Getting Help
 Click helps you by showing all available commands and syntax
 
@@ -135,6 +146,8 @@ Expected outcome:
 Format: `module add c/MODULE_CODE`
 
 Example: `module add c/CG2028`
+          `module add c/ger1000`
+          `module add c/ cs2101`
 
 Expected outcome:
 
@@ -160,7 +173,9 @@ Expected outcome:
 	2. CS1231 | Discrete Structure | MC: 4 | Expected grade: NA
 	3. CS1010 | Programming Methodology | MC: 4 | Expected grade: NA
 	4. CG2028 | None | MC: 4 | Expected grade: NA
-	__________________________________________________
+    5. ger1000 | None | MC: 4 | Expected grade: NA
+    6. cs2101 | None | MC: 4 | Expected grade: NA
+    __________________________________________________
 ```
 
 #### 3.1.3 Deleting a Module: `module delete`
@@ -198,9 +213,9 @@ Example:
 	__________________________________________________
 ```
 
-Note:
-- Your current CAP has to be in the range [0.0 - 5.5].
-- The modular credits contributing to CAP you have taken has to be an integer.
+>**Note**:
+> Your current CAP has to be in the range [0.0 - 5.5].
+> The modular credits contributing to CAP you have taken has to be an integer.
 
 #### 3.1.5 Getting the Expected CAP
 
@@ -233,7 +248,9 @@ zoom add CS2113T https://nus-sg.com
 
 Expected outcome:
 ```
-Zoom link added successfully
+        __________________________________________________
+        Zoom link updated successfully!
+        __________________________________________________
 ```
 
 #### 3.2.2 Updating a zoom link: `zoom add`
@@ -250,7 +267,10 @@ zoom add CS2113T https://nus-sg.com/updatedLink
 
 Expected outcome:
 ```
-Zoom link updated successfully!
+        __________________________________________________
+        Zoom link updated successfully!
+        __________________________________________________
+
 ```
 
 #### 3.2.3 List all zoom links: `zoom list`
@@ -265,8 +285,10 @@ zoom list
 
 Expected outcome:
 ```
-Module: CS2113T
-Zoom: https://nus-sg.com/updatedLink
+        __________________________________________________
+        Module: CS2113T
+        Zoom: https://nus-sg.com/updatedLink
+        __________________________________________________
 ```
 
 #### 3.2.4 Opens the zoom link on browser: `zoom open`
@@ -291,11 +313,16 @@ Format: `calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY
 Example:
 ```
 calendar lecture m/ CS2113T s/ 7-10-2021 e/ 31-10-2021
+calendar lecture m/ ger1000 s/ 02-10-2021 e/ 31-10-2021
+calendar lecture m/ cs2101 s/ 10-10-2021 e/ 30-11-2021
 ```
 
 Expected outcome:
 ```
-Added lecture!
+        __________________________________________________
+        Added lecture!
+        __________________________________________________
+
 ```
 
 #### 3.3.2 Adding a todo task: `calendar todo`
@@ -306,11 +333,15 @@ Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
 Example:
 ```
 calendar todo n/ GER1000 Assignment d/ 14-10-2021
+calendar todo n/ GEQ1000 Assignment d/ 03-10-2021
 ```
 
 Expected outcome:
 ```
-Task has been added successfully!
+        __________________________________________________
+        Task has been added successfully!
+        __________________________________________________
+
 ```
 
 #### 3.3.3 Listing tasks: `calendar list task`
@@ -325,9 +356,11 @@ calendar list task
 
 Expected outcome:
 ```
-Here's your task list:
-1. GER1000 Assignment (on: 14-10-2021)
-2. GEQ1000 Assignment (on: 03-10-2021)
+        __________________________________________________
+        Here's your task list:
+        1. GER1000 Assignment (on: 14-10-2021)
+        2. GEQ1000 Assignment (on: 03-10-2021)
+        __________________________________________________
 ```
 #### 3.3.4 Deleting a task: `calendar delete task`
 Deletes a task item based on the index.
@@ -341,8 +374,11 @@ calendar delete task 1
 
 Expected outcome:
 ```
-Task has been deleted!
+        __________________________________________________
+        Task has been deleted!
+        __________________________________________________
 ```
+
 #### 3.3.5 Editing a task: `calendar edit`
 Edits a task item based on the index.
 
@@ -355,10 +391,14 @@ calendar edit 1
 
 Expected outcome:
 ```
-Enter the entire todo command with the desired description and date that you want to replace in place of the current task at index 1
->> calendar todo n/ changed task name d/ 22-12-2021
-Edited Task!
+calendar edit 1
+        __________________________________________________
+        Enter the entire todo command with the desired description and date that you want to replace in place of the current task at index 1
+calendar todo n/ changed task name d/ 22-12-2021
+        Edited Task!
+        __________________________________________________
 ```
+
 #### 3.3.6 Displaying calendar: `calendar display`
 Displays a calendar based on the month.
 
@@ -386,10 +426,13 @@ calendar delete lec 1
 
 Expected outcome:
 ```
-Lecture has been deleted!
+        __________________________________________________
+        Lecture has been deleted!
+        __________________________________________________
 ```
 
 #### 3.3.3 Listing lectures: `calendar list lec`
+
 Lists all the current task items.
 
 Format: `calendar list lec`
@@ -401,13 +444,17 @@ calendar list lec
 
 Expected outcome:
 ```
-Here is your list of lectures:
-1. ger1000 (from: 02-10-2021) (to: 31-10-2021) 
-2. cs2101 (from: 10-10-2021) (to: 30-11-2021) 
+        __________________________________________________
+        Here is your list of lectures:
+        1. ger1000 (from: 02-10-2021) (to: 31-10-2021)
+        2. cs2101 (from: 10-10-2021) (to: 30-11-2021)
+        __________________________________________________
 ```
 
 ### 3.4 Managing your journal
+
 #### 3.4.1 Adding a notebook: `journal notebook`
+
 Adds a notebook with the desired name.
 
 Format: `journal notebook n/ NOTEBOOK_NAME`
@@ -417,10 +464,13 @@ Example: `journal notebook n/ Today`
 Expected outcome:
 
 ```
-Great you have added the notebook: Today
+        __________________________________________________
+        Great you have added the note: Today
+        __________________________________________________
 ```
 
 #### 3.4.2 Adding an entry: `journal entry`
+
 Adds an entry with the desired name to a specific notebook
 
 Format: `journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
@@ -430,10 +480,13 @@ Example: `journal entry n/ Today e/ Random Observation`
 Expected outcome:
 
 ```
-Great you have added the entry: Random Observation
+        __________________________________________________
+        Great you have added the entry: Random Observation
+        __________________________________________________
 ```
 
 #### 3.4.3 Listing notebooks with entries: `journal list`
+
 Lists all notebooks with their entries.
 
 Format: `journal list`
@@ -443,11 +496,14 @@ Example: `journal list`
 Expected outcome:
 
 ```
-1. The notebook Today contains:
-  1. Random Observation
+        __________________________________________________
+        1. The notebook Today(tag: none) contains:
+                1. Random Observation
+        __________________________________________________
 ```
 
 #### 3.4.4 Tagging a notebook
+
 Allows you to tag a notebook.
 
 Format: `journal tag n/ NOTE_INDEX t/ TAG_NAME`
@@ -457,10 +513,13 @@ Example: `journal tag n/ 1 t/ important`
 Expected outcome:
 
 ```
-Great you have tagged the notebook
+        __________________________________________________
+        Great you have tagged the notebook
+        __________________________________________________
 ```
 
 #### 3.4.5 Find a notebook by tag
+
 Allows you to find a notebook which has the tag.
 
 Format: `journal find TAG_NAME`
@@ -470,11 +529,14 @@ Example: `journal find important`
 Expected outcome:
 
 ```
-Notebooks with the tag important are: 
-Today
+        __________________________________________________
+        Notebooks with the tag important are:
+        Today
+        __________________________________________________
 ```
 
 #### 3.4.6 Deleting entry `journal delete_entry`
+
 Deletes the entry.
 
 Format: `journal delete_entry n/ NOTE_NAME e/ ENTRY_NAME`
@@ -484,10 +546,13 @@ Example: `journal delete_entry n/ Today e/ Random Observation`
 Expected outcome:
 
 ```
-Great you have deleted the entry
+        __________________________________________________
+        Great you have deleted the entry
+        __________________________________________________
 ```
 
 #### 3.4.7 Deleting notebooks `journal delete_notebook`
+
 Deletes specific notebook.
 
 Format: `journal delete_notebook NOTE_INDEX`
@@ -497,7 +562,9 @@ Example: `journal delete_notebook 1`
 Expected outcome:
 
 ```
-Great you have deleted the notebook at : 1
+        __________________________________________________
+        Great you have deleted the notebook at : 1
+        __________________________________________________
 ```
 
 
@@ -521,14 +588,17 @@ However, how do you quantify your guilty-ness? Simply tell Click what you've
 eaten and how many calories are included, so you can see how far you should run
 to burn them away!
 
+>**NOTE** : 
+> If you leave the date parameter empty, Click would just add in today's date for you, no worries!
+
 Example: 
 
 ```
-food add n/ Samurai Burger c/ 433
-food add n/ Seaweed Shaker Fries Seasoning c/ 15
-food add n/ Large Fries c/  461
-food add n/ Caramel Frappé - Medium c/ 624
-food add n/ A Thousand Tide Pods c/ 92
+food add n/ Samurai Burger c/ 433 
+food add n/ Seaweed Shaker Fries Seasoning c/ 15 
+food add n/ Large Fries c/  461 
+food add n/ Caramel Frappé - Medium c/ 624 
+food add n/ A Thousand Tide Pods c/ 92 
 ```
 
 Expected outcome:
@@ -544,9 +614,8 @@ Expected outcome:
 	Nice.  I've added Large Fries to the list, with 461 calories!
 	__________________________________________________
 	__________________________________________________
-	Nice.  I've added Caramel Frappé - Medium to the list, with 624 calories!
+	Nice.  I've added Caramel Frappe - Medium to the list, with 624 calories!
 	__________________________________________________
-
 	__________________________________________________
 	Nice.  I've added A Thousand Tide Pods to the list, with 92 calories!
 	__________________________________________________
@@ -554,14 +623,12 @@ Expected outcome:
 
 Example of adding with a date
 
-`food add n/ something i ate 2 weeks ago but forgot to record c/ 300 d/ 13-10-2021`
-
-Expected outcome:
 ```
-	Nice, I see you consumed something i ate 2 weeks ago but forgot to record on 2021-10-13, and have recorded 
-	__________________________________________________
-	Nice.  I've added something i ate 2 weeks ago but forgot to record to the list, with 300 calories!
-	__________________________________________________
+food add n/ something i ate 2 weeks ago but forgot to record c/ 300 d/ 13-10-2021
+        Nice, I see you consumed something i ate 2 weeks ago but forgot to record on 2021-10-13, and have recorded
+        __________________________________________________
+        Nice.  I've added something i ate 2 weeks ago but forgot to record to the list, with 300 calories!
+        __________________________________________________
 ```
 
 #### 3.5.2a Listing food records: `food list`
@@ -572,18 +639,24 @@ What did you have for lunch on the 27th of October - forgot already?
 Not to worry. Simply tell Click to list the food items you've recorded.
 Additionally, the calories consumed are nicely added up for you.
 
+> **NOTE** :
+> The date displayed may *not be the same as the expected outcome*. It'll show you today's date instead as you didn't add the `d/` parameter previously!
+> 
+
 Expected outcome:
 
 ```
-	__________________________________________________
-	1st,You consumed  Samurai Burger , which has a calorie count of : 433 on 2021-10-27!
-	2nd,You consumed  Seaweed Shaker Fries Seasoning , which has a calorie count of : 15 on 2021-10-27!
-	3rd,You consumed  Large Fries , which has a calorie count of : 461 on 2021-10-27!
-	4th,You consumed  Caramel Frappé - Medium , which has a calorie count of : 624 on 2021-10-27!
-	5th,You consumed  A Thousand Tide Pods , which has a calorie count of : 92 on 2021-10-27!
-	Wow, that's a lot of food! Finished reading the list
-	You consumed 1625 calories in total!
-	__________________________________________________
+food list
+        __________________________________________________
+        1st,You consumed  Samurai Burger , which has a calorie count of : 433 on 2021-10-29!
+        2nd,You consumed  Seaweed Shaker Fries Seasoning , which has a calorie count of : 15 on 2021-10-29!
+        3rd,You consumed  Large Fries , which has a calorie count of : 461 on 2021-10-29!
+        4th,You consumed  Caramel Frappe - Medium , which has a calorie count of : 624 on 2021-10-29!
+        5th,You consumed  A Thousand Tide Pods , which has a calorie count of : 92 on 2021-10-29!
+        6th,You consumed  something i ate 2 weeks ago but forgot to record , which has a calorie count of : 300 on 2021-10-13!
+        Wow, that's a lot of food! Finished reading the list
+        You consumed 1925 calories in total!
+        __________________________________________________
 ```
 
 #### 3.5.2b Finding food records with a date:  `food find`
@@ -599,14 +672,13 @@ Expected outcome :
 Shows you a list of items you've consumed on that particular day.
 
 ```
-food find 11-10-2021
-	Nice, I found the items you ate on Monday, 11 October 2021
-	__________________________________________________
-	1st,You consumed  something i ate 2 weeks back , which has a calorie count of : 20 on 2021-10-11!
-	2nd,You consumed  something else i consumed 2 weeks ago , which has a calorie count of : 40 on 2021-10-11!
-	Wow, that's a lot of food! Finished reading the list
-	You consumed 60 calories in total!
-	__________________________________________________
+food find 13-10-2021
+        Nice, I found the items you ate on Wednesday, 13 October 2021
+        __________________________________________________
+        1st,You consumed  something i ate 2 weeks ago but forgot to record , which has a calorie count of : 300 on 2021-10-13!
+        Wow, that's a lot of food! Finished reading the list
+        You consumed 300 calories in total!
+        __________________________________________________
 ```
 
 
@@ -623,7 +695,10 @@ Example: `food delete 5`
 Expected outcome:
 
 ```
-Deleted food record  A Thousand Tide Pods at index: 5
+food delete 5
+        __________________________________________________
+        Deleted food record  A Thousand Tide Pods at index: 5
+        __________________________________________________
 ```
 
 #### 3.5.4 Clearing food list: `food clear`
@@ -691,27 +766,27 @@ food radd s/ 5 i/ 5
 
 **Action** | **Format, Examples**
 |----------|---------------------|
-**Add Entry**|`journal entry n/ NOTEBOOK_NAME e/ ENTRY_NAME`
-**Add Food**|`food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DD-MM-YYYY(DATE_RECORDED)}`
+**Add Entry**|`journal entry n/ [NOTEBOOK_NAME] e/ [ENTRY_NAME]`
+**Add Food**|`food add n/ [FOOD_NAME] c/ [CALORIE] d/ {[DD-MM-YYYY(DATE_RECORDED)]}`
 **Add Food From Reference**|`food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]`
-**Add Lecture**|`calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
-**Add Module**|- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
-**Add Note**|`journal notebook n/ NOTEBOOK_NAME`
-**Add Todo**|`calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
+**Add Lecture**|`calendar lecture m/ [MODULE_CODE] s/ [DD-MM-YYYY(START_DATE)] e/ [DD-MM-YYYY(END_DATE)]`
+**Add Module**|- `module add c/[MODULE_CODE] n/[MODULE_NAME] mc/[MODULAR_CREDITS] e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
+**Add Note**|`journal notebook n/ [NOTEBOOK_NAME]`
+**Add Todo**|`calendar todo n/ [TASK_NAME] d/ [DD-MM-YYYY]`
 **Add Zoom**|`zoom add [MODULE_CODE] [ZOOM_LINK]`
 **Cap Info**|`module info`
 **Clear Food**|`food clear`
-**Delete Entry**|`journal delete_entry n/ NOTE_NAME e/ ENTRY_NAME`
+**Delete Entry**|`journal delete_entry n/ [NOTE_NAME] e/ [ENTRY_NAME]`
 **Delete Food**|`food delete INDEX`
-**Delete Lecture**|`calendar delete lec LECTURE_INDEX`
+**Delete Lecture**|`calendar delete lec [LECTURE_INDEX]`
 **Delete Module**|`module delete INDEX`<br><br> Example: `module delete 2`
-**Delete Note**|`journal delete_notebook NOTE_INDEX`
-**Delete Task**|`calendar delete task TASK_INDEX`
-**Display**|`calendar display MM-YYYY`
+**Delete Note**|`journal delete_notebook [NOTE_INDEX]`
+**Delete Task**|`calendar delete task [TASK_INDEX]`
+**Display**|`calendar display [MM-YYYY]`
 **Edit CAP Information**|`cap edit`
-**Edit Tasks**|`calendar edit TASK_INDEX`
+**Edit Tasks**|`calendar edit [TASK_INDEX]`
 **Find Food With Date**|`food find [DD-MM-YYYY]`
-**Find Notebook by tag**|`journal find TAG_NAME`
+**Find Notebook by tag**|`journal find [TAG_NAME]`
 **Get Expected CAP**|`cap expected`
 **Help**|`help`
 **List  Food Items**|`food list`
@@ -721,7 +796,7 @@ food radd s/ 5 i/ 5
 **List Lectures**|`calendar list lec`
 **List Zoom Links**|`zoom list`
 **Open Zoom Link**|`zoom open [MODULE_CODE]`
-**Tag Journal**|`journal tag n/ NOTE_INDEX t/ TAG_NAME`
+**Tag Journal**|`journal tag n/ [NOTE_INDEX] t/ [TAG_NAME]`
 **View Reference Food**|`food view, food view [STORE_INDEX], food view all`
 **Exit**|`exit`
 
