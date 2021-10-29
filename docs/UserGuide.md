@@ -10,7 +10,8 @@
 3.2 [Managing your zoom-links](#32-managing-your-zoom-links)\
 3.3 [Managing your calendar](#33-managing-your-calendar)\
 3.4 [Managing your journal](#34-managing-your-journal)\
-3.5 [Managing your food consumption](#35-managing-your-food-consumption)
+3.5 [Managing your food consumption](#35-managing-your-food-consumption)\
+3.6 [Exit](#36-exit)
 4. [Command Summary](#4-command-summary)
 5. [Frequently Asked Questions](#5-frequently-asked-questions)
 6. [Bug reports](#6-bug-reports)
@@ -31,7 +32,7 @@ This user guide serves to give you a brief overview of our features, as well as 
 > 
 > An example of dependent commands is : you cannot add a lecture or zoom link without adding the specified module.
 > 
-> Therefore, please follow the sequence from 3.0 on to 3.5! 
+> Therefore, please follow the sequence from 3.0 on to 3.6! 
 
 Jump in to the section [2. Quick Start](#2-quick-start) to get started!
 
@@ -92,9 +93,9 @@ Click supports 4 ways of adding Modules:
 - Adding with module code and module name.
 - Adding with module code only.
 
-Note:
-- The supported expected grades are: `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`, `CS`, `CU`, `NA`. Specifying the expected grade other than the supported grades will cause an error.
-- The default values of module name, modular credits, and expected grades are `None`, `4`, and `NA`, respectively.
+> Note:
+> - The supported expected grades are: `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`, `CS`, `CU`, `NA`. Specifying the expected grade other than the supported grades will cause an error.
+> - The default values of module name, modular credits, and expected grades are `None`, `4`, and `NA`, respectively.
 
 **Adding with module code, module name, modular credits, and expected grade**
 
@@ -146,8 +147,6 @@ Expected outcome:
 Format: `module add c/MODULE_CODE`
 
 Example: `module add c/CG2028`
-          `module add c/ger1000`
-          `module add c/ cs2101`
 
 Expected outcome:
 
@@ -173,8 +172,6 @@ Expected outcome:
 	2. CS1231 | Discrete Structure | MC: 4 | Expected grade: NA
 	3. CS1010 | Programming Methodology | MC: 4 | Expected grade: NA
 	4. CG2028 | None | MC: 4 | Expected grade: NA
-    5. ger1000 | None | MC: 4 | Expected grade: NA
-    6. cs2101 | None | MC: 4 | Expected grade: NA
     __________________________________________________
 ```
 
@@ -214,8 +211,8 @@ Example:
 ```
 
 >**Note**:
-> Your current CAP has to be in the range [0.0 - 5.5].
-> The modular credits contributing to CAP you have taken has to be an integer.
+> * Your current CAP has to be in the range [0.0 - 5.5].
+> * The modular credits contributing to CAP you have taken has to be an integer.
 
 #### 3.1.5 Getting the Expected CAP
 
@@ -759,6 +756,20 @@ food radd s/ 5 i/ 5
 	Nice, adding the record - 	Chicken Burger Set  : 607 KCal
 	__________________________________________________
 	Nice.  I've added Chicken Burger Set  to the list, with 607 calories!
+	__________________________________________________
+```
+
+### 3.6 Exit
+
+Exits the program.
+
+Format: `exit`
+
+Expected outcome:
+
+```
+	__________________________________________________
+	Bye. Hope to see you again soon!
 	__________________________________________________
 ```
 
