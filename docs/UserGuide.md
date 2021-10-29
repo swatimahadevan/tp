@@ -390,9 +390,12 @@ calendar edit 1
 
 Expected outcome:
 ```
-Enter the entire todo command with the desired description and date that you want to replace in place of the current task at index 1
->> calendar todo n/ changed task name d/ 22-12-2021
-Edited Task!
+calendar edit 1
+        __________________________________________________
+        Enter the entire todo command with the desired description and date that you want to replace in place of the current task at index 1
+calendar todo n/ changed task name d/ 22-12-2021
+        Edited Task!
+        __________________________________________________
 ```
 #### 3.3.6 Displaying calendar: `calendar display`
 Displays a calendar based on the month.
