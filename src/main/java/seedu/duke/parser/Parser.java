@@ -342,7 +342,7 @@ public class Parser {
         case COMMAND_DISPLAY:
             return new DisplayCommand(userInput);
         case COMMAND_SUFFIX_EDIT:
-            return new EditTasksCommand(getTaskIndex(calendarArguments));
+            return new EditTasksCommand(getTaskIndexForEdit(calendarArguments));
         case COMMAND_TODO:
             ArrayList<String> arguments = ParserSchedule.parseTodoCommand(userInput);
             return new AddTodoCommand(arguments);
@@ -389,6 +389,19 @@ public class Parser {
         int indexOfTaskToBeEdited = 0;
         try {
             indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[2]);
+        } catch (NumberFormatException e) {
+            System.out.println(PRINT_NOT_AN_INT);
+        }
+        return indexOfTaskToBeEdited;
+    }
+
+    private int getTaskIndexForEdit(String[] calendarArguments) throws IncorrectNumberOfArgumentsException {
+        if (calendarArguments.length != 2) {
+            throw new IncorrectNumberOfArgumentsException("Incorrect command for edit!");
+        }
+        int indexOfTaskToBeEdited = 0;
+        try {
+            indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[1]);
         } catch (NumberFormatException e) {
             System.out.println(PRINT_NOT_AN_INT);
         }
