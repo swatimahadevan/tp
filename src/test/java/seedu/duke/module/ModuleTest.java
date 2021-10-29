@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author nvbinh15
+
+/**
+ * A test class for Module.
+ */
 class ModuleTest {
 
     @Test

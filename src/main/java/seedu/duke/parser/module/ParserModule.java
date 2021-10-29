@@ -36,6 +36,9 @@ public class ParserModule {
      */
     public static Module retrieveStoredModule(String data) throws StorageException {
         String[] tokens = data.split("\\|");
+        if (tokens.length != 4) {
+            throw new StorageException();
+        }
         assert tokens.length == 4;
         String code = tokens[0];
         String name = tokens[1];
@@ -55,15 +58,15 @@ public class ParserModule {
 
     public static ArrayList<Double> retrieveStoredCapInfo(String data) throws StorageException {
         String[] tokens = data.split("\\|");
-        if (tokens.length == 2) {
-            ArrayList<Double> capInfo = new ArrayList();
-            double cap = Double.parseDouble(tokens[0]);
-            double mc = Double.parseDouble(tokens[1]);
-            capInfo.add(cap);
-            capInfo.add(mc);
-            return capInfo;
-        } else {
+        if (tokens.length != 2) {
             throw new StorageException();
         }
+        assert tokens.length == 2;
+        ArrayList<Double> capInfo = new ArrayList();
+        double cap = Double.parseDouble(tokens[0]);
+        double mc = Double.parseDouble(tokens[1]);
+        capInfo.add(cap);
+        capInfo.add(mc);
+        return capInfo;
     }
 }

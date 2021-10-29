@@ -25,6 +25,9 @@ import static seedu.duke.constants.Messages.MESSAGE_GOODBYE;
 import static seedu.duke.constants.Messages.MESSAGE_GREETING;
 import static seedu.duke.constants.Messages.NO_TASK_IN_DAY;
 
+/**
+ * A class that deals with interactions with the user.
+ */
 public class Ui {
 
     private static Storage storage;
@@ -39,6 +42,7 @@ public class Ui {
 
     private static Ui ui = new Ui();
 
+    //@@author nvbinh15
     /**
      * Reads the text entered by the user.
      *
@@ -64,7 +68,6 @@ public class Ui {
         printLine();
         printMessage(LOGO + MESSAGE_GREETING);
         printLine();
-        //printCurrentMonthCalendar();
     }
 
     /**
@@ -304,7 +307,6 @@ public class Ui {
 
     public static void printHelpMessage(String helpMessage, String syntax) {
         printMessage("Description: " + helpMessage);
-        //System.out.println("Syntax: ");
         printMessage("Syntax: " + syntax);
     }
 

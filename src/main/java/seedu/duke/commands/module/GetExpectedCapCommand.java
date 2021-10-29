@@ -8,6 +8,10 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 
 //@@author nvbinh15
+
+/**
+ * A representation of the command for getting expected CAP.
+ */
 public class GetExpectedCapCommand extends Command {
     public static final String MESSAGE_EXPECTED_CAP = "Your expected CAP based on the modules you are taking is: ";
     public static final String CAP_FORMAT = "%,.2f";

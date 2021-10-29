@@ -10,10 +10,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 //@@author nvbinh15
 
+/**
+ * A test class for Parser.
+ */
 class ParserTest {
 
     static Parser parser = new Parser();
 
+    /**
+     * Checks format date time with valid input.
+     *
+     * @throws IllegalDateTimeException If the input datetime is illegal.
+     */
     @Test
     void formatDateTime_legalDateTime_dateTimeOfOtherFormat() throws IllegalDateTimeException {
         String inputDateTime = "01-10-2021 2359";
@@ -21,6 +29,9 @@ class ParserTest {
         assertEquals(expectedDateTime, parser.formatDateTime(inputDateTime));
     }
 
+    /**
+     * Checks IllegalDateTimeException thrown when invalid input is passed into formatDatetime.
+     */
     @Test
     void formatDateTime_illegalDateTime_illegalDateTimeException() {
         String illegalDateTime = "01/01/2021 2359";

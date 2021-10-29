@@ -20,6 +20,7 @@ import seedu.duke.parser.Parser;
 
 public class Click {
 
+    public static final String RUNNING_CLICK_LOG_MESSAGE = "running click";
     private static Ui ui = new Ui();
     private static ExceptionHandler exceptionHandler = new ExceptionHandler();
     private static Storage storage;
@@ -34,12 +35,13 @@ public class Click {
         }
     }
 
+    //@@author nvbinh15
     /**
      * Reads and executes commands from user inputs.
      */
     private static void run() {
         logger = ClickLogger.getNewLogger();
-        logger.info("running click");
+        logger.info(RUNNING_CLICK_LOG_MESSAGE);
 
         ui.printGreeting();
         Scanner in = new Scanner(System.in);
