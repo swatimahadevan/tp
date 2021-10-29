@@ -4,9 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.StorageException;
 import seedu.duke.module.Module;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 //@@author nvbinh15
 

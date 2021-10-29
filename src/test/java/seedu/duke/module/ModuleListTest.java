@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //@@author nvbinh15
 
 /**
- * A test class for ModuleList
+ * A test class for ModuleList.
  */
 class ModuleListTest {
 
