@@ -14,9 +14,9 @@ We know that you are a Computing student here at NUS 👨‍🎓 and may prefer 
 
 + **Minor Enhancement**:
 
-+ **Code Contribution**:
++ **Code Contribution**: [Functional and Test code](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=nvbinh15&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other)
 
-+ **Contribution to the User Guide**:
++ **Contribution to the User Guide**: 
 
 + **Contribution to the Developer Guide**:
 
