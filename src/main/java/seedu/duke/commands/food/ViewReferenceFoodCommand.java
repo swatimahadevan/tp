@@ -28,12 +28,15 @@ public class ViewReferenceFoodCommand extends Command {
         switch (userInput.trim()) {
         case "food view":
             Storage.reference.getTechnoEdge().printStalls();
+            break;
         case "food view all":
             Storage.reference.getTechnoEdge().printAllItems();
+            break;
         default:
             String[] userInputSplit = userInput.split(" ");
             int index = Integer.parseInt(userInputSplit[2]);
             Storage.reference.getTechnoEdge().printItems(index);
+            break;
         }
     }
 }

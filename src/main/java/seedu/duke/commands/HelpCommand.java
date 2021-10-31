@@ -28,7 +28,7 @@ public class HelpCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws InvocationTargetException,
             InstantiationException, IllegalAccessException {
-       // ClassPackageReader.getCommandsAndPrintSyntax(); //- to be done using source files (by developers)
+        //ClassPackageReader.getCommandsAndPrintSyntax(); //- to be done using source files (by developers)
         Ui.printLine();
         System.out.println(CommandConstants.HELP_MESSAGES);
         Ui.printLine();
