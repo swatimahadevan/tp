@@ -1,11 +1,11 @@
 package seedu.duke.commands.food;
-//@@author ngnigel99
 
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
+//@@author ngnigel99
 /**
  * Command to display a reference list to the user.
  * In particular, this would involve listing the stall names
@@ -25,14 +25,18 @@ public class ViewReferenceFoodCommand extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws ClickException, NumberFormatException {
-        if (userInput.trim().equals("food view")) {
+        switch (userInput.trim()) {
+        case "food view":
             Storage.reference.getTechnoEdge().printStalls();
-        } else if (userInput.trim().equals("food view all")) {
+            break;
+        case "food view all":
             Storage.reference.getTechnoEdge().printAllItems();
-        } else {
+            break;
+        default:
             String[] userInputSplit = userInput.split(" ");
             int index = Integer.parseInt(userInputSplit[2]);
             Storage.reference.getTechnoEdge().printItems(index);
+            break;
         }
     }
 }

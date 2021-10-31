@@ -88,7 +88,7 @@ public class WhatIAteList  {
                         + " , which has a calorie count of : "
                         + listRecord.getCalorieCount()
                         + ((listRecord.getDateIAte() != null) ? " on " + listRecord.getDateIAte() + "!" : "!"));
-            }    else {
+            } else {
                 System.out.println(listRecord.getFoodName() + " : " + listRecord.getCalorieCount() + "Kcal");
             }
             index++;

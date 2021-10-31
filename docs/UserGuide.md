@@ -174,6 +174,7 @@ Expected outcome:
 	3. CS1010 | Programming Methodology | MC: 4 | Expected grade: NA
 	4. CG2028 | None | MC: 4 | Expected grade: NA
     __________________________________________________
+    
 ```
 
 #### 3.1.3 Deleting a Module: `module delete`
@@ -310,9 +311,8 @@ Format: `calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY
 
 Example:
 ```
+calendar lecture m/ CS1231 s/ 7-10-2021 e/ 31-10-2021
 calendar lecture m/ CS2113T s/ 7-10-2021 e/ 31-10-2021
-calendar lecture m/ ger1000 s/ 02-10-2021 e/ 31-10-2021
-calendar lecture m/ cs2101 s/ 10-10-2021 e/ 30-11-2021
 ```
 
 Expected outcome:
@@ -330,8 +330,8 @@ Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
 
 Example:
 ```
-calendar todo n/ GER1000 Assignment d/ 14-10-2021
-calendar todo n/ GEQ1000 Assignment d/ 03-10-2021
+calendar todo n/ CS2113T Assignment d/ 14-10-2021
+calendar todo n/ CS1231 Assignment d/ 03-10-2021
 ```
 
 Expected outcome:
@@ -356,8 +356,8 @@ Expected outcome:
 ```
         __________________________________________________
         Here's your task list:
-        1. GER1000 Assignment (on: 14-10-2021)
-        2. GEQ1000 Assignment (on: 03-10-2021)
+        1. CS2113T Assignment (on: 14-10-2021)
+        2. CS1231 Assignment (on: 03-10-2021)
         __________________________________________________
 ```
 #### 3.3.4 Deleting a task: `calendar delete task`
@@ -444,8 +444,7 @@ Expected outcome:
 ```
         __________________________________________________
         Here is your list of lectures:
-        1. ger1000 (from: 02-10-2021) (to: 31-10-2021)
-        2. cs2101 (from: 10-10-2021) (to: 30-11-2021)
+        
         __________________________________________________
 ```
 
@@ -578,7 +577,7 @@ you need every day!
 
 Allows you to add a food item and calorie count
 
-Format: `food add n/FOOD_NAME n/KCALORIE d/ {DATE}`
+Format: `food add n/FOOD_NAME d/KCALORIE {d/ DATE}`
 
 For instance, imagine you've just had a nice meal at McDonald's after
 a three-hour-long lecture. You feel guilty about having so much fast food.
@@ -778,12 +777,12 @@ Expected outcome:
 
 **Action** | **Format, Examples**
 |----------|---------------------|
-**Add Entry**|`journal entry n/ [NOTEBOOK_NAME] e/ [ENTRY_NAME]`
 **Add Food**|`food add n/ [FOOD_NAME] c/ [CALORIE] d/ {[DD-MM-YYYY(DATE_RECORDED)]}`
 **Add Food From Reference**|`food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]`
 **Add Lecture**|`calendar lecture m/ [MODULE_CODE] s/ [DD-MM-YYYY(START_DATE)] e/ [DD-MM-YYYY(END_DATE)]`
 **Add Module**|- `module add c/[MODULE_CODE] n/[MODULE_NAME] mc/[MODULAR_CREDITS] e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
 **Add Note**|`journal notebook n/ [NOTEBOOK_NAME]`
+**Add Entry**|`journal entry n/ [NOTEBOOK_NAME] e/ [ENTRY_NAME]`
 **Add Todo**|`calendar todo n/ [TASK_NAME] d/ [DD-MM-YYYY]`
 **Add Zoom**|`zoom add [MODULE_CODE] [ZOOM_LINK]`
 **Cap Info**|`module info`

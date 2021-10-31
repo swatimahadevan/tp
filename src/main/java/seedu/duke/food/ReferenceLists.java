@@ -2,9 +2,7 @@ package seedu.duke.food;
 
 //@@author ngnigel99
 
-import seedu.duke.foodreferencelists.StallsDataAndLogic;
-
-import java.util.ArrayList;
+import seedu.duke.foodreferencelists.StallsManager;
 
 /**
  * A reference list containing items sold: name, calorie count
@@ -15,11 +13,11 @@ import java.util.ArrayList;
  */
 public class ReferenceLists {
     private static ReferenceLists lists = null;
-    private StallsDataAndLogic technoEdge = new StallsDataAndLogic();
+    private StallsManager technoEdge = new StallsManager();
 
     //singleton design as only one food court is viewed
     private ReferenceLists() {
-        technoEdge = new StallsDataAndLogic();
+        technoEdge = new StallsManager();
     }
 
     public static ReferenceLists getLists() {
@@ -29,7 +27,7 @@ public class ReferenceLists {
         return lists;
     }
 
-    public StallsDataAndLogic getTechnoEdge() {
+    public StallsManager getTechnoEdge() {
         return technoEdge;
     }
 

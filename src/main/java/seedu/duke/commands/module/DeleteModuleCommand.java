@@ -23,7 +23,7 @@ public class DeleteModuleCommand extends Command {
      * Class constructor providing syntax for the HelpCommand.
      */
     public DeleteModuleCommand() {
-        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE]";
+        syntax = "module delete [INDEX]";
     }
 
     /**
