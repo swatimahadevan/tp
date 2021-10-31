@@ -25,11 +25,12 @@ public class ViewReferenceFoodCommand extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws ClickException, NumberFormatException {
-        if (userInput.trim().equals("food view")) {
+        switch (userInput.trim()) {
+        case "food view":
             Storage.reference.getTechnoEdge().printStalls();
-        } else if (userInput.trim().equals("food view all")) {
+        case "food view all":
             Storage.reference.getTechnoEdge().printAllItems();
-        } else {
+        default:
             String[] userInputSplit = userInput.split(" ");
             int index = Integer.parseInt(userInputSplit[2]);
             Storage.reference.getTechnoEdge().printItems(index);

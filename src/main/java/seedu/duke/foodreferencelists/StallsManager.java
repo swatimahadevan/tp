@@ -17,7 +17,7 @@ import java.util.HashMap;
  * by index is implemented to support adding food by reference
  * functionality.
  */
-public class StallsDataAndLogic {
+public class StallsManager {
     public static String nameOfFoodCentre = "techno edge, NUS";
     public static HashMap<Integer, String> idName = new HashMap<>();
     public static HashMap<Integer, String[]> idData = new HashMap<>();
@@ -26,7 +26,7 @@ public class StallsDataAndLogic {
     public static int MAX_STORE_INDEX = 11;
 
     //for easier indexing and searching
-    public StallsDataAndLogic() {
+    public StallsManager() {
         initialiseNameIdMap();
         initialiseIdPointerMap();
         collateAllItems();
@@ -98,15 +98,15 @@ public class StallsDataAndLogic {
     public static void printItems(int index) {
         if (index <= 0 || index > MAX_STORE_INDEX) {
             Ui.printMessage("Oops, can't find store " + index);
-        } else {
-            WhatIAteList tempFormattedList = new WhatIAteList();
-            String[] itemsSold = idData.get(index);
-            for (String readLine : itemsSold) {
-                FoodRecord toAdd = Parser.parseFoodSavedListToRecord(readLine);
-                tempFormattedList.addToList(toAdd, true);
-            }
-            tempFormattedList.printList(false);
+            return;
         }
+        WhatIAteList tempFormattedList = new WhatIAteList();
+        String[] itemsSold = idData.get(index);
+        for (String readLine : itemsSold) {
+            FoodRecord toAdd = Parser.parseFoodSavedListToRecord(readLine);
+            tempFormattedList.addToList(toAdd, true);
+        }
+        tempFormattedList.printList(false);
     }
 
     /**
