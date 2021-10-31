@@ -21,7 +21,7 @@ public class AddFoodCommand extends Command {
     private String inputString; //name + calorie
 
     public AddFoodCommand() {
-        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DD-MM-YYYY(DATE_RECORDED)}";
+        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE] {d/ DD-MM-YYYY(DATE_RECORDED)}";
     }
 
     public AddFoodCommand(String inputString) {

@@ -7,6 +7,7 @@ import seedu.duke.help.ClassPackageReader;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
+//@@author ngnigel99
 import java.lang.reflect.InvocationTargetException;
 
 public class HelpCommand extends Command {
@@ -27,7 +28,7 @@ public class HelpCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws InvocationTargetException,
             InstantiationException, IllegalAccessException {
-        //ClassPackageReader.getCommandsAndPrintSyntax(); - to be done using source files
+       // ClassPackageReader.getCommandsAndPrintSyntax(); //- to be done using source files (by developers)
         Ui.printLine();
         System.out.println(CommandConstants.HELP_MESSAGES);
         Ui.printLine();
