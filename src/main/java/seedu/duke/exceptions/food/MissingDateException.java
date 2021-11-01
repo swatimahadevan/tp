@@ -7,6 +7,8 @@ import seedu.duke.exceptions.ClickException;
  * finding a food record.
  */
 public class MissingDateException extends ClickException {
+    private final String message;
+
     public MissingDateException() {
         this.message = "Date not found, try again.";
     }

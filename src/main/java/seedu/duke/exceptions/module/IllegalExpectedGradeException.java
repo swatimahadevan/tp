@@ -8,4 +8,7 @@ import seedu.duke.exceptions.ClickException;
  * A class that represents exceptions thrown when the expected grade of a module is illegal.
  */
 public class IllegalExpectedGradeException extends ClickException {
+    public IllegalExpectedGradeException() {
+        super("Illegal Expected Grade");
+    }
 }
