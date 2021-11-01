@@ -2,6 +2,8 @@ package seedu.duke.exceptions.module;
 
 import seedu.duke.exceptions.ClickException;
 
+import static seedu.duke.constants.ExceptionMessages.MESSAGE_ILLEGAL_EXPECTED_GRADE;
+
 //@@author nvbinh15
 
 /**
@@ -9,6 +11,6 @@ import seedu.duke.exceptions.ClickException;
  */
 public class IllegalExpectedGradeException extends ClickException {
     public IllegalExpectedGradeException() {
-        super("Illegal Expected Grade");
+        super(MESSAGE_ILLEGAL_EXPECTED_GRADE);
     }
 }
