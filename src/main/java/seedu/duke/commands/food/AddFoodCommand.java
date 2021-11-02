@@ -40,14 +40,9 @@ public class AddFoodCommand extends Command {
      * @author ngnigel99
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException, IOException {
+    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException, IOException, ArgumentsNotFoundException {
         FoodRecord foodRecord  = null;
-        try {
-            foodRecord = Parser.parseFoodRecord(inputString);
-        } catch (ArgumentsNotFoundException e) {
-            Ui.printLine();
-            Ui.printMessage("Wrong syntax! Refer to help for more options.");
-        }
+        foodRecord = Parser.parseFoodRecord(inputString);
         storage.whatIAteTodayList.addToList(foodRecord, false);
         StorageFood.saveList(storage.whatIAteTodayList);
     }

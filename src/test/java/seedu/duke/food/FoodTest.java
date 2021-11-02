@@ -35,7 +35,7 @@ public class FoodTest {
      */
     @Test
     void testAddFoodCommand() throws IllegalFoodParameterException, ArgumentsNotFoundException {
-        String correctUserInput = "food add n/ Samurai Burger c/ 433";
+        String correctUserInput = "food add n/Samurai Burger c/433";
         FoodRecord testFoodRecord =  parser.parseFoodRecord(correctUserInput);
         FoodRecord actualFoodRecord = new FoodRecord("Samurai Burger", 433);
         //test fields are correctly constructed

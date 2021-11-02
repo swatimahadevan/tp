@@ -96,7 +96,7 @@ public class Parser {
     static final String INPUT_DATE_TIME_FORMAT = "dd-MM-yyyy HHmm";
     static final String OUTPUT_DATE_TIME_FORMAT = "MMM dd yyyy HH:mm";
 
-    static final int FOOD_MINIMUM_PARAMETER = 4; // tags {/n /c} + 2 inputs {name, calorie}
+    static final int FOOD_MINIMUM_PARAMETER = 2; //n/xx c/1
     static final String FOOD_NAME_DIVIDER = "n/";
     static final String FOOD_CALORIE_DIVIDER = "c/";
     static final String FOOD_DATE_DIVIDER = "d/";
@@ -443,7 +443,7 @@ public class Parser {
                                    String dividerBefore,
                                    String dividerAfter)
             throws WrongDividerOrderException, ArgumentsNotFoundException {
-        if (!(input.contains(dividerBefore) && input.contains(dividerAfter))) {
+        if (!(input.contains(dividerBefore) || input.contains(dividerAfter))) {
             throw new ArgumentsNotFoundException();
         }
         if (input.indexOf(dividerBefore) >= input.indexOf(dividerAfter)) {
@@ -451,10 +451,10 @@ public class Parser {
         }
         assert !input.equals("") : "exception not accounted for empty string!";
         assert input.indexOf(dividerBefore) < input.indexOf(dividerAfter) : "divider order is wrong!";
-        String afterFirstDivider  = input.split(dividerBefore)[1];
-        String dataFirst          = afterFirstDivider.split(dividerAfter)[0].trim();
-        String afterSecondDivider = afterFirstDivider.split(dividerAfter)[1];
-        String dataSecond         = afterSecondDivider.trim();
+        int indexOfAttribute1 = input.indexOf(dividerBefore);
+        int indexOfAttribute2 = input.indexOf(dividerAfter);
+        String dataFirst = input.substring(indexOfAttribute1 + 2, indexOfAttribute2).strip();
+        String dataSecond = input.substring(indexOfAttribute2 + 2).strip();
         return  new String[] {dataFirst, dataSecond};
 
     }
@@ -486,9 +486,6 @@ public class Parser {
                 int dateDividerIndex = input.indexOf(FOOD_DATE_DIVIDER);
                 String inputAfterDateDivider = input.substring(dateDividerIndex + 2).trim();
                 setDateOnFoodRecord(recordToAdd, inputAfterDateDivider);
-                Ui.printMessage("Nice, I see you consumed " + name + " on "
-                       + recordToAdd.getDateIAte().toString()
-                                + ", and have recorded ");
             } else {
                 int calories = Integer.parseInt(foodName[1]);
                 recordToAdd = new FoodRecord(name, calories);
