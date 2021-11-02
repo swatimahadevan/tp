@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
+import seedu.duke.exceptions.WrongDividerOrderException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -34,7 +35,8 @@ public class FoodTest {
      * @author ngnigel99
      */
     @Test
-    void testAddFoodCommand() throws IllegalFoodParameterException, ArgumentsNotFoundException {
+    void testAddFoodCommand() throws IllegalFoodParameterException, ArgumentsNotFoundException,
+        WrongDividerOrderException {
         String correctUserInput = "food add n/Samurai Burger c/433";
         FoodRecord testFoodRecord =  parser.parseFoodRecord(correctUserInput);
         FoodRecord actualFoodRecord = new FoodRecord("Samurai Burger", 433);
@@ -58,7 +60,7 @@ public class FoodTest {
         try {
             FoodRecord foodRecord = parser.parseFoodRecord("name_test" + " " + "sample_string");
         } catch (Exception e) {
-            assertEquals(Messages.PRINT_ADD_FOOD_SYNTAX, e.getMessage());
+            assertEquals("Missing arguments!", e.getMessage());
         }
     }
 
