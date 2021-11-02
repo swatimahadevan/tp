@@ -12,5 +12,6 @@ public class ExceptionMessages {
             + "The supported grades are A+, A, A-, B+, B, B-, C+, C, D+, D, F, CS, CU, and NA.";
     public static final String MESSAGE_ILLEGAL_MODULE = "Illegal module."
             + "Please follow the syntax module c/MODULE_CODE {n/MODULE_NAME mc/MODULAR CREDITS e/EXPECTED_GRADE}";
+    public static final String MESSAGE_ILLEGAL_MODULAR_CREDIT = "The modular credit must be a positive integer.";
 
 }
