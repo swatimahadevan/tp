@@ -97,6 +97,8 @@ Click supports 4 ways of adding Modules:
 > **Note:**
 > - The supported expected grades are: `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`, `CS`, `CU`, `NA`. Specifying the expected grade other than the supported grades will cause an error.
 > - The default values of module name, modular credits, and expected grades are `None`, `4`, and `NA`, respectively.
+> - The modular credit must be a positive integer.
+
 
 **Adding with module code, module name, modular credits, and expected grade**
 

@@ -2,6 +2,7 @@ package seedu.duke.commands.module;
 
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.exceptions.module.IllegalModularCreditException;
 import seedu.duke.exceptions.module.IllegalModuleException;
 import seedu.duke.module.Module;
 import seedu.duke.module.ModuleManager;
@@ -69,9 +70,10 @@ public class AddModuleCommand extends Command {
      * @param indexOfExpectedGrade Index of Module expected grade.
      * @return A new Module based on user's input.
      * @throws IllegalModuleException If user's input is not in the correct format.
+     * @throws IllegalModularCreditException If the modular credit is not an integer.
      */
     private Module getModule(int indexOfCode, int indexOfName, int indexOfMc, int indexOfExpectedGrade)
-            throws IllegalModuleException {
+            throws IllegalModuleException, IllegalModularCreditException {
         String code;
         String name;
         int modularCredits;
@@ -94,12 +96,20 @@ public class AddModuleCommand extends Command {
         } else if (indexOfExpectedGrade == -1) {
             code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
             name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
-            modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3).strip());
+            try {
+                modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3).strip());
+            } catch (Exception e) {
+                throw new IllegalModularCreditException();
+            }
             module = new Module(code, name, modularCredits);
         } else {
             code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
             name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
-            modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3, indexOfExpectedGrade).strip());
+            try {
+                modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3, indexOfExpectedGrade).strip());
+            } catch (Exception e) {
+                throw new IllegalModularCreditException();
+            }
             expectedGrade = commandArgs.substring(indexOfExpectedGrade + 2).strip().toUpperCase();
             module = new Module(code, name, modularCredits, expectedGrade);
         }

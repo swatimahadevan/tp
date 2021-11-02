@@ -33,12 +33,13 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.zoom.ListZoomLinksCommand;
 import seedu.duke.commands.zoom.OpenZoomLink;
-import seedu.duke.exceptions.calendar.IncorrectCommandException;
-import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.exceptions.IllegalCommandException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.WrongDividerOrderException;
+import seedu.duke.exceptions.calendar.IncorrectCommandException;
+import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.exceptions.food.MissingDateException;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
@@ -246,7 +247,7 @@ public class Parser {
             String[] helpArgs = commandArgs.split(" ");
             return new HelpCommand();
         default:
-            throw new ClickException();
+            throw new IllegalCommandException();
         }
     }
 
