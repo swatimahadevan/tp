@@ -40,8 +40,8 @@ public class ModuleManager {
      * @throws IllegalExpectedGradeException If the expected grade of the Module is illegal.
      * @throws IllegalModularCreditException If the modular credit of Module is illegal.
      */
-    public void addNewModule(Module module) throws IOException, IllegalExpectedGradeException
-            , IllegalModularCreditException {
+    public void addNewModule(Module module) throws IOException, IllegalExpectedGradeException,
+            IllegalModularCreditException {
         ModuleList moduleList = storageModule.readModulesFromFile();
         String expectedGrade = module.getExpectedGrade();
         if (!gradePoints.isValidGrade(expectedGrade)) {
