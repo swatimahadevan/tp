@@ -76,4 +76,20 @@ public class ModuleList {
     public void removeModuleByIndex(int index) {
         modules.remove(index);
     }
+
+    /**
+     * Checks whether the module already exists.
+     *
+     * @param module The module to be checked.
+     * @return true if there is a module with the same module code in modules, false otherwise.
+     */
+    public boolean exist(Module module) {
+        String newModuleCode = module.getCode();
+        for (Module m : modules) {
+            if (m.getCode().equals(newModuleCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

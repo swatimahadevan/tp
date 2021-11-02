@@ -1,5 +1,6 @@
 package seedu.duke.module;
 
+import seedu.duke.exceptions.module.DuplicateModuleException;
 import seedu.duke.exceptions.module.IllegalExpectedGradeException;
 import seedu.duke.exceptions.module.IllegalModularCreditException;
 import seedu.duke.exceptions.module.IllegalModuleIndexException;
@@ -39,9 +40,10 @@ public class ModuleManager {
      * @throws IOException If there is an exceptions when reading or writing data to file.
      * @throws IllegalExpectedGradeException If the expected grade of the Module is illegal.
      * @throws IllegalModularCreditException If the modular credit of Module is illegal.
+     * @throws DuplicateModuleException If the module is already in the module list.
      */
     public void addNewModule(Module module) throws IOException, IllegalExpectedGradeException,
-            IllegalModularCreditException {
+            IllegalModularCreditException, DuplicateModuleException {
         ModuleList moduleList = storageModule.readModulesFromFile();
         String expectedGrade = module.getExpectedGrade();
         if (!gradePoints.isValidGrade(expectedGrade)) {
@@ -50,6 +52,9 @@ public class ModuleManager {
         int modularCredits = module.getModularCredits();
         if (modularCredits < 0) {
             throw new IllegalModularCreditException();
+        }
+        if (moduleList.exist(module)) {
+            throw new DuplicateModuleException();
         }
         moduleList.addModule(module);
         storageModule.saveModuleToFile(moduleList);

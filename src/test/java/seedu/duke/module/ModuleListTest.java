@@ -47,4 +47,12 @@ class ModuleListTest {
         moduleList.removeModuleByIndex(0);
         assertFalse(moduleList.getModules().contains(sampleModule));
     }
+
+    @Test
+    void exist_duplicateModules() {
+        Module sampleModule = new Module("CS2113T", "Software Engineering", 4, "A");
+        Module moduleWithExistedCode = new Module("CS2113T");
+        moduleList.addModule(sampleModule);
+        assertTrue(moduleList.exist(moduleWithExistedCode));
+    }
 }

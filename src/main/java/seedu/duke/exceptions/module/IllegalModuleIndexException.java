@@ -11,6 +11,9 @@ import static seedu.duke.constants.ExceptionMessages.MESSAGE_ILLEGAL_MODULE_INDE
  */
 public class IllegalModuleIndexException extends ClickException {
 
+    /**
+     * Class constructor inherited from ClickException.
+     */
     public IllegalModuleIndexException() {
         super(MESSAGE_ILLEGAL_MODULE_INDEX);
     }

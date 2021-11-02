@@ -10,6 +10,7 @@ import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
 import java.io.IOException;
+import java.util.Locale;
 
 //@@author nvbinh15
 
@@ -87,14 +88,14 @@ public class AddModuleCommand extends Command {
         }
 
         if (indexOfName == -1 && indexOfMc == -1 && indexOfExpectedGrade == -1) {
-            code = commandArgs.substring(indexOfCode + 2).strip();
+            code = commandArgs.substring(indexOfCode + 2).strip().toUpperCase();
             module = new Module(code);
         } else if (indexOfMc == -1 && indexOfExpectedGrade == -1) {
-            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
+            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip().toUpperCase();
             name = commandArgs.substring(indexOfName + 2).strip();
             module = new Module(code, name);
         } else if (indexOfExpectedGrade == -1) {
-            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
+            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip().toUpperCase();
             name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
             try {
                 modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3).strip());
@@ -103,7 +104,7 @@ public class AddModuleCommand extends Command {
             }
             module = new Module(code, name, modularCredits);
         } else {
-            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip();
+            code = commandArgs.substring(indexOfCode + 2, indexOfName).strip().toUpperCase();
             name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
             try {
                 modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3, indexOfExpectedGrade).strip());

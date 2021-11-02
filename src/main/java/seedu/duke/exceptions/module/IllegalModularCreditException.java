@@ -6,6 +6,9 @@ import static seedu.duke.constants.ExceptionMessages.MESSAGE_ILLEGAL_MODULAR_CRE
 
 public class IllegalModularCreditException extends ClickException {
 
+    /**
+     * Class constructor inherited from ClickException.
+     */
     public IllegalModularCreditException() {
         super(MESSAGE_ILLEGAL_MODULAR_CREDIT);
     }

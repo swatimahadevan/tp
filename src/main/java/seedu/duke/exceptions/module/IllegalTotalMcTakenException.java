@@ -11,6 +11,9 @@ import static seedu.duke.constants.ExceptionMessages.MESSAGE_ILLEGAL_TOTAL_MC_TA
  */
 public class IllegalTotalMcTakenException extends ClickException {
 
+    /**
+     * Class constructor inherited from ClickException.
+     */
     public IllegalTotalMcTakenException() {
         super(MESSAGE_ILLEGAL_TOTAL_MC_TAKEN);
     }
