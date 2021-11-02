@@ -76,4 +76,14 @@ public class ModuleList {
     public void removeModuleByIndex(int index) {
         modules.remove(index);
     }
+
+    public boolean exist(Module module) {
+        String newModuleCode = module.getCode();
+        for (Module m : modules) {
+            if (m.getCode().equals(newModuleCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
