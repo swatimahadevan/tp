@@ -471,8 +471,7 @@ public class Parser {
      * @author ngnigel99
      */
     public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
-            ArgumentsNotFoundException {
-        try {
+        ArgumentsNotFoundException, WrongDividerOrderException {
             FoodRecord recordToAdd = null;
             if (getWordCount(input) < FOOD_MINIMUM_PARAMETER) {
                 throw new IllegalFoodParameterException();
@@ -491,17 +490,6 @@ public class Parser {
                 recordToAdd = new FoodRecord(name, calories);
             }
             return recordToAdd;
-        } catch (NumberFormatException e) {
-            Ui.printAddFoodSyntax();
-        } catch (NullPointerException e) {
-            Ui.printNonNullInput();
-        } catch (WrongDividerOrderException e) {
-            e.printStackTrace();
-            System.out.println("Oops, internal error");
-        } catch (DateTimeParseException e) {
-            System.out.println("Please follow the format DD-MM-YYYY!");
-        }
-        return null;
     }
 
     /**

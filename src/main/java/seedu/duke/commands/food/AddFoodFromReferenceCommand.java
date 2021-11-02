@@ -25,16 +25,12 @@ public class AddFoodFromReferenceCommand extends Command {
 
     //assumes string given after food radd
     public AddFoodFromReferenceCommand(String userInput) throws WrongDividerOrderException,
-        ArgumentsNotFoundException {
+        ArgumentsNotFoundException, NumberFormatException {
         String[] data = Parser.getData(userInput, "s/", "i/");
         String storeIndexString = data[0];
         String itemIndexString = data[1];
-        try {
             storeIndex = Integer.parseInt(storeIndexString);
-            itemIndex = Integer.parseInt(itemIndexString) - 1;
-        } catch (NumberFormatException e) {
-            Ui.printOnlyIntegers();
-        }
+        itemIndex = Integer.parseInt(itemIndexString) - 1;
     }
 
     @Override
