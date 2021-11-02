@@ -30,21 +30,17 @@ public class ExceptionHandler {
     public static void handleOtherExceptions(Exception e) {
         if (e instanceof NumberFormatException) {
             Ui.printOnlyIntegers();
-        }
-        else if (e instanceof NullPointerException) {
+        } else if (e instanceof NullPointerException) {
             e.printStackTrace();
-        }
-        else if (e instanceof DateTimeParseException) {
+        } else if (e instanceof DateTimeParseException) {
             ui.printLine();
             ui.printMessage("Please follow the format DD-MM-YYYY!");
             ui.printLine();
-        }
-        else if (e instanceof WrongDividerOrderException) {
+        } else if (e instanceof WrongDividerOrderException) {
             ui.printLine();
             ui.printMessage("Wrong divider order!");
             ui.printLine();
-        }
-        else {
+        } else {
             ui.printLine();
             ui.printMessage("OOPs, invalid command, try help for more commands.");
             ui.printLine();

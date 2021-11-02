@@ -29,7 +29,7 @@ public class AddFoodFromReferenceCommand extends Command {
         String[] data = Parser.getData(userInput, "s/", "i/");
         String storeIndexString = data[0];
         String itemIndexString = data[1];
-            storeIndex = Integer.parseInt(storeIndexString);
+        storeIndex = Integer.parseInt(storeIndexString);
         itemIndex = Integer.parseInt(itemIndexString) - 1;
     }
 
