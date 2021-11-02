@@ -11,6 +11,9 @@ import static seedu.duke.constants.ExceptionMessages.MESSAGE_ILLEGAL_CURRENT_CAP
  */
 public class IllegalCurrentCapException extends ClickException {
 
+    /**
+     * Class constructor inherited from ClickException.
+     */
     public IllegalCurrentCapException() {
         super(MESSAGE_ILLEGAL_CURRENT_CAP);
     }

@@ -15,5 +15,7 @@ public class ExceptionMessages {
     public static final String MESSAGE_ILLEGAL_MODULE = "Illegal module." + NEW_LINE
             + "Please follow the syntax module add c/MODULE_CODE {n/MODULE_NAME mc/MODULAR CREDITS e/EXPECTED_GRADE}";
     public static final String MESSAGE_ILLEGAL_MODULAR_CREDIT = "The modular credit must be a positive integer.";
+    public static final String MESSAGE_DUPLICATE_MODULE = "The module already exists. "
+            + "Type module list to see the list of module.";
 
 }
