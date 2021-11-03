@@ -1,5 +1,6 @@
 package seedu.duke.exceptions.food;
 
+import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ClickException;
 
 /**
@@ -8,6 +9,6 @@ import seedu.duke.exceptions.ClickException;
  */
 public class MissingDateException extends ClickException {
     public MissingDateException() {
-        super("Date not found, try again.");
+        super(Messages.PRINT_DATE_NOT_FOUND);
     }
 }
