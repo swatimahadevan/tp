@@ -28,7 +28,7 @@ public class DeleteFoodCommand extends Command {
     public DeleteFoodCommand(String inputString) {
         super();
         this.inputString = inputString.trim();
-        helpMessage = "Deletes aa food item from a list given a valid index";
+        helpMessage = "Deletes a food item from a list given a valid index";
     }
 
     /**

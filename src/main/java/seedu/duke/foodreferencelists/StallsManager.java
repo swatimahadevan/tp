@@ -73,6 +73,7 @@ public class StallsManager {
     public static void printStalls() {
         idName.forEach((key, value) -> Ui.printMessage(key + " | " + value));
         Ui.printMessage("Wow, thats a lot of options! Finished printing");
+        Ui.printLine();
     }
 
     public static FoodRecord getFoodRecordFromStall(int storeIndex, int foodIndex)
@@ -116,9 +117,10 @@ public class StallsManager {
         for (int storeIndex : idName.keySet()) {
             String storeName = idName.get(storeIndex);
             System.out.println(storeName);
-            Ui.printLine();
             printItems(storeIndex);
         }
+        Ui.printMessage("Wow, thats a lot of options! Finished printing");
+        Ui.printLine();
     }
 
     /**
