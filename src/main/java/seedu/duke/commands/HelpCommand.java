@@ -3,6 +3,7 @@ package seedu.duke.commands;
 
 import seedu.duke.constants.CommandConstants;
 import seedu.duke.constants.Messages;
+import seedu.duke.exceptions.HelpException;
 import seedu.duke.help.ClassPackageReader;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
@@ -11,8 +12,23 @@ import seedu.duke.ui.Ui;
 import java.lang.reflect.InvocationTargetException;
 
 public class HelpCommand extends Command {
+    boolean runTime = false;
 
     public HelpCommand() {
+        syntax = "help";
+    }
+
+    public HelpCommand(String input) throws
+            HelpException {
+        if (input.equals("help rt")) {
+            runTime = !runTime; //toggles runtime
+            Ui.printLine();
+            Ui.printMessage("***RUNTIME MODE ENABLED***");
+            Ui.printMessage("Please revert mode if you're not a developer!");
+            Ui.printLine();
+        } else {
+            throw new HelpException();
+        }
     }
 
     /**
@@ -28,10 +44,13 @@ public class HelpCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws InvocationTargetException,
             InstantiationException, IllegalAccessException {
-        //ClassPackageReader.getCommandsAndPrintSyntax(); //- to be done using source files (by developers)
-        Ui.printLine();
-        System.out.println(CommandConstants.HELP_MESSAGES);
-        Ui.printLine();
+        if (runTime) {
+            ClassPackageReader.getCommandsAndPrintSyntax(); //- to be done using source files (by developers)
+        } else {
+            Ui.printLine();
+            System.out.println(CommandConstants.HELP_MESSAGES);
+            Ui.printLine();
+        }
     }
 
 }

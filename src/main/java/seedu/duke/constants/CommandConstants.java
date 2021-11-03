@@ -60,6 +60,7 @@ public class CommandConstants {
                     + "\tDelete Task  : calendar delete task [TASK_INDEX]\n"
                     + "\tDisplay  : calendar display [MM-YYYY]\n"
                     + "\tEdit Tasks  : calendar edit [TASK_INDEX]\n"
+                    + "\tFind Food By Calorie Count  : food clt [Calories]\n"
                     + "\tFind Food With Date  : food find [DD-MM-YYYY]\n"
                     + "\tFind Notebooks By Tag  : journal find [TAG_NAME]\n"
                     + "\tGet Expected Cap  : cap expected\n"

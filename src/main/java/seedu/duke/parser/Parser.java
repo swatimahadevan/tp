@@ -250,6 +250,9 @@ public class Parser {
 
         case COMMAND_HElP:
             String[] helpArgs = commandArgs.split(" ");
+            if (helpArgs.length >= 1) {  //dev mode
+                return new HelpCommand(userInput);
+            }
             return new HelpCommand();
         default:
             throw new IllegalCommandException();

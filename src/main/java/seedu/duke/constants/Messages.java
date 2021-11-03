@@ -40,6 +40,8 @@ public class Messages {
     public static final String PRINT_NON_NEGATIVE_CALORIES = "calorie count cannot be less than 0.";
     //end of Food
 
+    //help
+    public static final String PRINT_ONLY_HELP = "Wrong command syntax for help, type help.";
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
