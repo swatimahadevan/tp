@@ -29,6 +29,12 @@ public class Messages {
     public static final String PRINT_NOT_AN_INT = "Please only enter Integers";
     public static final String PRINT_ERROR_MESSAGE_GENERAL = "Oops, error encountered.";
     public static final String PRINT_DONE_DELETE_INDEX = "Deleted food record ";
+    public static final String CALORIES_NOT_FOUND = "Please enter the calories divider c/";
+    public static final String PRINT_FOOD_INDEX_NOT_FOUND =
+            "Cannot find index of food record to delete! Use 'food list' or 'food view' first"
+            + " to find desired food record index";
+    public static final String PRINT_NAME_DIVIDER = "Please enter a name divider: n/";
+    public static final String PRINT_DATE_NOT_FOUND = "Date not found, try again.";
     //end of Food
 
     //@author swatim
