@@ -37,6 +37,7 @@ public class CommandConstants {
     public static final String COMMAND_SUFFIX_VIEW = "view";
     public static final String COMMAND_SUFFIX_FIND = "find";
     public static final String COMMAND_SUFFIX_RADD = "radd";
+    public static final String COMMAND_SUFFIX_CLT = "clt";
 
     //note: this string is to be modified by uncommenting the potion in help_command by the dev team
     // so it's only partially "hard-coded"

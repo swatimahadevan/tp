@@ -12,6 +12,7 @@ import seedu.duke.commands.food.AddFoodCommand;
 import seedu.duke.commands.food.AddFoodFromReferenceCommand;
 import seedu.duke.commands.food.ClearFoodCommand;
 import seedu.duke.commands.food.DeleteFoodCommand;
+import seedu.duke.commands.food.FindFoodByCalorieCount;
 import seedu.duke.commands.food.FindFoodWithDateCommand;
 import seedu.duke.commands.food.ListFoodCommand;
 import seedu.duke.commands.food.ViewReferenceFoodCommand;
@@ -42,6 +43,9 @@ import seedu.duke.exceptions.calendar.IncorrectCommandException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.exceptions.food.MissingDateException;
+import seedu.duke.exceptions.food.NegativeCaloriesException;
+import seedu.duke.exceptions.food.NoCalorieCountKeywordException;
+import seedu.duke.exceptions.food.NoCaloriesInputException;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
 import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
@@ -74,6 +78,7 @@ import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
 import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLT;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EXPECTED;
@@ -259,12 +264,18 @@ public class Parser {
      * @param commandArgs second word onwards from userInput.
      * @return A command that's related to Food based on userInput.
      * @throws IllegalArgumentException if command entered does not exists, but starts with food.
-     *
+     * @throws MissingDateException if date is missing from input.
+     * @throws WrongDividerOrderException if divider order is wrong.
+     * @throws ArgumentsNotFoundException if arguments not found.
+     * @throws NoCalorieCountKeywordException if clt is not entered with command.
+     * @throws NoCaloriesInputException if paramter is missing.
+     * @throws NegativeCaloriesException if calorie count is negative.
      * @author ngnigel99
      */
     private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException,
-        MissingDateException, WrongDividerOrderException,
-        ArgumentsNotFoundException {
+            MissingDateException, WrongDividerOrderException,
+            ArgumentsNotFoundException, NoCalorieCountKeywordException,
+            NoCaloriesInputException, NegativeCaloriesException {
         String[] foodArgs = commandArgs.split(" ");
         switch (foodArgs[0]) {  //consider 2nd word
         case COMMAND_SUFFIX_ADD:
@@ -291,6 +302,8 @@ public class Parser {
             return new AddFoodFromReferenceCommand(
                 filterStringAfterCommand(userInput, COMMAND_FOOD
                     + " " + COMMAND_SUFFIX_RADD));
+        case COMMAND_SUFFIX_CLT:
+            return new FindFoodByCalorieCount(userInput);
         default:
             throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
         }

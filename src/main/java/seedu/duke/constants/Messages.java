@@ -35,6 +35,9 @@ public class Messages {
             + " to find desired food record index";
     public static final String PRINT_NAME_DIVIDER = "Please enter a name divider: n/";
     public static final String PRINT_DATE_NOT_FOUND = "Date not found, try again.";
+    public static final String PRINT_NO_CALORIE_COUNT = "clt keyword not found!";
+    public static final String PRINT_NO_INPUT_CALORIES = "no calories entered!";
+    public static final String PRINT_NON_NEGATIVE_CALORIES = "calorie count cannot be less than 0.";
     //end of Food
 
     //@author swatim

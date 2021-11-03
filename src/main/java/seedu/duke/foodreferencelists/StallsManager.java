@@ -7,6 +7,8 @@ import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 //@@author ngnigel99
@@ -77,7 +79,7 @@ public class StallsManager {
     }
 
     public static FoodRecord getFoodRecordFromStall(int storeIndex, int foodIndex)
-        throws FoodIndexNotFoundException {
+            throws FoodIndexNotFoundException {
         if (storeIndex <= 0 || storeIndex > MAX_STORE_INDEX) {
             Ui.printMessage("Oops, can't find store " + storeIndex);
             throw new FoodIndexNotFoundException();
@@ -101,13 +103,23 @@ public class StallsManager {
             Ui.printMessage("Oops, can't find store " + index);
             return;
         }
+        WhatIAteList tempFormattedList = parseStringIntoFoodRecordList(index);
+        tempFormattedList.printList(false);
+    }
+
+    /**
+     * Parses string in data dump to a food record list.
+     * @param index index of store
+     * @return tempFormattedList list of all items for a store
+     */
+    private static WhatIAteList parseStringIntoFoodRecordList(int index) {
         WhatIAteList tempFormattedList = new WhatIAteList();
         String[] itemsSold = idData.get(index);
         for (String readLine : itemsSold) {
             FoodRecord toAdd = Parser.parseFoodSavedListToRecord(readLine);
             tempFormattedList.addToList(toAdd, true);
         }
-        tempFormattedList.printList(false);
+        return tempFormattedList;
     }
 
     /**
@@ -120,6 +132,35 @@ public class StallsManager {
             printItems(storeIndex);
         }
         Ui.printMessage("Wow, thats a lot of options! Finished printing");
+        Ui.printLine();
+    }
+
+    public static void printFoodRecordsWithLowerCalories(int calories) {
+        ArrayList<WhatIAteList> allLists = new ArrayList<>();
+        assert MAX_STORE_INDEX > 0; //checks that data dump is initialised
+        for (int storeIndex : idName.keySet()) {
+            WhatIAteList storeItems = parseStringIntoFoodRecordList(storeIndex);
+            allLists.add(storeItems);
+        }
+        WhatIAteList filterLowerThanCalories = new WhatIAteList();
+        for (WhatIAteList storeItems : allLists) {
+            for (FoodRecord foodItem : storeItems.getList()) {
+                if (foodItem.getCalorieCount() <= calories) {
+                    filterLowerThanCalories.addToList(foodItem, true);
+                }
+            }
+        }
+        //sort by calorie count
+        filterLowerThanCalories.getList().sort(
+            (FoodRecord f1, FoodRecord f2)
+                -> f1.getCalorieCount().compareTo(f2.getCalorieCount()));
+        //sort by name
+        filterLowerThanCalories.getList().sort(
+            (FoodRecord f1, FoodRecord f2)
+                -> f1.getFoodName().compareTo(f2.getFoodName()));
+        Ui.printMessage("I've found the following items with " + calories + " calories!");
+        filterLowerThanCalories.printList(false);
+        Ui.printMessage("done printing!");
         Ui.printLine();
     }
 

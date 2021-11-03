@@ -1,5 +1,6 @@
 package seedu.duke.food;
 
+import seedu.duke.commands.Command;
 import seedu.duke.constants.Messages;
 
 import java.time.LocalDate;
@@ -58,4 +59,5 @@ public class FoodRecord {
         }
         return "";
     }
+
 }
