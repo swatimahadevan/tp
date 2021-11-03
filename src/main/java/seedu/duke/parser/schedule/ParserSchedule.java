@@ -165,7 +165,7 @@ public class ParserSchedule {
      */
     public static String[] parseCalendarCommand(String input) {
         // takes substring excluding "calendar" from command
-        String extractMonthYear = input.substring(17);
+        String extractMonthYear = input.substring(17).trim();
         String[] arguments = extractMonthYear.split(DELIMITER_DATE);
         return arguments;
     }
