@@ -150,8 +150,8 @@ public class ClassPackageReader {
                 Object newInstance = s.getDeclaredConstructor().newInstance();
                 getSyntax.invoke(newInstance);    //run void method
             } catch (NoSuchMethodException e) {
-                System.out.print(s.getSimpleName() + " class missing method, ");
-                System.out.println("check spelling");
+                Ui.printMessage(s.getSimpleName() + " class missing method, ");
+                Ui.printMessage("check spelling");
             }
         }
     }

@@ -250,8 +250,8 @@ public class Parser {
 
         case COMMAND_HElP:
             String[] helpArgs = commandArgs.split(" ");
-            if (helpArgs.length >= 1) {  //dev mode
-                return new HelpCommand(userInput);
+            if (helpArgs[0].equals("rt")) {  //dev mode
+                return new HelpCommand("rt");
             }
             return new HelpCommand();
         default:

@@ -45,7 +45,8 @@ public class Messages {
     public static final String PRINT_ONLY_HELP = "Wrong command syntax for help, type help.";
     public static final String PRINT_RUNTIME_MODE = "***RUNTIME MODE ENABLED***"
             + "\n"
-            + "Please revert mode if you're not a developer!";
+            + "\t"
+            + "Please revert mode with `help rt` if you're not a developer!";
     public static final String PRINT_ADDING_ITEM = "Nice, adding the record - ";
     public static final String PRINT_NO_FOOD_FOUND = "No food found on that day!";
     public static final String PRINT_CANNOT_FIND_STORE = "Can't find store ";
