@@ -59,12 +59,12 @@ public class DeleteFoodCommand extends Command {
     private int getIndexToDelete() throws
             NumberFormatException,
             ArgumentsNotFoundException {
-            if (inputString.equals("")) {
-                throw new ArgumentsNotFoundException();
-            }
-            ArrayList<Integer> indexesToDelete = Parser.parseStringToIntegerList(inputString);
-            int indexToDelete = indexesToDelete.get(0);
-            return indexToDelete;
+        if (inputString.equals("")) {
+            throw new ArgumentsNotFoundException();
+        }
+        ArrayList<Integer> indexesToDelete = Parser.parseStringToIntegerList(inputString);
+        int indexToDelete = indexesToDelete.get(0);
+        return indexToDelete;
     }
 
     /**
@@ -77,9 +77,9 @@ public class DeleteFoodCommand extends Command {
      * @author ngnigel99
      */
     private void deleteFoodRecordAndSave(Storage storage, int indexToDelete, FoodRecord toDelete) throws IOException {
-            storage.whatIAteTodayList.getList().remove(toDelete);
-            Ui.printDoneDeleteFood(toDelete, indexToDelete);
-            StorageFood.saveList(storage.whatIAteTodayList);
+        storage.whatIAteTodayList.getList().remove(toDelete);
+        Ui.printDoneDeleteFood(toDelete, indexToDelete);
+        StorageFood.saveList(storage.whatIAteTodayList);
     }
 
     /**

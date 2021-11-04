@@ -69,7 +69,7 @@ public class AddFoodFromReferenceCommand extends Command {
     }
 
     /**
-     * Throws exceptions if found
+     * Throws exceptions if found.
      * @param userInput user input.
      * @throws InvalidStoreIndexException if store index is invalid.
      * @throws InvalidItemIndexException if item index is invalid.

@@ -34,10 +34,18 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.zoom.ListZoomLinksCommand;
 import seedu.duke.commands.zoom.OpenZoomLink;
-import seedu.duke.exceptions.*;
+import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.calendar.IncorrectCommandException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
-import seedu.duke.exceptions.food.*;
+import seedu.duke.exceptions.food.IllegalFoodParameterException;
+import seedu.duke.exceptions.food.InvalidItemIndexException;
+import seedu.duke.exceptions.food.InvalidStoreIndexException;
+import seedu.duke.exceptions.food.MissingDateException;
+import seedu.duke.exceptions.food.NegativeCaloriesException;
+import seedu.duke.exceptions.food.NoCalorieCountKeywordException;
+import seedu.duke.exceptions.food.NoCaloriesInputException;
+import seedu.duke.exceptions.food.NoItemDividerException;
+import seedu.duke.exceptions.food.NoStoreDividerException;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
 import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
@@ -507,7 +515,6 @@ public class Parser {
             ArgumentsNotFoundException,
             WrongDividerOrderException,
             NegativeCaloriesException {
-        FoodRecord recordToAdd;
         if (getWordCount(input) < FOOD_MINIMUM_PARAMETER) {
             throw new IllegalFoodParameterException();
         }
@@ -520,8 +527,7 @@ public class Parser {
         if (calories < 0) {
             throw new NegativeCaloriesException();
         }
-        recordToAdd = new FoodRecord(name, calories);
-        return recordToAdd;
+        return new FoodRecord(name, calories);
     }
 
     private static FoodRecord parseFoodRecordWithDate(String input, String name) throws

@@ -104,7 +104,9 @@ public class WhatIAteList  {
             System.out.println("You consumed  " + listRecord.getFoodName()
                     + " , which has a calorie count of : "
                     + listRecord.getCalorieCount()
-                    + ((listRecord.getDateIAte() != null) ? " on " + listRecord.stringLocalDateIfExistsFull() + "!" : "!"));
+                    + ((listRecord.getDateIAte() != null)
+                        ? " on " + listRecord.stringLocalDateIfExistsFull() + "!"
+                        : "!"));
         } else {
             System.out.println(listRecord.getFoodName() + " : " + listRecord.getCalorieCount() + "Kcal");
         }

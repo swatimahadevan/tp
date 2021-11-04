@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 public class HelpCommand extends Command {
     private static String runtimeKeyword = "rt";
     public static boolean runTime = false;
+
     public HelpCommand() {
         syntax = "help";
     }

@@ -3,6 +3,7 @@ package seedu.duke.food;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.constants.Messages;
+import seedu.duke.exceptions.food.NegativeCaloriesException;
 import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
 import seedu.duke.exceptions.syntax.WrongDividerOrderException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
@@ -33,8 +34,11 @@ public class FoodTest {
      * @author ngnigel99
      */
     @Test
-    void testAddFoodCommand() throws IllegalFoodParameterException, ArgumentsNotFoundException,
-        WrongDividerOrderException {
+    void testAddFoodCommand() throws
+            IllegalFoodParameterException,
+            ArgumentsNotFoundException,
+            WrongDividerOrderException,
+            NegativeCaloriesException {
         String correctUserInput = "food add n/Samurai Burger c/433";
         FoodRecord testFoodRecord =  parser.parseFoodRecord(correctUserInput);
         FoodRecord actualFoodRecord = new FoodRecord("Samurai Burger", 433);
