@@ -23,8 +23,7 @@ public class HelpCommand extends Command {
         if (input.equals("help rt")) {
             runTime = !runTime; //toggles runtime
             Ui.printLine();
-            Ui.printMessage("***RUNTIME MODE ENABLED***");
-            Ui.printMessage("Please revert mode if you're not a developer!");
+            Ui.printMessage(Messages.PRINT_RUNTIME_MODE);
             Ui.printLine();
         } else {
             throw new HelpException();

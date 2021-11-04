@@ -1,5 +1,6 @@
 package seedu.duke.foodreferencelists;
 
+import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.food.FoodIndexNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.food.WhatIAteList;
@@ -131,7 +132,7 @@ public class StallsManager {
             System.out.println(storeName);
             printItems(storeIndex);
         }
-        Ui.printMessage("Wow, thats a lot of options! Finished printing");
+        Ui.printMessage(Messages.PRINT_DONE_PRINTING_LIST);
         Ui.printLine();
     }
 
@@ -150,18 +151,32 @@ public class StallsManager {
                 }
             }
         }
-        //sort by calorie count
-        filterLowerThanCalories.getList().sort(
-            (FoodRecord f1, FoodRecord f2)
-                -> f1.getCalorieCount().compareTo(f2.getCalorieCount()));
-        //sort by name
-        filterLowerThanCalories.getList().sort(
-            (FoodRecord f1, FoodRecord f2)
-                -> f1.getFoodName().compareTo(f2.getFoodName()));
+        sortListByCalorieCount(filterLowerThanCalories);
+        sortListByName(filterLowerThanCalories);
         Ui.printMessage("I've found the following items with " + calories + " calories!");
         filterLowerThanCalories.printList(false);
         Ui.printMessage("done printing!");
         Ui.printLine();
+    }
+
+    /**
+     * Sorts a food record list by name.
+     * @param filterLowerThanCalories list of food records.
+     */
+    private static void sortListByName(WhatIAteList filterLowerThanCalories) {
+        filterLowerThanCalories.getList().sort(
+            (FoodRecord f1, FoodRecord f2)
+                -> f1.getFoodName().compareTo(f2.getFoodName()));
+    }
+
+    /**
+     * Sorts a food record list by calories count.
+     * @param filterLowerThanCalories list of food records.
+     */
+    private static void sortListByCalorieCount(WhatIAteList filterLowerThanCalories) {
+        filterLowerThanCalories.getList().sort(
+            (FoodRecord f1, FoodRecord f2)
+                -> f1.getCalorieCount().compareTo(f2.getCalorieCount()));
     }
 
     /**

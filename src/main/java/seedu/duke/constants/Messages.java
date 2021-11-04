@@ -38,10 +38,14 @@ public class Messages {
     public static final String PRINT_NO_CALORIE_COUNT = "clt keyword not found!";
     public static final String PRINT_NO_INPUT_CALORIES = "no calories entered!";
     public static final String PRINT_NON_NEGATIVE_CALORIES = "calorie count cannot be less than 0.";
+    public static final String PRINT_DONE_PRINTING_LIST = "Wow, thats a lot of options! Finished printing";
     //end of Food
 
     //help
     public static final String PRINT_ONLY_HELP = "Wrong command syntax for help, type help.";
+    public static final String PRINT_RUNTIME_MODE = "***RUNTIME MODE ENABLED***"
+            + "\n"
+            + "Please revert mode if you're not a developer!";
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
