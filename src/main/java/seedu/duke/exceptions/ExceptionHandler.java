@@ -1,5 +1,6 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.exceptions.syntax.WrongDividerOrderException;
 import seedu.duke.ui.Ui;
 
 import java.time.format.DateTimeParseException;

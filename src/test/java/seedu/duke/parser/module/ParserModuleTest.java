@@ -1,7 +1,7 @@
 package seedu.duke.parser.module;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.StorageException;
+import seedu.duke.exceptions.storage.StorageException;
 import seedu.duke.module.Module;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,9 +1,7 @@
 package seedu.duke.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.IllegalDateTimeException;
-
-import java.time.YearMonth;
+import seedu.duke.exceptions.syntax.IllegalDateTimeException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

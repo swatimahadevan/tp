@@ -1,7 +1,8 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.syntax;
 
 import seedu.duke.Click;
 import seedu.duke.constants.Messages;
+import seedu.duke.exceptions.ClickException;
 
 public class HelpException extends ClickException {
     public HelpException() {

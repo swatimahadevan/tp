@@ -1,11 +1,8 @@
 package seedu.duke.storage;
 
 
-import seedu.duke.exceptions.StorageException;
-import seedu.duke.exceptions.module.IllegalModuleException;
 import seedu.duke.exceptions.zoom.InvalidZoomDataPath;
 import seedu.duke.exceptions.zoom.InvalidZoomLinkException;
-import seedu.duke.module.Module;
 import seedu.duke.ui.Ui;
 import seedu.duke.parser.module.ParserModule;
 

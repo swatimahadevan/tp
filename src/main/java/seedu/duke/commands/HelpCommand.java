@@ -3,7 +3,6 @@ package seedu.duke.commands;
 
 import seedu.duke.constants.CommandConstants;
 import seedu.duke.constants.Messages;
-import seedu.duke.exceptions.HelpException;
 import seedu.duke.help.ClassPackageReader;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;

@@ -41,6 +41,10 @@ import seedu.duke.exceptions.food.*;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
 import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
+import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
+import seedu.duke.exceptions.syntax.IllegalCommandException;
+import seedu.duke.exceptions.syntax.IllegalDateTimeException;
+import seedu.duke.exceptions.syntax.WrongDividerOrderException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.parser.schedule.ParserSchedule;
@@ -274,7 +278,9 @@ public class Parser {
             NoCaloriesInputException,
             NegativeCaloriesException,
             InvalidItemIndexException,
-            InvalidStoreIndexException {
+            InvalidStoreIndexException,
+            NoItemDividerException,
+            NoStoreDividerException {
         String[] foodArgs = commandArgs.split(" ");
         switch (foodArgs[0]) {  //consider 2nd word
         case COMMAND_SUFFIX_ADD:
@@ -466,6 +472,9 @@ public class Parser {
         int indexOfAttribute2 = input.indexOf(dividerAfter);
         String dataFirst = input.substring(indexOfAttribute1 + 2, indexOfAttribute2).strip();
         String dataSecond = input.substring(indexOfAttribute2 + 2).strip();
+        if (dataFirst.equals("") || dataSecond.equals("")) {
+            throw new ArgumentsNotFoundException();
+        }
         return  new String[] {dataFirst, dataSecond};
 
     }

@@ -1,9 +1,7 @@
 package seedu.duke.commands.zoom;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.ClickException;
-import seedu.duke.exceptions.FileNotFoundException;
-import seedu.duke.exceptions.StorageException;
+import seedu.duke.exceptions.storage.StorageException;
 import seedu.duke.exceptions.module.IllegalModuleException;
 import seedu.duke.exceptions.zoom.InvalidZoomLinkException;
 import seedu.duke.storage.Storage;

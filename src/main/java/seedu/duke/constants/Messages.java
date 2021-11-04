@@ -54,6 +54,7 @@ public class Messages {
     public static final String PRINT_INVALID_STORE = "Invalid store index: ";
     public static final String PRINT_NO_STORE_DIVIDER = "No store divider `s/` found!";
     public static final String PRINT_NO_INDEX_DIVIDER = "No item divider `i/` found!";
+    public static final String PRINT_STORAGE_ERROR = "There is something wrong with the Storage file";
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
@@ -103,4 +104,8 @@ public class Messages {
     public static final String HELP_MESSAGE_FOOD = "food add n/ [FOOD_NAME] c/ [CALORIE]\nfood list\nfood clear";
     public static final String HELP_MESSAGE_EXIT = "Saves your current progress and exits the application";
     //HELP END
+
+    //misc error messages
+    public static final String PRINT_FILE_NOT_FOUND = "File not found!";
+    public static final String PRINT_FULL_COMMAND_NOT_EXISTS = "Please enter the full command!";
 }

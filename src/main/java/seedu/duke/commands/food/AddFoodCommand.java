@@ -1,8 +1,8 @@
 package seedu.duke.commands.food;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.ArgumentsNotFoundException;
-import seedu.duke.exceptions.WrongDividerOrderException;
+import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
+import seedu.duke.exceptions.syntax.WrongDividerOrderException;
 import seedu.duke.exceptions.food.NegativeCaloriesException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
