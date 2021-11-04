@@ -34,18 +34,10 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.zoom.ListZoomLinksCommand;
 import seedu.duke.commands.zoom.OpenZoomLink;
-import seedu.duke.exceptions.ArgumentsNotFoundException;
-import seedu.duke.exceptions.ClickException;
-import seedu.duke.exceptions.IllegalCommandException;
-import seedu.duke.exceptions.IllegalDateTimeException;
-import seedu.duke.exceptions.WrongDividerOrderException;
+import seedu.duke.exceptions.*;
 import seedu.duke.exceptions.calendar.IncorrectCommandException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
-import seedu.duke.exceptions.food.IllegalFoodParameterException;
-import seedu.duke.exceptions.food.MissingDateException;
-import seedu.duke.exceptions.food.NegativeCaloriesException;
-import seedu.duke.exceptions.food.NoCalorieCountKeywordException;
-import seedu.duke.exceptions.food.NoCaloriesInputException;
+import seedu.duke.exceptions.food.*;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
 import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
@@ -273,10 +265,16 @@ public class Parser {
      * @throws NegativeCaloriesException if calorie count is negative.
      * @author ngnigel99
      */
-    private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException,
-            MissingDateException, WrongDividerOrderException,
-            ArgumentsNotFoundException, NoCalorieCountKeywordException,
-            NoCaloriesInputException, NegativeCaloriesException {
+    private Command getFoodCommand(String userInput, String commandArgs) throws
+            IllegalArgumentException,
+            MissingDateException,
+            WrongDividerOrderException,
+            ArgumentsNotFoundException,
+            NoCalorieCountKeywordException,
+            NoCaloriesInputException,
+            NegativeCaloriesException,
+            InvalidItemIndexException,
+            InvalidStoreIndexException {
         String[] foodArgs = commandArgs.split(" ");
         switch (foodArgs[0]) {  //consider 2nd word
         case COMMAND_SUFFIX_ADD:

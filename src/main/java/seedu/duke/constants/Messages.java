@@ -50,6 +50,10 @@ public class Messages {
     public static final String PRINT_ADDING_ITEM = "Nice, adding the record - ";
     public static final String PRINT_NO_FOOD_FOUND = "No food found on that day!";
     public static final String PRINT_CANNOT_FIND_STORE = "Can't find store ";
+    public static final String PRINT_INVALID_ITEM = "Invalid item index: ";
+    public static final String PRINT_INVALID_STORE = "Invalid store index: ";
+    public static final String PRINT_NO_STORE_DIVIDER = "No store divider `s/` found!";
+    public static final String PRINT_NO_INDEX_DIVIDER = "No item divider `i/` found!";
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
