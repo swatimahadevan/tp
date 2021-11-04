@@ -3,12 +3,11 @@ package seedu.duke.food;
 import org.junit.jupiter.api.Test;
 
 import seedu.duke.constants.Messages;
-import seedu.duke.exceptions.ArgumentsNotFoundException;
-import seedu.duke.exceptions.WrongDividerOrderException;
+import seedu.duke.exceptions.food.NegativeCaloriesException;
+import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
+import seedu.duke.exceptions.syntax.WrongDividerOrderException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
-import seedu.duke.storage.Storage;
-import seedu.duke.storage.StorageFood;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,8 +34,11 @@ public class FoodTest {
      * @author ngnigel99
      */
     @Test
-    void testAddFoodCommand() throws IllegalFoodParameterException, ArgumentsNotFoundException,
-        WrongDividerOrderException {
+    void testAddFoodCommand() throws
+            IllegalFoodParameterException,
+            ArgumentsNotFoundException,
+            WrongDividerOrderException,
+            NegativeCaloriesException {
         String correctUserInput = "food add n/Samurai Burger c/433";
         FoodRecord testFoodRecord =  parser.parseFoodRecord(correctUserInput);
         FoodRecord actualFoodRecord = new FoodRecord("Samurai Burger", 433);

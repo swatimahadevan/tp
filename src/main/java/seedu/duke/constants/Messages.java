@@ -35,8 +35,29 @@ public class Messages {
             + " to find desired food record index";
     public static final String PRINT_NAME_DIVIDER = "Please enter a name divider: n/";
     public static final String PRINT_DATE_NOT_FOUND = "Date not found, try again.";
+    public static final String PRINT_NO_CALORIE_COUNT = "clt keyword not found!";
+    public static final String PRINT_NO_INPUT_CALORIES = "no calories entered!";
+    public static final String PRINT_NON_NEGATIVE_CALORIES = "calorie count cannot be less than 0.";
+    public static final String PRINT_DONE_PRINTING_LIST = "Wow, thats a lot of options! Finished printing";
     //end of Food
 
+    //help
+    public static final String PRINT_ONLY_HELP = "Wrong command syntax for help, type help.";
+    public static final String PRINT_RUNTIME_MODE = "***RUNTIME MODE ENABLED***"
+            + "\n"
+            + "\t"
+            + "Please revert mode with `help rt` if you're not a developer!";
+    public static final String PRINT_ADDING_ITEM = "Nice, adding the record - ";
+    public static final String PRINT_NO_FOOD_FOUND = "No food found on that day!";
+    public static final String PRINT_CANNOT_FIND_STORE = "Can't find store ";
+    public static final String PRINT_INVALID_ITEM = "Invalid item index: ";
+    public static final String PRINT_INVALID_STORE = "Invalid store index: ";
+    public static final String PRINT_NO_STORE_DIVIDER = "No store divider `s/` found!";
+    public static final String PRINT_NO_INDEX_DIVIDER = "No item divider `i/` found!";
+    public static final String PRINT_STORAGE_ERROR = "There is something wrong with the Storage file";
+    public static final String PRINT_MISSING_DIVIDER = "Missing divider: ";
+    public static final String PRINT_MISSING_ARGUMENT = "Missing arguments!";
+    public static final String PRINT_MISSING_SPECIFIC_ARGUMENT = "Missing argument: ";
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
@@ -86,4 +107,8 @@ public class Messages {
     public static final String HELP_MESSAGE_FOOD = "food add n/ [FOOD_NAME] c/ [CALORIE]\nfood list\nfood clear";
     public static final String HELP_MESSAGE_EXIT = "Saves your current progress and exits the application";
     //HELP END
+
+    //misc error messages
+    public static final String PRINT_FILE_NOT_FOUND = "File not found!";
+    public static final String PRINT_FULL_COMMAND_NOT_EXISTS = "Please enter the full command!";
 }

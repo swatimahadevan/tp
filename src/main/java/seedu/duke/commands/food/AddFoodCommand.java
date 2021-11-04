@@ -1,8 +1,10 @@
 package seedu.duke.commands.food;
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.ArgumentsNotFoundException;
-import seedu.duke.exceptions.WrongDividerOrderException;
+import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
+import seedu.duke.exceptions.syntax.MissingDividerException;
+import seedu.duke.exceptions.syntax.WrongDividerOrderException;
+import seedu.duke.exceptions.food.NegativeCaloriesException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
@@ -41,12 +43,32 @@ public class AddFoodCommand extends Command {
      * @author ngnigel99
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException, IOException,
-        ArgumentsNotFoundException, WrongDividerOrderException {
+    public void execute(Ui ui, Storage storage) throws
+            IllegalFoodParameterException,
+            IOException,
+            ArgumentsNotFoundException,
+            WrongDividerOrderException,
+            NegativeCaloriesException,
+            MissingDividerException {
         FoodRecord foodRecord  = null;
+        checkDividersExistOrThrowException();
         foodRecord = Parser.parseFoodRecord(inputString);
         storage.whatIAteTodayList.addToList(foodRecord, false);
         StorageFood.saveList(storage.whatIAteTodayList);
+    }
+
+    /**
+     * Checks for existence of dividers.
+     * @throws MissingDividerException if dividers are missing.
+     */
+    private void checkDividersExistOrThrowException() throws
+            MissingDividerException {
+        if (!inputString.contains("n/")) {
+            throw new MissingDividerException("n/");
+        }
+        if (!inputString.contains("c/")) {
+            throw new MissingDividerException("c/");
+        }
     }
 
 

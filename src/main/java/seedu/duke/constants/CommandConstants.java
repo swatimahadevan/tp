@@ -37,6 +37,9 @@ public class CommandConstants {
     public static final String COMMAND_SUFFIX_VIEW = "view";
     public static final String COMMAND_SUFFIX_FIND = "find";
     public static final String COMMAND_SUFFIX_RADD = "radd";
+    public static final String COMMAND_SUFFIX_CLT = "clt";
+    //date constants
+    public static final String DATE_CONSTANT = "dd-MM-yyyy";
 
     //note: this string is to be modified by uncommenting the potion in help_command by the dev team
     // so it's only partially "hard-coded"
@@ -59,6 +62,7 @@ public class CommandConstants {
                     + "\tDelete Task  : calendar delete task [TASK_INDEX]\n"
                     + "\tDisplay  : calendar display [MM-YYYY]\n"
                     + "\tEdit Tasks  : calendar edit [TASK_INDEX]\n"
+                    + "\tFind Food By Calorie Count  : food clt [Calories]\n"
                     + "\tFind Food With Date  : food find [DD-MM-YYYY]\n"
                     + "\tFind Notebooks By Tag  : journal find [TAG_NAME]\n"
                     + "\tGet Expected Cap  : cap expected\n"

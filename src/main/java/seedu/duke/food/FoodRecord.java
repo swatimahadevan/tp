@@ -1,9 +1,11 @@
 package seedu.duke.food;
 
+import seedu.duke.commands.Command;
 import seedu.duke.constants.Messages;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 
 /**
@@ -58,4 +60,13 @@ public class FoodRecord {
         }
         return "";
     }
+
+    public String stringLocalDateIfExistsFull() {
+        if (this.dateIAte != null) {
+            String printDateWithFormat = dateIAte.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+            return printDateWithFormat;
+        }
+        return "";
+    }
+
 }

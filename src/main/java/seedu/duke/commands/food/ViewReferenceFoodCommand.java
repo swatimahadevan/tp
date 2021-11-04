@@ -25,6 +25,17 @@ public class ViewReferenceFoodCommand extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws ClickException, NumberFormatException {
+        selectExecutionPathAndRun();
+    }
+
+    /**
+     * Selects execution path of reference food commands.
+     * This is needed due to the various options the user has.
+     * For instance, food view lists all stalls.
+     *               food view all lists all items.
+     *               food view [STORE_NUMBER] lists all items sold by that store.
+     */
+    private void selectExecutionPathAndRun() {
         switch (userInput.trim()) {
         case "food view":
             Storage.reference.getTechnoEdge().printStalls();

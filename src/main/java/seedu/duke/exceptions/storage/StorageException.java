@@ -1,6 +1,9 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.storage;
 
 //@@author nvbinh15
+
+import seedu.duke.constants.Messages;
+import seedu.duke.exceptions.ClickException;
 
 /**
  * A class that represents exception thrown when there is an error with the storage files.
@@ -8,6 +11,6 @@ package seedu.duke.exceptions;
 public class StorageException extends ClickException {
 
     public StorageException() {
-        super("There is something wrong with the Storage file");
+        super(Messages.PRINT_STORAGE_ERROR);
     }
 }

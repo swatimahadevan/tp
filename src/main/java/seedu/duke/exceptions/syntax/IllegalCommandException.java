@@ -1,4 +1,6 @@
-package seedu.duke.exceptions;
+package seedu.duke.exceptions.syntax;
+
+import seedu.duke.exceptions.ClickException;
 
 import static seedu.duke.constants.ExceptionMessages.MESSAGE_ILLEGAL_COMMAND;
 

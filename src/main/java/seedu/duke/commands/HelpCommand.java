@@ -11,8 +11,23 @@ import seedu.duke.ui.Ui;
 import java.lang.reflect.InvocationTargetException;
 
 public class HelpCommand extends Command {
+    private static String runtimeKeyword = "rt";
+    public static boolean runTime = false;
 
     public HelpCommand() {
+        syntax = "help";
+    }
+
+    /**
+     * Constructor if developer mode is enabled.
+     * Syntax is "help rt", and should only be known
+     *  by the developers.
+     * @param keyword keyword to toggle runtime
+     */
+    public HelpCommand(String keyword)  {
+        if (keyword.equals(runtimeKeyword)) {
+            runTime = !runTime;
+        }
     }
 
     /**
@@ -28,9 +43,15 @@ public class HelpCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) throws InvocationTargetException,
             InstantiationException, IllegalAccessException {
-        //ClassPackageReader.getCommandsAndPrintSyntax(); //- to be done using source files (by developers)
-        Ui.printLine();
-        System.out.println(CommandConstants.HELP_MESSAGES);
+        if (runTime) {
+            Ui.printMessage(Messages.PRINT_RUNTIME_MODE);
+            Ui.printLine();
+            ClassPackageReader.getCommandsAndPrintSyntax(); //- to be done using source files (by developers)
+            Ui.printMessage(Messages.PRINT_RUNTIME_MODE);
+        } else {
+            Ui.printLine();
+            System.out.println(CommandConstants.HELP_MESSAGES);
+        }
         Ui.printLine();
     }
 

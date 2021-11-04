@@ -17,13 +17,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
+//@@author ngnigel99
 /**
  * Enables accessing classes on a realtime basis.
  * This is used in conjunction with help command,
  * to enable easy printing of syntax and command messages
  * without string overwrite on each update of command.
  * reference: https://www.baeldung.com/java-find-all-classes-in-package
- * @author ngnigel99
  */
 public class ClassPackageReader {
     private static final String CALENDAR_PACKAGE = "seedu.duke.commands.calendar";
@@ -40,9 +40,29 @@ public class ClassPackageReader {
      * @return set of classes accessed
      */
     public static Set<Class> getClasses(String packageName) {
-        InputStream stream = ClassLoader.getSystemClassLoader()
-                .getResourceAsStream(packageName.replaceAll("[.]", "/"));   //stream to URL
+        InputStream stream = getPackageStream(packageName);
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        return getClassesFromPackage(packageName, reader);
+    }
+
+    /**
+     * Streams a given package.
+     * @param packageName package to be streamed.
+     * @return stream package as stream.
+     */
+    private static InputStream getPackageStream(String packageName) {
+        InputStream stream = ClassLoader.getSystemClassLoader()
+                .getResourceAsStream(packageName.replaceAll("[.]", "/"));
+        return stream;
+    }
+
+    /**
+     * Returns a set of classes extracting .class files from a package.
+     * @param packageName name of the package to extract from.
+     * @param reader buffered reader to read the files.
+     * @return set of classes extracted.
+     */
+    private static Set<Class> getClassesFromPackage(String packageName, BufferedReader reader) {
         return reader.lines()
                 .filter(line -> line.endsWith(".class"))
                 .map(line -> getClass(line, packageName))
@@ -55,8 +75,6 @@ public class ClassPackageReader {
      * @param b Set(s) to be merged.
      * @param <T> Generic type of the final set.
      * @return Set some set with a, b, ... merged into.
-     *
-     * @author ngnigel99
      */
     public static <T> Set<T> mergeSet(Set<T> a, Set<T>... b) {
         return new HashSet<T>() {
@@ -132,8 +150,8 @@ public class ClassPackageReader {
                 Object newInstance = s.getDeclaredConstructor().newInstance();
                 getSyntax.invoke(newInstance);    //run void method
             } catch (NoSuchMethodException e) {
-                System.out.print(s.getSimpleName() + " class missing method, ");
-                System.out.println("check spelling");
+                Ui.printMessage(s.getSimpleName() + " class missing method, ");
+                Ui.printMessage("check spelling");
             }
         }
     }

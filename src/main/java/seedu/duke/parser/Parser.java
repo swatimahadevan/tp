@@ -12,6 +12,7 @@ import seedu.duke.commands.food.AddFoodCommand;
 import seedu.duke.commands.food.AddFoodFromReferenceCommand;
 import seedu.duke.commands.food.ClearFoodCommand;
 import seedu.duke.commands.food.DeleteFoodCommand;
+import seedu.duke.commands.food.FindFoodByCalorieCount;
 import seedu.duke.commands.food.FindFoodWithDateCommand;
 import seedu.duke.commands.food.ListFoodCommand;
 import seedu.duke.commands.food.ViewReferenceFoodCommand;
@@ -33,27 +34,32 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.zoom.ListZoomLinksCommand;
 import seedu.duke.commands.zoom.OpenZoomLink;
-import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
-import seedu.duke.exceptions.IllegalCommandException;
-import seedu.duke.exceptions.IllegalDateTimeException;
-import seedu.duke.exceptions.WrongDividerOrderException;
 import seedu.duke.exceptions.calendar.IncorrectCommandException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
+import seedu.duke.exceptions.food.InvalidItemIndexException;
+import seedu.duke.exceptions.food.InvalidStoreIndexException;
 import seedu.duke.exceptions.food.MissingDateException;
+import seedu.duke.exceptions.food.NegativeCaloriesException;
+import seedu.duke.exceptions.food.NoCalorieCountKeywordException;
+import seedu.duke.exceptions.food.NoCaloriesInputException;
+import seedu.duke.exceptions.food.NoItemDividerException;
+import seedu.duke.exceptions.food.NoStoreDividerException;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
 import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
+import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
+import seedu.duke.exceptions.syntax.IllegalCommandException;
+import seedu.duke.exceptions.syntax.IllegalDateTimeException;
+import seedu.duke.exceptions.syntax.WrongDividerOrderException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.parser.schedule.ParserSchedule;
-import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
@@ -74,6 +80,7 @@ import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
 import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
+import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLT;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EDIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_EXPECTED;
@@ -245,6 +252,9 @@ public class Parser {
 
         case COMMAND_HElP:
             String[] helpArgs = commandArgs.split(" ");
+            if (helpArgs[0].equals("rt")) {  //dev mode
+                return new HelpCommand("rt");
+            }
             return new HelpCommand();
         default:
             throw new IllegalCommandException();
@@ -259,21 +269,41 @@ public class Parser {
      * @param commandArgs second word onwards from userInput.
      * @return A command that's related to Food based on userInput.
      * @throws IllegalArgumentException if command entered does not exists, but starts with food.
-     *
+     * @throws MissingDateException if date is missing from input.
+     * @throws WrongDividerOrderException if divider order is wrong.
+     * @throws ArgumentsNotFoundException if arguments not found.
+     * @throws NoCalorieCountKeywordException if clt is not entered with command.
+     * @throws NoCaloriesInputException if paramter is missing.
+     * @throws NegativeCaloriesException if calorie count is negative.
      * @author ngnigel99
      */
-    private Command getFoodCommand(String userInput, String commandArgs) throws IllegalArgumentException,
-        MissingDateException, WrongDividerOrderException,
-        ArgumentsNotFoundException {
+    private Command getFoodCommand(String userInput, String commandArgs) throws
+            IllegalArgumentException,
+            MissingDateException,
+            WrongDividerOrderException,
+            ArgumentsNotFoundException,
+            NoCalorieCountKeywordException,
+            NoCaloriesInputException,
+            NegativeCaloriesException,
+            InvalidItemIndexException,
+            InvalidStoreIndexException,
+            NoItemDividerException,
+            NoStoreDividerException {
         String[] foodArgs = commandArgs.split(" ");
         switch (foodArgs[0]) {  //consider 2nd word
         case COMMAND_SUFFIX_ADD:
+            if (userInput.split(" ").length == 2) {
+                throw new ArgumentsNotFoundException("n/ c/");
+            }
             return new AddFoodCommand(
-                filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
+                    filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
             );
         case COMMAND_SUFFIX_DELETE:
+            if (userInput.split(" ").length == 2) {
+                throw new ArgumentsNotFoundException("index of food to delete");
+            }
             return new DeleteFoodCommand(
-                filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
+                    filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
             );
         case COMMAND_SUFFIX_CLEAR:
             return new ClearFoodCommand();
@@ -284,13 +314,20 @@ public class Parser {
         case COMMAND_SUFFIX_FIND:
             if (userInput.split(" ").length == 3) {
                 return new FindFoodWithDateCommand(foodArgs[1]);
-            } else {
-                throw new MissingDateException();
             }
+            throw new MissingDateException();
         case COMMAND_SUFFIX_RADD:
+            if (userInput.split(" ").length == 2) {
+                throw new ArgumentsNotFoundException("s/ i/");
+            }
             return new AddFoodFromReferenceCommand(
-                filterStringAfterCommand(userInput, COMMAND_FOOD
-                    + " " + COMMAND_SUFFIX_RADD));
+                    filterStringAfterCommand(userInput, COMMAND_FOOD
+                            + " " + COMMAND_SUFFIX_RADD));
+        case COMMAND_SUFFIX_CLT:
+            if (userInput.split(" ").length == 2) {
+                throw new ArgumentsNotFoundException("calorie count");
+            }
+            return new FindFoodByCalorieCount(userInput);
         default:
             throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
         }
@@ -455,6 +492,9 @@ public class Parser {
         int indexOfAttribute2 = input.indexOf(dividerAfter);
         String dataFirst = input.substring(indexOfAttribute1 + 2, indexOfAttribute2).strip();
         String dataSecond = input.substring(indexOfAttribute2 + 2).strip();
+        if (dataFirst.equals("") || dataSecond.equals("")) {
+            throw new ArgumentsNotFoundException();
+        }
         return  new String[] {dataFirst, dataSecond};
 
     }
@@ -470,25 +510,36 @@ public class Parser {
      *
      * @author ngnigel99
      */
-    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
-        ArgumentsNotFoundException, WrongDividerOrderException {
-        FoodRecord recordToAdd = null;
+    public static FoodRecord parseFoodRecord(String input) throws
+            IllegalFoodParameterException,
+            ArgumentsNotFoundException,
+            WrongDividerOrderException,
+            NegativeCaloriesException {
         if (getWordCount(input) < FOOD_MINIMUM_PARAMETER) {
             throw new IllegalFoodParameterException();
         }
-        String[] foodName = getData(input, FOOD_NAME_DIVIDER, FOOD_CALORIE_DIVIDER);
-        String name = foodName[0];
+        String[] foodData = getData(input, FOOD_NAME_DIVIDER, FOOD_CALORIE_DIVIDER);
+        String name = foodData[0];
         if (input.contains(FOOD_DATE_DIVIDER)) {
-            String[] foodCalorie = getData(input, FOOD_CALORIE_DIVIDER, FOOD_DATE_DIVIDER);
-            int calories = Integer.parseInt(foodCalorie[0]);
-            recordToAdd = new FoodRecord(name, calories);
-            int dateDividerIndex = input.indexOf(FOOD_DATE_DIVIDER);
-            String inputAfterDateDivider = input.substring(dateDividerIndex + 2).trim();
-            setDateOnFoodRecord(recordToAdd, inputAfterDateDivider);
-        } else {
-            int calories = Integer.parseInt(foodName[1]);
-            recordToAdd = new FoodRecord(name, calories);
+            return parseFoodRecordWithDate(input, name);
         }
+        int calories = Integer.parseInt(foodData[1]);
+        if (calories < 0) {
+            throw new NegativeCaloriesException();
+        }
+        return new FoodRecord(name, calories);
+    }
+
+    private static FoodRecord parseFoodRecordWithDate(String input, String name) throws
+            WrongDividerOrderException,
+            ArgumentsNotFoundException {
+        FoodRecord recordToAdd;
+        String[] foodCalorie = getData(input, FOOD_CALORIE_DIVIDER, FOOD_DATE_DIVIDER);
+        int calories = Integer.parseInt(foodCalorie[0]);
+        recordToAdd = new FoodRecord(name, calories);
+        int dateDividerIndex = input.indexOf(FOOD_DATE_DIVIDER);
+        String inputAfterDateDivider = input.substring(dateDividerIndex + 2).trim();
+        setDateOnFoodRecord(recordToAdd, inputAfterDateDivider);
         return recordToAdd;
     }
 
@@ -513,14 +564,11 @@ public class Parser {
      *
      * @author ngnigel99
      */
-    public static ArrayList<Integer> parseStringToIntegerList(String... strings) {
+    public static ArrayList<Integer> parseStringToIntegerList(String... strings)
+            throws NumberFormatException {
         ArrayList<Integer> integerList = new ArrayList<>();
         for (String string : strings) {
-            try {
-                integerList.add(Integer.parseInt(string));
-            } catch (NumberFormatException e) {
-                Ui.printOnlyIntegers();
-            }
+            integerList.add(Integer.parseInt(string));
         }
         return integerList;
     }

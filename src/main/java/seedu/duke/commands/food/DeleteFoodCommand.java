@@ -2,6 +2,7 @@ package seedu.duke.commands.food;
 
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.food.FoodIndexNotFoundException;
+import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  * @author ngnigel99
  */
 public class DeleteFoodCommand extends Command {
-    private final int indexNotFoundConstant =  -1; 
+    private final int indexNotFoundConstant =  - 1;
     private String inputString; //represents index to delete
 
     public DeleteFoodCommand() {
@@ -28,7 +29,7 @@ public class DeleteFoodCommand extends Command {
     public DeleteFoodCommand(String inputString) {
         super();
         this.inputString = inputString.trim();
-        helpMessage = "Deletes aa food item from a list given a valid index";
+        helpMessage = "Deletes a food item from a list given a valid index";
     }
 
     /**
@@ -39,7 +40,10 @@ public class DeleteFoodCommand extends Command {
      * @throws IOException If there is an error saving updated list to save file.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws FoodIndexNotFoundException, IOException {
+    public void execute(Ui ui, Storage storage) throws
+            FoodIndexNotFoundException,
+            IOException,
+            ArgumentsNotFoundException {
         int indexToDelete = getIndexToDelete();
         checkIndexAndThrowException(storage, indexToDelete);
         FoodRecord toDelete = storage.whatIAteTodayList.getList().get(indexToDelete - 1);
@@ -52,15 +56,15 @@ public class DeleteFoodCommand extends Command {
      *       perhaps in later versions.
      * @return indexToDelete integer parsed.
      */
-    private int getIndexToDelete() {
-        try {
-            ArrayList<Integer> indexesToDelete = Parser.parseStringToIntegerList(inputString);
-            int indexToDelete = indexesToDelete.get(0);
-            return indexToDelete;
-        } catch (NumberFormatException e) {
-            Ui.printOnlyIntegers();
+    private int getIndexToDelete() throws
+            NumberFormatException,
+            ArgumentsNotFoundException {
+        if (inputString.equals("")) {
+            throw new ArgumentsNotFoundException();
         }
-        return indexNotFoundConstant;  //if integer is not given
+        ArrayList<Integer> indexesToDelete = Parser.parseStringToIntegerList(inputString);
+        int indexToDelete = indexesToDelete.get(0);
+        return indexToDelete;
     }
 
     /**
@@ -73,14 +77,9 @@ public class DeleteFoodCommand extends Command {
      * @author ngnigel99
      */
     private void deleteFoodRecordAndSave(Storage storage, int indexToDelete, FoodRecord toDelete) throws IOException {
-        try {
-            storage.whatIAteTodayList.getList().remove(toDelete);
-        } catch (Exception e) {
-            Ui.printErrorMessageGeneral();
-        } finally {
-            Ui.printDoneDeleteFood(toDelete, indexToDelete);
-            StorageFood.saveList(storage.whatIAteTodayList);
-        }
+        storage.whatIAteTodayList.getList().remove(toDelete);
+        Ui.printDoneDeleteFood(toDelete, indexToDelete);
+        StorageFood.saveList(storage.whatIAteTodayList);
     }
 
     /**

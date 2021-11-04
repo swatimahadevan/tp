@@ -740,7 +740,7 @@ find the stall index using `food view`, then view the menu of the stall with
 `food view [STALL_INDEX`. Do take note of the index of the food item you want
 to add to your list.
 
-#### 3.5.7 Adding items from a particular stall to your list
+#### 3.5.7 Adding items from a particular stall to your list `food radd`
 
 Format : `food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]`
 
@@ -761,6 +761,27 @@ food radd s/ 5 i/ 5
 	__________________________________________________
 ```
 
+#### 3.5.8 Finding items with a calorie count <= a given amount `food clt`
+
+Format : `food clt [CALORIES_COUNT]`
+
+Expected outcome:
+
+Allows you to view the food items from the reference food court that has an similar to, or lower calorie
+ count than the amount you gave Click!
+
+Example : 
+```
+food clt 0
+	I've found the following items with 0 calories!
+	__________________________________________________
+	1st,Coke No Sugar  : 0Kcal
+	2nd,Mineral Water  : 0Kcal
+	Wow, that's a lot of food! Finished reading the list
+	__________________________________________________
+	done printing!
+	__________________________________________________
+```
 ### 3.6 Exit
 
 Exits the program.
@@ -798,6 +819,7 @@ Expected outcome:
 **Display**|`calendar display [MM-YYYY]`
 **Edit CAP Information**|`cap edit`
 **Edit Tasks**|`calendar edit [TASK_INDEX]`
+**Find Food By Calorie Count**|`food clt [CALORIE_COUNT]`
 **Find Food With Date**|`food find [DD-MM-YYYY]`
 **Find Notebook by tag**|`journal find [TAG_NAME]`
 **Get Expected CAP**|`cap expected`

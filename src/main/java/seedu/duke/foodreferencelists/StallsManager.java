@@ -1,5 +1,7 @@
 package seedu.duke.foodreferencelists;
 
+import seedu.duke.constants.Messages;
+import seedu.duke.exceptions.food.CannotFindFoodStoreException;
 import seedu.duke.exceptions.food.FoodIndexNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.food.WhatIAteList;
@@ -7,6 +9,8 @@ import seedu.duke.parser.Parser;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 //@@author ngnigel99
@@ -73,13 +77,15 @@ public class StallsManager {
     public static void printStalls() {
         idName.forEach((key, value) -> Ui.printMessage(key + " | " + value));
         Ui.printMessage("Wow, thats a lot of options! Finished printing");
+        Ui.printLine();
     }
 
     public static FoodRecord getFoodRecordFromStall(int storeIndex, int foodIndex)
-        throws FoodIndexNotFoundException {
+            throws
+            FoodIndexNotFoundException,
+            CannotFindFoodStoreException {
         if (storeIndex <= 0 || storeIndex > MAX_STORE_INDEX) {
-            Ui.printMessage("Oops, can't find store " + storeIndex);
-            throw new FoodIndexNotFoundException();
+            throw new CannotFindFoodStoreException(storeIndex);
         }
         int itemCount = idData.get(storeIndex).length;
         if (foodIndex >= itemCount) {
@@ -100,13 +106,23 @@ public class StallsManager {
             Ui.printMessage("Oops, can't find store " + index);
             return;
         }
+        WhatIAteList tempFormattedList = parseStringIntoFoodRecordList(index);
+        tempFormattedList.printList(false);
+    }
+
+    /**
+     * Parses string in data dump to a food record list.
+     * @param index index of store
+     * @return tempFormattedList list of all items for a store
+     */
+    private static WhatIAteList parseStringIntoFoodRecordList(int index) {
         WhatIAteList tempFormattedList = new WhatIAteList();
         String[] itemsSold = idData.get(index);
         for (String readLine : itemsSold) {
             FoodRecord toAdd = Parser.parseFoodSavedListToRecord(readLine);
             tempFormattedList.addToList(toAdd, true);
         }
-        tempFormattedList.printList(false);
+        return tempFormattedList;
     }
 
     /**
@@ -116,9 +132,53 @@ public class StallsManager {
         for (int storeIndex : idName.keySet()) {
             String storeName = idName.get(storeIndex);
             System.out.println(storeName);
-            Ui.printLine();
             printItems(storeIndex);
         }
+        Ui.printMessage(Messages.PRINT_DONE_PRINTING_LIST);
+        Ui.printLine();
+    }
+
+    public static void printFoodRecordsWithLowerCalories(int calories) {
+        ArrayList<WhatIAteList> allLists = new ArrayList<>();
+        assert MAX_STORE_INDEX > 0; //checks that data dump is initialised
+        for (int storeIndex : idName.keySet()) {
+            WhatIAteList storeItems = parseStringIntoFoodRecordList(storeIndex);
+            allLists.add(storeItems);
+        }
+        WhatIAteList filterLowerThanCalories = new WhatIAteList();
+        for (WhatIAteList storeItems : allLists) {
+            for (FoodRecord foodItem : storeItems.getList()) {
+                if (foodItem.getCalorieCount() <= calories) {
+                    filterLowerThanCalories.addToList(foodItem, true);
+                }
+            }
+        }
+        sortListByCalorieCount(filterLowerThanCalories);
+        sortListByName(filterLowerThanCalories);
+        Ui.printMessage("I've found the following items with " + calories + " calories!");
+        filterLowerThanCalories.printList(false);
+        Ui.printMessage("done printing!");
+        Ui.printLine();
+    }
+
+    /**
+     * Sorts a food record list by name.
+     * @param filterLowerThanCalories list of food records.
+     */
+    private static void sortListByName(WhatIAteList filterLowerThanCalories) {
+        filterLowerThanCalories.getList().sort(
+            (FoodRecord f1, FoodRecord f2)
+                -> f1.getFoodName().compareTo(f2.getFoodName()));
+    }
+
+    /**
+     * Sorts a food record list by calories count.
+     * @param filterLowerThanCalories list of food records.
+     */
+    private static void sortListByCalorieCount(WhatIAteList filterLowerThanCalories) {
+        filterLowerThanCalories.getList().sort(
+            (FoodRecord f1, FoodRecord f2)
+                -> f1.getCalorieCount().compareTo(f2.getCalorieCount()));
     }
 
     /**
