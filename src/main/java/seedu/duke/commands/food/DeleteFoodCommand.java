@@ -52,15 +52,10 @@ public class DeleteFoodCommand extends Command {
      *       perhaps in later versions.
      * @return indexToDelete integer parsed.
      */
-    private int getIndexToDelete() {
-        try {
+    private int getIndexToDelete() throws NumberFormatException {
             ArrayList<Integer> indexesToDelete = Parser.parseStringToIntegerList(inputString);
             int indexToDelete = indexesToDelete.get(0);
             return indexToDelete;
-        } catch (NumberFormatException e) {
-            Ui.printOnlyIntegers();
-        }
-        return indexNotFoundConstant;  //if integer is not given
     }
 
     /**
@@ -73,14 +68,9 @@ public class DeleteFoodCommand extends Command {
      * @author ngnigel99
      */
     private void deleteFoodRecordAndSave(Storage storage, int indexToDelete, FoodRecord toDelete) throws IOException {
-        try {
             storage.whatIAteTodayList.getList().remove(toDelete);
-        } catch (Exception e) {
-            Ui.printErrorMessageGeneral();
-        } finally {
             Ui.printDoneDeleteFood(toDelete, indexToDelete);
             StorageFood.saveList(storage.whatIAteTodayList);
-        }
     }
 
     /**

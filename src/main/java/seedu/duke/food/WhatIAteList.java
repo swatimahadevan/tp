@@ -1,15 +1,12 @@
 package seedu.duke.food;
 
+import seedu.duke.exceptions.food.NoFoodFoundOnDateException;
 import seedu.duke.ui.Ui;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Represents a list of what the user has eaten.
@@ -106,18 +103,28 @@ public class WhatIAteList  {
         Ui.printDoneClearList();
     }
 
-    public void printFoodWithFoundDate(LocalDate date) {
+    public void printFoodWithFoundDate(LocalDate date) throws
+            NoFoodFoundOnDateException {
         WhatIAteList whatIAteThatDay = new WhatIAteList();
         String formattedDate = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
-        for (FoodRecord foodRecord : whatIAteList) {
-            if (foodRecord.getDateIAte().equals(date)) {
-                whatIAteThatDay.getList().add(foodRecord);
-            }
-        }
+        addRecordIfFound(date, whatIAteThatDay);
         if (whatIAteThatDay.getList().isEmpty()) {
-            return;
+            throw new NoFoodFoundOnDateException();
         }
         Ui.printMessage("Nice, I found the items you ate on " + formattedDate);
         whatIAteThatDay.printList(true);
+    }
+
+    /**
+     * Adds a record to a list if the date recorded matches a given date.
+     * @param date date checked.
+     * @param whatIAteList list of what the user ate.
+     */
+    private void addRecordIfFound(LocalDate date, WhatIAteList whatIAteList) {
+        for (FoodRecord foodRecord : this.whatIAteList) {
+            if (foodRecord.getDateIAte().equals(date)) {
+                whatIAteList.getList().add(foodRecord);
+            }
+        }
     }
 }

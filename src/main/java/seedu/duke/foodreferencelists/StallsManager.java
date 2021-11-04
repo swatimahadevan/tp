@@ -1,6 +1,7 @@
 package seedu.duke.foodreferencelists;
 
 import seedu.duke.constants.Messages;
+import seedu.duke.exceptions.food.CannotFindFoodStoreException;
 import seedu.duke.exceptions.food.FoodIndexNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.food.WhatIAteList;
@@ -80,10 +81,11 @@ public class StallsManager {
     }
 
     public static FoodRecord getFoodRecordFromStall(int storeIndex, int foodIndex)
-            throws FoodIndexNotFoundException {
+            throws
+            FoodIndexNotFoundException,
+            CannotFindFoodStoreException {
         if (storeIndex <= 0 || storeIndex > MAX_STORE_INDEX) {
-            Ui.printMessage("Oops, can't find store " + storeIndex);
-            throw new FoodIndexNotFoundException();
+            throw new CannotFindFoodStoreException(storeIndex);
         }
         int itemCount = idData.get(storeIndex).length;
         if (foodIndex >= itemCount) {

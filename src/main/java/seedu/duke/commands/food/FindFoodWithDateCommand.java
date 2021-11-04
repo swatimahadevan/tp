@@ -3,6 +3,7 @@ package seedu.duke.commands.food;
 import seedu.duke.commands.Command;
 import seedu.duke.constants.CommandConstants;
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.exceptions.food.NoFoodFoundOnDateException;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -32,8 +33,15 @@ public class FindFoodWithDateCommand extends Command {
         return localDateFormatter;
     }
 
+    /**
+     * Finds food with a given date.
+     * @param ui      The component of Duke that deals with the interaction with the user.
+     * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @throws NoFoodFoundOnDateException if no food is found on that day.
+     */
     @Override
-    public void execute(Ui ui, Storage storage) {
+    public void execute(Ui ui, Storage storage) throws
+            NoFoodFoundOnDateException {
         storage.whatIAteTodayList.printFoodWithFoundDate(dateInput);
     }
 }

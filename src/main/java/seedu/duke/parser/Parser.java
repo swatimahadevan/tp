@@ -298,9 +298,8 @@ public class Parser {
         case COMMAND_SUFFIX_FIND:
             if (userInput.split(" ").length == 3) {
                 return new FindFoodWithDateCommand(foodArgs[1]);
-            } else {
-                throw new MissingDateException();
             }
+            throw new MissingDateException();
         case COMMAND_SUFFIX_RADD:
             return new AddFoodFromReferenceCommand(
                 filterStringAfterCommand(userInput, COMMAND_FOOD
@@ -529,14 +528,11 @@ public class Parser {
      *
      * @author ngnigel99
      */
-    public static ArrayList<Integer> parseStringToIntegerList(String... strings) {
+    public static ArrayList<Integer> parseStringToIntegerList(String... strings)
+            throws NumberFormatException {
         ArrayList<Integer> integerList = new ArrayList<>();
         for (String string : strings) {
-            try {
-                integerList.add(Integer.parseInt(string));
-            } catch (NumberFormatException e) {
-                Ui.printOnlyIntegers();
-            }
+            integerList.add(Integer.parseInt(string));
         }
         return integerList;
     }

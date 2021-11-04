@@ -5,6 +5,7 @@ import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.WrongDividerOrderException;
+import seedu.duke.exceptions.food.CannotFindFoodStoreException;
 import seedu.duke.exceptions.food.FoodIndexNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.food.ReferenceLists;
@@ -52,7 +53,8 @@ public class AddFoodFromReferenceCommand extends Command {
      * @throws FoodIndexNotFoundException if food index is not found.
      */
     private FoodRecord getFoodRecordFromStall(Storage storage) throws
-            FoodIndexNotFoundException {
+            FoodIndexNotFoundException,
+            CannotFindFoodStoreException {
         FoodRecord toAdd = storage
             .reference
             .getTechnoEdge()

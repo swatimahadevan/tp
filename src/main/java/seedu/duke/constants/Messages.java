@@ -47,6 +47,8 @@ public class Messages {
             + "\n"
             + "Please revert mode if you're not a developer!";
     public static final String PRINT_ADDING_ITEM = "Nice, adding the record - ";
+    public static final String PRINT_NO_FOOD_FOUND = "No food found on that day!";
+    public static final String PRINT_CANNOT_FIND_STORE = "Can't find store ";
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
