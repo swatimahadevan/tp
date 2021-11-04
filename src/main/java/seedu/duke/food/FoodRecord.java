@@ -5,6 +5,7 @@ import seedu.duke.constants.Messages;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 
 /**
@@ -56,6 +57,14 @@ public class FoodRecord {
         if (this.dateIAte != null) {
             String printDateWithFormat = dateIAte.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             return "|" + printDateWithFormat;
+        }
+        return "";
+    }
+
+    public String stringLocalDateIfExistsFull() {
+        if (this.dateIAte != null) {
+            String printDateWithFormat = dateIAte.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+            return printDateWithFormat;
         }
         return "";
     }

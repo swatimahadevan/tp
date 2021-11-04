@@ -51,15 +51,24 @@ public class AddFoodCommand extends Command {
             NegativeCaloriesException,
             MissingDividerException {
         FoodRecord foodRecord  = null;
+        checkDividersExistOrThrowException();
+        foodRecord = Parser.parseFoodRecord(inputString);
+        storage.whatIAteTodayList.addToList(foodRecord, false);
+        StorageFood.saveList(storage.whatIAteTodayList);
+    }
+
+    /**
+     * Checks for existence of dividers.
+     * @throws MissingDividerException if dividers are missing.
+     */
+    private void checkDividersExistOrThrowException() throws
+            MissingDividerException {
         if (!inputString.contains("n/")) {
             throw new MissingDividerException("n/");
         }
         if (!inputString.contains("c/")) {
             throw new MissingDividerException("c/");
         }
-        foodRecord = Parser.parseFoodRecord(inputString);
-        storage.whatIAteTodayList.addToList(foodRecord, false);
-        StorageFood.saveList(storage.whatIAteTodayList);
     }
 
 
