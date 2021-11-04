@@ -49,7 +49,7 @@ public class HelpCommand extends Command {
             Ui.printMessage(Messages.PRINT_RUNTIME_MODE);
         } else {
             Ui.printLine();
-            Ui.printMessage(CommandConstants.HELP_MESSAGES);
+            System.out.println(CommandConstants.HELP_MESSAGES);
         }
         Ui.printLine();
     }

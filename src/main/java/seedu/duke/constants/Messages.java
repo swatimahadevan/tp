@@ -55,6 +55,9 @@ public class Messages {
     public static final String PRINT_NO_STORE_DIVIDER = "No store divider `s/` found!";
     public static final String PRINT_NO_INDEX_DIVIDER = "No item divider `i/` found!";
     public static final String PRINT_STORAGE_ERROR = "There is something wrong with the Storage file";
+    public static final String PRINT_MISSING_DIVIDER = "Missing divider: ";
+    public static final String PRINT_MISSING_ARGUMENT = "Missing arguments!";
+    public static final String PRINT_MISSING_SPECIFIC_ARGUMENT = "Missing argument: ";
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";

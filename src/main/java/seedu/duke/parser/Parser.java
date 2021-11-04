@@ -284,12 +284,18 @@ public class Parser {
         String[] foodArgs = commandArgs.split(" ");
         switch (foodArgs[0]) {  //consider 2nd word
         case COMMAND_SUFFIX_ADD:
+            if (userInput.split(" ").length == 2) {
+                throw new ArgumentsNotFoundException("n/ c/");
+            }
             return new AddFoodCommand(
-                filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
+                    filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_ADD)
             );
         case COMMAND_SUFFIX_DELETE:
+            if (userInput.split(" ").length == 2) {
+                throw new ArgumentsNotFoundException("index of food to delete");
+            }
             return new DeleteFoodCommand(
-                filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
+                    filterStringAfterCommand(userInput, COMMAND_FOOD + " " + COMMAND_SUFFIX_DELETE)
             );
         case COMMAND_SUFFIX_CLEAR:
             return new ClearFoodCommand();
@@ -303,10 +309,16 @@ public class Parser {
             }
             throw new MissingDateException();
         case COMMAND_SUFFIX_RADD:
+            if (userInput.split(" ").length == 2) {
+                throw new ArgumentsNotFoundException("s/ i/");
+            }
             return new AddFoodFromReferenceCommand(
-                filterStringAfterCommand(userInput, COMMAND_FOOD
-                    + " " + COMMAND_SUFFIX_RADD));
+                    filterStringAfterCommand(userInput, COMMAND_FOOD
+                            + " " + COMMAND_SUFFIX_RADD));
         case COMMAND_SUFFIX_CLT:
+            if (userInput.split(" ").length == 2) {
+                throw new ArgumentsNotFoundException("calorie count");
+            }
             return new FindFoodByCalorieCount(userInput);
         default:
             throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);

@@ -2,6 +2,7 @@ package seedu.duke.commands.food;
 
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.food.FoodIndexNotFoundException;
+import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -39,7 +40,10 @@ public class DeleteFoodCommand extends Command {
      * @throws IOException If there is an error saving updated list to save file.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws FoodIndexNotFoundException, IOException {
+    public void execute(Ui ui, Storage storage) throws
+            FoodIndexNotFoundException,
+            IOException,
+            ArgumentsNotFoundException {
         int indexToDelete = getIndexToDelete();
         checkIndexAndThrowException(storage, indexToDelete);
         FoodRecord toDelete = storage.whatIAteTodayList.getList().get(indexToDelete - 1);
@@ -52,7 +56,12 @@ public class DeleteFoodCommand extends Command {
      *       perhaps in later versions.
      * @return indexToDelete integer parsed.
      */
-    private int getIndexToDelete() throws NumberFormatException {
+    private int getIndexToDelete() throws
+            NumberFormatException,
+            ArgumentsNotFoundException {
+            if (inputString.equals("")) {
+                throw new ArgumentsNotFoundException();
+            }
             ArrayList<Integer> indexesToDelete = Parser.parseStringToIntegerList(inputString);
             int indexToDelete = indexesToDelete.get(0);
             return indexToDelete;

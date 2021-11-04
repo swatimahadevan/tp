@@ -2,6 +2,7 @@ package seedu.duke.commands.food;
 
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
+import seedu.duke.exceptions.syntax.MissingDividerException;
 import seedu.duke.exceptions.syntax.WrongDividerOrderException;
 import seedu.duke.exceptions.food.NegativeCaloriesException;
 import seedu.duke.food.FoodRecord;
@@ -47,8 +48,15 @@ public class AddFoodCommand extends Command {
             IOException,
             ArgumentsNotFoundException,
             WrongDividerOrderException,
-            NegativeCaloriesException {
+            NegativeCaloriesException,
+            MissingDividerException {
         FoodRecord foodRecord  = null;
+        if (!inputString.contains("n/")) {
+            throw new MissingDividerException("n/");
+        }
+        if (!inputString.contains("c/")) {
+            throw new MissingDividerException("c/");
+        }
         foodRecord = Parser.parseFoodRecord(inputString);
         storage.whatIAteTodayList.addToList(foodRecord, false);
         StorageFood.saveList(storage.whatIAteTodayList);
