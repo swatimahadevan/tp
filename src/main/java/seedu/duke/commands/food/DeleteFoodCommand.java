@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author ngnigel99
  */
 public class DeleteFoodCommand extends Command {
-    private final int indexNotFoundConstant =  -1; 
+    private final int indexNotFoundConstant =  - 1;
     private String inputString; //represents index to delete
 
     public DeleteFoodCommand() {

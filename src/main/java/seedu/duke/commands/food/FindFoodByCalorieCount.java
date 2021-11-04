@@ -22,6 +22,20 @@ public class FindFoodByCalorieCount extends Command {
 
     public FindFoodByCalorieCount(String input) throws NoCalorieCountKeywordException,
             NumberFormatException, NoCaloriesInputException, NegativeCaloriesException {
+        getCalories(input);
+    }
+
+    /**
+     * Extracts calories from a given string.
+     * @param input full user input.
+     * @throws NoCalorieCountKeywordException if keyword not found.
+     * @throws NoCaloriesInputException if no calories are input.
+     * @throws NegativeCaloriesException if calories are negative.
+     */
+    private void getCalories(String input) throws
+            NoCalorieCountKeywordException,
+            NoCaloriesInputException,
+            NegativeCaloriesException {
         if (!input.contains(keyword)) {
             throw new NoCalorieCountKeywordException();
         }

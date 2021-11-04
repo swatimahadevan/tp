@@ -46,6 +46,7 @@ public class Messages {
     public static final String PRINT_RUNTIME_MODE = "***RUNTIME MODE ENABLED***"
             + "\n"
             + "Please revert mode if you're not a developer!";
+    public static final String PRINT_ADDING_ITEM = "Nice, adding the record - ";
     //@author swatim
     //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
