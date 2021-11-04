@@ -52,12 +52,10 @@ import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.parser.schedule.ParserSchedule;
-import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
@@ -485,25 +483,38 @@ public class Parser {
      *
      * @author ngnigel99
      */
-    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
-        ArgumentsNotFoundException, WrongDividerOrderException {
-        FoodRecord recordToAdd = null;
+    public static FoodRecord parseFoodRecord(String input) throws
+            IllegalFoodParameterException,
+            ArgumentsNotFoundException,
+            WrongDividerOrderException,
+            NegativeCaloriesException {
+        FoodRecord recordToAdd;
         if (getWordCount(input) < FOOD_MINIMUM_PARAMETER) {
             throw new IllegalFoodParameterException();
         }
-        String[] foodName = getData(input, FOOD_NAME_DIVIDER, FOOD_CALORIE_DIVIDER);
-        String name = foodName[0];
+        String[] foodData = getData(input, FOOD_NAME_DIVIDER, FOOD_CALORIE_DIVIDER);
+        String name = foodData[0];
         if (input.contains(FOOD_DATE_DIVIDER)) {
-            String[] foodCalorie = getData(input, FOOD_CALORIE_DIVIDER, FOOD_DATE_DIVIDER);
-            int calories = Integer.parseInt(foodCalorie[0]);
-            recordToAdd = new FoodRecord(name, calories);
-            int dateDividerIndex = input.indexOf(FOOD_DATE_DIVIDER);
-            String inputAfterDateDivider = input.substring(dateDividerIndex + 2).trim();
-            setDateOnFoodRecord(recordToAdd, inputAfterDateDivider);
-        } else {
-            int calories = Integer.parseInt(foodName[1]);
-            recordToAdd = new FoodRecord(name, calories);
+            return parseFoodRecordWithDate(input, name);
         }
+        int calories = Integer.parseInt(foodData[1]);
+        if (calories < 0) {
+            throw new NegativeCaloriesException();
+        }
+        recordToAdd = new FoodRecord(name, calories);
+        return recordToAdd;
+    }
+
+    private static FoodRecord parseFoodRecordWithDate(String input, String name) throws
+            WrongDividerOrderException,
+            ArgumentsNotFoundException {
+        FoodRecord recordToAdd;
+        String[] foodCalorie = getData(input, FOOD_CALORIE_DIVIDER, FOOD_DATE_DIVIDER);
+        int calories = Integer.parseInt(foodCalorie[0]);
+        recordToAdd = new FoodRecord(name, calories);
+        int dateDividerIndex = input.indexOf(FOOD_DATE_DIVIDER);
+        String inputAfterDateDivider = input.substring(dateDividerIndex + 2).trim();
+        setDateOnFoodRecord(recordToAdd, inputAfterDateDivider);
         return recordToAdd;
     }
 
