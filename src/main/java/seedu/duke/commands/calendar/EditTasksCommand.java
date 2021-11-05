@@ -5,6 +5,7 @@ import seedu.duke.exceptions.calendar.DuplicateTaskException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
 import seedu.duke.exceptions.calendar.InvalidDateException;
 import seedu.duke.exceptions.calendar.CalendarIndexNotFoundException;
+import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
 import seedu.duke.parser.schedule.ParserSchedule;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageTasks;
@@ -62,7 +63,7 @@ public class EditTasksCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException, IncorrectNumberOfArgumentsException,
-            CalendarIndexNotFoundException, InvalidDateException, DuplicateTaskException {
+            CalendarIndexNotFoundException, InvalidDateException, DuplicateTaskException, ArgumentsNotFoundException {
         ui.printLine();
         if (this.index > storage.tasksList.getTaskList().size()) {
             throw new CalendarIndexNotFoundException();

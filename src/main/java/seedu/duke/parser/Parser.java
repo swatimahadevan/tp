@@ -368,7 +368,7 @@ public class Parser {
      *         by the user does not have the required number of arguments.
      */
     private Command getCalendarCommand(String commandArgs, String userInput)
-        throws IncorrectNumberOfArgumentsException, IncorrectCommandException {
+            throws IncorrectNumberOfArgumentsException, IncorrectCommandException, ArgumentsNotFoundException {
         String[] calendarArguments = commandArgs.split(" ");
         switch (calendarArguments[0]) {
         case COMMAND_SUFFIX_LIST:

@@ -1,9 +1,9 @@
 package seedu.duke.exceptions.calendar;
 
-import seedu.duke.ui.Ui;
+import seedu.duke.exceptions.ClickException;
 
-public class IncorrectNumberOfArgumentsException extends Exception {
+public class IncorrectNumberOfArgumentsException extends ClickException {
     public IncorrectNumberOfArgumentsException(String message) {
-        Ui.printMessage(message);
+        super(message);
     }
 }
