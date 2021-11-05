@@ -31,7 +31,7 @@ public class AddModuleCommand extends Command {
      * Class constructor providing syntax for the HelpCommand.
      */
     public AddModuleCommand() {
-        syntax = "module add c/ [MODULE_CODE] n/ [MODULE_NAME] m/ [MODULAR_CREDITS] e/ [EXPECTED_GRADE]";
+        syntax = "module add c/[MODULE_CODE] {n/[MODULE_NAME] m/[MODULAR_CREDITS] e/[EXPECTED_GRADE]}";
     }
 
     /**
@@ -42,7 +42,7 @@ public class AddModuleCommand extends Command {
     public AddModuleCommand(String commandArgs) {
         this.commandArgs = commandArgs;
         this.helpMessage = "Add a module";
-        this.syntax = "module add c/ [MODULE_CODE] n/ [MODULE_NAME] e/ [EXPECTED_GRADE]";
+        this.syntax = "module add c/[MODULE_CODE] {n/[MODULE_NAME] m/[MODULAR_CREDITS] e/[EXPECTED_GRADE]}";
     }
 
     /**
