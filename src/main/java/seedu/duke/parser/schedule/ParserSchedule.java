@@ -1,6 +1,7 @@
 package seedu.duke.parser.schedule;
 
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.InvalidDateException;
 import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
 import seedu.duke.parser.Parser;
 
@@ -34,75 +35,10 @@ public class ParserSchedule {
         int month = Integer.parseInt(arguments[INDEX_ZERO]);
         assert month <= MONTH_UPPER_LIMIT;
         int year = Integer.parseInt(arguments[1]);
-        YearMonth yearMonth = YearMonth.of(year, month);
-        return yearMonth;
+        return YearMonth.of(year, month);
     }
 
-    /**
-     * Handles the input when todo date is not given by user.
-     *
-     * @param input The input from the user.
-     * @return The modified input that will hold the current date.
-     */
-    public static String parseTodoWhenDateNotGiven(String input) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String date = sdf.format(new Date());
-        input = input + " " + date;
-        return input;
-    }
 
-    private static String[] splitTodoCommand(String input) {
-        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
-        assert commandTypeAndParams.length == 2;
-        final String commandArgs = commandTypeAndParams[1];
-        return commandArgs.split(" ");
-    }
-
-    private static String[] splitLectureCommand(String input) {
-        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
-        assert commandTypeAndParams.length == 2;
-        final String commandArgs = commandTypeAndParams[1];
-        return commandArgs.split(" ");
-    }
-
-    private static void throwExceptionNoName(String[] todoArguments, int i) throws IncorrectNumberOfArgumentsException {
-        if (todoArguments.length == i + 1 || todoArguments[i + 1].equals("d/")) {
-            throw new IncorrectNumberOfArgumentsException(NAME_ABSENT);
-        }
-    }
-
-    private static void throwExceptionNoModuleName(String[] lectureArguments,
-        int i) throws IncorrectNumberOfArgumentsException {
-        if (lectureArguments.length == i + 1 || lectureArguments[i + 1].equals("s/")) {
-            throw new IncorrectNumberOfArgumentsException("Module name not found after m/...");
-        }
-    }
-
-    private static void throwExceptionNoStartDate(String[] lectureArguments,
-        int i) throws IncorrectNumberOfArgumentsException {
-        if (lectureArguments.length == i + 1 || lectureArguments[i + 1].equals("e/")) {
-            throw new IncorrectNumberOfArgumentsException("Module start date not found after s/...");
-        }
-    }
-
-    private static void throwExceptionNoEndDate(String[] lectureArguments,
-        int i) throws IncorrectNumberOfArgumentsException {
-        if (lectureArguments.length == i + 1) {
-            throw new IncorrectNumberOfArgumentsException("Module end date not found after e/...");
-        }
-    }
-
-    private static String handleNoDate(String[] todoArguments, int i, String input) {
-        if (todoArguments.length == i + 1) {
-            System.out.println("You have not provided a date so "
-                    + "I will add the task to today's date..."
-                    + "please specify one in DD-MM-YYYY next time!");
-            input = parseTodoWhenDateNotGiven(input);
-        }
-        return input;
-    }
-
-    //modified from @author SvethaMahadevan
     /**
      * Parsing of todo command.
      *
@@ -110,7 +46,7 @@ public class ParserSchedule {
      * @return Checking for whether arguments are present.
      * @throws IncorrectNumberOfArgumentsException to check if correct number of arguments.
      */
-    public static ArrayList<String> parseTodoCommand(String input) throws ArgumentsNotFoundException {
+    public static ArrayList<String> parseTodoCommand(String input) throws IncorrectNumberOfArgumentsException, InvalidDateException {
         return parseTodoArgumentsArray(input);
     }
 
@@ -121,20 +57,23 @@ public class ParserSchedule {
      * @return Returning arguments of todo command.
      * @throws IncorrectNumberOfArgumentsException to check if correct number of arguments.
      */
-    public static ArrayList<String> parseTodoArgumentsArray(String input) throws ArgumentsNotFoundException {
-        ArrayList<String> argumentsTodoCommand = new ArrayList<>();
+    public static ArrayList<String> parseTodoArgumentsArray(String input) throws IncorrectNumberOfArgumentsException, InvalidDateException {
         String todoDetails = input.trim().substring(CALENDAR_COMMAND_SPLIT);
 
         String descriptionAndDate = todoDetails.substring(todoDetails.indexOf("n/")).trim();
         String description = descriptionAndDate.substring(descriptionAndDate.indexOf("n/")
                 + 2, descriptionAndDate.indexOf("d/")).trim();
         String date = descriptionAndDate.substring(descriptionAndDate.indexOf("d/") + 2).trim();
-        if (description.equals("") || (date.equals(""))) {
-            throw new ArgumentsNotFoundException();
+        if (description.equals("")) {
+            throw new IncorrectNumberOfArgumentsException("Task name not found after n/...");
+        }
+        if (date.equals("")) {
+            throw new IncorrectNumberOfArgumentsException("Task date not found after d/...");
+        } else if (date.length() != 10) {
+            throw new InvalidDateException();
         }
         List<String> todoInformation = Arrays.asList(TODO, description, date);
-        argumentsTodoCommand.addAll(todoInformation);
-        return argumentsTodoCommand;
+        return new ArrayList<>(todoInformation);
     }
 
     /**
@@ -144,10 +83,8 @@ public class ParserSchedule {
      * @return month and year arguments.
      */
     public static String[] parseCalendarCommand(String input) {
-        // takes substring excluding "calendar" from command
         String extractMonthYear = input.substring(17).trim();
-        String[] arguments = extractMonthYear.split(DELIMITER_DATE);
-        return arguments;
+        return extractMonthYear.split(DELIMITER_DATE);
     }
 
     /**
@@ -157,7 +94,7 @@ public class ParserSchedule {
      * @return the parsed lecture command arguments if the command is correct.
      * @throws IncorrectNumberOfArgumentsException if the user command is incorrect.
      */
-    public static ArrayList<String> parseLectureCommand(String input) throws ArgumentsNotFoundException {
+    public static ArrayList<String> parseLectureCommand(String input) throws IncorrectNumberOfArgumentsException, InvalidDateException {
         return parseLectureArgumentsArray(input);
     }
 
@@ -167,8 +104,7 @@ public class ParserSchedule {
      * @param input Input from user.
      * @return the name of lecture, start date and end date.
      */
-    public static ArrayList<String> parseLectureArgumentsArray(String input) throws ArgumentsNotFoundException {
-        ArrayList<String> argumentsLectureCommand = new ArrayList<>();
+    public static ArrayList<String> parseLectureArgumentsArray(String input) throws IncorrectNumberOfArgumentsException, InvalidDateException {
         String lectureDetails = input.trim().substring(17);
 
         String nameAndDate = lectureDetails.substring(lectureDetails.indexOf("m/")).trim();
@@ -176,12 +112,21 @@ public class ParserSchedule {
         String dayAndLimits = nameAndDate.substring(nameAndDate.indexOf("s/")).trim();
         String fromDate = dayAndLimits.substring(dayAndLimits.indexOf("s/") + 2, dayAndLimits.indexOf("e/")).trim();
         String toDate = dayAndLimits.substring(dayAndLimits.indexOf("e/") + 2).trim();
-        if (name.equals("") || fromDate.equals("") || toDate.equals("")) {
-            throw new ArgumentsNotFoundException();
+        if (name.equals("")) {
+            throw new IncorrectNumberOfArgumentsException("Module name not found after m/...");
+        }
+        if (fromDate.equals("")) {
+            throw new IncorrectNumberOfArgumentsException("Module name not found after m/...");
+        } else if (fromDate.length() != 10){
+            throw new InvalidDateException();
+        }
+        if (toDate.equals("")) {
+            throw new IncorrectNumberOfArgumentsException("Module end date not found after e/...");
+        } else if (toDate.length() != 10){
+            throw new InvalidDateException();
         }
         List<String> lectureInformation = Arrays.asList(name, fromDate, toDate);
-        argumentsLectureCommand.addAll(lectureInformation);
-        return argumentsLectureCommand;
+        return new ArrayList<>(lectureInformation);
     }
 
 }
