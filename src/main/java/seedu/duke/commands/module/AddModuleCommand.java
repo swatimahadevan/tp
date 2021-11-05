@@ -74,7 +74,7 @@ public class AddModuleCommand extends Command {
                                        int indexOfExpectedGrade) {
         boolean duplicateCode = (indexOfCode != -1) && (indexOfCode != commandArgs.lastIndexOf(PREFIX_CODE));
         boolean duplicateName = (indexOfName != -1) && (indexOfName != commandArgs.lastIndexOf(PREFIX_NAME));
-        boolean duplicateMC = (indexOfMc != -1 ) && (indexOfMc != commandArgs.lastIndexOf(PREFIX_MC));
+        boolean duplicateMC = (indexOfMc != -1) && (indexOfMc != commandArgs.lastIndexOf(PREFIX_MC));
         boolean duplicateExpectedGrade = (indexOfExpectedGrade != -1)
                 && (indexOfExpectedGrade != commandArgs.lastIndexOf(PREFIX_EXPECTED_GRADE));
         if (duplicateCode || duplicateName || duplicateMC || duplicateExpectedGrade) {
