@@ -90,122 +90,24 @@ public class ParserJournal {
     public static String[] parseAddEntryCommand(String input, Storage storage) throws EmptyEntryArgumentsException,
             EmptyNoteNameException, EmptyEntryNameException, NotebookArgumentNotFoundException,
             NotebookNotFoundForEntry {
-        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
-        final String commandArgs = commandTypeAndParams[1];
-        ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
-        String[] noteArguments = commandArgs.split(" ");
-        if (noteArguments.length == 1) {
-            throw new EmptyEntryArgumentsException();
-        }
-        if (noteArguments.length == 2 && noteArguments[1].equals("n/")) {
-            throw new EmptyNoteNameException();
-        }
-        if (noteArguments.length == 4 && noteArguments[3].equals("e/")) {
-            throw new EmptyEntryNameException();
-        }
-        boolean isNoteArgumentPresent = false;
-        boolean isEntryArgumentPresent = false;
-        for (String noteArgument : noteArguments) {
-            if (noteArgument.equals("n/")) {
-                isNoteArgumentPresent = true;
-            }
-            if (noteArgument.equals("e/")) {
-                isEntryArgumentPresent = true;
-            }
-        }
-        if (isEntryArgumentPresent && isNoteArgumentPresent) {
-            String[] noteEntryNames = parseNoteEntryName(input);
-            int flagNotebook = notes.stream().anyMatch(note -> note.getNoteName().equals(noteEntryNames[0])) ? 1 : 0;
-            if (flagNotebook == 0) {
-                throw new NotebookNotFoundForEntry();
-            } else {
-                return new String[]{noteEntryNames[0], noteEntryNames[1]};
-            }
-        } else if (isEntryArgumentPresent && !isNoteArgumentPresent) {
-            throw new NotebookArgumentNotFoundException("Note argument not found!");
-        } else if (!isEntryArgumentPresent && isNoteArgumentPresent) {
-            throw new NotebookArgumentNotFoundException("Entry argument not found!");
-        }
-        return null;
+        String[] noteEntryNames = parseNoteEntryName(input);
+        return new String[]{noteEntryNames[0], noteEntryNames[1]};
+
     }
 
-    public static String[] parseTagNotebookCommand(String input, Storage storage) throws EmptyTagArgumentsException,
-            EmptyNoteNameException, EmptyTagNameException, NotebookArgumentNotFoundException {
-        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
-        final String commandArgs = commandTypeAndParams[1];
-        ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
-        String[] noteArguments = commandArgs.split(" ");
-        if (noteArguments.length == 1) {
-            throw new EmptyTagArgumentsException();
-        }
-        if (noteArguments.length == 2 && noteArguments[1].equals("n/")) {
-            throw new EmptyNoteNameException();
-        }
-        if (noteArguments.length == 4 && noteArguments[3].equals("t/")) {
-            throw new EmptyTagNameException();
-        }
-        boolean isNoteArgumentPresent = false;
-        boolean isTagArgumentPresent = false;
-        for (String noteArgument : noteArguments) {
-            if (noteArgument.equals("n/")) {
-                isNoteArgumentPresent = true;
-            }
-            if (noteArgument.equals("t/")) {
-                isTagArgumentPresent = true;
-            }
-        }
-        if (isTagArgumentPresent && isNoteArgumentPresent) {
-            String[] noteTagNames = parseNotebookNameAndTag(input);
-            return new String[]{noteTagNames[0], noteTagNames[1]};
-        } else if (isTagArgumentPresent && !isNoteArgumentPresent) {
-            throw new NotebookArgumentNotFoundException("Note argument not found!");
-        } else if (!isTagArgumentPresent && isNoteArgumentPresent) {
-            throw new NotebookArgumentNotFoundException("Tag argument not found!");
-        }
-        return null;
+    public static String[] parseTagNotebookCommand(String input, Storage storage) {
+        String[] noteTagNames = parseNotebookNameAndTag(input);
+        return new String[]{noteTagNames[0], noteTagNames[1]};
+
     }
 
 
     public static String[] parseDeleteEntryCommand(String input, Storage storage) throws EmptyEntryArgumentsException,
             EmptyNoteNameException, EmptyEntryNameException, NotebookArgumentNotFoundException,
             NotebookNotFoundForEntry {
-        final String[] commandTypeAndParams = Parser.splitCommandAndArgs(input);
-        final String commandArgs = commandTypeAndParams[1];
-        ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
-        String[] noteArguments = commandArgs.split(" ");
-        if (noteArguments.length == 1) {
-            throw new EmptyEntryArgumentsException();
-        }
-        if (noteArguments.length == 2 && noteArguments[1].equals("n/")) {
-            throw new EmptyNoteNameException();
-        }
-        if (noteArguments.length == 4 && noteArguments[3].equals("e/")) {
-            throw new EmptyEntryNameException();
-        }
-        boolean isNoteArgumentPresent = false;
-        boolean isEntryArgumentPresent = false;
-        for (String noteArgument : noteArguments) {
-            if (noteArgument.equals("n/")) {
-                isNoteArgumentPresent = true;
-            }
-            if (noteArgument.equals("e/")) {
-                isEntryArgumentPresent = true;
-            }
-        }
-        if (isEntryArgumentPresent && isNoteArgumentPresent) {
-            String[] noteEntryNames = parseArgumentsDeleteEntryCommand(input);
-            int flagNotebook = notes.stream().anyMatch(note -> note.getNoteName().equals(noteEntryNames[0])) ? 1 : 0;
-            if (flagNotebook == 0) {
-                throw new NotebookNotFoundForEntry();
-            } else {
-                return new String[]{noteEntryNames[0], noteEntryNames[1]};
-            }
-        } else if (isEntryArgumentPresent && !isNoteArgumentPresent) {
-            throw new NotebookArgumentNotFoundException("Note argument not found!");
-        } else if (!isEntryArgumentPresent && isNoteArgumentPresent) {
-            throw new NotebookArgumentNotFoundException("Entry argument not found!");
-        }
-        return null;
+        String[] noteEntryNames = parseArgumentsDeleteEntryCommand(input);
+        return new String[]{noteEntryNames[0], noteEntryNames[1]};
+
     }
 
     /**
@@ -215,10 +117,11 @@ public class ParserJournal {
      * @return notebook name and entry name in form of string array
      */
     public static String[] parseNoteEntryName(String input) {
-        String noteNameDetails = input.trim().split("entry")[1];
-        String noteAndEntryName = noteNameDetails.split("n/")[1].trim();
-        String entryName = noteAndEntryName.split("e/")[1].trim();
-        String noteName = noteAndEntryName.split("e/")[0].trim();
+        String noteNameDetails = input.trim().substring(input.indexOf("entry"));
+        String noteAndEntryName = noteNameDetails.substring(noteNameDetails.indexOf("n/")).trim();
+        String noteName =
+                noteAndEntryName.substring(noteAndEntryName.indexOf("n/") + 2, noteAndEntryName.indexOf("e/")).trim();
+        String entryName = noteAndEntryName.substring(noteAndEntryName.indexOf("e/") + 2).trim();
         return new String[]{noteName, entryName};
     }
 
@@ -229,10 +132,10 @@ public class ParserJournal {
      * @return notebook name and tag name in form of String array.
      */
     public static String[] parseNotebookNameAndTag(String input) {
-        String noteAndTagDetails = input.trim().split("tag")[1];
-        String noteAndTagName = noteAndTagDetails.split("n/")[1].trim();
-        String tagName = noteAndTagName.split("t/")[1].trim();
-        String notebookIndex = noteAndTagName.split("t/")[0].trim();
+        String noteAndTagDetails = input.trim().substring(input.indexOf("tag"));
+        String noteAndTagName = noteAndTagDetails.substring(noteAndTagDetails.indexOf("n/")).trim();
+        String notebookIndex = noteAndTagName.substring(noteAndTagName.indexOf("n/") + 2, noteAndTagName.indexOf("t/"));
+        String tagName = noteAndTagName.substring(noteAndTagName.indexOf("t/") + 2).trim();
         return new String[]{notebookIndex, tagName};
     }
 
@@ -254,10 +157,12 @@ public class ParserJournal {
      * @return index for notebook to be deleted
      */
     public static String[] parseArgumentsDeleteEntryCommand(String input) {
-        String noteNameAndEntryNameDetails = input.trim().split("delete_entry")[1];
-        String noteNameAndEntryName = noteNameAndEntryNameDetails.split("n/")[1].trim();
-        String entryName = noteNameAndEntryName.split("e/")[1].trim();
-        String noteName = noteNameAndEntryName.split("e/")[0].trim();
+        String noteNameAndEntryNameDetails = input.trim().substring(input.indexOf("delete_entry"));
+        String noteNameAndEntryName =
+                noteNameAndEntryNameDetails.substring(noteNameAndEntryNameDetails.indexOf("n/")).trim();
+        String noteName = noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("n/") + 2,
+                noteNameAndEntryName.indexOf("e/")).trim();
+        String entryName = noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("e/") + 2).trim();
         return new String[]{noteName, entryName};
     }
 
