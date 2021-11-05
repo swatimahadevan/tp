@@ -18,4 +18,12 @@ public class ExceptionMessages {
     public static final String MESSAGE_DUPLICATE_MODULE = "The module already exists. "
             + "Type module list to see the list of module.";
 
+    public static final String MESSAGE_ILLEGAL_CALENDAR_INDEX = "Cannot "
+            + "find index of " + "task to delete! Use 'calendar list task' first"
+            + " to find desired task index";
+    public static final String MESSAGE_ILLEGAL_LECTURE_INDEX = "Cannot "
+            + "find index of " + "lecture to delete! Use 'calendar list lec' first"
+            + " to find desired lecture index";
+    public static final String MESSAGE_MODULE_NOT_FOUND = "You have to add a module "
+            + "before you can add a lecture to it !";
 }

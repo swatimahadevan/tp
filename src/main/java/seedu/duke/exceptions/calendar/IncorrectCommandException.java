@@ -1,9 +1,9 @@
 package seedu.duke.exceptions.calendar;
 
-import seedu.duke.ui.Ui;
+import seedu.duke.exceptions.ClickException;
 
-public class IncorrectCommandException extends Exception {
+public class IncorrectCommandException extends ClickException {
     public IncorrectCommandException(String message) {
-        Ui.printMessage(message);
+        super(message);
     }
 }

@@ -1,15 +1,14 @@
 package seedu.duke.exceptions.calendar;
 
-import seedu.duke.ui.Ui;
+import seedu.duke.exceptions.ClickException;
 
-public class InvalidDateException extends Exception {
+public class InvalidDateException extends ClickException {
     private static String message = "Invalid date given!";
 
     public InvalidDateException() {
-        Ui.printMessage(message);
+        super(message);
     }
 
-    @Override
     public String getMessage() {
         return message;
     }
