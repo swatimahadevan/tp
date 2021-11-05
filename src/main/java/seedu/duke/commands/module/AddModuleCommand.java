@@ -2,6 +2,7 @@ package seedu.duke.commands.module;
 
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.exceptions.module.DuplicateModuleParamException;
 import seedu.duke.exceptions.module.IllegalModularCreditException;
 import seedu.duke.exceptions.module.IllegalModuleException;
 import seedu.duke.module.Module;
@@ -19,6 +20,10 @@ import java.util.Locale;
  */
 public class AddModuleCommand extends Command {
     public static final String MESSAGE_ADD_MODULE = "I have added this module:";
+    public static final String PREFIX_CODE = "c/";
+    public static final String PREFIX_NAME = "n/";
+    public static final String PREFIX_MC = "m/";
+    public static final String PREFIX_EXPECTED_GRADE = "e/";
     ModuleManager moduleManager = new ModuleManager();
     String commandArgs;
 
@@ -26,7 +31,7 @@ public class AddModuleCommand extends Command {
      * Class constructor providing syntax for the HelpCommand.
      */
     public AddModuleCommand() {
-        syntax = "module add c/ [MODULE_CODE] n/ [MODULE_NAME] mc/ [MODULAR_CREDITS] e/ [EXPECTED_GRADE]";
+        syntax = "module add c/ [MODULE_CODE] n/ [MODULE_NAME] m/ [MODULAR_CREDITS] e/ [EXPECTED_GRADE]";
     }
 
     /**
@@ -50,16 +55,32 @@ public class AddModuleCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws ClickException, IOException {
-        int indexOfCode = commandArgs.indexOf("c/");
-        int indexOfName = commandArgs.indexOf("n/");
-        int indexOfMc = commandArgs.indexOf("mc/");
-        int indexOfExpectedGrade = commandArgs.indexOf("e/");
+        int indexOfCode = commandArgs.indexOf(PREFIX_CODE);
+        int indexOfName = commandArgs.indexOf(PREFIX_NAME);
+        int indexOfMc = commandArgs.indexOf(PREFIX_MC);
+        int indexOfExpectedGrade = commandArgs.indexOf(PREFIX_EXPECTED_GRADE);
+        if (hasDuplicatePrefix(commandArgs, indexOfCode, indexOfName, indexOfMc, indexOfExpectedGrade)) {
+            throw new DuplicateModuleParamException();
+        }
         Module module = getModule(indexOfCode, indexOfName, indexOfMc, indexOfExpectedGrade);
         moduleManager.addNewModule(module);
         ui.printLine();
         ui.printMessage(MESSAGE_ADD_MODULE);
         ui.printMessage(String.valueOf(module));
         ui.printLine();
+    }
+
+    private boolean hasDuplicatePrefix(String commandArgs, int indexOfCode, int indexOfName, int indexOfMc,
+                                       int indexOfExpectedGrade) {
+        boolean duplicateCode = (indexOfCode != -1) && (indexOfCode != commandArgs.lastIndexOf(PREFIX_CODE));
+        boolean duplicateName = (indexOfName != -1) && (indexOfName != commandArgs.lastIndexOf(PREFIX_NAME));
+        boolean duplicateMC = (indexOfMc != -1 ) && (indexOfMc != commandArgs.lastIndexOf(PREFIX_MC));
+        boolean duplicateExpectedGrade = (indexOfExpectedGrade != -1)
+                && (indexOfExpectedGrade != commandArgs.lastIndexOf(PREFIX_EXPECTED_GRADE));
+        if (duplicateCode || duplicateName || duplicateMC || duplicateExpectedGrade) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -98,7 +119,7 @@ public class AddModuleCommand extends Command {
             code = commandArgs.substring(indexOfCode + 2, indexOfName).strip().toUpperCase();
             name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
             try {
-                modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3).strip());
+                modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 2).strip());
             } catch (Exception e) {
                 throw new IllegalModularCreditException();
             }
@@ -107,7 +128,7 @@ public class AddModuleCommand extends Command {
             code = commandArgs.substring(indexOfCode + 2, indexOfName).strip().toUpperCase();
             name = commandArgs.substring(indexOfName + 2, indexOfMc).strip();
             try {
-                modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 3, indexOfExpectedGrade).strip());
+                modularCredits = Integer.parseInt(commandArgs.substring(indexOfMc + 2, indexOfExpectedGrade).strip());
             } catch (Exception e) {
                 throw new IllegalModularCreditException();
             }
