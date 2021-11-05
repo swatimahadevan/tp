@@ -121,11 +121,17 @@ public class AddLectureCommand extends Command {
             checkIfDuplicate(lecture);
             String[] dateStartArgs = dateStartStringFormat.split(DELIMITER_DATE);
             String[] dateEndArgs = dateEndStringFormat.split(DELIMITER_DATE);
-            if (Integer.parseInt(dateStartArgs[2]) > Integer.parseInt(dateEndArgs[2])) {
+            int dateStartYear = Integer.parseInt(dateStartArgs[2]);
+            int dateEndYear = Integer.parseInt(dateEndArgs[2]);
+            int dateStartMonth = Integer.parseInt(dateStartArgs[1]);
+            int dateEndMonth = Integer.parseInt(dateEndArgs[1]);
+            int dateStartDay = Integer.parseInt(dateStartArgs[0]);
+            int dateEndDay = Integer.parseInt(dateEndArgs[0]);
+            if (dateStartYear > dateEndYear) {
                 throw new LectureIncorrectDateException();
-            } else if (Integer.parseInt(dateEndArgs[2]) == Integer.parseInt(dateStartArgs[2]) && Integer.parseInt(dateStartArgs[1]) > Integer.parseInt(dateEndArgs[1])) {
+            } else if (dateEndYear == dateStartYear && dateStartMonth > dateEndMonth) {
                 throw new LectureIncorrectDateException();
-            } else if (Integer.parseInt(dateEndArgs[1]) == Integer.parseInt(dateStartArgs[1]) && Integer.parseInt(dateStartArgs[0]) > Integer.parseInt(dateEndArgs[0])) {
+            } else if (dateEndMonth == dateStartMonth && dateStartDay > dateEndDay) {
                 throw new LectureIncorrectDateException();
             }
             ui.printLine();

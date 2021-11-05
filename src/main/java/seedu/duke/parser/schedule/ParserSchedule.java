@@ -46,7 +46,8 @@ public class ParserSchedule {
      * @return Checking for whether arguments are present.
      * @throws IncorrectNumberOfArgumentsException to check if correct number of arguments.
      */
-    public static ArrayList<String> parseTodoCommand(String input) throws IncorrectNumberOfArgumentsException, InvalidDateException {
+    public static ArrayList<String> parseTodoCommand(String input)
+            throws IncorrectNumberOfArgumentsException, InvalidDateException {
         return parseTodoArgumentsArray(input);
     }
 
@@ -57,7 +58,8 @@ public class ParserSchedule {
      * @return Returning arguments of todo command.
      * @throws IncorrectNumberOfArgumentsException to check if correct number of arguments.
      */
-    public static ArrayList<String> parseTodoArgumentsArray(String input) throws IncorrectNumberOfArgumentsException, InvalidDateException {
+    public static ArrayList<String> parseTodoArgumentsArray(String input)
+            throws IncorrectNumberOfArgumentsException, InvalidDateException {
         String todoDetails = input.trim().substring(CALENDAR_COMMAND_SPLIT);
 
         String descriptionAndDate = todoDetails.substring(todoDetails.indexOf("n/")).trim();
@@ -94,7 +96,8 @@ public class ParserSchedule {
      * @return the parsed lecture command arguments if the command is correct.
      * @throws IncorrectNumberOfArgumentsException if the user command is incorrect.
      */
-    public static ArrayList<String> parseLectureCommand(String input) throws IncorrectNumberOfArgumentsException, InvalidDateException {
+    public static ArrayList<String> parseLectureCommand(String input)
+            throws IncorrectNumberOfArgumentsException, InvalidDateException {
         return parseLectureArgumentsArray(input);
     }
 
@@ -104,7 +107,8 @@ public class ParserSchedule {
      * @param input Input from user.
      * @return the name of lecture, start date and end date.
      */
-    public static ArrayList<String> parseLectureArgumentsArray(String input) throws IncorrectNumberOfArgumentsException, InvalidDateException {
+    public static ArrayList<String> parseLectureArgumentsArray(String input)
+            throws IncorrectNumberOfArgumentsException, InvalidDateException {
         String lectureDetails = input.trim().substring(17);
 
         String nameAndDate = lectureDetails.substring(lectureDetails.indexOf("m/")).trim();
@@ -117,12 +121,12 @@ public class ParserSchedule {
         }
         if (fromDate.equals("")) {
             throw new IncorrectNumberOfArgumentsException("Module name not found after m/...");
-        } else if (fromDate.length() != 10){
+        } else if (fromDate.length() != 10) {
             throw new InvalidDateException();
         }
         if (toDate.equals("")) {
             throw new IncorrectNumberOfArgumentsException("Module end date not found after e/...");
-        } else if (toDate.length() != 10){
+        } else if (toDate.length() != 10) {
             throw new InvalidDateException();
         }
         List<String> lectureInformation = Arrays.asList(name, fromDate, toDate);

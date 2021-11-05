@@ -111,23 +111,27 @@ public class Schedule {
         int paramStartDate = Integer.parseInt(dateFromArguments[0]);
         int paramEndDate = Integer.parseInt(dateToArguments[0]);
         int paramStartMonth = Integer.parseInt(dateFromArguments[1]);
+        int paramEndMonth = Integer.parseInt(dateToArguments[1]);
         int paramStartYear = Integer.parseInt(dateFromArguments[2]);
+        int paramEndYear = Integer.parseInt(dateToArguments[2]);
         LocalDate localDate = LocalDate.of(paramStartYear, paramStartMonth, paramStartDate);
         java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
-        if ((month >= Integer.parseInt(dateFromArguments[1])
-                && (month <= Integer.parseInt(dateToArguments[1])))
-                && (year >= Integer.parseInt(dateFromArguments[2]))
-                && (year <= Integer.parseInt(dateToArguments[2]))) {
+        if ((month >= paramStartMonth && (month <= paramEndMonth))
+                && (year >= paramStartYear) && (year <= paramEndYear)) {
             YearMonth yearMonthObject = YearMonth.of(year, month);
             int daysInMonth = yearMonthObject.lengthOfMonth();
             for (int i = 1; i <= daysInMonth; i++) {
-                if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek && Integer.parseInt(dateFromArguments[1]) == Integer.parseInt(dateToArguments[1]) && paramStartDate <= i && i <= paramEndDate) {
+                if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek
+                        && paramStartMonth == paramEndMonth && paramStartDate <= i && i <= paramEndDate) {
                     calendarLectures.get(i).add(moduleName);
-                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek && month != Integer.parseInt(dateFromArguments[1]) && month != Integer.parseInt(dateToArguments[1])) {
+                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek
+                        && month != paramStartMonth && month != Integer.parseInt(dateToArguments[1])) {
                     calendarLectures.get(i).add(moduleName);
-                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek && month == Integer.parseInt(dateFromArguments[1]) && Integer.parseInt(dateFromArguments[1]) != Integer.parseInt(dateToArguments[1]) && paramStartDate <= i) {
+                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek
+                        && month == paramStartMonth && paramStartMonth != paramEndMonth && paramStartDate <= i) {
                     calendarLectures.get(i).add(moduleName);
-                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek && month == Integer.parseInt(dateToArguments[1]) && Integer.parseInt(dateFromArguments[1]) != Integer.parseInt(dateToArguments[1]) && i <= paramEndDate) {
+                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek
+                        && month == paramEndMonth && paramStartMonth != paramEndMonth && i <= paramEndDate) {
                     calendarLectures.get(i).add(moduleName);
                 }
             }
