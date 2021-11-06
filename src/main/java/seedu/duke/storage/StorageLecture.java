@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 //@author swatim
 public class StorageLecture {
-    public static final String folderName = "tasksdata/";
+    public static final String folderName = "storage/tasksdata/";
     public static final String fileName   = "scheduleLectures.txt";
     public static final String filePath = folderName + fileName;
 

@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class DuplicateNoteException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class DuplicateNoteException extends ClickException {
     public DuplicateNoteException() {
-        System.out.println("Error ! The notebook already exists");
+        super("Error ! The notebook already exists");
     }
 }

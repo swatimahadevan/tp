@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class NotebookNotFoundForTagException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class NotebookNotFoundForTagException extends ClickException {
     public NotebookNotFoundForTagException() {
-        System.out.println("Invalid notebook for tagging");
+        super("Invalid notebook for tagging");
     }
 }

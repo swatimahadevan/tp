@@ -27,7 +27,7 @@ public class StorageModule {
     private static ExceptionHandler exceptionHandler = new ExceptionHandler();
 
     public static final String PROJECT_ROOT = System.getProperty("user.dir");
-    public static final String STORAGE_FOLDER = "module";
+    public static final String STORAGE_FOLDER = "storage/module";
     public static final String MODULE_FILE_NAME = "module.txt";
     public static final String CAP_FILE_NAME = "cap.txt";
     public static final Path PATH_TO_MODULE_STORAGE_FILE = Paths.get(PROJECT_ROOT, STORAGE_FOLDER, MODULE_FILE_NAME);
