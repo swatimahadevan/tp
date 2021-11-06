@@ -1,6 +1,6 @@
 package seedu.duke.parser.module;
 
-import seedu.duke.exceptions.storage.StorageException;
+import seedu.duke.exceptions.module.StorageModuleException;
 import seedu.duke.module.Module;
 
 import java.util.ArrayList;
@@ -32,12 +32,12 @@ public class ParserModule {
      *
      * @param data The formatted string representation of the Module in the storage file.
      * @return The Module to be retrieved.
-     * @throws StorageException If there is something wrong with the storage file.
+     * @throws StorageModuleException If there is something wrong with the storage file.
      */
-    public static Module retrieveStoredModule(String data) throws StorageException {
+    public static Module retrieveStoredModule(String data) throws StorageModuleException {
         String[] tokens = data.split("\\|");
         if (tokens.length != 4) {
-            throw new StorageException();
+            throw new StorageModuleException();
         }
         assert tokens.length == 4;
         String code = tokens[0];
@@ -47,7 +47,7 @@ public class ParserModule {
         try {
             return new Module(code, name, modularCredits, expectedGrade);
         } catch (Exception e) {
-            throw new StorageException();
+            throw new StorageModuleException();
         }
     }
 
@@ -56,10 +56,10 @@ public class ParserModule {
         return data;
     }
 
-    public static ArrayList<Double> retrieveStoredCapInfo(String data) throws StorageException {
+    public static ArrayList<Double> retrieveStoredCapInfo(String data) throws StorageModuleException {
         String[] tokens = data.split("\\|");
         if (tokens.length != 2) {
-            throw new StorageException();
+            throw new StorageModuleException();
         }
         assert tokens.length == 2;
         ArrayList<Double> capInfo = new ArrayList();

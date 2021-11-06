@@ -1,6 +1,7 @@
 package seedu.duke.storage;
 
-import seedu.duke.exceptions.storage.StorageException;
+import seedu.duke.exceptions.module.StorageModuleException;
+import seedu.duke.exceptions.ExceptionHandler;
 import seedu.duke.module.Module;
 import seedu.duke.module.ModuleList;
 import seedu.duke.parser.module.ParserModule;
@@ -23,6 +24,7 @@ import java.util.Scanner;
 public class StorageModule {
 
     private static ParserModule parserModule = new ParserModule();
+    private static ExceptionHandler exceptionHandler = new ExceptionHandler();
 
     public static final String PROJECT_ROOT = System.getProperty("user.dir");
     public static final String STORAGE_FOLDER = "module";
@@ -81,11 +83,11 @@ public class StorageModule {
                 storedModules.add(module);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("MESSAGE_FILE_NOT_FOUND");
+            exceptionHandler.handleOtherExceptions(e);
             return new ModuleList();
-        } catch (StorageException e) {
+        } catch (StorageModuleException e) {
             createModuleStorageFile();
-            System.out.println("MESSAGE_STORAGE_EXCEPTION");
+            ExceptionHandler.handleClickExceptions(e);
             return new ModuleList();
         }
         return new ModuleList(storedModules);
@@ -124,13 +126,13 @@ public class StorageModule {
                 capAndMc = parserModule.retrieveStoredCapInfo(scanner.nextLine());
             }
         } catch (FileNotFoundException e) {
-            System.out.println("MESSAGE_FILE_NOT_FOUND");
+            exceptionHandler.handleOtherExceptions(e);
             capAndMc.add(0.0);
             capAndMc.add(0.0);
             return capAndMc;
-        } catch (StorageException e) {
+        } catch (StorageModuleException e) {
             createCapStorageFile();
-            System.out.println("MESSAGE_STORAGE_EXCEPTION");
+            exceptionHandler.handleClickExceptions(e);
             capAndMc.add(0.0);
             capAndMc.add(0.0);
             return capAndMc;

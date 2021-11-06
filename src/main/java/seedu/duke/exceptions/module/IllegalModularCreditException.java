@@ -4,6 +4,11 @@ import seedu.duke.exceptions.ClickException;
 
 import static seedu.duke.constants.ExceptionMessages.MESSAGE_ILLEGAL_MODULAR_CREDIT;
 
+//@@author nvbinh15
+
+/**
+ * A class that represents exceptions thrown when the total modular credit is illegal.
+ */
 public class IllegalModularCreditException extends ClickException {
 
     /**

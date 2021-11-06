@@ -13,10 +13,18 @@ public class ExceptionMessages {
     public static final String MESSAGE_ILLEGAL_EXPECTED_GRADE = "Illegal expected grade."
             + "The supported grades are A+, A, A-, B+, B, B-, C+, C, D+, D, F, CS, CU, and NA.";
     public static final String MESSAGE_ILLEGAL_MODULE = "Illegal module." + NEW_LINE
-            + "Please follow the syntax module add c/MODULE_CODE {n/MODULE_NAME mc/MODULAR CREDITS e/EXPECTED_GRADE}";
+            + "Please follow the syntax module add c/MODULE_CODE {n/[MODULE_NAME] "
+            + "m/[MODULAR CREDITS] e/[EXPECTED_GRADE]}";
     public static final String MESSAGE_ILLEGAL_MODULAR_CREDIT = "The modular credit must be a positive integer.";
     public static final String MESSAGE_DUPLICATE_MODULE = "The module already exists. "
             + "Type module list to see the list of module.";
+    public static final String MESSAGE_DUPLICATE_MODULE_PARAMETERS = "Duplicate parameters."
+            + "Please follow the syntax module add c/MODULE_CODE {n/[MODULE_NAME] "
+            + "m/[MODULAR CREDITS] e/[EXPECTED_GRADE]}";
+    public static final String MESSAGE_MODULE_STORAGE = "Something is wrong with the Module storage file. "
+            + "A new file has been created.";
+    public static final String MESSAGE_ILLEGAL_MODULE_COMMAND = "Illegal Module command. "
+            + "Enter help to get the supported commands.";
 
     public static final String MESSAGE_ILLEGAL_CALENDAR_INDEX = "Cannot "
             + "find index of " + "task to delete! Use 'calendar list task' first"
