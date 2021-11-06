@@ -46,7 +46,7 @@ class ParserJournalTest {
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         String noteName = " ";
         try {
-            noteName = parser.checkDuplicateOrNot("journal notebook n/ notInStorageName ", notes);
+            noteName = parser.parseNoteName("journal notebook n/ notInStorageName ", notes);
         } catch (Exception e) {
             assertEquals("notInStorageName", noteName);
         }

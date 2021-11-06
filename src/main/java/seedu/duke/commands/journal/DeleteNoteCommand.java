@@ -3,6 +3,8 @@ package seedu.duke.commands.journal;
 //@@author SvethaMahadevan
 
 import seedu.duke.commands.Command;
+import seedu.duke.exceptions.journal.EmptyDeleteNoteException;
+import seedu.duke.exceptions.journal.InvalidDeleteNoteArgumentException;
 import seedu.duke.exceptions.journal.InvalidNotebookIndexException;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.journal.ParserJournal;
@@ -42,9 +44,12 @@ public class DeleteNoteCommand extends Command {
      * @param ui allows for printing that note is added
      * @param storage to allow for storage of notes
      * @throws InvalidNotebookIndexException if index of notebook is invalid
+     * @throws InvalidDeleteNoteArgumentException
+     * @throws EmptyDeleteNoteException
+     * @throws IOException in case of error when writing to save file.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException, InvalidNotebookIndexException {
+    public void execute(Ui ui, Storage storage) throws IOException, InvalidNotebookIndexException, EmptyDeleteNoteException, InvalidDeleteNoteArgumentException {
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         int indexOfNotebookToDelete = ParserJournal.parseDeleteNoteCommand(userInput);
         if (indexOfNotebookToDelete < 1 || indexOfNotebookToDelete > notes.size()) {

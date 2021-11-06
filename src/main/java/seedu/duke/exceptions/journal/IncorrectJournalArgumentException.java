@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class IncorrectJournalArgumentException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class IncorrectJournalArgumentException extends ClickException {
     public IncorrectJournalArgumentException() {
-        System.out.println("Incorrect arguments found for journal.");
+        super("Incorrect arguments found for journal.");
     }
 }

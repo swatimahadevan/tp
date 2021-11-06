@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class EmptyTagArgumentsException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class EmptyTagArgumentsException extends ClickException {
     public EmptyTagArgumentsException() {
-        System.out.println("No arguments for tag");
+        super("No arguments for tag");
     }
 }

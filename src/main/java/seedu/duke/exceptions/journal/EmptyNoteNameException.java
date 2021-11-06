@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class EmptyNoteNameException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class EmptyNoteNameException extends ClickException {
     public EmptyNoteNameException() {
-        System.out.println("No note name entered after 'n/' ");
+        super("No note name entered after 'n/' ");
     }
 }

@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class EmptyEntryArgumentsException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class EmptyEntryArgumentsException extends ClickException {
     public EmptyEntryArgumentsException() {
-        System.out.println("No arguments found for entry.");
+        super("No arguments found. Please give notebook name and entry name");
     }
 }

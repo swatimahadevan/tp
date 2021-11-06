@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class NotebookNotFoundForEntry extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class NotebookNotFoundForEntry extends ClickException {
     public NotebookNotFoundForEntry() {
-        System.out.println("Notebook hasn't been created yet!");
+        super("Notebook hasn't been created yet!");
     }
 }

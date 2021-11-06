@@ -552,7 +552,7 @@ Expected outcome:
 
 #### 3.4.7 Deleting notebooks `journal delete_notebook`
 
-Deletes specific notebook.
+Deletes specific notebook with all its entries.
 
 Format: `journal delete_notebook NOTE_INDEX`
 

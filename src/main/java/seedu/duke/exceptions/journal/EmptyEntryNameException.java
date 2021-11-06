@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class EmptyEntryNameException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class EmptyEntryNameException extends ClickException {
     public EmptyEntryNameException() {
-        System.out.println("No entry name entered after 'e/' ");
+        super("No entry name entered after 'e/' ");
     }
 }

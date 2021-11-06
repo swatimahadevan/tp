@@ -3,14 +3,7 @@ package seedu.duke.commands.journal;
 //@@author SvethaMahadevan
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.journal.EmptyEntryArgumentsException;
-import seedu.duke.exceptions.journal.EmptyEntryNameException;
-import seedu.duke.exceptions.journal.EmptyNoteNameException;
-import seedu.duke.exceptions.journal.EntryDoesNotExistException;
-import seedu.duke.exceptions.journal.InvalidEntryIndexException;
-import seedu.duke.exceptions.journal.InvalidNotebookIndexException;
-import seedu.duke.exceptions.journal.NotebookArgumentNotFoundException;
-import seedu.duke.exceptions.journal.NotebookNotFoundForEntry;
+import seedu.duke.exceptions.journal.*;
 import seedu.duke.journal.Entry;
 import seedu.duke.parser.journal.ParserJournal;
 import seedu.duke.storage.Storage;
@@ -46,12 +39,19 @@ public class DeleteEntryCommand extends Command {
      *
      * @param ui allows for printing of a message to indicate that the entry has been added
      * @param storage to allow for storing of entries
+     * @throws InvalidNotebookIndexException
+     * @throws NotebookNotFoundForEntry
+     * @throws EmptyEntryNameException
+     * @throws EntryDoesNotExistException
+     * @throws EmptyEntryArgumentsException
+     * @throws InvalidDeleteEntryArgumentException
+     * @throws IOException in case of error when writing to save file.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException, InvalidEntryIndexException,
-            InvalidNotebookIndexException, NotebookArgumentNotFoundException,
+    public void execute(Ui ui, Storage storage) throws IOException,
+            InvalidNotebookIndexException,
             NotebookNotFoundForEntry, EmptyEntryNameException, EmptyNoteNameException,
-            EmptyEntryArgumentsException, EntryDoesNotExistException {
+            EntryDoesNotExistException, EmptyEntryArgumentsException, InvalidDeleteEntryArgumentException {
         String[] notebookNameAndEntryName = ParserJournal.parseDeleteEntryCommand(userInput, storage);
         ArrayList<Entry> entries = storage.collectionOfEntries.getEntriesArrayList();
         boolean isEntryPresent = false;
