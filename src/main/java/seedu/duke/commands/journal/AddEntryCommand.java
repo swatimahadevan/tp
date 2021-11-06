@@ -3,7 +3,11 @@ package seedu.duke.commands.journal;
 //@@author SvethaMahadevan
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.journal.*;
+import seedu.duke.exceptions.journal.EmptyEntryArgumentsException;
+import seedu.duke.exceptions.journal.EmptyEntryNameException;
+import seedu.duke.exceptions.journal.EmptyNoteNameException;
+import seedu.duke.exceptions.journal.InvalidAddEntryArgumentException;
+import seedu.duke.exceptions.journal.NotebookNotFoundForEntry;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.journal.ParserJournal;
 import seedu.duke.storage.Storage;

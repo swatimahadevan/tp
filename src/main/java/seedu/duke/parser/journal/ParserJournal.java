@@ -1,6 +1,20 @@
 package seedu.duke.parser.journal;
 
-import seedu.duke.exceptions.journal.*;
+import seedu.duke.exceptions.journal.DuplicateNoteException;
+import seedu.duke.exceptions.journal.EmptyDeleteNoteException;
+import seedu.duke.exceptions.journal.EmptyEntryArgumentsException;
+import seedu.duke.exceptions.journal.EmptyEntryNameException;
+import seedu.duke.exceptions.journal.EmptyFindTagException;
+import seedu.duke.exceptions.journal.EmptyNoteArgumentsException;
+import seedu.duke.exceptions.journal.EmptyNoteNameException;
+import seedu.duke.exceptions.journal.EmptyTagArgumentsException;
+import seedu.duke.exceptions.journal.EmptyTagNameException;
+import seedu.duke.exceptions.journal.InvalidAddEntryArgumentException;
+import seedu.duke.exceptions.journal.InvalidAddTagArgumentException;
+import seedu.duke.exceptions.journal.InvalidDeleteEntryArgumentException;
+import seedu.duke.exceptions.journal.InvalidDeleteNoteArgumentException;
+import seedu.duke.exceptions.journal.NotebookNotFoundForEntry;
+import seedu.duke.exceptions.journal.NotebookNotFoundForTagException;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -83,7 +97,8 @@ public class ParserJournal {
      * @throws InvalidAddEntryArgumentException if arguments for adding entry are invalid.
      */
     public static String[] parseAddEntryCommand(String input, Storage storage) throws EmptyEntryArgumentsException,
-            EmptyNoteNameException, EmptyEntryNameException, InvalidAddEntryArgumentException, NotebookNotFoundForEntry {
+            EmptyNoteNameException, EmptyEntryNameException, InvalidAddEntryArgumentException,
+            NotebookNotFoundForEntry {
         String[] noteEntryNames = parseNoteEntryName(input);
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         int flagNotebook = notes.stream().anyMatch(note -> note.getNoteName().equals(noteEntryNames[0])) ? 1 : 0;
@@ -98,7 +113,7 @@ public class ParserJournal {
      * Parses arguments for tagging a notebook.
      *
      * @param input from user
-     * @param storage
+     * @param storage storage object
      * @return a String array which stores notebook index and tag name
      * @throws EmptyTagNameException if there is no tag name given after 't/'
      * @throws EmptyNoteNameException if there is no note name given after 'n/'
@@ -106,11 +121,14 @@ public class ParserJournal {
      * @throws NotebookNotFoundForTagException in case notebook for tagging isn't in list.
      * @throws InvalidAddTagArgumentException in case arguments for tagging are invalid.
      */
-    public static String[] parseTagNotebookCommand(String input, Storage storage) throws EmptyTagNameException, EmptyNoteNameException, InvalidAddTagArgumentException, EmptyTagArgumentsException, NotebookNotFoundForTagException {
+    public static String[] parseTagNotebookCommand(String input, Storage storage) throws EmptyTagNameException,
+            EmptyNoteNameException, InvalidAddTagArgumentException, EmptyTagArgumentsException,
+            NotebookNotFoundForTagException {
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         String[] noteTagNames = parseNotebookNameAndTag(input);
-        if(Integer.parseInt(noteTagNames[0]) > notes.size() || Integer.parseInt(noteTagNames[0]) < 1)
+        if (Integer.parseInt(noteTagNames[0]) > notes.size() || Integer.parseInt(noteTagNames[0]) < 1) {
             throw new NotebookNotFoundForTagException();
+        }
         return new String[]{noteTagNames[0], noteTagNames[1]};
 
     }
@@ -119,7 +137,7 @@ public class ParserJournal {
      * Returns arguments for deleting entry.
      *
      * @param input from user
-     * @param storage
+     * @param storage storage object
      * @return string array with notebook name and entry name for deleting entry
      * @throws EmptyEntryArgumentsException if no arguments are given for deleting entry.
      * @throws EmptyNoteNameException if no note name is given.
@@ -150,34 +168,37 @@ public class ParserJournal {
      * @throws EmptyEntryNameException if no entry name found after e/
      * @throws InvalidAddEntryArgumentException if arguments for adding entry are invalid.
      */
-    public static String[] parseNoteEntryName(String input) throws EmptyNoteNameException, EmptyEntryNameException, EmptyEntryArgumentsException, InvalidAddEntryArgumentException {
+    public static String[] parseNoteEntryName(String input) throws EmptyNoteNameException, EmptyEntryNameException,
+            EmptyEntryArgumentsException, InvalidAddEntryArgumentException {
         String noteNameAndEntryNameDetails = input.trim().substring(input.indexOf("entry"));
-        if(input.trim().substring(input.indexOf("entry") + 5).trim().isEmpty()) {
+        if (input.trim().substring(input.indexOf("entry") + 5).trim().isEmpty()) {
             throw new EmptyEntryArgumentsException();
         }
-        String noteName="", entryName = "",noteNameAndEntryName = "";
+        String noteName = "";
+        String entryName = "";
+        String noteNameAndEntryName = "";
         try {
             noteNameAndEntryName =
                     noteNameAndEntryNameDetails.substring(noteNameAndEntryNameDetails.indexOf("n/")).trim();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new InvalidAddEntryArgumentException();
         }
 
         try {
             noteName = noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("n/") + 2,
                     noteNameAndEntryName.indexOf("e/")).trim();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new InvalidAddEntryArgumentException();
         }
 
-        try{
+        try {
             entryName = noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("e/") + 2).trim();
-        } catch(Exception e1) {
+        } catch (Exception e1) {
             throw new InvalidAddEntryArgumentException();
         }
 
-        if (noteNameAndEntryName.trim().substring(noteNameAndEntryName.indexOf("e/") + 2).trim().isEmpty() &&
-                noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("n/") + 2,
+        if (noteNameAndEntryName.trim().substring(noteNameAndEntryName.indexOf("e/") + 2).trim().isEmpty()
+                && noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("n/") + 2,
                         noteNameAndEntryName.indexOf("e/")).trim().isEmpty()) {
             throw new EmptyEntryArgumentsException();
         } else if (noteNameAndEntryName.trim().substring(noteNameAndEntryName.indexOf("e/") + 2).trim().isEmpty()) {
@@ -200,38 +221,42 @@ public class ParserJournal {
      * @throws EmptyTagArgumentsException in case notebook and tag details aren't in input.
      * @throws InvalidAddTagArgumentException in case arguments for tagging are invalid.
      */
-    public static String[] parseNotebookNameAndTag(String input) throws EmptyTagArgumentsException, InvalidAddTagArgumentException, EmptyTagNameException, EmptyNoteNameException {
+    public static String[] parseNotebookNameAndTag(String input) throws EmptyTagArgumentsException,
+            InvalidAddTagArgumentException, EmptyTagNameException, EmptyNoteNameException {
 
         String notebookIndexAndTagNameDetails = input.trim().substring(input.indexOf("tag"));
-        if(input.trim().substring(input.indexOf("tag") + 3).trim().isEmpty()) {
+        if (input.trim().substring(input.indexOf("tag") + 3).trim().isEmpty()) {
             throw new EmptyTagArgumentsException();
         }
-        String notebookIndex="", tagName = "",notebookIndexAndTagName = "";
+        String notebookIndex = "";
+        String tagName = "";
+        String notebookIndexAndTagName = "";
         try {
             notebookIndexAndTagName =
                     notebookIndexAndTagNameDetails.substring(notebookIndexAndTagNameDetails.indexOf("n/")).trim();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new InvalidAddTagArgumentException();
         }
 
         try {
             notebookIndex = notebookIndexAndTagName.substring(notebookIndexAndTagName.indexOf("n/") + 2,
                     notebookIndexAndTagName.indexOf("t/")).trim();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new InvalidAddTagArgumentException();
         }
 
-        try{
+        try {
             tagName = notebookIndexAndTagName.substring(notebookIndexAndTagName.indexOf("t/") + 2).trim();
-        } catch(Exception e1) {
+        } catch (Exception e1) {
             throw new InvalidAddTagArgumentException();
         }
 
-        if (notebookIndexAndTagName.trim().substring(notebookIndexAndTagName.indexOf("t/") + 2).trim().isEmpty() &&
-                notebookIndexAndTagName.substring(notebookIndexAndTagName.indexOf("n/") + 2,
+        if (notebookIndexAndTagName.trim().substring(notebookIndexAndTagName.indexOf("t/") + 2).trim().isEmpty()
+                && notebookIndexAndTagName.substring(notebookIndexAndTagName.indexOf("n/") + 2,
                         notebookIndexAndTagName.indexOf("t/")).trim().isEmpty()) {
             throw new EmptyTagArgumentsException();
-        } else if (notebookIndexAndTagName.trim().substring(notebookIndexAndTagName.indexOf("t/") + 2).trim().isEmpty()) {
+        } else if (notebookIndexAndTagName.trim().substring(notebookIndexAndTagName.indexOf("t/") + 2)
+                .trim().isEmpty()) {
             throw new EmptyTagNameException();
         } else if (notebookIndexAndTagName.substring(notebookIndexAndTagName.indexOf("n/") + 2,
                 notebookIndexAndTagName.indexOf("t/")).trim().isEmpty()) {
@@ -249,15 +274,18 @@ public class ParserJournal {
      * @throws EmptyDeleteNoteException if no notebook index is given for deletion
      * @throws InvalidDeleteNoteArgumentException if the argument for notebook deletion is invalid
      */
-    public static int parseDeleteNoteCommand(String input) throws EmptyDeleteNoteException, InvalidDeleteNoteArgumentException {
+    public static int parseDeleteNoteCommand(String input) throws EmptyDeleteNoteException,
+            InvalidDeleteNoteArgumentException {
         String indexOfDeletedNotebook = input.trim().substring(input.indexOf("delete_notebook") + 15).trim();
-        if(indexOfDeletedNotebook.isEmpty())
+        if (indexOfDeletedNotebook.isEmpty()) {
             throw new EmptyDeleteNoteException();
+        }
         try {
-            if(Integer.parseInt(indexOfDeletedNotebook) > 1)
+            if (Integer.parseInt(indexOfDeletedNotebook) > 1) {
                 return Integer.parseInt(indexOfDeletedNotebook);
-            else
+            } else {
                 throw new InvalidDeleteNoteArgumentException();
+            }
         } catch (Exception e) {
             throw new InvalidDeleteNoteArgumentException();
         }
@@ -277,32 +305,34 @@ public class ParserJournal {
     public static String[] parseArgumentsDeleteEntryCommand(String input) throws EmptyEntryArgumentsException,
             EmptyEntryNameException, EmptyNoteNameException, InvalidDeleteEntryArgumentException {
         String noteNameAndEntryNameDetails = input.trim().substring(input.indexOf("delete_entry"));
-        if(input.trim().substring(input.indexOf("delete_entry") + 12).trim().isEmpty()) {
+        if (input.trim().substring(input.indexOf("delete_entry") + 12).trim().isEmpty()) {
             throw new EmptyEntryArgumentsException();
         }
-        String noteName="", entryName = "", noteNameAndEntryName = "";
-        try{
+        String noteName = "";
+        String entryName = "";
+        String noteNameAndEntryName = "";
+        try {
             noteNameAndEntryName =
                     noteNameAndEntryNameDetails.substring(noteNameAndEntryNameDetails.indexOf("n/")).trim();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new InvalidDeleteEntryArgumentException();
         }
 
         try {
             noteName = noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("n/") + 2,
                     noteNameAndEntryName.indexOf("e/")).trim();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new InvalidDeleteEntryArgumentException();
         }
 
-        try{
+        try {
             entryName = noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("e/") + 2).trim();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new InvalidDeleteEntryArgumentException();
         }
 
-        if (noteNameAndEntryName.trim().substring(noteNameAndEntryName.indexOf("e/") + 2).trim().isEmpty() &&
-                noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("n/") + 2,
+        if (noteNameAndEntryName.trim().substring(noteNameAndEntryName.indexOf("e/") + 2).trim().isEmpty()
+                && noteNameAndEntryName.substring(noteNameAndEntryName.indexOf("n/") + 2,
                 noteNameAndEntryName.indexOf("e/")).trim().isEmpty()) {
             throw new EmptyEntryArgumentsException();
         } else if (noteNameAndEntryName.trim().substring(noteNameAndEntryName.indexOf("e/") + 2).trim().isEmpty()) {
@@ -324,8 +354,9 @@ public class ParserJournal {
      */
     public static String parseTagForFinding(String input) throws EmptyFindTagException {
         String tagName = input.trim().substring(input.indexOf("find") + 4).trim();
-        if(tagName.isEmpty())
+        if (tagName.isEmpty()) {
             throw new EmptyFindTagException();
+        }
         return tagName;
     }
 }

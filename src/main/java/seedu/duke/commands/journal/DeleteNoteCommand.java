@@ -44,12 +44,13 @@ public class DeleteNoteCommand extends Command {
      * @param ui allows for printing that note is added
      * @param storage to allow for storage of notes
      * @throws InvalidNotebookIndexException if index of notebook is invalid
-     * @throws InvalidDeleteNoteArgumentException
-     * @throws EmptyDeleteNoteException
+     * @throws InvalidDeleteNoteArgumentException if arguments for deleting notebook are invalid.
+     * @throws EmptyDeleteNoteException if no notebook index given for deletion.
      * @throws IOException in case of error when writing to save file.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException, InvalidNotebookIndexException, EmptyDeleteNoteException, InvalidDeleteNoteArgumentException {
+    public void execute(Ui ui, Storage storage) throws IOException, InvalidNotebookIndexException,
+            EmptyDeleteNoteException, InvalidDeleteNoteArgumentException {
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         int indexOfNotebookToDelete = ParserJournal.parseDeleteNoteCommand(userInput);
         if (indexOfNotebookToDelete < 1 || indexOfNotebookToDelete > notes.size()) {

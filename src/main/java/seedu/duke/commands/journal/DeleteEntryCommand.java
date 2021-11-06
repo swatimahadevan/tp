@@ -3,7 +3,13 @@ package seedu.duke.commands.journal;
 //@@author SvethaMahadevan
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.journal.*;
+import seedu.duke.exceptions.journal.EmptyEntryArgumentsException;
+import seedu.duke.exceptions.journal.EmptyEntryNameException;
+import seedu.duke.exceptions.journal.EmptyNoteNameException;
+import seedu.duke.exceptions.journal.EntryDoesNotExistException;
+import seedu.duke.exceptions.journal.InvalidDeleteEntryArgumentException;
+import seedu.duke.exceptions.journal.InvalidNotebookIndexException;
+import seedu.duke.exceptions.journal.NotebookNotFoundForEntry;
 import seedu.duke.journal.Entry;
 import seedu.duke.parser.journal.ParserJournal;
 import seedu.duke.storage.Storage;
@@ -39,12 +45,12 @@ public class DeleteEntryCommand extends Command {
      *
      * @param ui allows for printing of a message to indicate that the entry has been added
      * @param storage to allow for storing of entries
-     * @throws InvalidNotebookIndexException
-     * @throws NotebookNotFoundForEntry
-     * @throws EmptyEntryNameException
-     * @throws EntryDoesNotExistException
-     * @throws EmptyEntryArgumentsException
-     * @throws InvalidDeleteEntryArgumentException
+     * @throws InvalidNotebookIndexException if notebook index is invalid
+     * @throws NotebookNotFoundForEntry notebook not found for deleting the entry
+     * @throws EmptyEntryNameException if entry name not given by user
+     * @throws EntryDoesNotExistException if the entry doesn't exist
+     * @throws EmptyEntryArgumentsException if no arguments given for entry deletion
+     * @throws InvalidDeleteEntryArgumentException if arguments given for entry deletion are invalid
      * @throws IOException in case of error when writing to save file.
      */
     @Override
