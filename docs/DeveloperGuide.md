@@ -235,6 +235,10 @@ Given below is an example usage scenario and how the add task mechanism behaves 
    v. `AddTodoCommand` prints the successful message to the user.
    vi. `AddTodoCommand` calls `StorageTasks.writeTaskList(storage.tasksList)` to save the new data to the storage file.
 
+Below is an activity diagram for the execution of this feature.
+
+![](./images/calendar/AddTaskActivity.png)
+
 #### 4.3.3 Adding a Lecture
 
 This feature allows user to add a new Lecture.
@@ -312,6 +316,10 @@ Given below is an example usage scenario and how the delete task mechanism behav
    ii. `DeleteTaskCommand` calls `deleteTask(this.index)` for the index of the task as given by the user to delete the task.\
    iii. The delete successful message is printed to the user.\
    iv. `DeleteTaskCommand` calls `StorageTasks.writeTaskList(Storage.tasksList)` to save the new data to the storage file.
+
+Below is a sequence diagram that demonstrates this feature.
+
+![](./images/calendar/DeleteTaskCommand.png)
 
 #### 4.3.7 Deleting a Lecture
 
