@@ -49,6 +49,7 @@ import seedu.duke.exceptions.food.NoStoreDividerException;
 import seedu.duke.exceptions.journal.EmptyJournalArgumentException;
 import seedu.duke.exceptions.journal.IncorrectJournalArgumentException;
 
+import seedu.duke.exceptions.module.IllegalModuleCommandException;
 import seedu.duke.exceptions.syntax.ArgumentsNotFoundException;
 import seedu.duke.exceptions.syntax.IllegalCommandException;
 import seedu.duke.exceptions.syntax.IllegalDateTimeException;
@@ -235,7 +236,7 @@ public class Parser {
             case COMMAND_SUFFIX_EXPECTED:
                 return new GetExpectedCapCommand();
             default:
-                throw new ClickException();
+                throw new IllegalModuleCommandException();
             }
         case COMMAND_ZOOM:
             String[] zoomArgs = commandArgs.split(" ");
@@ -340,9 +341,9 @@ public class Parser {
      *
      * @param commandArgs The command arguments.
      * @return A command that related to Module based on user's input.
-     * @throws ClickException If there is an exception of type ClickException occurs.
+     * @throws IllegalModuleCommandException If the module command is illegal.
      */
-    private Command getModuleCommand(String commandArgs) throws ClickException {
+    private Command getModuleCommand(String commandArgs) throws IllegalModuleCommandException {
         String[] moduleCommandAndArgs = splitCommandAndArgs(commandArgs);
         assert moduleCommandAndArgs.length == 2;
         switch (moduleCommandAndArgs[0]) {
@@ -353,7 +354,7 @@ public class Parser {
         case COMMAND_SUFFIX_DELETE:
             return new DeleteModuleCommand(moduleCommandAndArgs[1]);
         default:
-            throw new ClickException();
+            throw new IllegalModuleCommandException();
         }
     }
 

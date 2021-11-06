@@ -17,13 +17,13 @@ public class ExceptionHandler {
      *
      * @param e Exception of type DukeException thrown by Duke.
      */
-    public static void handleDukeExceptions(ClickException e, String userInput) {
+    public static void handleClickExceptions(ClickException e, String userInput) {
         ui.printLine();
         ui.printMessage(e.getMessage());
         ui.printLine();
     }
 
-    public static void handleDukeExceptions(ClickException e) {
+    public static void handleClickExceptions(ClickException e) {
         ui.printLine();
         ui.printMessage(e.getMessage());
         ui.printLine();

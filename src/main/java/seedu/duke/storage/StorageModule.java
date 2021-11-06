@@ -87,7 +87,7 @@ public class StorageModule {
             return new ModuleList();
         } catch (StorageModuleException e) {
             createModuleStorageFile();
-            ExceptionHandler.handleDukeExceptions(e);
+            ExceptionHandler.handleClickExceptions(e);
             return new ModuleList();
         }
         return new ModuleList(storedModules);
@@ -132,7 +132,7 @@ public class StorageModule {
             return capAndMc;
         } catch (StorageModuleException e) {
             createCapStorageFile();
-            exceptionHandler.handleDukeExceptions(e);
+            exceptionHandler.handleClickExceptions(e);
             capAndMc.add(0.0);
             capAndMc.add(0.0);
             return capAndMc;

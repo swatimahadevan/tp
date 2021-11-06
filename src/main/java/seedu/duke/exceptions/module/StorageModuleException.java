@@ -2,7 +2,7 @@ package seedu.duke.exceptions.module;
 
 import seedu.duke.exceptions.ClickException;
 
-import static seedu.duke.constants.ExceptionMessages.MESSAGE_STORAGE_EXCEPTION;
+import static seedu.duke.constants.ExceptionMessages.MESSAGE_MODULE_STORAGE;
 
 //@@author nvbinh15
 
@@ -15,6 +15,6 @@ public class StorageModuleException extends ClickException {
      * Class constructor inherited from ClickException.
      */
     public StorageModuleException() {
-        super(MESSAGE_STORAGE_EXCEPTION);
+        super(MESSAGE_MODULE_STORAGE);
     }
 }

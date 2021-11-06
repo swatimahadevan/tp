@@ -21,6 +21,8 @@ public class ExceptionMessages {
     public static final String MESSAGE_DUPLICATE_MODULE_PARAMETERS = "Duplicate parameters."
             + "Please follow the syntax module add c/MODULE_CODE {n/[MODULE_NAME] "
             + "m/[MODULAR CREDITS] e/[EXPECTED_GRADE]}";
-    public static final String MESSAGE_STORAGE_EXCEPTION = "Something is wrong with the Module storage file. "
+    public static final String MESSAGE_MODULE_STORAGE = "Something is wrong with the Module storage file. "
             + "A new file has been created.";
+    public static final String MESSAGE_ILLEGAL_MODULE_COMMAND = "Illegal Module command. "
+            + "Enter help to get the supported commands.";
 }
