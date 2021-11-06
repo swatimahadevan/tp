@@ -95,7 +95,7 @@ For instance, a class diagram to show the architecture when parsing the literal 
 
 **Community**:
 
-In this project, I found the github suggestion feature interesting and have used in a few reviews.
+In this project, I found the GitHub suggestion feature interesting and have used in a few reviews.
 + PRs reviewed (with non-trivial review comments):
     1. [#28](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/28) 
     1. [#32](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/32)
