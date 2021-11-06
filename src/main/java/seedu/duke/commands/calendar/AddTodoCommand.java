@@ -75,20 +75,6 @@ public class AddTodoCommand extends Command {
     }
 
     /**
-     * Checks if a task of the same name already exists.
-     *
-     * @param task The Task object.
-     * @throws DuplicateTaskException If user tries to add a duplicate task/lecture.
-     */
-    public static void checkIfDuplicate(Task task) throws InvalidDateException, DuplicateTaskException {
-        for (int i = 0; i < Storage.tasksList.getTaskList().size(); i++) {
-            if (task.getDescription().equals(Storage.tasksList.getTaskList().get(i).getDescription())) {
-                throw new DuplicateTaskException(MESSAGE_DUPLICATE_TASK);
-            }
-        }
-    }
-
-    /**
      * To execute adding of todo.
      *
      * @param ui      The component of CLICK that deals with the interaction with the user.
@@ -104,7 +90,6 @@ public class AddTodoCommand extends Command {
         String description = arguments.get(INDEX_TODO_DESCRIPTION).trim();
         String todoDateStringFormat = arguments.get(INDEX_TODO_DATE);
         Task task = new Todo(description, todoDateStringFormat);
-        checkIfDuplicate(task);
         checkIfDateValid(todoDateStringFormat);
         ui.printLine();
         storage.tasksList.addTask(task);

@@ -37,6 +37,7 @@ import seedu.duke.commands.zoom.OpenZoomLink;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.calendar.IncorrectCommandException;
 import seedu.duke.exceptions.calendar.IncorrectNumberOfArgumentsException;
+import seedu.duke.exceptions.calendar.InvalidDateException;
 import seedu.duke.exceptions.food.IllegalFoodParameterException;
 import seedu.duke.exceptions.food.InvalidItemIndexException;
 import seedu.duke.exceptions.food.InvalidStoreIndexException;
@@ -369,7 +370,8 @@ public class Parser {
      *         by the user does not have the required number of arguments.
      */
     private Command getCalendarCommand(String commandArgs, String userInput)
-            throws IncorrectNumberOfArgumentsException, IncorrectCommandException, ArgumentsNotFoundException {
+            throws IncorrectNumberOfArgumentsException,
+            IncorrectCommandException, InvalidDateException {
         String[] calendarArguments = commandArgs.split(" ");
         switch (calendarArguments[0]) {
         case COMMAND_SUFFIX_LIST:
@@ -429,7 +431,7 @@ public class Parser {
         try {
             indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[2]);
         } catch (NumberFormatException e) {
-            System.out.println(PRINT_NOT_AN_INT);
+            throw new NumberFormatException(PRINT_NOT_AN_INT);
         }
         return indexOfTaskToBeEdited;
     }
@@ -442,7 +444,7 @@ public class Parser {
         try {
             indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[1]);
         } catch (NumberFormatException e) {
-            System.out.println(PRINT_NOT_AN_INT);
+            throw new NumberFormatException(PRINT_NOT_AN_INT);
         }
         return indexOfTaskToBeEdited;
     }
@@ -455,7 +457,7 @@ public class Parser {
         try {
             indexOfTaskToBeEdited = Integer.parseInt(calendarArguments[2]);
         } catch (NumberFormatException e) {
-            System.out.println(PRINT_NOT_AN_INT);
+            throw new NumberFormatException(PRINT_NOT_AN_INT);
         }
         return indexOfTaskToBeEdited;
     }

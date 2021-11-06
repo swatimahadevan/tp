@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.calendar.DuplicateTaskException;
 import seedu.duke.exceptions.calendar.InvalidDateException;
+import seedu.duke.exceptions.calendar.LectureIncorrectDateException;
 import seedu.duke.exceptions.calendar.ModuleNotFoundException;
 import seedu.duke.module.ModuleList;
 import seedu.duke.schedule.lecture.Lecture;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageLecture;
 import seedu.duke.ui.Ui;
+
+import static seedu.duke.constants.Messages.DELIMITER_DATE;
 
 //@@author swatimahadevan
 
@@ -64,7 +67,7 @@ public class AddLectureCommand extends Command {
      * @param lectureDateStringFormat The date from user in string format.
      * @return True if the date is valid else False.
      */
-    public static boolean isValid(String lectureDateStringFormat) {
+    private static boolean isValid(String lectureDateStringFormat) {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
         try {
@@ -81,7 +84,7 @@ public class AddLectureCommand extends Command {
      * @param lectureDateStringFormat The date from user in string format.
      * @throws InvalidDateException If user provides invalid date.
      */
-    public static void checkIfDateValid(String lectureDateStringFormat) throws InvalidDateException {
+    private static void checkIfDateValid(String lectureDateStringFormat) throws InvalidDateException {
         if (!isValid(lectureDateStringFormat)) {
             throw new InvalidDateException();
         }
@@ -100,7 +103,7 @@ public class AddLectureCommand extends Command {
     @Override
 
     public void execute(Ui ui, Storage storage) throws IOException,
-            ModuleNotFoundException, InvalidDateException, DuplicateTaskException {
+            ModuleNotFoundException, InvalidDateException, DuplicateTaskException, LectureIncorrectDateException {
         ModuleList moduleList = storage.storageModule.readModulesFromFile();
         String module = argumentsLecture.get(0).trim();
         boolean isModuleInList = false;
@@ -111,11 +114,26 @@ public class AddLectureCommand extends Command {
         }
         if (isModuleInList) {
             String dateStartStringFormat = argumentsLecture.get(1).trim();
-            String dateEndStringFormat = argumentsLecture.get(2);
-            Lecture lecture = new Lecture(argumentsLecture.get(0), dateStartStringFormat, dateEndStringFormat);
+            String dateEndStringFormat = argumentsLecture.get(2).trim();
+            Lecture lecture = new Lecture(module, dateStartStringFormat, dateEndStringFormat);
             checkIfDateValid(dateStartStringFormat);
             checkIfDateValid(dateEndStringFormat);
             checkIfDuplicate(lecture);
+            String[] dateStartArgs = dateStartStringFormat.split(DELIMITER_DATE);
+            String[] dateEndArgs = dateEndStringFormat.split(DELIMITER_DATE);
+            int dateStartYear = Integer.parseInt(dateStartArgs[2]);
+            int dateEndYear = Integer.parseInt(dateEndArgs[2]);
+            int dateStartMonth = Integer.parseInt(dateStartArgs[1]);
+            int dateEndMonth = Integer.parseInt(dateEndArgs[1]);
+            int dateStartDay = Integer.parseInt(dateStartArgs[0]);
+            int dateEndDay = Integer.parseInt(dateEndArgs[0]);
+            if (dateStartYear > dateEndYear) {
+                throw new LectureIncorrectDateException();
+            } else if (dateEndYear == dateStartYear && dateStartMonth > dateEndMonth) {
+                throw new LectureIncorrectDateException();
+            } else if (dateEndMonth == dateStartMonth && dateStartDay > dateEndDay) {
+                throw new LectureIncorrectDateException();
+            }
             ui.printLine();
             storage.lectureList.addLecture(lecture);
             ui.printMessage(MESSAGE_ADD_LECTURE);

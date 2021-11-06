@@ -108,19 +108,30 @@ public class Schedule {
     private static void addLectureToCalendarDay(String moduleName,
         String[] dateFromArguments, String[] dateToArguments,
         int month, int year, ArrayList<ArrayList<String>> calendarLectures) {
-        int paramDate = Integer.parseInt(dateFromArguments[0]);
-        int paramMonth = Integer.parseInt(dateFromArguments[1]);
-        int paramYear = Integer.parseInt(dateFromArguments[2]);
-        LocalDate localDate = LocalDate.of(paramYear, paramMonth, paramDate);
+        int paramStartDate = Integer.parseInt(dateFromArguments[0]);
+        int paramEndDate = Integer.parseInt(dateToArguments[0]);
+        int paramStartMonth = Integer.parseInt(dateFromArguments[1]);
+        int paramEndMonth = Integer.parseInt(dateToArguments[1]);
+        int paramStartYear = Integer.parseInt(dateFromArguments[2]);
+        int paramEndYear = Integer.parseInt(dateToArguments[2]);
+        LocalDate localDate = LocalDate.of(paramStartYear, paramStartMonth, paramStartDate);
         java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
-        if ((month >= Integer.parseInt(dateFromArguments[1])
-                && (month <= Integer.parseInt(dateToArguments[1])))
-                && (year >= Integer.parseInt(dateFromArguments[2]))
-                && (year <= Integer.parseInt(dateToArguments[2]))) {
+        if ((month >= paramStartMonth && (month <= paramEndMonth))
+                && (year >= paramStartYear) && (year <= paramEndYear)) {
             YearMonth yearMonthObject = YearMonth.of(year, month);
             int daysInMonth = yearMonthObject.lengthOfMonth();
             for (int i = 1; i <= daysInMonth; i++) {
-                if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek) {
+                if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek
+                        && paramStartMonth == paramEndMonth && paramStartDate <= i && i <= paramEndDate) {
+                    calendarLectures.get(i).add(moduleName);
+                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek
+                        && month != paramStartMonth && month != Integer.parseInt(dateToArguments[1])) {
+                    calendarLectures.get(i).add(moduleName);
+                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek
+                        && month == paramStartMonth && paramStartMonth != paramEndMonth && paramStartDate <= i) {
+                    calendarLectures.get(i).add(moduleName);
+                } else if (LocalDate.of(year, month, i).getDayOfWeek() == dayOfWeek
+                        && month == paramEndMonth && paramStartMonth != paramEndMonth && i <= paramEndDate) {
                     calendarLectures.get(i).add(moduleName);
                 }
             }
@@ -245,7 +256,7 @@ public class Schedule {
             int currentDay = Integer.parseInt(currentDayStringFormat);
             String moduleLecture = calendarLectures.get(currentDay).get(calendarRow) + " lecture";
             if (moduleLecture.length() > 15) {
-                moduleLecture = moduleLecture.substring(INDEX_ZERO, 15);
+                moduleLecture = moduleLecture.substring(INDEX_ZERO, 13) + "..";
             } else {
                 moduleLecture = String.format("%-" + 15 + "s", moduleLecture);
             }

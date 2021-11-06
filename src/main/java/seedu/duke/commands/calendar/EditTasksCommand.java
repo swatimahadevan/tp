@@ -74,8 +74,6 @@ public class EditTasksCommand extends Command {
         ArrayList<String> arguments = ParserSchedule.parseTodoCommand(followUpInput);
         String description = arguments.get(INDEX_TODO_DESCRIPTION).trim();
         String date = arguments.get(INDEX_TODO_DATE);
-        Task task = new Todo(description, date);
-        AddTodoCommand.checkIfDuplicate(task);
         AddTodoCommand.checkIfDateValid(date);
         Storage.tasksList.editTask(this.index, description, date);
         ui.printMessage(MESSAGE_EDITED_TASK);
