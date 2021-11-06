@@ -174,6 +174,8 @@ Example: `zoom add nus.sg/testlink ABC101`
 
 #### 4.3.1 Displaying the calendar
 
+This feature allows the user to view a calendar with tasks and lectures.
+
 **Implementation**
 
 The command for displaying the calendar for a specific month is implemented by the `DisplayCommand` class that extends `Command`.
@@ -189,16 +191,19 @@ Given below is an example usage scenario and how the display calendar mechanism 
    
       ii. The `inputYearMonth` is passed into `Ui` class method `printCalenderTitle` and this prints out the title of that month with the month name and the year. In this example, it will display as given in the figure below.
      ![](./images/calendar/calendar_header.png)
+
       iii. Then, the method `arrangeTaskList` in `Schedule` class is called, and it takes in `storage.tasksList` (the TaskList object with all the currently stored tasks drawn from storage), `calendarTasks` (an ArrayList<ArrayList<String>> object initialized with empty ArrayLists of type String), `month` (the month input by the user, which in this example is the integer `10`) and year `month` (the year input by the user, which in this example is the integer `2021`), and adds the tasks to the days in the empty String ArrayLists initialized before in `calendarTasks`.
 
       iv.The method `arrangeLectureList` is also called and the process is same as in the previous step, except with `storage.lectureList` and `calendarLecture` replacing the first two input parameters of `arrangeTaskList`.
+
       v.Then, the method `displayCalendar` in `Schedule` class is called, and it takes in `inputYearMonth` (the YearMonth object created from the month and year parsed from the user input), the `calendarTasks` (that was filled with the tasks for each day in the Step (iii)) and `calendarLecture` (that was filled with the lectures for each day in the Step (iv)). The method `displayCalendar` performs the necessary logic to print out the calendar.
   >  **NOTE:** Two tasks and two lectures are displayed for each day based on the order in which the user added them, and if there are more, they will show as and when the user deletes the tasks/lectures that are currently displayed.
 
 The below sequence diagram shows the execution process of the calendar display feature.
 ![](./images/calendar/CalendarDisplaySequence.png)
 
-#### 4.3.2 Design Considerations
+**Design Considerations**
+
 The following design considerations were kept in mind while implementing the calendar display feature,
 - Aspect: Calendar visual display
     - Alternative 1: Display two tasks and two lectures at any time.
@@ -207,6 +212,155 @@ The following design considerations were kept in mind while implementing the cal
     - Alternative 2: Set the size of the calendar to accommodate the largest number of tasks and lectures for a particular day. For example, if a day has 8 tasks and lectures and that is the highest amongst all the days, then the calendar would change to show all 8 for this day and the remaining days would have filled display up till how many tasks and lectures they have and the remaining spots empty.
         - Pros : The calendar displayed would show all the tasks and lectures.
         - Cons: Difficult to implement.
+
+#### 4.3.2 Adding a Task
+
+This feature allows user to add a new Task.
+
+**Implementation**
+
+The command for adding a task is implemented by the `AddTodoCommand` class that extends `Command`.
+
+Given below is an example usage scenario and how the add task mechanism behaves at each step.
+
+1. User executes `calendar todo n/ RANDOMNAME d/ 10-10-2021`\
+   i. `Click` receives user's input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse user's input into a `Command`.
+2. `AddTodoCommand` object is created.
+3. Execution of the command.\
+   i. `AddTodoCommand` gets the task description as well as the date from the user's input after it is parsed by `parseTodoCommand()` of `ParserSchedule`.
+   ii. `AddTodoCommand` calls `Todo()` to create a new `Todo` object based on user's input.\
+   iii. `AddTodoCommand` calls `checkIfDateValid()` to throw an exception if the date given byg the user is invalid.\
+   iv. `AddTodoCommand` calls `addTask()` to add the `Todo` object created to `storage.tasksList`.\
+   v. `AddTodoCommand` prints the successful message to the user.
+   vi. `AddTodoCommand` calls `StorageTasks.writeTaskList(storage.tasksList)` to save the new data to the storage file.
+
+Below is an activity diagram for the execution of this feature.
+
+![](./images/calendar/AddTaskActivity.png)
+
+#### 4.3.3 Adding a Lecture
+
+This feature allows user to add a new Lecture.
+
+**Implementation**
+
+The command for adding a lecture is implemented by the `AddLectureCommand` class that extends `Command`.
+
+Given below is an example usage scenario and how the add lecture mechanism behaves at each step.
+
+1. User executes `calendar lecture m/ CS2113T s/ 10-10-2021 e/ 30-10-2021`\
+   i. `Click` receives user's input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse user's input into a `Command`.
+2. `AddLectureCommand` object is created.
+3. Execution of the command.\
+   i. `AddLectureCommand` gets the lecture module code as well as the start date and end date from the user's input after it is parsed by `parseLectureCommand()` of `ParserSchedule`.
+   ii. `AddLectureCommand` calls `Lecture()` to create a new `Lecture` object based on user's input.\
+   iii. `AddLectureCommand` performs checks to determine if the start date is before the end date as given by the user, and if it is not, then the exception `LectureIncorrectDateException` is thrown.\
+   iv. `AddLectureCommand` calls `addLecture()` to add the `Lecture` object created to `storage.lectureList`.\
+   v. `AddLectureCommand` prints the successful message to the user.
+   vi. `AddLectureCommand` calls `StorageLecture.writeLectureList(storage.lectureList)` to save the new data to the storage file.
+
+#### 4.3.4 Listing All Tasks
+
+This feature allows user to view all Tasks.
+
+**Implementation**
+
+The command for listing all tasks is implemented by the `ListTasksCommand` class that extends `Command`.
+
+Given below is an example usage scenario and how the list task mechanism behaves at each step.
+
+1. User executes `calendar list task`\
+   i. `Click` receives user's input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse user's input into a `Command`.
+2. `ListTasksCommand` object is created.
+3. Execution of the command.\
+   i. `ListTasksCommand` calls `StorageTasks.readTaskList()` to read Task-related data from the storage file.\
+   ii. `ListTasksCommand` calls `printTaskList(tasks.getTaskList())` of `Ui` package to print out the tasks to the user.\
+
+#### 4.3.5 Listing All Lectures
+
+This feature allows user to view all Lectures.
+
+**Implementation**
+
+The command for listing all lectures is implemented by the `ListLecturesCommand` class that extends `Command`.
+
+Given below is an example usage scenario and how the list lecture mechanism behaves at each step.
+
+1. User executes `calendar list lec`\
+   i. `Click` receives user's input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse user's input into a `Command`.
+2. `ListLecturesCommand` object is created.
+3. Execution of the command.\
+   i. `ListLecturesCommand` calls `StorageLecture.readLectureList()` to read Lecture-related data from the storage file.\
+   ii. `ListLecturesCommand` calls `printLectureList(lectures.getLectureList())` of `Ui` package to print out the tasks to the user.\
+
+#### 4.3.6 Deleting a Task
+
+This feature allows user to delete a Task created in the past.
+
+**Implementation**
+
+The command for deleting a task is implemented by the `DeleteTaskCommand` class that extends `Command`.
+
+Given below is an example usage scenario and how the delete task mechanism behaves at each step.
+
+1. User executes `calendar delete task 1`\
+   i. `Click` receives user's input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse user's input into a `Command`.
+2. `DeleteTaskCommand` object is created.
+3. Execution of the command.\
+   i. `DeleteTaskCommand` checks if the index as gotten from `getTaskIndex()` of `Parser` class is in the task list and if it not then `CalendarIndexNotFoundException()` is thrown.\
+   ii. `DeleteTaskCommand` calls `deleteTask(this.index)` for the index of the task as given by the user to delete the task.\
+   iii. The delete successful message is printed to the user.\
+   iv. `DeleteTaskCommand` calls `StorageTasks.writeTaskList(Storage.tasksList)` to save the new data to the storage file.
+
+Below is a sequence diagram that demonstrates this feature.
+
+![](./images/calendar/DeleteTaskCommand.png)
+
+#### 4.3.7 Deleting a Lecture
+
+This feature allows user to delete a Lecture created in the past.
+
+**Implementation**
+
+The command for deleting a task is implemented by the `DeleteLectureCommand` class that extends `Command`.
+
+Given below is an example usage scenario and how the delete lecture mechanism behaves at each step.
+
+1. User executes `calendar delete lec 1`\
+   i. `Click` receives user's input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse user's input into a `Command`.
+2. `DeleteLectureCommand` object is created.
+3. Execution of the command.\
+   i. `DeleteLectureCommand` checks if the index as gotten from `getLectureIndex()` of `Parser` class is in the task list and if it not then `LectureIndexNotFoundException()` is thrown.\
+   ii. `DeleteLectureCommand` calls `deleteLecture(this.index)` for the index of the lecture as given by the user to delete the lecture.\
+   iii. The delete successful message is printed to the user.\
+   iv. `DeleteLectureCommand` calls `StorageLecture.writeLectureList(Storage.lectureList)` to save the new data to the storage file.
+
+#### 4.3.8 Editing a Task
+
+This feature allows user to edit a Task created in the past.
+
+**Implementation**
+
+The command for editing a task is implemented by the `EditTasksCommand` class that extends `Command`.
+
+Given below is an example usage scenario and how the edit task mechanism behaves at each step.
+
+1. User executes `calendar edit task 1`\
+   i. `Click` receives user's input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse user's input into a `Command`.
+2. `EditTasksCommand` object is created.
+3. Execution of the command.\
+   i. `EditTasksCommand` checks if the index as gotten from `getTaskIndexForEdit()` of `Parser` class is in the task list and if it not then `CalendarIndexNotFoundException()` is thrown.\
+   ii. `EditTasksCommand` prompts the user to enter the command to add a todo task and parses the command using `parseTodoCommand()` The date given by the user is checked with `checkIfDateValid(date)` and if the date is incorrect then an exception is thrown.\
+   iii. `EditTasksCommand` calls `editTask()` to edit the task.\
+   iv. Edit successful message is printed back to the user.
+   iv. `EditTasksCommand` calls `StorageTasks.writeTaskList(Storage.tasksList)` to save the new data to the storage file.
 
 ### 4.4 Journaling Feature
 
@@ -425,7 +579,7 @@ decided  to switch over to Alternative 1 for the user to easily view all the syn
 > To include code coverage, instructions for the reader to self test
 ## 6. Dev Ops
 
-## Appendices
+## Appendices 
 
 ### Appendix A: Product scope
 ### Appendix B: Target user profile

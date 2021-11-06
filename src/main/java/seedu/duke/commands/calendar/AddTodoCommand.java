@@ -89,8 +89,8 @@ public class AddTodoCommand extends Command {
             ParseException, DuplicateTaskException, InvalidDateException {
         String description = arguments.get(INDEX_TODO_DESCRIPTION).trim();
         String todoDateStringFormat = arguments.get(INDEX_TODO_DATE);
-        Task task = new Todo(description, todoDateStringFormat);
         checkIfDateValid(todoDateStringFormat);
+        Task task = new Todo(description, todoDateStringFormat);
         ui.printLine();
         storage.tasksList.addTask(task);
         ui.printTaskAddedMessage();
