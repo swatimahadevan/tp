@@ -1,8 +1,7 @@
 package seedu.duke.storage;
 
-import seedu.duke.commands.module.StorageModuleException;
+import seedu.duke.exceptions.module.StorageModuleException;
 import seedu.duke.exceptions.ExceptionHandler;
-import seedu.duke.exceptions.storage.StorageException;
 import seedu.duke.module.Module;
 import seedu.duke.module.ModuleList;
 import seedu.duke.parser.module.ParserModule;

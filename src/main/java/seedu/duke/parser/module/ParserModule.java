@@ -1,7 +1,6 @@
 package seedu.duke.parser.module;
 
-import seedu.duke.commands.module.StorageModuleException;
-import seedu.duke.exceptions.storage.StorageException;
+import seedu.duke.exceptions.module.StorageModuleException;
 import seedu.duke.module.Module;
 
 import java.util.ArrayList;
