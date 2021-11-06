@@ -101,7 +101,11 @@ public class AddLectureCommand extends Command {
      * @param dateEndDay End date day.
      * @throws LectureIncorrectDateException if start date not before end date for lecture.
      */
-    private static void checkIfStartBeforeEndDate(int dateStartYear, int dateEndYear, int dateStartMonth, int dateEndMonth, int dateStartDay, int dateEndDay) throws LectureIncorrectDateException {
+    private static void checkIfStartBeforeEndDate(int dateStartYear, int dateEndYear,
+                                                  int dateStartMonth,
+                                                  int dateEndMonth,
+                                                  int dateStartDay, int dateEndDay)
+            throws LectureIncorrectDateException {
         if (dateStartYear > dateEndYear) {
             throw new LectureIncorrectDateException();
         } else if (dateEndYear == dateStartYear && dateStartMonth > dateEndMonth) {
@@ -148,7 +152,8 @@ public class AddLectureCommand extends Command {
             int dateEndMonth = Integer.parseInt(dateEndArgs[1]);
             int dateStartDay = Integer.parseInt(dateStartArgs[0]);
             int dateEndDay = Integer.parseInt(dateEndArgs[0]);
-            checkIfStartBeforeEndDate(dateStartYear, dateEndYear, dateStartMonth, dateEndMonth, dateStartDay, dateEndDay);
+            checkIfStartBeforeEndDate(dateStartYear,
+                    dateEndYear, dateStartMonth, dateEndMonth, dateStartDay, dateEndDay);
             ui.printLine();
             storage.lectureList.addLecture(lecture);
             ui.printMessage(MESSAGE_ADD_LECTURE);
