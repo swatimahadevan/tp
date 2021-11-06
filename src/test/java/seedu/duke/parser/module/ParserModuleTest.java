@@ -45,7 +45,7 @@ class ParserModuleTest {
     @Test
     void retrieveStoredModule_invalidData_StorageExceptionThrown() {
         String invalidData = "CS2113T|Software Engineering|A";
-        assertThrows(StorageException.class, () -> ParserModule.retrieveStoredModule(invalidData));
+        assertThrows(StorageModuleException.class, () -> ParserModule.retrieveStoredModule(invalidData));
     }
 
     /**
@@ -66,7 +66,7 @@ class ParserModuleTest {
     @Test
     void retrieveStoredCapInfo_invalidData_StorageExceptionThrown() {
         String invalidData = "4.5|";
-        assertThrows(StorageException.class, () -> ParserModule.retrieveStoredCapInfo(invalidData));
+        assertThrows(StorageModuleException.class, () -> ParserModule.retrieveStoredCapInfo(invalidData));
     }
 
 }
