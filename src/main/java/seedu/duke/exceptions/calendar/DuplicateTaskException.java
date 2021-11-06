@@ -1,9 +1,9 @@
 package seedu.duke.exceptions.calendar;
 
-import seedu.duke.ui.Ui;
+import seedu.duke.exceptions.ClickException;
 
-public class DuplicateTaskException extends Exception {
+public class DuplicateTaskException extends ClickException {
     public DuplicateTaskException(String message) {
-        Ui.printMessage(message);
+        super(message);
     }
 }

@@ -109,7 +109,6 @@ public class AddLectureCommand extends Command {
                 isModuleInList = true;
             }
         }
-        ui.printLine();
         if (isModuleInList) {
             String dateStartStringFormat = argumentsLecture.get(1).trim();
             String dateEndStringFormat = argumentsLecture.get(2);
@@ -117,9 +116,11 @@ public class AddLectureCommand extends Command {
             checkIfDateValid(dateStartStringFormat);
             checkIfDateValid(dateEndStringFormat);
             checkIfDuplicate(lecture);
+            ui.printLine();
             storage.lectureList.addLecture(lecture);
             ui.printMessage(MESSAGE_ADD_LECTURE);
         } else {
+            ui.printLine();
             ui.printMessage(MESSAGE_NOT_FOUND_MODULE);
         }
         ui.printLine();

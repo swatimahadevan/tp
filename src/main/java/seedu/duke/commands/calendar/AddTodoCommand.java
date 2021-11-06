@@ -104,9 +104,9 @@ public class AddTodoCommand extends Command {
         String description = arguments.get(INDEX_TODO_DESCRIPTION).trim();
         String todoDateStringFormat = arguments.get(INDEX_TODO_DATE);
         Task task = new Todo(description, todoDateStringFormat);
-        ui.printLine();
         checkIfDuplicate(task);
         checkIfDateValid(todoDateStringFormat);
+        ui.printLine();
         storage.tasksList.addTask(task);
         ui.printTaskAddedMessage();
         ui.printLine();
