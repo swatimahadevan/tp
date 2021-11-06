@@ -109,5 +109,8 @@ In this project, I found the github suggestion feature interesting and have used
     1. [Automatically saving data](https://github.com/ngnigel99/ped/issues/6)
     1. [Replacing the user guide with an interactive tutorial](https://github.com/ngnigel99/ped/issues/5)
 
+**Actions**:
++ Assigned bug issues from PED to teammates as I was browsing through them anyway
+
 **Tools**:
 + Introducing the runtime-based help command organises commands, so teammates just have to add a default constructor for their new commands in order for it to be reflected in help message, which would be converted into a string for the user.
