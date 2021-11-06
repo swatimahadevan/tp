@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class EntryDoesNotExistException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class EntryDoesNotExistException extends ClickException {
     public EntryDoesNotExistException() {
-        System.out.println("Entry doesn't exist.");
+        super("Entry doesn't exist.");
     }
 }

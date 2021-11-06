@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class EmptyTagNameException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class EmptyTagNameException extends ClickException {
     public EmptyTagNameException() {
-        System.out.println("No tag name entered after 't/' ");
+        super("No tag name entered after 't/' ");
     }
 }
