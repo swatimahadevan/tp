@@ -23,6 +23,12 @@ public class ExceptionHandler {
         ui.printLine();
     }
 
+    public static void handleDukeExceptions(ClickException e) {
+        ui.printLine();
+        ui.printMessage(e.getMessage());
+        ui.printLine();
+    }
+
     /**
      * Handles other exceptions.
      *
