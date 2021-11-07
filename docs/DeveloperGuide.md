@@ -17,7 +17,7 @@
 4.4 [Journal-related Features](#44-journaling-feature)\
 4.5 [Food-related Features](#45-food-related-features)\
 4.6 [Help Command](#46--help-command)\
-4.7 [Logging]()
+4.7 [Logging](#47-logging)
 5. [Testing](#5-testing)
 6. [Dev Ops](#6-dev-ops)
 
