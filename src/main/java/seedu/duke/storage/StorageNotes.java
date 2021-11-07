@@ -2,15 +2,17 @@ package seedu.duke.storage;
 
 //@@author SvethaMahadevan
 
+import seedu.duke.commands.calendar.AddTodoCommand;
 import seedu.duke.journal.CollectionOfNotes;
 import seedu.duke.journal.Note;
 import seedu.duke.logger.ClickLogger;
+import seedu.duke.schedule.task.Todo;
+
 import java.util.logging.Level;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
 
 public class StorageNotes {
     public static final String folderName = "storage/journalData/";
@@ -24,7 +26,9 @@ public class StorageNotes {
         while (i < dataSize) {
             String dataLine = data.get(i);
             String[] noteArguments = dataLine.split("\\|");
-            notes.add(addNote(noteArguments));
+            if ("note".equals(noteArguments[0])) {
+                notes.add(addNote(noteArguments));
+            }
             i++;
         }
         return notes;
