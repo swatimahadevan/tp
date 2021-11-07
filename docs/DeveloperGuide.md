@@ -63,15 +63,18 @@ ii. Go to `src/test/java/seedu.duke` and run `Tests in seedu.duke` to ensure the
 
 ## 3. Design
 
+### 3.1. Architecture
+
 This section is designed to demonstrate our software design description, and aims to provide you with an overall guidance to the architecture of Duke.
 The following sequence diagram illustrates a command call by the user to Click. 
 The steps are as follows:
 1. When the user runs Click, a greeting would be printed to the user
-1. User enters some input which may be a command
-1. The command entered by the user would be parsed
+2. User enters some input which may be a command
+3. The command entered by the user would be parsed
     1. if command, go ahead and execute it respectively
     1. if not throw exception and ask for input again
-1. Parser returns control to Click
+4. Parser returns control to Click
+
 ![](./images/ClickRun.png)
 
 You should note that this is a general overview of the Click functionality, and the `:Command` entity simply represents a Command to be called by the Parser.
@@ -79,6 +82,26 @@ Another point for you to note is the difference between a Duke exception and oth
 exceptions that belong to our program. For instance, invalid dates extending beyond a  student's  matriculation,  or a  lack of entries when adding a journal. 
 This is different from that of an "other" exception, which could be briefly categorized as a general exception. For instance, a `NumberFormatException` on the parsing
 of a String to an Integer.
+
+### 3.2. UI Component
+
+The `UI` package contains the `Ui` class, which deals with interactions with the user.
+
+The `UI` component:
+* Takes in user commands
+* Formats messages and prints out responses
+
+### 3.3. Logic Component
+
+1. `Click` uses `Parser` class to parse the user command.
+2. `Parser` checks if the command is valid or not, splits the user input into interpretable portions, and returns the respective commands with arguments.
+3. All commands inherit from the abstract class `Command` with and `execute()` method. 
+4. Command interacts with models, `Storage` to carry out user's command.
+5. Command also makes use of `UI` to display the messages to the user.
+
+### 3.4. Storage Component
+
+The storage of `Click` refers to storing files of user's data into respective local subdirectory in a local directory called `storage`, which is in the same directory as the project root.
 
 ## 4. Implementation
 
