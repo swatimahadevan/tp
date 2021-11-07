@@ -17,7 +17,6 @@ import static seedu.duke.constants.Messages.MODULE_DIVIDER_NOT_FOUND;
 import static seedu.duke.constants.Messages.STARTDATE_DIVIDER_NOT_FOUND;
 import static seedu.duke.constants.Messages.ENDDATE_DIVIDER_NOT_FOUND;
 import static seedu.duke.constants.Messages.NAME_ABSENT;
-import static seedu.duke.constants.Messages.NAME_DATE_ABSENT;
 import static seedu.duke.constants.Messages.DATE_ABSENT;
 import static seedu.duke.constants.Messages.MODULE_ABSENT;
 import static seedu.duke.constants.Messages.START_DATE_ABSENT;

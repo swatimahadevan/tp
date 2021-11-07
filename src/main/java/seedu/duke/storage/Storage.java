@@ -78,7 +78,7 @@ public class Storage {
     }
     //@@author
 
-    //@author swatim
+    //@author swatimahadevan
     //Loads data in the form of ArrayList<String> data from the save file
     public static ArrayList<String> loadDataFromSaveFile(String filePath) throws IOException {
         FileReader fileReader = new FileReader(filePath);
@@ -96,4 +96,5 @@ public class Storage {
         }
         bufferedWriter.close();
     }
+    //@@author
 }
