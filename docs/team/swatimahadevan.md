@@ -25,7 +25,7 @@ We know that you are a Computing student here at NUS 👨‍🎓 and may prefer 
 
 **Contribution to the User Guide**: Wrote the portion of the user guide that corresponds to my features (Section 3.3 - Managing your calendar) and provided constructive feedback and made changes on the layout as a whole. 
 
-**Contribution to the Developer Guide**: Wrote the portion of the developer guide that corresponds to my features (Section 4.3 - Calendar-related Features) and provided constructive feedback amd ,ade changes on the layout as a whole. All the UML diagrams under Section 4.3 were done by me.
+**Contribution to the Developer Guide**: Wrote the portion of the developer guide that corresponds to my features (Section 4.3 - Calendar-related Features) and provided constructive feedback and made changes on the layout as a whole. All the UML diagrams under Section 4.3 were done by me.
 
 **Community**:
 1. Provided feedback to the team during team meetings and reviewed PRs. These are the PRs I left non-trivial comments on- [#28](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/28), [#36](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/36), [#163](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/163), [#240](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/240), [#245](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/245)
