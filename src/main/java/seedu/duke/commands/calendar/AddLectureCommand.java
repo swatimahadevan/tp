@@ -84,7 +84,7 @@ public class AddLectureCommand extends Command {
      * @param lectureDateStringFormat The date from user in string format.
      * @throws InvalidDateException If user provides invalid date.
      */
-    private static void checkIfDateValid(String lectureDateStringFormat) throws InvalidDateException {
+    public static void checkIfDateValid(String lectureDateStringFormat) throws InvalidDateException {
         if (!isValid(lectureDateStringFormat)) {
             throw new InvalidDateException();
         }
