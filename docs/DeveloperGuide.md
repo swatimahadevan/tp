@@ -659,6 +659,17 @@ public class Click {
 |v1.0|user|add a new module|keep track of the module I'm going to take this semester|
 |v1.0|user|list all modules|get the information about my modules|
 |v1.0|user|delete recorded module|remove a module I'm not taking from the list|
+|v1.0|user|display a calendar|view all my tasks|
+|v1.0|user|add a todo task|to keep track of tasks I need to complete|
+|v1.0|user|delete a todo task|delete a task I have completed/am not going to do|
+|v1.0|user|list all tasks|get the information about my tasks|
+|v2.0|user|display a calendar with lectures and tasks|view all my tasks and lectures in a calendar view|
+|v2.0|user|add a lecture|know which lectures I have on which days|
+|v2.0|user|delete a lecture|delete a lecture that I am not going to do|
+|v2.0|user|edit a task|I do not have to delete a task which I just want to make minor changes to|
+|v2.0|user|list all lectures|get the information about my lectures|
+
+
 
 ### Appendix C: Non-Functional Requirements
 
