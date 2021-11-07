@@ -81,6 +81,7 @@ public class DisplayCommand extends Command {
             Schedule.arrangeLectureList(storage.lectureList, calendarLectures, this.month, this.year);
             Schedule.displayCalendar(inputYearMonth, calendarTasks, calendarLectures);
         } catch (NullPointerException e) {
+            //This exception throws an error message prior to this.
         }
     }
 }

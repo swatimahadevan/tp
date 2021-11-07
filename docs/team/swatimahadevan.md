@@ -30,6 +30,6 @@ We know that you are a Computing student here at NUS 👨‍🎓 and may prefer 
 **Community**:
 1. Provided feedback to the team during team meetings and reviewed PRs. These are the PRs I left non-trivial comments on- [#28](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/28), [#36](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/36), [#163](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/163), [#240](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/240), [#245](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/245)
 2. Did some common tasks for the team(such as updating logo, last minute team changes prior to submissions, etc).
-3. Review Developer Guide from other teams in the tutorial (with non-trivial review comments). [#36](https://github.com/nus-cs2113-AY2122S1/tp/pull/36)
+3. Review Developer Guide from other teams in the tutorial (with non-trivial review comments). [team reviewed](https://github.com/nus-cs2113-AY2122S1/tp/pulls?q=is%3Aopen+is%3Apr+CS2113T-W12-2+)
 4. Reported bugs for the other team in the [PE Dry Run](https://github.com/swatimahadevan/ped/issues).
 
