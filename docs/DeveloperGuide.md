@@ -582,13 +582,22 @@ decided  to switch over to Alternative 1 for the user to easily view all the syn
 ## Appendices 
 
 ### Appendix A: Product scope
-### Appendix B: Target user profile
+### Target user profile
 
-{Describe the target user profile}
+* Computing student at NUS.
+* Reasonably comfortable using CLI.
+* Student taking multiple modules.
+* Has a need to manage food consumption.
+* Has a need to schedule tasks and lecture timings.
+* Has a need to view calendar with tasks and lecture timings.
+* Enjoys journaling.
+* Has a need for an easy way to access zoom links for lectures.
 
-### Appendix C: Value proposition
+### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+* Allows for Computing students to conveniently manage studies and lifestyle.
+* An easy-to-use all-in-one application for managing modules, tracking food
+  consumption, task and lecture scheduling, journaling, and CAP planning.
 
 ### Appendix D: User Stories
 
