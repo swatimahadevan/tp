@@ -582,7 +582,7 @@ decided  to switch over to Alternative 1 for the user to easily view all the syn
 ## Appendices 
 
 ### Appendix A: Product scope
-### Appendix B: Target user profile
+### Target user profile
 
 * Computing student at NUS.
 * Reasonably comfortable using CLI.
@@ -593,7 +593,7 @@ decided  to switch over to Alternative 1 for the user to easily view all the syn
 * Enjoys journaling.
 * Has a need for an easy way to access zoom links for lectures.
 
-### Appendix C: Value proposition
+### Value proposition
 
 * Allows for Computing students to conveniently manage studies and lifestyle.
 * An easy-to-use all-in-one application for managing modules, tracking food
