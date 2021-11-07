@@ -1,11 +1,9 @@
 package seedu.duke.storage;
 
 
-import seedu.duke.exceptions.ClickException;
-import seedu.duke.exceptions.module.IllegalModuleException;
 import seedu.duke.exceptions.zoom.InvalidZoomDataPath;
 import seedu.duke.exceptions.zoom.InvalidZoomLinkException;
-import seedu.duke.exceptions.zoom.ModuleNotFound;
+import seedu.duke.exceptions.zoom.ModuleNotFoundException;
 import seedu.duke.ui.Ui;
 import seedu.duke.parser.module.ParserModule;
 
@@ -127,13 +125,13 @@ public class StorageZoom {
      * @throws IOException throws the Input Output Exception
      * @throws InvalidZoomLinkException throws the Invalid Zoom Link Exception
      */
-    public static void openZoomLink(String module) throws IOException, ModuleNotFound {
+    public static void openZoomLink(String module) throws IOException, ModuleNotFoundException {
         String urlString = getZoomLink(module);
         System.out.println(urlString);
         try {
             Desktop.getDesktop().browse(new URL(urlString).toURI());
         } catch (Exception e) {
-            throw new ModuleNotFound();
+            throw new ModuleNotFoundException();
         }
     }
 
