@@ -10,6 +10,15 @@
 2.1 [Prerequisite](#21-prerequisite)\
 2.2 [Setting up the Project in Your Computer](#22-setting-up-the-project-in-your-computer)
 3. [Design](#3-design)
+4. [Implementation](#4-implementation)\
+4.1 [Module-related Features](#41-module-related-features)\
+4.2 [Zoom-related Features](#42-zoom-related-features)\
+4.3 [Calendar-related Features](#43-calendar-related-features)\
+4.4 [Journal-related Features](#44-journaling-feature)\
+4.5 [Food-related Features](#45-food-related-features)\
+4.6 [Help Command](#46--help-command)
+5. [Testing](#5-testing)
+6. [Dev Ops](#6-dev-ops)
 
 ## 1. Introduction
 
