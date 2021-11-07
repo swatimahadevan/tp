@@ -16,7 +16,8 @@
 4.3 [Calendar-related Features](#43-calendar-related-features)\
 4.4 [Journal-related Features](#44-journaling-feature)\
 4.5 [Food-related Features](#45-food-related-features)\
-4.6 [Help Command](#46--help-command)
+4.6 [Help Command](#46--help-command)\
+4.7 [Logging](#47-logging)
 5. [Testing](#5-testing)
 6. [Dev Ops](#6-dev-ops)
 
@@ -63,7 +64,11 @@ ii. Go to `src/test/java/seedu.duke` and run `Tests in seedu.duke` to ensure the
 
 ## 3. Design
 
-This section is designed to demonstrate our software design description, and aims to provide you with an overall guidance to the architecture of Click.
+
+### 3.1. Architecture
+
+This section is designed to demonstrate our software design description, and aims to provide you with an overall guidance to the architecture of Duke.
+
 The following sequence diagram illustrates a command call by the user to Click. 
 The steps are as follows:
 
@@ -73,6 +78,7 @@ The steps are as follows:
    3.1. If command, go ahead and execute it respectively\
    3.2. If not, throw exception and ask for input again
 4. Parser returns control to Click
+
 ![](./images/ClickRun.png)
 
 You should note that this is a general overview of the Click functionality, and the `:Command` entity simply represents a Command to be called by the Parser.
@@ -80,6 +86,26 @@ Another point for you to note is the difference between a Click exception and ot
 exceptions that belong to our program. For instance, invalid dates extending beyond a  student's  matriculation,  or a  lack of entries when adding a journal. 
 This is different from that of an "other" exception, which could be briefly categorized as a general exception. For instance, a `NumberFormatException` on the parsing
 of a String to an Integer.
+
+### 3.2. UI Component
+
+The `UI` package contains the `Ui` class, which deals with interactions with the user.
+
+The `UI` component:
+* Takes in user commands
+* Formats messages and prints out responses
+
+### 3.3. Logic Component
+
+1. `Click` uses `Parser` class to parse the user command.
+2. `Parser` checks if the command is valid or not, splits the user input into interpretable portions, and returns the respective commands with arguments.
+3. All commands inherit from the abstract class `Command` with and `execute()` method. 
+4. Command interacts with models, `Storage` to carry out user's command.
+5. Command also makes use of `UI` to display the messages to the user.
+
+### 3.4. Storage Component
+
+The storage of `Click` refers to storing files of user's data into respective local subdirectory in a local directory called `storage`, which is in the same directory as the project root.
 
 ## 4. Implementation
 
@@ -583,6 +609,40 @@ to execute.
 
 While we submitted Alternative 2 in version 1 due to a lack of time and easier implementation. with more time given in Version 2.0 - we
 decided  to switch over to Alternative 1 for the user to easily view all the syntax at a glance.
+
+### 4.7. Logging
+
+Logging in the application refers to storing exceptions, warnings and messages that occur during the execution of the program. It was included to help developers to identify bugs and to simplify their debugging process.
+
+The `java.util.logging` package is used for logging. The logging mechanism is managed by the `ClickLogger` class through the `logger` attribute and all information is logged into a log file, `logs/ClickLogs.log`.
+
+Logging Levels:
+*`Level.SEVERE`: a serious failure, which prevents normal execution of the program, for end users and system administrators.
+*`Level.WARNING`: a potential problem, for end users and system administrators.
+*`Level.INFO`: reasonably significant informational message for end users and system administrators.
+*`Level.CONFIG`: hardware configuration, such as CPU type.
+*`Level.FINE`, `Level.FINER`, `Level.FINEST`: three levels used for providing tracing information for the software developers.
+
+`ClickLogger` follows Singleton Pattern. Therefore, other classes can access the `logger` by calling `ClickLogger.getNewLogger()`.
+
+Example of usage:
+
+```Java
+
+public class Click {
+
+   private static Logger logger;
+   
+   // ...
+
+   private static void run() {
+      logger = ClickLogger.getNewLogger();
+      logger.info(RUNNING_CLICK_LOG_MESSAGE);
+      
+      // ...
+   }
+}
+```
 
 ## 5. Testing
 
