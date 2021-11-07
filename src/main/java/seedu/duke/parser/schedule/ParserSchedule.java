@@ -82,7 +82,8 @@ public class ParserSchedule {
         }
     }
 
-    private static void checkEmptyIncorrectArgsAddTaskCommand(String description, String date) throws IncorrectNumberOfArgumentsException, InvalidDateException {
+    private static void checkEmptyIncorrectArgsAddTaskCommand(String description, String date)
+            throws IncorrectNumberOfArgumentsException, InvalidDateException {
         if (description.equals("")) {
             throw new IncorrectNumberOfArgumentsException(NAME_ABSENT);
         }
@@ -93,7 +94,8 @@ public class ParserSchedule {
         }
     }
 
-    private static void checkEmptyIncorrectArgsAddLectureCommand(String name, String fromDate, String toDate) throws IncorrectNumberOfArgumentsException, InvalidDateException {
+    private static void checkEmptyIncorrectArgsAddLectureCommand(String name, String fromDate, String toDate)
+            throws IncorrectNumberOfArgumentsException, InvalidDateException {
         if (name.equals("")) {
             throw new IncorrectNumberOfArgumentsException(MODULE_ABSENT);
         }
