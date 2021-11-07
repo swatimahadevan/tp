@@ -114,6 +114,14 @@ as code examples.
 
 ### 4.1. Module-related Features
 
+This segment focuses on describing the implementation of module-related features, the functionality of the commands as well as the design considerations taken.
+
+#### 4.1.1 Architecture
+
+Module-related commands are managed by `ModuleManager`, which directly interacts with `StorageModule`. The following diagram illustrates how the classes related to module interact with each other.
+
+![module architecture](images/module/Module.png)
+
 #### 4.1.1 Adding a Module
 
 This feature allows user to add a new Module.
@@ -185,7 +193,6 @@ When the user types `module list`, the following sequence of steps will then occ
 The sequence diagram below summarizes how listing modules work:
 
 ![](images/module/ListModule.png)
-
 
 
 ### 4.2 Zoom related features
