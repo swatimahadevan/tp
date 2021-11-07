@@ -31,12 +31,11 @@ public class Note {
      *
      */
     public void tag(String tag, Storage storage) throws InvalidTagNameException, IOException {
-        if (!tag.equals("")) {
-            this.tag = tag;
-            StorageNotes.writeCollectionOfNotes(storage.collectionOfNotes);
-        } else {
+        if (tag.equals("")) {
             throw new InvalidTagNameException();
         }
+        this.tag = tag;
+        StorageNotes.writeCollectionOfNotes(storage.collectionOfNotes);
     }
 
     /**
