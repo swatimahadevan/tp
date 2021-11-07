@@ -17,15 +17,17 @@ We know that you are a Computing student here at NUS 👨‍🎓 and may prefer 
 4. Calendar task list feature - Lists all tasks when the following command is given: `calendar list task`.
 5. Calendar lecture list feature - Lists all lectures when the following command is given: `calendar list lec`.
 6. Calendar task edit feature - Edits a task when the following command is given: `calendar edit [TASK_INDEX]`
-7. Calendar related storage
+7. Calendar task delete feature - Deletes a task when the following command is given: `calendar delete task [TASK_INDEX]`.
+8. Calendar lecture delete feature - Deletes a lecture when the following command is given: `calendar delete lec [LECTURE_INDEX]`
+9. Calendar related storage
 
 **Code Contribution**: [Functional and Test code](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-09-25&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
 
-**Contribution to the User Guide**: Wrote the portion of the user guide that corresponds to my features (Section 3.3 - Managing your calendar) and provided constructive feedback on the layout as a whole. 
+**Contribution to the User Guide**: Wrote the portion of the user guide that corresponds to my features (Section 3.3 - Managing your calendar) and provided constructive feedback and made changes on the layout as a whole. 
 
-**Contribution to the Developer Guide**: Wrote the portion of the developer guide that corresponds to my features (Section 4.3 - Calendar-related Features) and provided constructive feedback on the layout as a whole. All the UML diagrams under Section 4.3 were done by me.
+**Contribution to the Developer Guide**: Wrote the portion of the developer guide that corresponds to my features (Section 4.3 - Calendar-related Features) and provided constructive feedback and made changes on the layout as a whole. All the UML diagrams under Section 4.3 were done by me.
 
 **Community**:
-1. Provided feedback to the team during team meetings and reviewed the following PRs- 
-2. 
+1. Provided feedback to the team during team meetings and reviewed PRs. These are the PRs I left non-trivial comments on- [#28](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/28), [#36](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/36), [#163](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/163), [#240](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/240), [#245](https://github.com/AY2122S1-CS2113T-T09-4/tp/pull/245)
+2. Did some common tasks for the team(such as updating logo, last minute team changes prior to submissions, etc).
 
