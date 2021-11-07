@@ -17,7 +17,7 @@ import static seedu.duke.constants.Messages.INDEX_ZERO;
 //@author swatim
 public class StorageTasks {
     //author ngnigel99 - create in folder
-    public static final String folderName = "tasksdata/";
+    public static final String folderName = "storage/tasksdata/";
     public static final String fileName   = "scheduleTasks.txt";
     public static final String filePath = folderName + fileName;
 

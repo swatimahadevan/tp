@@ -1,7 +1,10 @@
 package seedu.duke.exceptions.journal;
 
-public class InvalidTagNameException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class InvalidTagNameException extends ClickException {
     public InvalidTagNameException() {
-        System.out.println("Sorry!The tag argument is invalid!");
+        super("Tag name cannot be empty! ");
     }
 }
+

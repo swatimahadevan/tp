@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class StorageNotes {
-    public static final String folderName = "journalData/";
+    public static final String folderName = "storage/journalData/";
     public static final String fileName   = "journalNotes.txt";
     public static final String filePath = folderName + fileName;
 

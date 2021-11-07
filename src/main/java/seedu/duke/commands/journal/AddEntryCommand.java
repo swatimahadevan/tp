@@ -6,7 +6,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.exceptions.journal.EmptyEntryArgumentsException;
 import seedu.duke.exceptions.journal.EmptyEntryNameException;
 import seedu.duke.exceptions.journal.EmptyNoteNameException;
-import seedu.duke.exceptions.journal.NotebookArgumentNotFoundException;
+import seedu.duke.exceptions.journal.InvalidAddEntryArgumentException;
 import seedu.duke.exceptions.journal.NotebookNotFoundForEntry;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.journal.ParserJournal;
@@ -45,14 +45,15 @@ public class AddEntryCommand extends Command {
      * @param storage to allow for storing of entries
      * @throws EmptyNoteNameException No note name entered after 'n/'
      * @throws EmptyEntryArgumentsException if no arguments found for the entry
-     * @throws NotebookArgumentNotFoundException if note argument is not found
      * @throws EmptyEntryNameException if no entry name is provided
-     * @throws NotebookNotFoundForEntry if no note arguments found for the entry
+     * @throws NotebookNotFoundForEntry if no notebook is found in list for entry
+     * @throws InvalidAddEntryArgumentException if arguments for adding entry are invalid.
+     * @throws IOException in case of error when writing to save file.
      */
     @Override
     public void execute(Ui ui, Storage storage) throws EmptyNoteNameException, EmptyEntryArgumentsException,
-            NotebookArgumentNotFoundException, EmptyEntryNameException, IOException,
-            NotebookNotFoundForEntry {
+            EmptyEntryNameException, IOException,
+            NotebookNotFoundForEntry, InvalidAddEntryArgumentException {
         String[] argumentsNoteEntry = ParserJournal.parseAddEntryCommand(userInput, storage);
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         for (Note note : notes) {

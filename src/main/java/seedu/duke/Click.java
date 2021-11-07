@@ -1,18 +1,13 @@
 package seedu.duke;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import seedu.duke.commands.calendar.DeleteTaskCommand;
 import seedu.duke.exceptions.ClickException;
-import seedu.duke.food.WhatIAteList;
 import seedu.duke.logger.ClickLogger;
 import seedu.duke.exceptions.ExceptionHandler;
 
-import seedu.duke.storage.StorageFood;
 import seedu.duke.ui.Ui;
 import seedu.duke.commands.Command;
 import seedu.duke.storage.Storage;
@@ -51,7 +46,7 @@ public class Click {
                 Command c = parser.parseCommand(userInput);
                 c.execute(ui, storage);
             } catch (ClickException e) {
-                exceptionHandler.handleDukeExceptions(e, userInput);
+                exceptionHandler.handleClickExceptions(e, userInput);
             } catch (Exception  e) {
                 exceptionHandler.handleOtherExceptions(e);
             }

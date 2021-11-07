@@ -48,7 +48,7 @@ public class CommandConstants {
                     + "\tAdd Food  : food add n/ [FOOD_NAME] c/ [CALORIE] {d/ DD-MM-YYYY(DATE_RECORDED)}\n"
                     + "\tAdd Food From Reference  : food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]\n"
           + "\tAdd Lecture  : calendar lecture m/ [MODULE_CODE] s/ [DD-MM-YYYY(START_DATE)] e/ [DD-MM-YYYY(END_DATE)]\n"
-            + "\tAdd Module  : module add c/ [MODULE_CODE] n/ [MODULE_NAME] mc/ [MODULAR_CREDITS] e/ [EXPECTED_GRADE]\n"
+            + "\tAdd Module  : module add c/[MODULE_CODE] {n/[MODULE_NAME] m/[MODULAR_CREDITS] e/[EXPECTED_GRADE]}\n"
                     + "\tAdd Note  : journal notebook n/ [NOTEBOOK_NAME]\n"
                     + "\tAdd Todo  : calendar todo n/ [TASK_NAME] d/ [DD-MM-YYYY]\n"
                     + "\tAdd Zoom  : zoom add [MODULE_CODE] [ZOOM_LINK]\n"
