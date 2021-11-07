@@ -64,7 +64,6 @@ ii. Go to `src/test/java/seedu.duke` and run `Tests in seedu.duke` to ensure the
 
 ## 3. Design
 
-
 ### 3.1. Architecture
 
 This section is designed to demonstrate our software design description, and aims to provide you with an overall guidance to the architecture of Duke.
@@ -103,7 +102,15 @@ The `UI` component:
 4. Command interacts with models, `Storage` to carry out user's command.
 5. Command also makes use of `UI` to display the messages to the user.
 
-### 3.4. Storage Component
+### 3.4. Model Component
+
+#### 3.4.1 Module-related models
+
+Module-related commands are managed by `ModuleManager`, which directly interacts with `StorageModule`. The following diagram illustrates how the classes related to module interact with each other.
+
+![module architecture](images/module/Module.png)
+
+### 3.5. Storage Component
 
 The storage of `Click` refers to storing files of user's data into respective local subdirectory in a local directory called `storage`, which is in the same directory as the project root.
 
@@ -113,6 +120,14 @@ This  section provides  the mechanisms of the many features of Click, where you 
 as code examples.
 
 ### 4.1. Module-related Features
+
+This segment focuses on describing the implementation of module-related features, the functionality of the commands as well as the design considerations taken.
+
+#### 4.1.1 Architecture
+
+Module-related commands are managed by `ModuleManager`, which directly interacts with `StorageModule`. The following diagram illustrates how the classes related to module interact with each other.
+
+![module architecture](images/module/Module.png)
 
 #### 4.1.1 Adding a Module
 
@@ -185,7 +200,6 @@ When the user types `module list`, the following sequence of steps will then occ
 The sequence diagram below summarizes how listing modules work:
 
 ![](images/module/ListModule.png)
-
 
 
 ### 4.2 Zoom related features
