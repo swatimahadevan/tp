@@ -63,19 +63,20 @@ ii. Go to `src/test/java/seedu.duke` and run `Tests in seedu.duke` to ensure the
 
 ## 3. Design
 
-This section is designed to demonstrate our software design description, and aims to provide you with an overall guidance to the architecture of Duke.
+This section is designed to demonstrate our software design description, and aims to provide you with an overall guidance to the architecture of Click.
 The following sequence diagram illustrates a command call by the user to Click. 
 The steps are as follows:
+
 1. When the user runs Click, a greeting would be printed to the user
-1. User enters some input which may be a command
-1. The command entered by the user would be parsed
-    1. if command, go ahead and execute it respectively
-    1. if not throw exception and ask for input again
-1. Parser returns control to Click
+2. User enters some input which may be a command
+3. The command entered by the user would be parsed\
+   3.1. If command, go ahead and execute it respectively\
+   3.2. If not, throw exception and ask for input again
+4. Parser returns control to Click
 ![](./images/ClickRun.png)
 
 You should note that this is a general overview of the Click functionality, and the `:Command` entity simply represents a Command to be called by the Parser.
-Another point for you to note is the difference between a Duke exception and other exception. Duke, as aptly referenced from our Individual project, has unique
+Another point for you to note is the difference between a Click exception and other exception. Click, as aptly referenced from our project, has unique
 exceptions that belong to our program. For instance, invalid dates extending beyond a  student's  matriculation,  or a  lack of entries when adding a journal. 
 This is different from that of an "other" exception, which could be briefly categorized as a general exception. For instance, a `NumberFormatException` on the parsing
 of a String to an Integer.
@@ -584,14 +585,15 @@ While we submitted Alternative 2 in version 1 due to a lack of time and easier i
 decided  to switch over to Alternative 1 for the user to easily view all the syntax at a glance.
 
 ## 5. Testing
-> ***WORK IN PROGRESS***
-> To include code coverage, instructions for the reader to self test
+
+
 ## 6. Dev Ops
 
 ## Appendices 
 
 ### Appendix A: Product scope
-### Target user profile
+
+**Target user profile**:
 
 * Computing student at NUS.
 * Reasonably comfortable using CLI.
@@ -602,24 +604,31 @@ decided  to switch over to Alternative 1 for the user to easily view all the syn
 * Enjoys journaling.
 * Has a need for an easy way to access zoom links for lectures.
 
-### Value proposition
+**Value proposition**:
 
 * Allows for Computing students to conveniently manage studies and lifestyle.
 * An easy-to-use all-in-one application for managing modules, tracking food
   consumption, task and lecture scheduling, journaling, and CAP planning.
 
-### Appendix D: User Stories
+
+### Appendix B: User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|new user|see the list of commands|know how to use the application|
+|v1.0|user|add a new module|keep track of the module I'm going to take this semester|
+|v1.0|user|list all modules|get the information about my modules|
+|v1.0|user|delete recorded module|remove a module I'm not taking from the list|
 
-### Appendix E: Non-Functional Requirements
+### Appendix C: Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work an any mainstream OS as long as it has Java `11` or above installed.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should not require user to install program file/dependencies.
+4. Should work for a single user.
+5. Should be able to run without Internet connection.
 
-### Appendix F: Glossary
+### Appendix D: Glossary
 
-* *glossary item* - Definition
+**Mainstream OS**: Windows, Linux, Unix, OS-X
 
