@@ -64,7 +64,9 @@ public class EditTasksCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws IOException, IncorrectNumberOfArgumentsException,
-            CalendarIndexNotFoundException, InvalidDateException, DuplicateTaskException, ArgumentsNotFoundException, WrongDividerOrderException {
+            CalendarIndexNotFoundException,
+            InvalidDateException,
+            DuplicateTaskException, ArgumentsNotFoundException, WrongDividerOrderException {
         ui.printLine();
         if (this.index > storage.tasksList.getTaskList().size()) {
             throw new CalendarIndexNotFoundException();
