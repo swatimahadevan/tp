@@ -52,4 +52,17 @@ class ParserJournalTest {
             assertEquals("notInStorageName", noteName);
         }
     }
+
+    @Test
+    void parserFindCommand_emptyArgument_throwEmptyFindTagException() {
+        ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
+        boolean isTagPresent = false;
+        String tagName;
+        try {
+            tagName = ParserJournal.parseTagForFinding("journal find");
+        } catch (Exception e) {
+            assertEquals(false, isTagPresent);
+        }
+    }
+
 }

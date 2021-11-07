@@ -406,37 +406,155 @@ Given below is an example usage scenario and how the edit task mechanism behaves
 The command for adding notebook is implemented by the `AddNoteCommand` class that extends `Command`.
 On adding notebook successfully, the message "Great you have added the note: NOTEBOOK_NAME" will be displayed.
 
+#### Implementation
+
+1. User inputs `journal notebook n/ CS2113`\
+   i. `Click` receives the input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse the input.
+2. Creating `AddNoteCommand` object.
+3. AddNoteCommand execution.\
+   i. `AddNoteCommand` calls `ParserJournal.parseAddNoteCommand(userInput)` which returns the notebook name.\
+   ii. `AddNoteCommand` calls `storage.collectionOfNotes.addNote(noteName, "none")`. Here the parameters are the
+   notebook name and the tag name which is "none" by default.
+   iii. `AddNoteCommand` calls `ui.printAddedNoteMessage` and passes in notebook name as parameter to convey
+   successful addition of notebook.\
+   iv. `AddNoteCommand` calls `StorageNotes.writeCollectionOfNotes(storage.collectionOfNotes)` to write the new data to
+   the storage file.
+
+![](./images/journal/AddNoteCommand.png)
+
+
 #### Add entry feature
 
 The command for adding entry is implemented by the `AddEntryCommand` class that extends `Command`.
 
 On adding entry successfully, the message "Great you have added the entry: ENTRY_NAME" will be displayed.
 
+#### Implementation
+
+1. User inputs `journal entry n/ CS2113 e/ HW`\
+   i. `Click` receives the input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse the input.
+2. Creating `AddEntryCommand` object.
+3. AddEntryCommand execution.\
+   i. `AddEntryCommand` calls `ParserJournal.parseAddEntryCommand(userInput)` which returns the notebook name and entry
+   name as a
+   string array.\
+   ii. `AddEntryCommand` calls `storage.collectionOfNotes.getNotesArrayList` to get an ArrayList of notebook objects.
+   iii. Traverses through all notebooks in the array list using a for loop.
+   iv. If a notebook has name same as the notebook name in input got after parsing then `AddEntryCommand` calls
+   `storage.collectionOfEntries.addEntry(NOTEBOOK_NAME, ENTRY_NAME)` to add the entry.
+   v. `AddEntryCommand` calls `ui.printAddedEntryMessage(ENTRY_NAME)` to print a message that the entry has been added.
+   vi. `AddEntryCommand` calls `StorageEntries.writeEntries(storage.collectionOfEntries, storage)` to write the new
+   data to the storage file.
+
+![](./images/journal/AddEntryCommand.png)
+
 #### List notebooks and entries
 
 The command for adding notebook is implemented by the `ListJournalCommand` class that extends `Command`.
+The command for listing is implemented by the `ListJournalCommand` class that extends `Command`.
 
 A list of notebooks along with their entries will be displayed.
 
-#### 4.4.2 Testing
+#### Implementation
 
-1. You can enter the command journal notebook n/ <NOTEBOOK_NAME> to add a notebook.
-   You are free to enter a notebook name of your choice and observe the output of this command.
+1. User inputs `journal list`\
+   i. `Click` receives the input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse the input.
+2. Creating `ListJournalCommand` object.
+3. ListJournalCommand execution.\
+   i. `ListJournalCommand` calls `storage.collectionOfNotes.getNotesArrayList()` which returns an array list of
+   Note objects.\
+   ii. `ListJournalCommand` calls `storage.collectionOfEntries.getEntriesArrayList()` which returns an array list of
+   Entry objects.\
+   iii. `ListJournalCommand` then prints all the notebooks with their entries.
 
-   `Test case: journal notebook n/ TRIAL
-   Expected: Great you have added the notebook: TRIAL`
+#### Deleting notebook
 
-2.You can enter the command journal entry n/ <ENTRY_NAME> to add an entry to a specific notebook.
-You are free to enter an entry name of your choice and observe the output of this command.
+The command for deleting notebook is implemented by the `DeleteNoteCommand` class that extends `Command`.
 
-    Test case: journal entry n/ TRIAL e/ TEST
-    Expected: Great you have added the entry: TEST
+The notebook along with all its entries will be deleted.
 
-3.You can enter the command journal list to view list of notebooks and their entries
+#### Implementation
 
-    Test case: journal list
-    Expected: The notebook TRIAL contains:
-              TEST
+1. User inputs `journal delete_notebook 1`\
+   i. `Click` receives the input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse the input.
+2. Creating `DeleteNoteCommand` object.
+3. DeleteNoteCommand execution.\
+   i. `DeleteNoteCommand` calls `ParserJournal.parseDeleteNoteCommand(userInput)` to get index of notebook to
+   delete.\
+   ii. `DeleteNoteCommand` checks if index of notebook is in list. If not, throws the
+   exception InvalidNotebookIndexException().
+   iii. `DeleteNoteCommand` calls `storage.collectionOfNotes.deleteNote(indexOfNotebookToDelete, storage)`.
+   iv. `DeleteNoteCommand` calls `ui.printDeletedNotebookMessage(indexOfNotebookToDelete)`
+   v. `DeleteNoteCommand` calls `StorageNotes.writeCollectionOfNotes(storage.collectionOfNotes)` to write the new
+   data to the storage file.
+
+![](./images/journal/DeleteNoteCommand.png)
+
+#### Deleting Entry
+
+The command for deleting entry is implemented by the `DeleteEntryCommand` class that extends `Command`.
+
+
+#### Implementation
+
+1. User inputs `journal delete_entry n/ CS2113 e/ HW`\
+   i. `Click` receives the input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse the input.
+2. Creating `DeleteEntryCommand` object.
+3. DeleteEntryCommand execution.\
+   i. `DeleteEntryCommand` calls `ParserJournal.parseDeleteEntryCommand(userInput, storage)` to get notebook name and
+   entry name.
+   ii. `DeleteEntryCommand` calls `storage.collectionOfEntries.getEntriesArrayList()` which returns an array list of
+   Entry objects.\
+   iii. Traverses entries. If notebook name and entry name match that of Entry object in list, calls `entries.remove(indexOfEntry)`
+   to delete the entry. If entry to delete doesn't exist then throws `EntryDoesNotExistException()`.
+   iv. `DeleteEntryCommand` calls `StorageEntries.writeEntries(storage.collectionOfEntries, storage)` to write the new
+   data to the storage file.
+   v. `DeleteEntryCommand` calls `printDeletedEntryMessage()` to convey that entry has been deleted successfully.
+
+#### Tagging Notebook
+
+The command for tagging notebook is implemented by the `TagNotebookCommand` class that extends `Command`.
+
+
+#### Implementation
+
+1. User inputs `journal tag n/ 1 t/ important`\
+   i. `Click` receives the input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse the input.
+2. Creating `TagNotebookCommand` object.
+3. DeleteEntryCommand execution.\
+   i. `TagNotebookCommand` calls `ParserJournal.parseTagNotebookCommand(userInput, storage)` to get notebook index and
+   tag name.
+   ii. `TagNotebookCommand` calls `storage.collectionOfNotes.getNotesArrayList()` which returns an array list of
+   Note objects.\
+   iii. `TagNotebookCommand` calls `notes.get(NOTEBOOK_INDEX)` to get the required Note object at the index in the
+   array list.
+   iv. `TagNotebookCommand` calls `noteToBeTagged.tag(TAG_NAME, storage)` to tag the notebook.
+   v. `TagNotebookCommand` calls `printTaggedNotebookMessage()` to convey that the notebook has been tagged
+   successfully.
+
+#### Finding Notebook by tag
+
+The command for finding notebook by a tag is implemented by the `FindNotebooksByTagCommand` class that extends
+`Command`.
+
+
+#### Implementation
+
+1. User inputs `journal find tag_name`\
+   i. `Click` receives the input.\
+   ii. `Parser` calls `parser.parseCommand(userInput)` to parse the input.
+2. Creating `FindNotebooksByTagCommand` object.
+3. DeleteEntryCommand execution.\
+   i. `FindNotebooksByTagCommand` calls `ParserJournal.parseTagForFinding(userInput)` to get tag name.
+   ii. `FindNotebooksByTagCommand` calls `storage.collectionOfNotes.getNotesArrayList()` which returns an array list of
+   Note objects.\
+   iii. If tag name matches tag name of any Note objects in the array list then the notebook name is displayed.
 
 ### 4.5 Food related features
 
