@@ -16,7 +16,8 @@
 4.3 [Calendar-related Features](#43-calendar-related-features)\
 4.4 [Journal-related Features](#44-journaling-feature)\
 4.5 [Food-related Features](#45-food-related-features)\
-4.6 [Help Command](#46--help-command)
+4.6 [Help Command](#46--help-command)\
+4.7 [Logging]()
 5. [Testing](#5-testing)
 6. [Dev Ops](#6-dev-ops)
 
@@ -605,6 +606,40 @@ to execute.
 
 While we submitted Alternative 2 in version 1 due to a lack of time and easier implementation. with more time given in Version 2.0 - we
 decided  to switch over to Alternative 1 for the user to easily view all the syntax at a glance.
+
+### 4.7. Logging
+
+Logging in the application refers to storing exceptions, warnings and messages that occur during the execution of the program. It was included to help developers to identify bugs and to simplify their debugging process.
+
+The `java.util.logging` package is used for logging. The logging mechanism is managed by the `ClickLogger` class through the `logger` attribute and all information is logged into a log file, `logs/ClickLogs.log`.
+
+Logging Levels:
+*`Level.SEVERE`: a serious failure, which prevents normal execution of the program, for end users and system administrators.
+*`Level.WARNING`: a potential problem, for end users and system administrators.
+*`Level.INFO`: reasonably significant informational message for end users and system administrators.
+*`Level.CONFIG`: hardware configuration, such as CPU type.
+*`Level.FINE`, `Level.FINER`, `Level.FINEST`: three levels used for providing tracing information for the software developers.
+
+`ClickLogger` follows Singleton Pattern. Therefore, other classes can access the `logger` by calling `ClickLogger.getNewLogger()`.
+
+Example of usage:
+
+```Java
+
+public class Click {
+
+   private static Logger logger;
+   
+   // ...
+
+   private static void run() {
+      logger = ClickLogger.getNewLogger();
+      logger.info(RUNNING_CLICK_LOG_MESSAGE);
+      
+      // ...
+   }
+}
+```
 
 ## 5. Testing
 > ***WORK IN PROGRESS***
