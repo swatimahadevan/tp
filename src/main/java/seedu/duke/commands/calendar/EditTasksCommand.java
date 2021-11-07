@@ -72,6 +72,7 @@ public class EditTasksCommand extends Command {
             throw new CalendarIndexNotFoundException();
         }
         ui.printMessage(MESSAGE_ENTER_TASK_COMMAND + this.index);
+        ui.printLine();
         Scanner in = new Scanner(System.in);
         String followUpInput = in.nextLine();
         ArrayList<String> arguments = ParserSchedule.parseTodoCommand(followUpInput);
@@ -79,6 +80,7 @@ public class EditTasksCommand extends Command {
         String date = arguments.get(INDEX_TODO_DATE);
         AddTodoCommand.checkIfDateValid(date);
         Storage.tasksList.editTask(this.index, description, date);
+        ui.printLine();
         ui.printMessage(MESSAGE_EDITED_TASK);
         ui.printLine();
         StorageTasks.writeTaskList(Storage.tasksList);
