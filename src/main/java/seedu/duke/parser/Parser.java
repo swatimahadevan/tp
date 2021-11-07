@@ -371,7 +371,7 @@ public class Parser {
      */
     private Command getCalendarCommand(String commandArgs, String userInput)
             throws IncorrectNumberOfArgumentsException,
-            IncorrectCommandException, InvalidDateException {
+            IncorrectCommandException, InvalidDateException, WrongDividerOrderException {
         String[] calendarArguments = commandArgs.split(" ");
         switch (calendarArguments[0]) {
         case COMMAND_SUFFIX_LIST:
