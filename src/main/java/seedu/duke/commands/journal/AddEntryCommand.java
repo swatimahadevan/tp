@@ -55,13 +55,15 @@ public class AddEntryCommand extends Command {
             EmptyEntryNameException, IOException,
             NotebookNotFoundForEntry, InvalidAddEntryArgumentException {
         String[] argumentsNoteEntry = ParserJournal.parseAddEntryCommand(userInput, storage);
+        String notebookName = argumentsNoteEntry[0];
+        String entryName = argumentsNoteEntry[1];
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         for (Note note : notes) {
-            if (note.getNoteName().equals(argumentsNoteEntry[0])) {
-                storage.collectionOfEntries.addEntry(argumentsNoteEntry[0], argumentsNoteEntry[1]);
+            if (note.getNoteName().equals(notebookName)) {
+                storage.collectionOfEntries.addEntry(notebookName, entryName);
             }
         }
-        ui.printAddedEntryMessage(argumentsNoteEntry[1]);
+        ui.printAddedEntryMessage(entryName);
         StorageEntries.writeEntries(storage.collectionOfEntries, storage);
     }
 }

@@ -3,12 +3,7 @@ package seedu.duke.commands.journal;
 //@@author SvethaMahadevan
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.journal.EmptyNoteNameException;
-import seedu.duke.exceptions.journal.EmptyTagArgumentsException;
-import seedu.duke.exceptions.journal.EmptyTagNameException;
-import seedu.duke.exceptions.journal.InvalidAddTagArgumentException;
-import seedu.duke.exceptions.journal.InvalidTagNameException;
-import seedu.duke.exceptions.journal.NotebookNotFoundForTagException;
+import seedu.duke.exceptions.journal.*;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.journal.ParserJournal;
 import seedu.duke.storage.Storage;
@@ -46,7 +41,7 @@ public class TagNotebookCommand extends Command {
      * @param ui allows for printing that note is added
      * @param storage to allow for storage of notes
      * @throws EmptyTagNameException if there is no tag name given after 't/'
-     * @throws EmptyNoteNameException if there is no note name given after 'n/'
+     * @throws EmptyNoteIndexException if there is no note index given after 'n/'
      * @throws EmptyTagArgumentsException in case notebook and tag details aren't in input.
      * @throws InvalidTagNameException in case tag name is invalid.
      * @throws IOException in case of error when writing to save file.
@@ -54,13 +49,15 @@ public class TagNotebookCommand extends Command {
      * @throws InvalidAddTagArgumentException in case arguments for tagging are invalid.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws EmptyTagNameException, EmptyNoteNameException,
+    public void execute(Ui ui, Storage storage) throws EmptyTagNameException,
             EmptyTagArgumentsException,
-            InvalidTagNameException, IOException, NotebookNotFoundForTagException, InvalidAddTagArgumentException {
-        String[] tagNameAndNotebook = ParserJournal.parseTagNotebookCommand(userInput, storage);
+            InvalidTagNameException, IOException, NotebookNotFoundForTagException, InvalidAddTagArgumentException, EmptyNoteIndexException {
+        String[] tagNameAndNotebookIndex = ParserJournal.parseTagNotebookCommand(userInput, storage);
+        String notebookIndex = tagNameAndNotebookIndex[0];
+        String tagName = tagNameAndNotebookIndex[1];
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
-        Note noteToBeTagged = notes.get(Integer.parseInt(tagNameAndNotebook[0]) - 1);
-        noteToBeTagged.tag(tagNameAndNotebook[1], storage);
+        Note noteToBeTagged = notes.get(Integer.parseInt(notebookIndex) - 1);
+        noteToBeTagged.tag(tagName, storage);
         ui.printTaggedNotebookMessage();
     }
 }
