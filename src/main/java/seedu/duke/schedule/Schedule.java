@@ -206,9 +206,9 @@ public class Schedule {
     /**
      * Prints tasks followed by lectures for a calendar week.
      *
-     * @param calendarTasks ArrayList<ArrayList<String>> of tasks.
-     * @param calendarLectures ArrayList<ArrayList<String>> of lectures.
-     * @param calendar ArrayList<String> of calendar dates in string format.
+     * @param calendarTasks ArrayList of tasks.
+     * @param calendarLectures ArrayList of lectures.
+     * @param calendar ArrayList of calendar dates in string format.
      * @param indexOfDay index of the day of the month.
      */
     private static void printTaskLectureForWeek(ArrayList<ArrayList<String>>
