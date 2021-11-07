@@ -92,7 +92,7 @@ public class Messages {
     public static final String DATE_DIVIDER = "d/";
     public static final String MODULE_DIVIDER = "m/";
     public static final String START_DATE_DIVIDER = "s/";
-    public static final String END_DATE_DIVIDER = "s/";
+    public static final String END_DATE_DIVIDER = "e/";
     public static final String MODULE_DIVIDER_NOT_FOUND = "m/ not found in command!";
     public static final String STARTDATE_DIVIDER_NOT_FOUND = "s/ not found in command!";
     public static final String ENDDATE_DIVIDER_NOT_FOUND = "e/ not found in command!";

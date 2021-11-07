@@ -168,15 +168,16 @@ public class ParserSchedule {
             throws IncorrectNumberOfArgumentsException, InvalidDateException {
         checkForDividersAddLectureCommand(input);
         String lectureDetails = input.trim().substring(17);
-        int moduleIndex = lectureDetails.indexOf(MODULE_DIVIDER);
-        String nameAndDate = lectureDetails.substring(moduleIndex).trim();
+        int moduleIndexFormer = lectureDetails.indexOf(MODULE_DIVIDER);
+        String nameAndDate = lectureDetails.substring(moduleIndexFormer).trim();
+        int moduleIndexLatter = nameAndDate.indexOf(MODULE_DIVIDER);
         int startDateIndexFormer = nameAndDate.indexOf(START_DATE_DIVIDER);
-        String name = nameAndDate.substring(moduleIndex + 2, startDateIndexFormer).trim();
+        String name = nameAndDate.substring(moduleIndexLatter + 2, startDateIndexFormer).trim();
         String dayAndLimits = nameAndDate.substring(startDateIndexFormer).trim();
         int startDateIndexLatter = dayAndLimits.indexOf(START_DATE_DIVIDER);
-        int endDateIndexLatter = dayAndLimits.indexOf(END_DATE_DIVIDER);
-        String fromDate = dayAndLimits.substring(startDateIndexLatter + 2, endDateIndexLatter).trim();
-        String toDate = dayAndLimits.substring(endDateIndexLatter + 2).trim();
+        int endDateIndex = dayAndLimits.indexOf(END_DATE_DIVIDER);
+        String fromDate = dayAndLimits.substring(startDateIndexLatter + 2,  endDateIndex).trim();
+        String toDate = dayAndLimits.substring( endDateIndex + 2).trim();
         checkEmptyIncorrectArgsAddLectureCommand(name, fromDate, toDate);
         List<String> lectureInformation = Arrays.asList(name, fromDate, toDate);
         return new ArrayList<>(lectureInformation);
