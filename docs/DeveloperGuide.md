@@ -393,7 +393,8 @@ Given below is an example usage scenario and how the edit task mechanism behaves
    iv. `EditTasksCommand` calls `StorageTasks.writeTaskList(Storage.tasksList)` to save the new data to the storage file.
 
 ### 4.4 Journaling Feature
-This segment focuses on describing the implementation of journaling-related features, the functionality of the commands
+This segment focuses on describing the implementation of journaling-related features and the functionality of the 
+commands.
 
 #### 4.4.1 Feature list
 #### Add notebook feature
