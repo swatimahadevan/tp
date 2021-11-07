@@ -3,7 +3,12 @@ package seedu.duke.commands.journal;
 //@@author SvethaMahadevan
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.journal.*;
+import seedu.duke.exceptions.journal.EmptyNoteIndexException;
+import seedu.duke.exceptions.journal.EmptyTagArgumentsException;
+import seedu.duke.exceptions.journal.EmptyTagNameException;
+import seedu.duke.exceptions.journal.InvalidAddTagArgumentException;
+import seedu.duke.exceptions.journal.InvalidTagNameException;
+import seedu.duke.exceptions.journal.NotebookNotFoundForTagException;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.journal.ParserJournal;
 import seedu.duke.storage.Storage;
@@ -50,8 +55,8 @@ public class TagNotebookCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) throws EmptyTagNameException,
-            EmptyTagArgumentsException,
-            InvalidTagNameException, IOException, NotebookNotFoundForTagException, InvalidAddTagArgumentException, EmptyNoteIndexException {
+            EmptyTagArgumentsException, InvalidTagNameException,
+            IOException, NotebookNotFoundForTagException, InvalidAddTagArgumentException, EmptyNoteIndexException {
         String[] tagNameAndNotebookIndex = ParserJournal.parseTagNotebookCommand(userInput, storage);
         String notebookIndex = tagNameAndNotebookIndex[0];
         String tagName = tagNameAndNotebookIndex[1];

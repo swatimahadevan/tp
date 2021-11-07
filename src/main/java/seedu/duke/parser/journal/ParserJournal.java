@@ -1,6 +1,21 @@
 package seedu.duke.parser.journal;
 
-import seedu.duke.exceptions.journal.*;
+import seedu.duke.exceptions.journal.DuplicateNoteException;
+import seedu.duke.exceptions.journal.EmptyDeleteNoteException;
+import seedu.duke.exceptions.journal.EmptyEntryArgumentsException;
+import seedu.duke.exceptions.journal.EmptyEntryNameException;
+import seedu.duke.exceptions.journal.EmptyFindTagException;
+import seedu.duke.exceptions.journal.EmptyNoteArgumentsException;
+import seedu.duke.exceptions.journal.EmptyNoteIndexException;
+import seedu.duke.exceptions.journal.EmptyNoteNameException;
+import seedu.duke.exceptions.journal.EmptyTagArgumentsException;
+import seedu.duke.exceptions.journal.EmptyTagNameException;
+import seedu.duke.exceptions.journal.InvalidAddEntryArgumentException;
+import seedu.duke.exceptions.journal.InvalidAddTagArgumentException;
+import seedu.duke.exceptions.journal.InvalidDeleteEntryArgumentException;
+import seedu.duke.exceptions.journal.InvalidDeleteNoteArgumentException;
+import seedu.duke.exceptions.journal.NotebookNotFoundForEntry;
+import seedu.duke.exceptions.journal.NotebookNotFoundForTagException;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
@@ -119,7 +134,7 @@ public class ParserJournal {
         if (Integer.parseInt(notebookIndex) > notes.size() || Integer.parseInt(notebookIndex) < 1) {
             throw new NotebookNotFoundForTagException();
         }
-        return new String[]{notebookIndex , tagName};
+        return new String[]{notebookIndex, tagName};
 
     }
 
@@ -182,7 +197,8 @@ public class ParserJournal {
             throw new InvalidAddEntryArgumentException();
         }
         try {
-            entryName = noteNameAndEntryNamesWithDividers.substring(noteNameAndEntryNamesWithDividers.indexOf("e/") + 2).trim();
+            entryName = noteNameAndEntryNamesWithDividers.substring(noteNameAndEntryNamesWithDividers
+                    .indexOf("e/") + 2).trim();
         } catch (Exception e1) {
             throw new InvalidAddEntryArgumentException();
         }
