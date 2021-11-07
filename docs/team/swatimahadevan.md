@@ -21,7 +21,7 @@ We know that you are a Computing student here at NUS 👨‍🎓 and may prefer 
 8. Calendar lecture delete feature - Deletes a lecture when the following command is given: `calendar delete lec [LECTURE_INDEX]`
 9. Calendar related storage
 
-**Code Contribution**: [Functional and Test code](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-09-25&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
+**Code Contribution**: [Functional and Test code](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-25&tabOpen=true&zFR=false&tabType=authorship&tabAuthor=swatimahadevan&tabRepo=AY2122S1-CS2113T-T09-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 **Contribution to the User Guide**: Wrote the portion of the user guide that corresponds to my features (Section 3.3 - Managing your calendar) and provided constructive feedback and made changes on the layout as a whole. 
 
