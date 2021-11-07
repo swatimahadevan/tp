@@ -46,7 +46,9 @@ public class StorageLecture {
         Storage.writeDataOntoSaveFile(StorageLecture.filePath, data);
     }
 
-    public static LectureList readLectureList() throws NullPointerException, IOException {
+    public static LectureList readLectureList()
+            throws NullPointerException,
+            IOException {
         LectureList lectureList = new LectureList();
         ArrayList<Lecture> lectures;
         try {
@@ -57,7 +59,7 @@ public class StorageLecture {
                 lectureList.addLecture(lectures.get(i));
             }
             return lectureList;
-        } catch (FileNotFoundException | InvalidDateException | DuplicateTaskException e) {
+        } catch (FileNotFoundException | InvalidDateException | ArrayIndexOutOfBoundsException | DuplicateTaskException e) {
             File f = new File(StorageLecture.filePath);
         }
         return lectureList;

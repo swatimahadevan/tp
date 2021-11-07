@@ -30,7 +30,9 @@ public class StorageTasks {
      * @param data data from file.
      * @return tasks
      */
-    public static ArrayList<Task> dataToTask(ArrayList<String> data) throws IncorrectNumberOfArgumentsException, InvalidDateException {
+    public static ArrayList<Task> dataToTask(ArrayList<String> data)
+            throws IncorrectNumberOfArgumentsException,
+            InvalidDateException {
         ArrayList<Task> tasks = new ArrayList<>();
         int i = 0;
         int dataSize = data.size();
@@ -81,7 +83,7 @@ public class StorageTasks {
                 tasksList.addTask(tasks.get(i));
             }
             return tasksList;
-        } catch (FileNotFoundException | IncorrectNumberOfArgumentsException | InvalidDateException e) {
+        } catch (FileNotFoundException | IncorrectNumberOfArgumentsException | ArrayIndexOutOfBoundsException | InvalidDateException e) {
             File f = new File(StorageTasks.filePath);
         }
         return tasksList;
