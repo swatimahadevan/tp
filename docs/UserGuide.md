@@ -102,9 +102,9 @@ Click supports 4 ways of adding Modules:
 
 **Adding with module code, module name, modular credits, and expected grade**
 
-Format: `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS e/EXPECTED_GRADE`
+Format: `module add c/MODULE_CODE n/MODULE_NAME m/MODULAR_CREDITS e/EXPECTED_GRADE`
 
-Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`
+Example: `module add c/CS2113T n/Software Engineering m/4 e/A`
 
 Expected outcome:
 
@@ -117,9 +117,9 @@ Expected outcome:
 
 **Adding with module code, module name, and modular credits**
 
-Format: `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`
+Format: `module add c/MODULE_CODE n/MODULE_NAME m/MODULAR_CREDITS`
 
-Example: `module add c/CS1231 n/Discrete Structure mc/4`
+Example: `module add c/CS1231 n/Discrete Structure m/4`
 
 Expected outcome:
 
@@ -552,7 +552,7 @@ Expected outcome:
 
 #### 3.4.7 Deleting notebooks `journal delete_notebook`
 
-Deletes specific notebook.
+Deletes specific notebook with all its entries.
 
 Format: `journal delete_notebook NOTE_INDEX`
 
@@ -603,7 +603,7 @@ food add n/ A Thousand Tide Pods c/ 92
 Expected outcome:
 
 ```
-    __________________________________________________
+        __________________________________________________
 	Nice.  I've added Samurai Burger to the list, with 433 calories!
 	__________________________________________________
 	__________________________________________________
@@ -800,10 +800,10 @@ Expected outcome:
 
 **Action** | **Format, Examples**
 |----------|---------------------|
-**Add Food**|`food add n/ [FOOD_NAME] c/ [CALORIE] d/ {[DD-MM-YYYY(DATE_RECORDED)]}`
+**Add Food**|`food add n/ [FOOD_NAME] c/ [CALORIE] {d/ [DD-MM-YYYY(DATE_RECORDED)]}`
 **Add Food From Reference**|`food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]`
 **Add Lecture**|`calendar lecture m/ [MODULE_CODE] s/ [DD-MM-YYYY(START_DATE)] e/ [DD-MM-YYYY(END_DATE)]`
-**Add Module**|- `module add c/[MODULE_CODE] n/[MODULE_NAME] mc/[MODULAR_CREDITS] e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME mc/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering mc/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
+**Add Module**|- `module add c/[MODULE_CODE] n/[MODULE_NAME] m/[MODULAR_CREDITS] e/EXPECTED_GRADE`<br><br> Example: `module add c/CS2113T n/Software Engineering m/4 e/A`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME m/MODULAR_CREDITS`<br><br> Example: `module add c/CS2113T n/Software Engineering m/4`<br><br>- `module add c/MODULE_CODE n/MODULE_NAME` <br><br> Example: `module add c/CS2113T n/Software Engineering` <br><br>- `module add c/MODULE_CODE`<br><br> Example: `module add c/CS2113T`
 **Add Note**|`journal notebook n/ [NOTEBOOK_NAME]`
 **Add Entry**|`journal entry n/ [NOTEBOOK_NAME] e/ [ENTRY_NAME]`
 **Add Todo**|`calendar todo n/ [TASK_NAME] d/ [DD-MM-YYYY]`

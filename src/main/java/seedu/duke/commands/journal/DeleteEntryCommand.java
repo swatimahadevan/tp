@@ -7,9 +7,8 @@ import seedu.duke.exceptions.journal.EmptyEntryArgumentsException;
 import seedu.duke.exceptions.journal.EmptyEntryNameException;
 import seedu.duke.exceptions.journal.EmptyNoteNameException;
 import seedu.duke.exceptions.journal.EntryDoesNotExistException;
-import seedu.duke.exceptions.journal.InvalidEntryIndexException;
+import seedu.duke.exceptions.journal.InvalidDeleteEntryArgumentException;
 import seedu.duke.exceptions.journal.InvalidNotebookIndexException;
-import seedu.duke.exceptions.journal.NotebookArgumentNotFoundException;
 import seedu.duke.exceptions.journal.NotebookNotFoundForEntry;
 import seedu.duke.journal.Entry;
 import seedu.duke.parser.journal.ParserJournal;
@@ -46,12 +45,19 @@ public class DeleteEntryCommand extends Command {
      *
      * @param ui allows for printing of a message to indicate that the entry has been added
      * @param storage to allow for storing of entries
+     * @throws InvalidNotebookIndexException if notebook index is invalid
+     * @throws NotebookNotFoundForEntry notebook not found for deleting the entry
+     * @throws EmptyEntryNameException if entry name not given by user
+     * @throws EntryDoesNotExistException if the entry doesn't exist
+     * @throws EmptyEntryArgumentsException if no arguments given for entry deletion
+     * @throws InvalidDeleteEntryArgumentException if arguments given for entry deletion are invalid
+     * @throws IOException in case of error when writing to save file.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException, InvalidEntryIndexException,
-            InvalidNotebookIndexException, NotebookArgumentNotFoundException,
+    public void execute(Ui ui, Storage storage) throws IOException,
+            InvalidNotebookIndexException,
             NotebookNotFoundForEntry, EmptyEntryNameException, EmptyNoteNameException,
-            EmptyEntryArgumentsException, EntryDoesNotExistException {
+            EntryDoesNotExistException, EmptyEntryArgumentsException, InvalidDeleteEntryArgumentException {
         String[] notebookNameAndEntryName = ParserJournal.parseDeleteEntryCommand(userInput, storage);
         ArrayList<Entry> entries = storage.collectionOfEntries.getEntriesArrayList();
         boolean isEntryPresent = false;

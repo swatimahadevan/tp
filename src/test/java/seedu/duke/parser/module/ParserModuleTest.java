@@ -1,6 +1,7 @@
 package seedu.duke.parser.module;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exceptions.module.StorageModuleException;
 import seedu.duke.exceptions.storage.StorageException;
 import seedu.duke.module.Module;
 
@@ -31,7 +32,7 @@ class ParserModuleTest {
      * @throws StorageException If there is something wrong with the storage file.
      */
     @Test
-    void retrieveStoredModule_validData_expectedModule() throws StorageException {
+    void retrieveStoredModule_validData_expectedModule() throws StorageModuleException {
         String data = "CS2113T|Software Engineering|A|4";
         Module retrievedModule = ParserModule.retrieveStoredModule(data);
         Module expectedModule = new Module("CS2113T", "Software Engineering", 4, "A");
@@ -44,7 +45,7 @@ class ParserModuleTest {
     @Test
     void retrieveStoredModule_invalidData_StorageExceptionThrown() {
         String invalidData = "CS2113T|Software Engineering|A";
-        assertThrows(StorageException.class, () -> ParserModule.retrieveStoredModule(invalidData));
+        assertThrows(StorageModuleException.class, () -> ParserModule.retrieveStoredModule(invalidData));
     }
 
     /**
@@ -65,7 +66,7 @@ class ParserModuleTest {
     @Test
     void retrieveStoredCapInfo_invalidData_StorageExceptionThrown() {
         String invalidData = "4.5|";
-        assertThrows(StorageException.class, () -> ParserModule.retrieveStoredCapInfo(invalidData));
+        assertThrows(StorageModuleException.class, () -> ParserModule.retrieveStoredCapInfo(invalidData));
     }
 
 }

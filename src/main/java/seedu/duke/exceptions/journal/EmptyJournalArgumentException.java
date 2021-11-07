@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class EmptyJournalArgumentException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class EmptyJournalArgumentException extends ClickException {
     public EmptyJournalArgumentException() {
-        System.out.println("No arguments found for journal.");
+        super("No arguments found for journal.");
     }
 }

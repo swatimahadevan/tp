@@ -1,7 +1,9 @@
 package seedu.duke.exceptions.journal;
 
-public class InvalidNotebookIndexException extends Exception {
+import seedu.duke.exceptions.ClickException;
+
+public class InvalidNotebookIndexException extends ClickException {
     public InvalidNotebookIndexException() {
-        System.out.println("Invalid notebook index ");
+        super("Invalid notebook index ");
     }
 }

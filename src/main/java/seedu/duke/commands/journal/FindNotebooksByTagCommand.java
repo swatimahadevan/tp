@@ -3,7 +3,7 @@ package seedu.duke.commands.journal;
 //@@author SvethaMahadevan
 
 import seedu.duke.commands.Command;
-import seedu.duke.exceptions.journal.InvalidTagNameException;
+import seedu.duke.exceptions.journal.EmptyFindTagException;
 import seedu.duke.journal.Note;
 import seedu.duke.parser.journal.ParserJournal;
 import seedu.duke.storage.Storage;
@@ -41,9 +41,11 @@ public class FindNotebooksByTagCommand extends Command {
      *
      * @param ui allows for printing that note is added
      * @param storage to allow for storage of notes
+     * @throws EmptyFindTagException if no tag is given for finding.
+     * @throws IOException in case of error when writing to save file.
      */
     @Override
-    public void execute(Ui ui, Storage storage) throws IOException, InvalidTagNameException {
+    public void execute(Ui ui, Storage storage) throws IOException, EmptyFindTagException {
         String tagName = ParserJournal.parseTagForFinding(userInput);
         ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         ui.printLine();

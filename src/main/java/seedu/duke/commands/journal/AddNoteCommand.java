@@ -6,7 +6,6 @@ import seedu.duke.commands.Command;
 import seedu.duke.exceptions.journal.DuplicateNoteException;
 import seedu.duke.exceptions.journal.EmptyNoteArgumentsException;
 import seedu.duke.exceptions.journal.EmptyNoteNameException;
-import seedu.duke.exceptions.journal.NotebookArgumentNotFoundException;
 import seedu.duke.parser.journal.ParserJournal;
 import seedu.duke.storage.Storage;
 import seedu.duke.storage.StorageNotes;
@@ -44,15 +43,12 @@ public class AddNoteCommand extends Command {
      * @throws EmptyNoteNameException No note name entered after 'n/'.
      * @throws EmptyNoteArgumentsException if no arguments found for notebook.
      * @throws DuplicateNoteException if a note with same name is in list
-     * @throws NotebookArgumentNotFoundException if no note arguments are provided
+     * @throws IOException in case of error when writing to save file.
      */
     @Override
     public void execute(Ui ui, Storage storage) throws EmptyNoteNameException, EmptyNoteArgumentsException, IOException,
-            DuplicateNoteException, NotebookArgumentNotFoundException {
+            DuplicateNoteException {
         String noteName = ParserJournal.parseAddNoteCommand(userInput, storage);
-        if (noteName == null) {
-            throw new NotebookArgumentNotFoundException("Note argument not found!");
-        }
         assert (noteName != null);
         ui.printAddedNoteMessage(noteName);
         storage.collectionOfNotes.addNote(noteName, "none");

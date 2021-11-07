@@ -14,7 +14,7 @@ import seedu.duke.ui.Ui;
  */
 public class ListModuleCommand extends Command {
 
-    public static final String MESSAGE_NO_MODULE = "You don't have any modules";
+    public static final String MESSAGE_NO_MODULE = "You don't have any modules.";
     public static final String MESSAGE_LISTING_MODULES = "Here are the modules in your list:";
 
     /**

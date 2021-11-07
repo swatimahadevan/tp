@@ -13,6 +13,8 @@ src/main/resources/docs/
 *.iml
 bin/
 
+storage/*
+storage/*/*
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 data/food.txt

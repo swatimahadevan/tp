@@ -19,7 +19,7 @@ import java.util.logging.Level;
  * @author ngnigel99
  */
 public class StorageFood {
-    private static String folderName = "fooddata/";
+    private static String folderName = "storage/fooddata/";
     private static String fileName = "food.txt";
     private static String filePath =  folderName +  fileName;
 

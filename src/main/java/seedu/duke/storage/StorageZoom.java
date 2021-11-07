@@ -25,7 +25,7 @@ import java.util.Scanner;
  * This class deals with writing and reading text files relevant to the zoom feature.
  */
 public class StorageZoom {
-    private static final String folderName = "zoomdata/";
+    private static final String folderName = "storage/zoomdata/";
     private static final String fileName = "zoom.txt";
     private static String filePath =  folderName +  fileName;
     private static ParserModule parserModule = new ParserModule();
