@@ -68,7 +68,7 @@ class ParserScheduleTest {
         try {
             parser.parseTodoCommand("calendar todo n/ random 10-10-2021");
         } catch (Exception e) {
-            assertEquals("Wrong divider order!", e.getMessage());
+            assertEquals(DATE_DIVIDER_NOT_FOUND, e.getMessage());
         }
     }
 }
