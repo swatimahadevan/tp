@@ -212,14 +212,11 @@ Example: `zoom add nus.sg/testlink ABC101`
 
 This feature allows the user to view a calendar with tasks and lectures.
 
-**Implementation**
-
 The command for displaying the calendar for a specific month is implemented by the `DisplayCommand` class that extends `Command`.
 
 Given below is an example usage scenario and how the display calendar mechanism behaves at each step.
 
 1. The user enters the command `calendar display 10-2021`. This command is then sent for parsing in the `Click` class to `parseCommand` method in the `Parser` class. The `parseCommand` method first splits the entire command into an array `todoArguments` containing `calendar`, `display` and `10-2021`.
-
 2. The string `calendar` from the first index of todoArguments is checked against switch cases and is found to match `COMMAND_CALENDAR` which is the constant string "calendar". Upon finding this match, the string from the second index `todoArguments`is further split based on the delimiter of a single white space. The string `display` id checked against possible suffixes and `Command` object `DisplayCommand` is returned to the `Click` class.
 3. `Click` class then calls the method `execute` of `DisplayCommand` class. `DisplayCommand` extends `Command` class and has three steps in its `execute` method.\
          i. The `parseCalendarCommand` is first called, and it returns the year and month values after splitting `10-2021` into `10` and `2021`. This is put together into an YearMonth object `inputYearMonth`\
@@ -227,11 +224,8 @@ Given below is an example usage scenario and how the display calendar mechanism 
    
       ii. The `inputYearMonth` is passed into `Ui` class method `printCalenderTitle` and this prints out the title of that month with the month name and the year. In this example, it will display as given in the figure below.
      ![](./images/calendar/calendar_header.png)
-
       iii. Then, the method `arrangeTaskList` in `Schedule` class is called, and it takes in `storage.tasksList` (the TaskList object with all the currently stored tasks drawn from storage), `calendarTasks` (an ArrayList<ArrayList<String>> object initialized with empty ArrayLists of type String), `month` (the month input by the user, which in this example is the integer `10`) and year `month` (the year input by the user, which in this example is the integer `2021`), and adds the tasks to the days in the empty String ArrayLists initialized before in `calendarTasks`.
-
       iv.The method `arrangeLectureList` is also called and the process is same as in the previous step, except with `storage.lectureList` and `calendarLecture` replacing the first two input parameters of `arrangeTaskList`.
-
       v.Then, the method `displayCalendar` in `Schedule` class is called, and it takes in `inputYearMonth` (the YearMonth object created from the month and year parsed from the user input), the `calendarTasks` (that was filled with the tasks for each day in the Step (iii)) and `calendarLecture` (that was filled with the lectures for each day in the Step (iv)). The method `displayCalendar` performs the necessary logic to print out the calendar.
   >  **NOTE:** Two tasks and two lectures are displayed for each day based on the order in which the user added them, and if there are more, they will show as and when the user deletes the tasks/lectures that are currently displayed.
 
@@ -252,8 +246,6 @@ The following design considerations were kept in mind while implementing the cal
 #### 4.3.2 Adding a Task
 
 This feature allows user to add a new Task.
-
-**Implementation**
 
 The command for adding a task is implemented by the `AddTodoCommand` class that extends `Command`.
 
@@ -279,8 +271,6 @@ Below is an activity diagram for the execution of this feature.
 
 This feature allows user to add a new Lecture.
 
-**Implementation**
-
 The command for adding a lecture is implemented by the `AddLectureCommand` class that extends `Command`.
 
 Given below is an example usage scenario and how the add lecture mechanism behaves at each step.
@@ -301,8 +291,6 @@ Given below is an example usage scenario and how the add lecture mechanism behav
 
 This feature allows user to view all Tasks.
 
-**Implementation**
-
 The command for listing all tasks is implemented by the `ListTasksCommand` class that extends `Command`.
 
 Given below is an example usage scenario and how the list task mechanism behaves at each step.
@@ -313,13 +301,11 @@ Given below is an example usage scenario and how the list task mechanism behaves
 2. `ListTasksCommand` object is created.
 3. Execution of the command.\
    i. `ListTasksCommand` calls `StorageTasks.readTaskList()` to read Task-related data from the storage file.\
-   ii. `ListTasksCommand` calls `printTaskList(tasks.getTaskList())` of `Ui` package to print out the tasks to the user.\
+   ii. `ListTasksCommand` calls `printTaskList(tasks.getTaskList())` of `Ui` package to print out the tasks to the user.
 
 #### 4.3.5 Listing All Lectures
 
 This feature allows user to view all Lectures.
-
-**Implementation**
 
 The command for listing all lectures is implemented by the `ListLecturesCommand` class that extends `Command`.
 
@@ -331,13 +317,11 @@ Given below is an example usage scenario and how the list lecture mechanism beha
 2. `ListLecturesCommand` object is created.
 3. Execution of the command.\
    i. `ListLecturesCommand` calls `StorageLecture.readLectureList()` to read Lecture-related data from the storage file.\
-   ii. `ListLecturesCommand` calls `printLectureList(lectures.getLectureList())` of `Ui` package to print out the tasks to the user.\
+   ii. `ListLecturesCommand` calls `printLectureList(lectures.getLectureList())` of `Ui` package to print out the tasks to the user.
 
 #### 4.3.6 Deleting a Task
 
 This feature allows user to delete a Task created in the past.
-
-**Implementation**
 
 The command for deleting a task is implemented by the `DeleteTaskCommand` class that extends `Command`.
 
@@ -361,8 +345,6 @@ Below is a sequence diagram that demonstrates this feature.
 
 This feature allows user to delete a Lecture created in the past.
 
-**Implementation**
-
 The command for deleting a task is implemented by the `DeleteLectureCommand` class that extends `Command`.
 
 Given below is an example usage scenario and how the delete lecture mechanism behaves at each step.
@@ -380,8 +362,6 @@ Given below is an example usage scenario and how the delete lecture mechanism be
 #### 4.3.8 Editing a Task
 
 This feature allows user to edit a Task created in the past.
-
-**Implementation**
 
 The command for editing a task is implemented by the `EditTasksCommand` class that extends `Command`.
 
