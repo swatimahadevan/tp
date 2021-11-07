@@ -110,14 +110,14 @@ public class ParserSchedule {
     public static ArrayList<String> parseTodoArgumentsArray(String input)
             throws IncorrectNumberOfArgumentsException, InvalidDateException, WrongDividerOrderException {
         checkForDividersAddTaskCommand(input);
+        if (input.indexOf(NAME_DIVIDER) > input.indexOf(DATE_DIVIDER)) {
+            throw new WrongDividerOrderException();
+        }
         String todoDetails = input.trim().substring(CALENDAR_COMMAND_SPLIT);
         String descriptionAndDate = todoDetails.substring(todoDetails.indexOf(NAME_DIVIDER)).trim();
         String description = descriptionAndDate.substring(descriptionAndDate.indexOf(NAME_DIVIDER)
                 + 2, descriptionAndDate.indexOf(DATE_DIVIDER)).trim();
         String date = descriptionAndDate.substring(descriptionAndDate.indexOf("d/") + 2).trim();
-        if (input.indexOf(NAME_DIVIDER) >= input.indexOf(DATE_DIVIDER)) {
-            throw new WrongDividerOrderException();
-        }
         if (description.equals("")) {
             throw new IncorrectNumberOfArgumentsException(NAME_ABSENT);
         }
@@ -150,7 +150,7 @@ public class ParserSchedule {
      * @throws InvalidDateException if date given by user is invalid.
      */
     public static ArrayList<String> parseLectureCommand(String input)
-            throws IncorrectNumberOfArgumentsException, InvalidDateException {
+            throws IncorrectNumberOfArgumentsException, InvalidDateException, WrongDividerOrderException {
         return parseLectureArgumentsArray(input);
     }
 
@@ -163,8 +163,13 @@ public class ParserSchedule {
      * @throws InvalidDateException if date given by user is invalid.
      */
     public static ArrayList<String> parseLectureArgumentsArray(String input)
-            throws IncorrectNumberOfArgumentsException, InvalidDateException {
+            throws IncorrectNumberOfArgumentsException, InvalidDateException, WrongDividerOrderException {
         checkForDividersAddLectureCommand(input);
+        if (input.indexOf(MODULE_DIVIDER) >= input.indexOf(START_DATE_DIVIDER)
+                || input.indexOf(START_DATE_DIVIDER) >= input.indexOf(END_DATE_DIVIDER)
+                || input.indexOf(MODULE_DIVIDER) >= input.indexOf(END_DATE_DIVIDER)) {
+            throw new WrongDividerOrderException();
+        }
         String lectureDetails = input.trim().substring(17);
         int moduleIndexFormer = lectureDetails.indexOf(MODULE_DIVIDER);
         String nameAndDate = lectureDetails.substring(moduleIndexFormer).trim();
