@@ -177,7 +177,7 @@ public class ParserSchedule {
         int startDateIndexLatter = dayAndLimits.indexOf(START_DATE_DIVIDER);
         int endDateIndex = dayAndLimits.indexOf(END_DATE_DIVIDER);
         String fromDate = dayAndLimits.substring(startDateIndexLatter + 2,  endDateIndex).trim();
-        String toDate = dayAndLimits.substring( endDateIndex + 2).trim();
+        String toDate = dayAndLimits.substring(endDateIndex + 2).trim();
         checkEmptyIncorrectArgsAddLectureCommand(name, fromDate, toDate);
         List<String> lectureInformation = Arrays.asList(name, fromDate, toDate);
         return new ArrayList<>(lectureInformation);

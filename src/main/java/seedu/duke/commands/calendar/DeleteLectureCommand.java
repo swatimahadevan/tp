@@ -59,7 +59,6 @@ public class DeleteLectureCommand extends Command {
         Storage.lectureList.deleteLecture(this.index);
         ui.printLine();
         ui.printMessage(MESSAGE_DELETE_LECTURE);
-        ui.printLine();
         StorageLecture.writeLectureList(Storage.lectureList);
     }
 
