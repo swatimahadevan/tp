@@ -34,6 +34,7 @@ public class StorageZoom {
      * @param moduleName The module name
      * @param zoomLink The zoom link
      * @throws IOException Throws an Input Output Exception
+     * @throws InvalidZoomLinkException throws an error for invalid zoom linkgit
      */
     public static void saveLink(String moduleName, String zoomLink) throws IOException, InvalidZoomLinkException {
         Storage.checkAndAddDirectory(folderName);
@@ -123,7 +124,7 @@ public class StorageZoom {
      *
      * @param module Name of the module
      * @throws IOException throws the Input Output Exception
-     * @throws InvalidZoomLinkException throws the Invalid Zoom Link Exception
+     * @throws ModuleNotFoundException throws the Invalid Zoom Link Exception
      */
     public static void openZoomLink(String module) throws IOException, ModuleNotFoundException {
         String urlString = getZoomLink(module);
