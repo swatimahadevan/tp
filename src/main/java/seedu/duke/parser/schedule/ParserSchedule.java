@@ -57,6 +57,7 @@ public class ParserSchedule {
      * @param input from user.
      * @return Returning arguments of todo command.
      * @throws IncorrectNumberOfArgumentsException to check if correct number of arguments.
+     * @throws InvalidDateException if date given by user is invalid.
      */
     public static ArrayList<String> parseTodoArgumentsArray(String input)
             throws IncorrectNumberOfArgumentsException, InvalidDateException {
@@ -95,6 +96,7 @@ public class ParserSchedule {
      * @param input The input from the user.
      * @return the parsed lecture command arguments if the command is correct.
      * @throws IncorrectNumberOfArgumentsException if the user command is incorrect.
+     * @throws InvalidDateException if date given by user is invalid.
      */
     public static ArrayList<String> parseLectureCommand(String input)
             throws IncorrectNumberOfArgumentsException, InvalidDateException {
@@ -106,6 +108,8 @@ public class ParserSchedule {
      *
      * @param input Input from user.
      * @return the name of lecture, start date and end date.
+     * @throws IncorrectNumberOfArgumentsException if the user command is incorrect.
+     * @throws InvalidDateException if date given by user is invalid.
      */
     public static ArrayList<String> parseLectureArgumentsArray(String input)
             throws IncorrectNumberOfArgumentsException, InvalidDateException {
