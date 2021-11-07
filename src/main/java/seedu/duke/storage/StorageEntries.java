@@ -24,15 +24,17 @@ public class StorageEntries {
         while (i < dataSize) {
             String dataLine = data.get(i);
             String[] entryArguments = dataLine.split("\\|");
-            entries.add(addEntry(entryArguments));
+            if ("entry".equals(entryArguments[0])) {
+                entries.add(addEntry(entryArguments));
+            }
             i++;
         }
         return entries;
     }
 
-    private static Entry addEntry(String[] noteArguments) {
-        String noteName = noteArguments[0].trim();
-        String entryName = noteArguments[1].trim();
+    private static Entry addEntry(String[] entryArguments) {
+        String noteName = entryArguments[1].trim();
+        String entryName = entryArguments[2].trim();
         return new Entry(noteName, entryName);
     }
 
