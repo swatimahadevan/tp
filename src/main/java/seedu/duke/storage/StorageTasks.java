@@ -83,7 +83,10 @@ public class StorageTasks {
                 tasksList.addTask(tasks.get(i));
             }
             return tasksList;
-        } catch (FileNotFoundException | IncorrectNumberOfArgumentsException | ArrayIndexOutOfBoundsException | InvalidDateException e) {
+        } catch (FileNotFoundException
+                | IncorrectNumberOfArgumentsException
+                | ArrayIndexOutOfBoundsException
+                | InvalidDateException e) {
             File f = new File(StorageTasks.filePath);
         }
         return tasksList;

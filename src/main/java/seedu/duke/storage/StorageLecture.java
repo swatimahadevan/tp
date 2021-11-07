@@ -19,7 +19,8 @@ public class StorageLecture {
     public static final String fileName   = "scheduleLectures.txt";
     public static final String filePath = folderName + fileName;
 
-    public static ArrayList<Lecture> dataToLecture(ArrayList<String> data) throws InvalidDateException, DuplicateTaskException {
+    public static ArrayList<Lecture> dataToLecture(ArrayList<String> data)
+            throws InvalidDateException, DuplicateTaskException {
         ArrayList<Lecture> lectures = new ArrayList<>();
         int i = 0;
         int dataSize = data.size();
@@ -59,7 +60,8 @@ public class StorageLecture {
                 lectureList.addLecture(lectures.get(i));
             }
             return lectureList;
-        } catch (FileNotFoundException | InvalidDateException | ArrayIndexOutOfBoundsException | DuplicateTaskException e) {
+        } catch (FileNotFoundException | InvalidDateException
+                | ArrayIndexOutOfBoundsException | DuplicateTaskException e) {
             File f = new File(StorageLecture.filePath);
         }
         return lectureList;
