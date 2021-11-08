@@ -63,10 +63,14 @@ public class ParserModule {
         }
         assert tokens.length == 2;
         ArrayList<Double> capInfo = new ArrayList();
-        double cap = Double.parseDouble(tokens[0]);
-        double mc = Double.parseDouble(tokens[1]);
-        capInfo.add(cap);
-        capInfo.add(mc);
-        return capInfo;
+        try {
+            double cap = Double.parseDouble(tokens[0]);
+            double mc = Double.parseDouble(tokens[1]);
+            capInfo.add(cap);
+            capInfo.add(mc);
+            return capInfo;
+        } catch (Exception e) {
+            throw new StorageModuleException();
+        }
     }
 }
