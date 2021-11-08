@@ -51,11 +51,25 @@ public class ParserModule {
         }
     }
 
+    /**
+     * Formats CAP information to store to the storage file.
+     *
+     * @param currentCap The current CAP.
+     * @param totalMcTaken The total MCs taken that contribute to the CAP.
+     * @return The formatted string representation of CAP information.
+     */
     public static String formatCapInfoToStore(double currentCap, int totalMcTaken) {
         String data = currentCap + "|" + totalMcTaken + '\n';
         return data;
     }
 
+    /**
+     * Retrieves CAP information from the data in the storage file.
+     *
+     * @param data he formatted string representation of CAP information in the storage file.
+     * @return An ArrayList of Double containing CAP and totalMcTaken.
+     * @throws StorageModuleException If there is something wrong with the storage file.
+     */
     public static ArrayList<Double> retrieveStoredCapInfo(String data) throws StorageModuleException {
         String[] tokens = data.split("\\|");
         if (tokens.length != 2) {
