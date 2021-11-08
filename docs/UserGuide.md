@@ -309,12 +309,11 @@ Adds a lecture item.
 
 Note: You cannot add a lecture to a module unless the module has been added previously.
 
-Format: `calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)`
+Format: `calendar lecture m/MODULE_CODE s/DD-MM-YYYY(START_DATE) e/DD-MM-YYYY(END_DATE)`
 
 Example:
 ```
-calendar lecture m/ CS1231 s/ 7-10-2021 e/ 31-10-2021
-calendar lecture m/ CS2113T s/ 7-10-2021 e/ 31-10-2021
+calendar lecture m/CS1231 s/07-10-2021 e/31-10-2021
 ```
 
 Expected outcome:
@@ -328,12 +327,11 @@ Expected outcome:
 #### 3.3.2 Adding a todo task: `calendar todo`
 Adds a task item.
 
-Format: `calendar todo n/ TASK_NAME d/ DD-MM-YYYY`
+Format: `calendar todo n/TASK_NAME d/DD-MM-YYYY`
 
 Example:
 ```
-calendar todo n/ CS2113T Assignment d/ 14-10-2021
-calendar todo n/ CS1231 Assignment d/ 03-10-2021
+calendar todo n/CS2113T Assignment d/14-10-2021
 ```
 
 Expected outcome:
@@ -391,12 +389,14 @@ calendar edit 1
 
 Expected outcome:
 ```
-calendar edit 1
-        __________________________________________________
-        Enter the entire todo command with the desired description and date that you want to replace in place of the current task at index 1
-calendar todo n/ changed task name d/ 22-12-2021
-        Edited Task!
-        __________________________________________________
+	__________________________________________________
+	Enter the entire todo command with the desired description and date that you want to replace in place of the current task at index 1
+	__________________________________________________
+calendar todo n/changed task name d/22-12-2021
+	__________________________________________________
+	Edited Task!
+	__________________________________________________
+
 ```
 
 #### 3.3.6 Displaying calendar: `calendar display`
@@ -444,10 +444,11 @@ calendar list lec
 
 Expected outcome:
 ```
-        __________________________________________________
-        Here is your list of lectures:
-        
-        __________________________________________________
+	__________________________________________________
+	Here is your list of lectures:
+	1. CS1231 (from: 07-10-2021) (to: 31-10-2021) 
+	2. CS2113T (from: 07-10-2021) (to: 31-10-2021) 
+	__________________________________________________
 ```
 
 ### 3.4 Managing your journal
