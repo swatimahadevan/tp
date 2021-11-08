@@ -1,5 +1,8 @@
 package seedu.duke.constants;
 
+/**
+ * A class that contains common messages prompted to the user.
+ */
 public class Messages {
 
     public static final String LOGO = " _____ _  _     _\n"

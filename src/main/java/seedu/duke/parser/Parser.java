@@ -334,7 +334,6 @@ public class Parser {
             throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
         }
     }
-    //@@author ngnigel99
 
     //@@author nvbinh15
     /**
