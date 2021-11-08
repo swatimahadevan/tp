@@ -21,7 +21,7 @@ public class CapEditInfoCommand extends Command {
     public static final String GET_CAP_QUESTION = "What is your current cumulative average point (CAP)?";
     public static final String GET_MC_QUESTION = "How many modular credits contributing to CAP you have taken?";
     public static final String CAP_EDIT_CONFIRM_MESSAGE = "Thank you for your information. "
-            + "You can view your expected CAP by keying in cap expected";
+            + "You can view your expected CAP by keying in cap expected.";
 
     ModuleManager moduleManager = new ModuleManager();
 
@@ -60,7 +60,7 @@ public class CapEditInfoCommand extends Command {
         int totalMcTaken;
         try {
             totalMcTaken = Integer.parseInt(ui.getUserInput(scanner));
-            if (totalMcTaken < 0) {
+            if (totalMcTaken <= 0) {
                 throw new IllegalTotalMcTakenException();
             }
         } catch (Exception e) {

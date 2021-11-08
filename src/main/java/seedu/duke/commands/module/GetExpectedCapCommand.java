@@ -36,9 +36,13 @@ public class GetExpectedCapCommand extends Command {
     public void execute(Ui ui, Storage storage) throws IOException {
         double expectedCap = moduleManager.getExpectedCap();
         ui.printLine();
-        ui.printMessage("Your current CAP is " + moduleManager.getCurrentCap()
-                + ", and the total of MCs contributing to your CAP is " + moduleManager.getTotalMcTaken());
-        ui.printMessage(MESSAGE_EXPECTED_CAP + String.format(CAP_FORMAT, expectedCap));
+        if (Double.isNaN(expectedCap)) {
+            ui.printMessage("I don't have enough information to calculate your expected CAP. Please add a new module or edit the current CAP information.");
+        } else {
+            ui.printMessage("Your current CAP is " + moduleManager.getCurrentCap()
+                    + ", and the total of MCs contributing to your CAP is " + moduleManager.getTotalMcTaken());
+            ui.printMessage(MESSAGE_EXPECTED_CAP + String.format(CAP_FORMAT, expectedCap));
+        }
         ui.printLine();
     }
 }
