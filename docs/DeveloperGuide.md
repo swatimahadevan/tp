@@ -233,7 +233,7 @@ Given below is an example usage scenario and how the display calendar mechanism 
 1. The user enters the command `calendar display 10-2021`. This command is then sent for parsing in the `Click` class to `parseCommand` method in the `Parser` class. The `parseCommand` method first splits the entire command into an array `todoArguments` containing `calendar`, `display` and `10-2021`.
 2. The string `calendar` from the first index of todoArguments is checked against switch cases and is found to match `COMMAND_CALENDAR` which is the constant string "calendar". Upon finding this match, the string from the second index `todoArguments`is further split based on the delimiter of a single white space. The string `display` id checked against possible suffixes and `Command` object `DisplayCommand` is returned to the `Click` class.
 3. `Click` class then calls the method `execute` of `DisplayCommand` class. `DisplayCommand` extends `Command` class and has three steps in its `execute` method.\
-         i. The `parseCalendarCommand` is first called, and it returns the year and month values after splitting `10-2021` into `10` and `2021`. This is put together into an YearMonth object `inputYearMonth`\
+         i. The `parseCalendarCommand` is first called, and it returns the year and month values after splitting `10-2021` into `10` and `2021`. This is put together into an YearMonth object `inputYearMonth`
       >  **NOTE:** The input is validated first and if the input date given is invalid, i.e., the month not between 1-12, then the calendar for the current month is displayed.
    
       ii. The `inputYearMonth` is passed into `Ui` class method `printCalenderTitle` and this prints out the title of that month with the month name and the year. In this example, it will display as given in the figure below.
@@ -400,7 +400,6 @@ commands as well as the design considerations taken.
 #### Add notebook feature
 
 The command for adding notebook is implemented by the `AddNoteCommand` class that extends `Command`.
-On adding notebook successfully, the message "Great you have added the note: NOTEBOOK_NAME" will be displayed.
 
 Given below is an example usage scenario and how the add notebook mechanism behaves at each step.
 
@@ -424,8 +423,6 @@ Given below is an example usage scenario and how the add notebook mechanism beha
 #### Add entry feature
 
 The command for adding entry is implemented by the `AddEntryCommand` class that extends `Command`.
-
-On adding entry successfully, the message "Great you have added the entry: ENTRY_NAME" will be displayed.
 
 Given below is an example usage scenario and how the add entry mechanism behaves at each step.
 
@@ -461,7 +458,7 @@ Given below is an example usage scenario and how the list mechanism behaves at e
    i. `Click` receives the input.\
    ii. `Parser` calls `parser.parseCommand(userInput)` to parse the input.
 2. Creating `ListJournalCommand` object. \
-3. ListJournalCommand execution. \
+3. ListJournalCommand execution. 
    i. `ListJournalCommand` calls `storage.collectionOfNotebooks.getNotesArrayList()` which returns an array list of
    Notebook objects. \
    ii. `ListJournalCommand` calls `storage.collectionOfEntries.getEntriesArrayList()` which returns an array list of
@@ -816,6 +813,13 @@ public class Click {
 |v2.0|user|delete a lecture|delete a lecture that I am not going to do|
 |v2.0|user|edit a task|I do not have to delete a task which I just want to make minor changes to|
 |v2.0|user|list all lectures|get the information about my lectures|
+|v2.0|user|add a notebook|to help me journal|
+|v2.0|user|add an entry to a notebook|to help me journal|
+|v2.0|user|delete notebook|allows me to delete notebook if I don't need it|
+|v2.0|user|delete entry|allows me to delete entry I don't need it|
+|v2.0|user|list notebooks and entries|to keep track of my journal and view notebooks and entries|
+|v2.0|user|tag notebook|so I can organize my journal better|
+|v2.0|user|find notebook by tag|so I can find similar notebooks|
 
 
 
