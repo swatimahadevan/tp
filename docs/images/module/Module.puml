@@ -37,9 +37,18 @@ class StorageModule {
     + {static} saveCapInfoToFile(currentCap : double, totalMcTaken : int) : void
 }
 
+class ParserModule {
+    + {static} formatModuleToStore(module : Module) : String
+    + {static} retrieveStoredModule(String : data) : Module
+    + {static} formatCapInfoToStore(currentCap : double, totalMcTaken : int) : String
+    + {static} retrieveStoredCapInfo(data : String) : ArrayList<Double>
+}
+
 ModuleList --> "*" Module
 ModuleManager --> "1" GradePoints
 ModuleManager --> "1" StorageModule
 StorageModule ..> ModuleList
+StorageModule ..> ParserModule
+ParserModule ..> Module
 
 @enduml

@@ -9,7 +9,12 @@
 2. [Setting Up](#2-setting-up)\
 2.1 [Prerequisite](#21-prerequisite)\
 2.2 [Setting up the Project in Your Computer](#22-setting-up-the-project-in-your-computer)
-3. [Design](#3-design)
+3. [Design](#3-design)\
+3.1 [Architecture](#31-architecture)\
+3.2 [Ui Component](#32-ui-component)\
+3.3 [Logic Component](#33-logic-component)\
+3.4 [Model Component](#34-model-component)\
+3.5 [Storage Component](#35-storage-component)
 4. [Implementation](#4-implementation)\
 4.1 [Module-related Features](#41-module-related-features)\
 4.2 [Zoom-related Features](#42-zoom-related-features)\
@@ -106,7 +111,8 @@ The `UI` component:
 
 #### 3.4.1 Module-related models
 
-Module-related commands are managed by `ModuleManager`, which directly interacts with `StorageModule`. The following diagram illustrates how the classes related to module interact with each other.
+Module-related commands are managed by `ModuleManager`, which directly interacts with `StorageModule`. 
+`StorageModule` in turn makes use of `ParserModule` to format and retrieve the module-related information. The following diagram illustrates how the classes related to module interact with each other.
 
 ![module architecture](images/module/Module.png)
 
@@ -122,12 +128,6 @@ as code examples.
 ### 4.1. Module-related Features
 
 This segment focuses on describing the implementation of module-related features, the functionality of the commands as well as the design considerations taken.
-
-#### 4.1.1 Architecture
-
-Module-related commands are managed by `ModuleManager`, which directly interacts with `StorageModule`. The following diagram illustrates how the classes related to module interact with each other.
-
-![module architecture](images/module/Module.png)
 
 #### 4.1.1 Adding a Module
 
